@@ -23,8 +23,8 @@
 
     /* Typography */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'JetBrains Mono', 'SF Mono', monospace;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
 
     /* Spacing */
     --space-xs: 0.5rem;
@@ -785,7 +785,7 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
 }
 
 .card-title {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 600;
     color: var(--white);
@@ -894,7 +894,7 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
 }
 
 .type-title {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--white);
@@ -1008,7 +1008,7 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
 }
 
 .list-title {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 600;
     color: var(--white);
@@ -1254,7 +1254,7 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
 }
 
 .author-name {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     font-size: 0.9375rem;
     font-weight: 600;
     color: var(--white);
