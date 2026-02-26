@@ -48,6 +48,158 @@
     --border-color: rgba(255, 255, 255, 0.1);
 }
 
+/* -------------------- Custom Cursor -------------------- */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transition: opacity 0.3s ease;
+}
+
+/* Cross arms container - rotated 45 degrees */
+.cursor-cross {
+    position: fixed;
+    pointer-events: none;
+    transform: rotate(45deg);
+}
+
+/* Top arm */
+.cursor-top {
+    width: 1px;
+    height: 12px;
+    background: var(--white);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(50% + 5px);
+    transition: all 0.2s ease;
+}
+
+/* Bottom arm */
+.cursor-bottom {
+    width: 1px;
+    height: 12px;
+    background: var(--white);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(50% + 5px);
+    transition: all 0.2s ease;
+}
+
+/* Left arm */
+.cursor-left {
+    width: 12px;
+    height: 1px;
+    background: var(--white);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: calc(50% + 5px);
+    transition: all 0.2s ease;
+}
+
+/* Right arm */
+.cursor-right {
+    width: 12px;
+    height: 1px;
+    background: var(--white);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(50% + 5px);
+    transition: all 0.2s ease;
+}
+
+/* Extended lines - 4 diagonal lines from each arm */
+.cursor-line {
+    position: fixed;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 99998;
+}
+
+.cursor-line-extend {
+    width: 1px;
+    background: rgba(255, 255, 255, 0.04);
+    transform-origin: top center;
+}
+
+/* Top-right line (from top arm, going to top-right) */
+.cursor-line-tr {
+    transform: rotate(45deg);
+}
+
+/* Bottom-right line (from right arm, going to bottom-right) */
+.cursor-line-br {
+    transform: rotate(135deg);
+}
+
+/* Bottom-left line (from bottom arm, going to bottom-left) */
+.cursor-line-bl {
+    transform: rotate(225deg);
+}
+
+/* Top-left line (from left arm, going to top-left) */
+.cursor-line-tl {
+    transform: rotate(315deg);
+}
+
+/* Hover state */
+.cursor.hover .cursor-top,
+.cursor.hover .cursor-bottom,
+.cursor.hover .cursor-left,
+.cursor.hover .cursor-right {
+    background: var(--desert-gold);
+}
+
+.cursor.hover .cursor-top,
+.cursor.hover .cursor-bottom {
+    height: 16px;
+}
+
+.cursor.hover .cursor-left,
+.cursor.hover .cursor-right {
+    width: 16px;
+}
+
+/* Clicking state */
+.cursor.clicking .cursor-top,
+.cursor.clicking .cursor-bottom {
+    height: 8px;
+}
+
+.cursor.clicking .cursor-left,
+.cursor.clicking .cursor-right {
+    width: 8px;
+}
+
+/* Hide cursor when leaving window */
+.cursor.hidden {
+    opacity: 0;
+}
+
+/* Hide default cursor on desktop */
+@media (min-width: 1024px) {
+    * {
+        cursor: none !important;
+    }
+
+    a, button, [role="button"], input, textarea, select {
+        cursor: none !important;
+    }
+}
+
+/* Show default cursor on mobile/tablet */
+@media (max-width: 1023px) {
+    .cursor,
+    .cursor-line {
+        display: none !important;
+    }
+}
+
 /* -------------------- Reset & Base -------------------- */
 *,
 *::before,

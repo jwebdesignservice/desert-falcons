@@ -7,6 +7,7 @@
     'use strict';
 
     // ==================== DOM Elements ====================
+    const cursor = document.getElementById('cursor');
     const loader = document.getElementById('loader');
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
@@ -14,6 +15,126 @@
     const navLinks = document.querySelectorAll('.nav-link');
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     const hero = document.getElementById('hero');
+
+    // ==================== Custom Cursor ====================
+
+    const cursorLineTR = document.getElementById('cursorLineTR');
+    const cursorLineBR = document.getElementById('cursorLineBR');
+    const cursorLineBL = document.getElementById('cursorLineBL');
+    const cursorLineTL = document.getElementById('cursorLineTL');
+    const cursorLines = [cursorLineTR, cursorLineBR, cursorLineBL, cursorLineTL];
+
+    if (cursor && window.innerWidth >= 1024) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        const speed = 0.15; // Smooth follow speed
+        const armOffset = 17; // Gap + arm length (5 + 12)
+
+        // Track mouse position
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Calculate distance to corner
+        function getDistanceToCorner(x, y, cornerX, cornerY) {
+            return Math.sqrt(Math.pow(cornerX - x, 2) + Math.pow(cornerY - y, 2));
+        }
+
+        // Smooth cursor animation
+        function animateCursor() {
+            // Lerp (linear interpolation) for smooth movement
+            cursorX += (mouseX - cursorX) * speed;
+            cursorY += (mouseY - cursorY) * speed;
+
+            // Position the cross cursor
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+
+            const screenW = window.innerWidth;
+            const screenH = window.innerHeight;
+
+            // Calculate offset position (where the arm ends)
+            const offsetDiagonal = armOffset * 0.707; // cos(45deg)
+
+            // Top-right line: from arm end to top-right area
+            if (cursorLineTR) {
+                const distTR = getDistanceToCorner(cursorX, cursorY, screenW, 0);
+                cursorLineTR.style.left = (cursorX + offsetDiagonal) + 'px';
+                cursorLineTR.style.top = (cursorY - offsetDiagonal) + 'px';
+                cursorLineTR.style.height = distTR + 'px';
+            }
+
+            // Bottom-right line: from arm end to bottom-right area
+            if (cursorLineBR) {
+                const distBR = getDistanceToCorner(cursorX, cursorY, screenW, screenH);
+                cursorLineBR.style.left = (cursorX + offsetDiagonal) + 'px';
+                cursorLineBR.style.top = (cursorY + offsetDiagonal) + 'px';
+                cursorLineBR.style.height = distBR + 'px';
+            }
+
+            // Bottom-left line: from arm end to bottom-left area
+            if (cursorLineBL) {
+                const distBL = getDistanceToCorner(cursorX, cursorY, 0, screenH);
+                cursorLineBL.style.left = (cursorX - offsetDiagonal) + 'px';
+                cursorLineBL.style.top = (cursorY + offsetDiagonal) + 'px';
+                cursorLineBL.style.height = distBL + 'px';
+            }
+
+            // Top-left line: from arm end to top-left area
+            if (cursorLineTL) {
+                const distTL = getDistanceToCorner(cursorX, cursorY, 0, 0);
+                cursorLineTL.style.left = (cursorX - offsetDiagonal) + 'px';
+                cursorLineTL.style.top = (cursorY - offsetDiagonal) + 'px';
+                cursorLineTL.style.height = distTL + 'px';
+            }
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect on interactive elements
+        const hoverTargets = document.querySelectorAll('a, button, [role="button"], input, textarea, .btn, .nav-link, .pricing-card, .numbered-card, .type-card, .list-item');
+
+        hoverTargets.forEach(function(target) {
+            target.addEventListener('mouseenter', function() {
+                cursor.classList.add('hover');
+                cursorLines.forEach(function(line) {
+                    if (line) line.style.background = 'rgba(184, 145, 90, 0.06)';
+                });
+            });
+            target.addEventListener('mouseleave', function() {
+                cursor.classList.remove('hover');
+                cursorLines.forEach(function(line) {
+                    if (line) line.style.background = 'rgba(255, 255, 255, 0.04)';
+                });
+            });
+        });
+
+        // Click effect
+        document.addEventListener('mousedown', function() {
+            cursor.classList.add('clicking');
+        });
+        document.addEventListener('mouseup', function() {
+            cursor.classList.remove('clicking');
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', function() {
+            cursor.classList.add('hidden');
+            cursorLines.forEach(function(line) {
+                if (line) line.style.opacity = '0';
+            });
+        });
+        document.addEventListener('mouseenter', function() {
+            cursor.classList.remove('hidden');
+            cursorLines.forEach(function(line) {
+                if (line) line.style.opacity = '1';
+            });
+        });
+    }
 
     // ==================== Loading Screen ====================
 

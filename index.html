@@ -16,6 +16,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="loading">
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor">
+        <!-- Cross arms (rotated 45deg in CSS) -->
+        <div class="cursor-cross">
+            <div class="cursor-top"></div>
+            <div class="cursor-bottom"></div>
+            <div class="cursor-left"></div>
+            <div class="cursor-right"></div>
+        </div>
+    </div>
+    <!-- 4 Extended diagonal lines to screen edges -->
+    <div class="cursor-line cursor-line-extend cursor-line-tr" id="cursorLineTR"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-br" id="cursorLineBR"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-bl" id="cursorLineBL"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-tl" id="cursorLineTL"></div>
+
     <!-- Loading Screen -->
     <div class="loader" id="loader">
         <div class="loader-content">
