@@ -1,0 +1,1224 @@
+/* ============================================
+   Founder's Story - Unique Section Styles
+   Each chapter has its own distinct layout
+   ============================================ */
+
+/* -------------------- Image Placeholders -------------------- */
+.image-placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #1A1A1A 0%, #111111 100%);
+    border: 2px dashed rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    padding: 2rem;
+}
+
+.image-placeholder-content.large {
+    min-height: 400px;
+}
+
+.placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.placeholder-text {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   SECTION 1: Cinematic Hero Opening
+   ============================================ */
+.story-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.story-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('images/founders hero.jpg') center center / cover no-repeat;
+}
+
+.story-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(10, 10, 10, 0.92) 0%,
+        rgba(10, 10, 10, 0.85) 40%,
+        rgba(10, 10, 10, 0.75) 100%
+    );
+}
+
+.story-hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 80%, rgba(30, 74, 59, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(184, 145, 90, 0.08) 0%, transparent 40%);
+}
+
+.story-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 4rem;
+    max-width: 900px;
+}
+
+.story-hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.story-year {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    color: #B8915A;
+}
+
+.story-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.story-label {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.story-hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+}
+
+.story-hero-title .title-accent {
+    display: block;
+    background: linear-gradient(135deg, #B8915A, #D4A96A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.story-hero-tagline {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 6rem;
+}
+
+.story-scroll-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    animation: floatPrompt 2s ease-in-out infinite;
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    color: #B8915A;
+}
+
+@keyframes floatPrompt {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+.story-hero-decoration {
+    position: absolute;
+    inset: 3rem;
+    pointer-events: none;
+}
+
+.deco-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.deco-line-1 {
+    width: 1px;
+    height: 80px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.deco-line-2 {
+    width: 1px;
+    height: 80px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.deco-corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.deco-corner-tl {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.deco-corner-br {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+/* ============================================
+   SECTION 2: A Child's Dream - Asymmetric
+   ============================================ */
+.story-chapter {
+    position: relative;
+    z-index: 1;
+}
+
+.story-chapter-asymmetric {
+    padding: 12rem 0;
+    background: #0A0A0A;
+    overflow: hidden;
+}
+
+.chapter-frame {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    align-items: center;
+}
+
+@media (max-width: 968px) {
+    .chapter-frame {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+}
+
+.chapter-image-wrapper {
+    position: relative;
+}
+
+.chapter-image {
+    aspect-ratio: 4/5;
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-image-frame {
+    position: absolute;
+    inset: -20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+
+.chapter-image-frame::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid #B8915A;
+    opacity: 0.3;
+}
+
+.chapter-year-badge {
+    position: absolute;
+    bottom: 2rem;
+    right: -40px;
+    background: #1E4A3B;
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.2em;
+    padding: 1rem 2rem;
+    transform: rotate(-90deg);
+    transform-origin: bottom right;
+}
+
+.chapter-text-wrapper {
+    display: flex;
+    gap: 3rem;
+}
+
+.chapter-number-vertical {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 6rem;
+    font-weight: 300;
+    color: #2A2A2A;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.chapter-content {
+    flex: 1;
+}
+
+.chapter-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.75rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+}
+
+.chapter-subtitle {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B8915A;
+    margin-bottom: 3rem;
+}
+
+.chapter-body p {
+    font-size: 0.9375rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1.5rem;
+}
+
+.chapter-body .lead-text {
+    font-size: 1.25rem;
+    color: #FFFFFF;
+}
+
+.inline-quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #FFFFFF;
+    border-left: 3px solid #B8915A;
+    padding-left: 2rem;
+    margin: 3rem 0;
+}
+
+.inline-quote em {
+    color: #B8915A;
+    font-style: normal;
+}
+
+/* ============================================
+   SECTION 3: The Question - Grid Cards
+   ============================================ */
+.story-chapter-grid {
+    padding: 12rem 0;
+    background: #111111;
+    position: relative;
+}
+
+.story-chapter-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+}
+
+.chapter-header-centered {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.chapter-number-inline {
+    display: inline-block;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #B8915A;
+    margin-bottom: 1.5rem;
+}
+
+.chapter-number-inline.light {
+    color: #FFFFFF;
+    opacity: 0.5;
+}
+
+.chapter-title-large {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.chapter-intro {
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.comparison-card {
+    background: #1A1A1A;
+    padding: 3rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.comparison-card:hover {
+    border-color: #B8915A;
+    transform: translateY(-5px);
+}
+
+.comparison-flag {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.comparison-country {
+    display: block;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.5rem;
+}
+
+.comparison-car {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.0625rem;
+    color: #FFFFFF;
+}
+
+.question-reveal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.question-line {
+    flex: 1;
+    max-width: 150px;
+    height: 1px;
+    background: #B8915A;
+}
+
+.question-box {
+    background: #1E4A3B;
+    padding: 2rem 4rem;
+    text-align: center;
+    border: 2px solid #2A6350;
+}
+
+.question-flag {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.question-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.chapter-statement {
+    text-align: center;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.chapter-statement strong {
+    color: #FFFFFF;
+    display: block;
+    margin-top: 1rem;
+}
+
+/* ============================================
+   SECTION 4: My Daughters - Emotional Cards
+   ============================================ */
+.story-chapter-daughters {
+    padding: 12rem 0;
+    background: #0A0A0A;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+.daughters-background {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(30, 74, 59, 0.1) 0%, transparent 70%);
+}
+
+.daughters-intro {
+    margin-bottom: 3rem;
+}
+
+.daughters-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.75rem, 8vw, 4.5rem);
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+}
+
+.daughters-subtitle {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.2em;
+    color: #B8915A;
+}
+
+.daughters-lead {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 6rem;
+}
+
+.daughters-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 6rem;
+}
+
+@media (max-width: 600px) {
+    .daughters-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.daughter-card {
+    text-align: center;
+}
+
+.daughter-initial {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #B8915A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #B8915A;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.daughter-card:hover .daughter-initial {
+    background: #B8915A;
+    color: #0A0A0A;
+    transform: scale(1.1);
+}
+
+.daughter-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+}
+
+.daughters-closing {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.text-accent {
+    display: block;
+    color: #B8915A;
+    margin-top: 1rem;
+}
+
+/* ============================================
+   SECTION 5: The Words - Dramatic Quote
+   ============================================ */
+.story-chapter-quote {
+    padding: 12rem 0;
+    background: #111111;
+    position: relative;
+}
+
+.quote-section-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(135deg, rgba(184, 145, 90, 0.05) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(30, 74, 59, 0.05) 0%, transparent 50%);
+}
+
+.dramatic-quote-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quote-context {
+    margin-bottom: 4rem;
+}
+
+.quote-context p {
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.8;
+}
+
+.dramatic-quote {
+    position: relative;
+    padding: 4rem 0;
+    margin-bottom: 4rem;
+}
+
+.quote-mark-large {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 8rem;
+    color: #B8915A;
+    opacity: 0.3;
+    line-height: 0;
+    position: absolute;
+}
+
+.quote-mark-large:first-child {
+    top: 0;
+    left: 0;
+}
+
+.quote-mark-large.closing {
+    bottom: 0;
+    right: 0;
+}
+
+.dramatic-quote blockquote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.5rem, 5vw, 2.75rem);
+    font-weight: 400;
+    font-style: italic;
+    color: #FFFFFF;
+    line-height: 1.4;
+}
+
+.quote-aftermath {
+    margin-bottom: 4rem;
+}
+
+.quote-aftermath p {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+}
+
+.realization-box {
+    background: #1A1A1A;
+    border: 1px solid #1E4A3B;
+    padding: 3rem;
+    margin-bottom: 3rem;
+}
+
+.realization-box p {
+    font-size: 1.0625rem;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.realization-highlight {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem !important;
+    color: #B8915A !important;
+    margin-top: 1rem !important;
+}
+
+.quote-conclusion {
+    font-size: 1.25rem;
+    color: #2A6350;
+    font-weight: 500;
+}
+
+/* ============================================
+   SECTION 6: The Name - Split Comparison
+   ============================================ */
+.story-chapter-meaning {
+    padding: 12rem 0;
+    background: #0A0A0A;
+}
+
+.meaning-header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.meaning-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+}
+
+.meaning-arabic {
+    font-size: clamp(4rem, 15vw, 8rem);
+    font-weight: 300;
+    color: #B8915A;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+.meaning-translation {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.sword-palm-split {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 4rem;
+    align-items: stretch;
+}
+
+@media (max-width: 968px) {
+    .sword-palm-split {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+.meaning-side {
+    padding: 4rem;
+    text-align: center;
+    background: #1A1A1A;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.meaning-side:hover {
+    border-color: #B8915A;
+}
+
+.meaning-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+    color: #B8915A;
+}
+
+.meaning-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.meaning-label {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.meaning-description {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 2rem;
+}
+
+.meaning-attributes {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.meaning-attributes li {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #2A6350;
+    padding: 0.5rem 1rem;
+    border: 1px solid #1E4A3B;
+}
+
+.meaning-application {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.8;
+}
+
+.meaning-application em {
+    color: #FFFFFF;
+    font-style: normal;
+}
+
+.meaning-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+@media (max-width: 968px) {
+    .meaning-divider {
+        flex-direction: row;
+    }
+
+    .meaning-divider .divider-line {
+        width: 80px;
+        height: 1px;
+    }
+}
+
+.divider-line {
+    width: 1px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.divider-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    color: #B8915A;
+}
+
+/* ============================================
+   SECTION 7: Tuwaiq - Full Width Image
+   ============================================ */
+.story-chapter-tuwaiq {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.tuwaiq-image-bg {
+    position: absolute;
+    inset: 0;
+}
+
+.tuwaiq-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.6) 0%,
+        rgba(10, 10, 10, 0.8) 100%
+    );
+}
+
+.tuwaiq-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem;
+    max-width: 900px;
+}
+
+.tuwaiq-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.75rem, 8vw, 4.5rem);
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 4rem;
+}
+
+.tuwaiq-quote-block {
+    margin-bottom: 4rem;
+}
+
+.tuwaiq-quote-mark {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 5rem;
+    color: #B8915A;
+    line-height: 0.5;
+}
+
+.tuwaiq-quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    color: #FFFFFF;
+    line-height: 1.5;
+    margin: 2rem 0;
+}
+
+.tuwaiq-attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.attribution-name {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #B8915A;
+}
+
+.attribution-year {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.tuwaiq-description p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1.5rem;
+}
+
+.tuwaiq-statement {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem !important;
+    color: #FFFFFF !important;
+}
+
+/* ============================================
+   SECTION 8: Timeline - Then vs Now
+   ============================================ */
+.story-chapter-timeline {
+    padding: 12rem 0;
+    background: #111111;
+    position: relative;
+}
+
+.story-chapter-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+}
+
+.timeline-header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.timeline-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.timeline-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+    .timeline-visual {
+        flex-direction: column;
+    }
+}
+
+.timeline-point {
+    text-align: center;
+    flex: 1;
+    max-width: 300px;
+}
+
+.timeline-year {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.3em;
+    color: #B8915A;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-image {
+    aspect-ratio: 1;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-past .timeline-image {
+    opacity: 0.7;
+}
+
+.timeline-present .timeline-image {
+    border-color: #1E4A3B;
+}
+
+.timeline-caption {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.timeline-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .timeline-connector {
+        flex-direction: row;
+        padding: 2rem 0;
+    }
+
+    .timeline-connector .connector-line {
+        width: 80px;
+        height: 2px;
+    }
+}
+
+.connector-line {
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), #1E4A3B, rgba(255, 255, 255, 0.08));
+}
+
+.connector-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .connector-dots {
+        flex-direction: row;
+    }
+}
+
+.connector-dots span {
+    width: 6px;
+    height: 6px;
+    background: #B8915A;
+    border-radius: 50%;
+}
+
+.connector-years {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.4);
+    writing-mode: vertical-rl;
+}
+
+@media (max-width: 768px) {
+    .connector-years {
+        writing-mode: horizontal-tb;
+    }
+}
+
+.timeline-text {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.timeline-text p {
+    font-size: 1.0625rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1.5rem;
+}
+
+.text-highlight {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem !important;
+    color: #B8915A !important;
+}
+
+.text-conclusion {
+    color: #FFFFFF !important;
+}
+
+/* ============================================
+   SECTION 9: The Call - Final CTA
+   ============================================ */
+.story-chapter-call {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.call-background {
+    position: absolute;
+    inset: 0;
+}
+
+.call-image {
+    position: absolute;
+    inset: 0;
+}
+
+.call-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.7) 0%,
+        rgba(10, 10, 10, 0.9) 100%
+    );
+}
+
+.call-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem;
+    max-width: 800px;
+}
+
+.call-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.75rem, 8vw, 4.5rem);
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 4rem;
+}
+
+.call-message p {
+    font-size: 1.0625rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 2rem;
+}
+
+.call-highlight-box {
+    background: rgba(30, 74, 59, 0.3);
+    border: 1px solid #1E4A3B;
+    padding: 3rem;
+    margin: 3rem 0;
+}
+
+.call-highlight-box p {
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.call-emphasis {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem !important;
+    color: #B8915A !important;
+    margin-top: 1rem !important;
+}
+
+.call-final-quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #FFFFFF;
+    line-height: 1.6;
+    margin: 4rem 0;
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.quote-highlight {
+    color: #B8915A;
+    font-style: normal;
+    display: block;
+    margin-top: 1rem;
+}
+
+.call-cta {
+    margin-top: 4rem;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+.story-chapter {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Add scroll animation when JS is enabled */
+.js-enabled .story-chapter {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.js-enabled .story-chapter.animate-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
