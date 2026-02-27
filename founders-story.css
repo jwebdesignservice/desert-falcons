@@ -244,6 +244,20 @@
     }
 }
 
+.story-chapter-reverse .chapter-frame {
+    grid-template-columns: 1.2fr 1fr;
+}
+
+@media (max-width: 968px) {
+    .story-chapter-reverse .chapter-frame {
+        grid-template-columns: 1fr;
+    }
+
+    .story-chapter-reverse .chapter-image-wrapper {
+        order: -1;
+    }
+}
+
 .chapter-image-wrapper {
     position: relative;
 }
@@ -604,104 +618,404 @@
    SECTION 5: The Words - Dramatic Quote
    ============================================ */
 .story-chapter-quote {
-    padding: 12rem 0;
-    background: #111111;
+    padding: 8rem 0;
+    background: #0A0A0A;
     position: relative;
+    overflow: hidden;
 }
 
 .quote-section-bg {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(135deg, rgba(184, 145, 90, 0.05) 0%, transparent 50%),
-        linear-gradient(225deg, rgba(30, 74, 59, 0.05) 0%, transparent 50%);
+        radial-gradient(ellipse at 30% 50%, rgba(30, 74, 59, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(184, 145, 90, 0.04) 0%, transparent 40%);
 }
 
-.dramatic-quote-wrapper {
-    max-width: 800px;
+/* Split Layout */
+.quote-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    max-width: 1300px;
     margin: 0 auto;
-    text-align: center;
+    padding: 0 3rem;
+    align-items: center;
 }
 
-.quote-context {
-    margin-bottom: 4rem;
+@media (max-width: 1024px) {
+    .quote-split-layout {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        padding: 0 2rem;
+    }
 }
 
-.quote-context p {
-    font-size: 1.0625rem;
-    color: rgba(255, 255, 255, 0.65);
-    line-height: 1.8;
-}
-
-.dramatic-quote {
+/* Image Side */
+.quote-image-side {
     position: relative;
-    padding: 4rem 0;
-    margin-bottom: 4rem;
 }
 
-.quote-mark-large {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 8rem;
-    color: #B8915A;
-    opacity: 0.3;
-    line-height: 0;
+.quote-image-wrapper {
+    position: relative;
+    aspect-ratio: 4/5;
+}
+
+.quote-image-placeholder {
     position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #151515 0%, #0D0D0D 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.quote-mark-large:first-child {
+.quote-image-frame {
+    position: absolute;
+    inset: -15px;
+    pointer-events: none;
+}
+
+.frame-corner {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.frame-corner.frame-tl {
     top: 0;
     left: 0;
+    border-top: 1px solid #B8915A;
+    border-left: 1px solid #B8915A;
 }
 
-.quote-mark-large.closing {
+.frame-corner.frame-br {
     bottom: 0;
     right: 0;
+    border-bottom: 1px solid #B8915A;
+    border-right: 1px solid #B8915A;
 }
 
-.dramatic-quote blockquote {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(1.5rem, 5vw, 2.75rem);
-    font-weight: 400;
+.quote-image-badge {
+    position: absolute;
+    bottom: 2rem;
+    right: -20px;
+    width: 50px;
+    height: 50px;
+    background: #1E4A3B;
+    border: 1px solid #2A6350;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-image-badge svg {
+    width: 24px;
+    height: 24px;
+    color: #B8915A;
+}
+
+.quote-image-caption {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.caption-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    color: #B8915A;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid rgba(184, 145, 90, 0.3);
+}
+
+.caption-text {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.4);
     font-style: italic;
+}
+
+/* Content Side */
+.quote-content-side {
+    position: relative;
+}
+
+.quote-chapter-marker {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.marker-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.marker-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #B8915A;
+}
+
+.marker-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.quote-section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 400;
     color: #FFFFFF;
-    line-height: 1.4;
-}
-
-.quote-aftermath {
-    margin-bottom: 4rem;
-}
-
-.quote-aftermath p {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.65);
-    line-height: 1.9;
-    margin-bottom: 1rem;
-}
-
-.realization-box {
-    background: #1A1A1A;
-    border: 1px solid #1E4A3B;
-    padding: 3rem;
+    line-height: 1.3;
     margin-bottom: 3rem;
 }
 
-.realization-box p {
-    font-size: 1.0625rem;
+.quote-section-title .title-highlight {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Context Block */
+.quote-context-block {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.context-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.context-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.context-text p {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.8;
+    margin-bottom: 0.4rem;
+}
+
+.context-text .context-transition {
+    color: rgba(255, 255, 255, 0.35);
+    font-style: italic;
+    margin-top: 0.8rem;
+}
+
+/* Dramatic Quote Block */
+.dramatic-quote-block {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.quote-accent-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184, 145, 90, 0.4), transparent);
+}
+
+.quote-inner {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.quote-mark-top,
+.quote-mark-bottom {
+    display: block;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;
+    color: #B8915A;
+    opacity: 0.5;
+    line-height: 0.5;
+}
+
+.quote-mark-top {
+    margin-bottom: 1rem;
+}
+
+.quote-mark-bottom {
+    margin-top: 1rem;
+}
+
+.dramatic-quote-block blockquote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
     color: #FFFFFF;
+    line-height: 1.5;
+}
+
+.quote-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: wordReveal 0.5s ease forwards;
+    animation-play-state: paused;
+}
+
+.dramatic-quote-block.animate .quote-word {
+    animation-play-state: running;
+}
+
+.quote-word:nth-child(1) { animation-delay: 0.1s; }
+.quote-word:nth-child(2) { animation-delay: 0.18s; }
+.quote-word:nth-child(3) { animation-delay: 0.26s; }
+.quote-word:nth-child(4) { animation-delay: 0.34s; }
+.quote-word:nth-child(5) { animation-delay: 0.42s; }
+.quote-word:nth-child(6) { animation-delay: 0.50s; }
+.quote-word:nth-child(7) { animation-delay: 0.58s; }
+.quote-word:nth-child(8) { animation-delay: 0.66s; }
+
+@keyframes wordReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aftermath Block */
+.aftermath-block {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.aftermath-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    color: rgba(184, 145, 90, 0.4);
+}
+
+.aftermath-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.aftermath-text p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.8;
+    margin-bottom: 0.3rem;
+}
+
+/* Realization Block */
+.realization-block {
+    background: linear-gradient(135deg, rgba(30, 74, 59, 0.12) 0%, rgba(30, 74, 59, 0.04) 100%);
+    border: 1px solid rgba(30, 74, 59, 0.25);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.realization-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.realization-icon {
+    width: 24px;
+    height: 24px;
+    color: #B8915A;
+}
+
+.realization-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.realization-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.realization-content .realization-small {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.75rem;
+}
+
+.realization-content .realization-big {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    color: #B8915A;
+    font-weight: 500;
     margin: 0;
 }
 
-.realization-highlight {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.5rem !important;
-    color: #B8915A !important;
-    margin-top: 1rem !important;
+.realization-decoration {
+    position: absolute;
+    bottom: -1px;
+    left: 2rem;
+    display: flex;
+    gap: 4px;
 }
 
-.quote-conclusion {
-    font-size: 1.25rem;
-    color: #2A6350;
-    font-weight: 500;
+.realization-decoration span {
+    width: 20px;
+    height: 3px;
+    background: #1E4A3B;
+}
+
+.realization-decoration span:first-child {
+    width: 40px;
+    background: #B8915A;
+}
+
+/* Conclusion Block */
+.quote-conclusion-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.conclusion-arrow {
+    width: 20px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.conclusion-arrow svg {
+    width: 100%;
+    height: 100%;
+}
+
+.quote-conclusion-block p {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.saif-highlight {
+    color: #B8915A;
+    font-weight: 600;
+    letter-spacing: 0.1em;
 }
 
 /* ============================================

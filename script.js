@@ -96,7 +96,7 @@
         animateCursor();
 
         // Hover effect on interactive elements
-        const hoverTargets = document.querySelectorAll('a, button, [role="button"], input, textarea, .btn, .nav-link, .pricing-card, .numbered-card, .type-card, .list-item');
+        const hoverTargets = document.querySelectorAll('a, button, [role="button"], input, textarea, .btn, .nav-link, .pricing-card, .numbered-card, .type-card, .list-item, .comparison-card, .daughter-card, .meaning-side, .timeline-point');
 
         hoverTargets.forEach(function(target) {
             target.addEventListener('mouseenter', function() {
@@ -216,6 +216,46 @@
         animatedElements.forEach((element) => {
             observer.observe(element);
         });
+
+        // Story chapter animations (Founder's Story page)
+        const storyChapters = document.querySelectorAll('.story-chapter');
+        if (storyChapters.length > 0) {
+            const storyObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-visible');
+                        storyObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.15
+            });
+
+            storyChapters.forEach((chapter) => {
+                storyObserver.observe(chapter);
+            });
+        }
+
+        // Quote reveal animation (Chapter 4)
+        const dramaticQuote = document.querySelector('.dramatic-quote-block[data-animate="reveal"]');
+        if (dramaticQuote) {
+            const quoteObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        quoteObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.3
+            });
+
+            quoteObserver.observe(dramaticQuote);
+        }
     }
 
     // ==================== Parallax Effect ====================
