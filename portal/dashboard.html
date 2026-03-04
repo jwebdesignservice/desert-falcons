@@ -191,6 +191,51 @@
           <div class="loading-text" style="grid-column:1/-1;">Loading…</div>
         </div>
       </div>
+
+      <!-- Analytics Widget — Core Board / Admin only -->
+      <div class="section-block analytics-block" data-role="core_board,admin" style="display:none;">
+        <div class="section-block-header">
+          <div class="dashboard-section-title" style="margin-bottom:0;">📊 Engagement Analytics</div>
+          <span class="analytics-period">Last 30 days</span>
+        </div>
+        <div class="analytics-grid">
+          <div class="analytics-stat">
+            <div class="analytics-stat-value" id="statTotalMembers">—</div>
+            <div class="analytics-stat-label">Total Members</div>
+          </div>
+          <div class="analytics-stat">
+            <div class="analytics-stat-value" id="statWeeklyActive">—</div>
+            <div class="analytics-stat-label">Active This Week</div>
+          </div>
+          <div class="analytics-stat">
+            <div class="analytics-stat-value" id="statPageViews">—</div>
+            <div class="analytics-stat-label">Page Views (30d)</div>
+          </div>
+          <div class="analytics-stat">
+            <div class="analytics-stat-value" id="statThreads">—</div>
+            <div class="analytics-stat-label">Total Discussions</div>
+          </div>
+          <div class="analytics-stat">
+            <div class="analytics-stat-value" id="statDownloads">—</div>
+            <div class="analytics-stat-label">Downloads (30d)</div>
+          </div>
+          <div class="analytics-stat">
+            <div class="analytics-stat-value" id="statRsvps">—</div>
+            <div class="analytics-stat-label">Event RSVPs</div>
+          </div>
+        </div>
+        <div class="analytics-tables">
+          <div class="analytics-table-block">
+            <div class="analytics-table-title">Top Pages (30d)</div>
+            <div id="analyticsTopPages" class="loading-text">Loading…</div>
+          </div>
+          <div class="analytics-table-block">
+            <div class="analytics-table-title">Top Downloads (30d)</div>
+            <div id="analyticsTopDownloads" class="loading-text">Loading…</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 </div>
@@ -394,12 +439,104 @@
     el.innerHTML = items.map(renderActivityItem).join('');
   }
 
+  // Load analytics widget (admin/core_board only)
+  async function loadAnalytics() {
+    const analyticsBlock = document.querySelector('.analytics-block');
+    if (!analyticsBlock || analyticsBlock.style.display === 'none') return;
+
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+    const sevenDaysAgo  = new Date(Date.now() -  7 * 24 * 60 * 60 * 1000).toISOString();
+
+    // Parallel fetch all stats
+    const [
+      { count: totalMembers },
+      { data: weeklyActive },
+      { count: pageViews },
+      { count: totalThreads },
+      { count: totalDownloads },
+      { count: totalRsvps },
+      { data: topPages },
+      { data: topDownloads },
+    ] = await Promise.all([
+      _supabase.from('members').select('id', { count: 'exact', head: true }),
+      _supabase.from('analytics_events').select('member_id').eq('event_type', 'page_view').gte('created_at', sevenDaysAgo),
+      _supabase.from('analytics_events').select('id', { count: 'exact', head: true }).eq('event_type', 'page_view').gte('created_at', thirtyDaysAgo),
+      _supabase.from('discussion_threads').select('id', { count: 'exact', head: true }),
+      _supabase.from('analytics_events').select('id', { count: 'exact', head: true }).eq('event_type', 'resource_download').gte('created_at', thirtyDaysAgo),
+      _supabase.from('event_rsvps').select('id', { count: 'exact', head: true }),
+      _supabase.from('analytics_events').select('page').eq('event_type', 'page_view').gte('created_at', thirtyDaysAgo),
+      _supabase.from('analytics_events').select('metadata').eq('event_type', 'resource_download').gte('created_at', thirtyDaysAgo),
+    ]);
+
+    // Weekly active unique members
+    const uniqueWeekly = new Set((weeklyActive || []).map(r => r.member_id)).size;
+
+    document.getElementById('statTotalMembers').textContent  = totalMembers ?? '—';
+    document.getElementById('statWeeklyActive').textContent  = uniqueWeekly;
+    document.getElementById('statPageViews').textContent     = pageViews ?? '—';
+    document.getElementById('statThreads').textContent       = totalThreads ?? '—';
+    document.getElementById('statDownloads').textContent     = totalDownloads ?? '—';
+    document.getElementById('statRsvps').textContent         = totalRsvps ?? '—';
+
+    // Top pages table
+    const pageCounts = {};
+    const pageLabels = {
+      'dashboard.html': 'Dashboard', 'discussions.html': 'Discussions',
+      'resources.html': 'Resources', 'directory.html': 'Directory',
+      'events.html': 'Events', 'announcements.html': 'Announcements',
+      'updates.html': 'Project Updates', 'founders-updates.html': "Founder's Updates",
+    };
+    (topPages || []).forEach(r => {
+      if (r.page) pageCounts[r.page] = (pageCounts[r.page] || 0) + 1;
+    });
+    const topPagesArr = Object.entries(pageCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5);
+
+    const topPagesEl = document.getElementById('analyticsTopPages');
+    if (!topPagesArr.length) {
+      topPagesEl.innerHTML = '<div class="loading-text">No data yet.</div>';
+    } else {
+      topPagesEl.innerHTML = topPagesArr.map(([page, count]) => `
+        <div class="analytics-row">
+          <span class="analytics-row-label">${pageLabels[page] || page}</span>
+          <span class="analytics-row-bar">
+            <span class="analytics-bar-fill" style="width:${Math.round((count / topPagesArr[0][1]) * 100)}%"></span>
+          </span>
+          <span class="analytics-row-count">${count}</span>
+        </div>`).join('');
+    }
+
+    // Top downloads table
+    const dlCounts = {};
+    (topDownloads || []).forEach(r => {
+      const title = r.metadata?.title || 'Unknown';
+      dlCounts[title] = (dlCounts[title] || 0) + 1;
+    });
+    const topDlArr = Object.entries(dlCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
+
+    const topDlEl = document.getElementById('analyticsTopDownloads');
+    if (!topDlArr.length) {
+      topDlEl.innerHTML = '<div class="loading-text">No downloads yet.</div>';
+    } else {
+      topDlEl.innerHTML = topDlArr.map(([title, count]) => `
+        <div class="analytics-row">
+          <span class="analytics-row-label">${escapeHtml(title)}</span>
+          <span class="analytics-row-bar">
+            <span class="analytics-bar-fill" style="width:${Math.round((count / topDlArr[0][1]) * 100)}%"></span>
+          </span>
+          <span class="analytics-row-count">${count}</span>
+        </div>`).join('');
+    }
+  }
+
   await Promise.all([
     loadAnnouncement(),
     loadDashboardEvents(),
     loadEventsStrip(),
     loadRecentResources(),
-    loadActivity()
+    loadActivity(),
+    loadAnalytics(),
   ]);
 })();
 </script>

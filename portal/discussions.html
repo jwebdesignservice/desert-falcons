@@ -233,11 +233,12 @@
     btn.textContent = 'Posting…';
     alert.classList.add('hidden');
 
+    const category = document.getElementById('threadCategory').value;
+    const title    = document.getElementById('threadTitle').value.trim();
+    const body     = document.getElementById('threadBody').value.trim();
+
     const { error } = await _supabase.from('discussion_threads').insert({
-      category: document.getElementById('threadCategory').value,
-      title: document.getElementById('threadTitle').value.trim(),
-      body: document.getElementById('threadBody').value.trim(),
-      author_id: session.user.id
+      category, title, body, author_id: session.user.id
     });
 
     if (error) {
@@ -245,6 +246,7 @@
       alert.textContent = error.message;
       alert.classList.remove('hidden');
     } else {
+      trackEvent('thread_created', 'discussions.html', { title, category });
       document.getElementById('createThreadModal').classList.remove('open');
       document.getElementById('threadForm').reset();
       await loadThreads();

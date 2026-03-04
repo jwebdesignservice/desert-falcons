@@ -140,7 +140,7 @@
         </div>
         <div class="resource-action">
           ${r.file_url
-            ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="btn-download">Download</a>`
+            ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="btn-download" onclick="trackEvent('resource_download','resources.html',{title:${JSON.stringify(r.title)},category:${JSON.stringify(r.category)}})">Download</a>`
             : `<span class="btn-download disabled">Coming Soon</span>`
           }
         </div>

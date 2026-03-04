@@ -2,6 +2,37 @@
    Desert Falcons Collective — Portal Shared JS
    ============================================ */
 
+/* -------------------- Analytics Tracking -------------------- */
+
+/**
+ * Track an event in analytics_events. Fire-and-forget — never blocks UI.
+ * @param {string} eventType - page_view | resource_download | thread_created | event_rsvp | login
+ * @param {string} [page]    - page filename, auto-detected if omitted
+ * @param {object} [meta]    - extra metadata (title, id, etc.)
+ */
+async function trackEvent(eventType, page, meta = {}) {
+  try {
+    const { data: { session } } = await _supabase.auth.getSession();
+    if (!session) return;
+    const resolvedPage = page || window.location.pathname.split('/').pop() || 'index.html';
+    await _supabase.from('analytics_events').insert({
+      member_id: session.user.id,
+      event_type: eventType,
+      page: resolvedPage,
+      metadata: meta,
+    });
+  } catch (_) { /* silent — analytics should never break the app */ }
+}
+
+// Auto page-view tracking on every portal page load
+document.addEventListener('DOMContentLoaded', () => {
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  if (page !== 'index.html') {
+    // Delay slightly so requireAuth + initTopbar resolve first (user must be authed)
+    setTimeout(() => trackEvent('page_view', page), 800);
+  }
+});
+
 const SUPABASE_URL = 'https://ehcvjxggkfsdhzraucbz.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoY3ZqeGdna2ZzZGh6cmF1Y2J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MjA0MTgsImV4cCI6MjA4ODE5NjQxOH0.VvjiIrgVOONN_UOmwB0Q6hL_0aOjLlmfdVibKd627O8';
 
@@ -175,9 +206,56 @@ function typeBadgeHtml(type) {
 
 /* -------------------- Logout -------------------- */
 
+/* -------------------- Notification Preferences -------------------- */
+
+/**
+ * Fetch notification preferences for the current user.
+ * Returns an object with keys: new_threads, new_replies, new_announcements.
+ * Defaults all to true if no row exists yet.
+ */
+async function getNotificationPrefs(userId) {
+  const { data } = await _supabase
+    .from('notification_preferences')
+    .select('*')
+    .eq('member_id', userId)
+    .single();
+  return data ?? { new_threads: true, new_replies: true, new_announcements: true };
+}
+
+/**
+ * Save notification preferences for the current user.
+ */
+async function saveNotificationPrefs(userId, prefs) {
+  const { error } = await _supabase
+    .from('notification_preferences')
+    .upsert({ member_id: userId, ...prefs, updated_at: new Date().toISOString() });
+  return !error;
+}
+
+/* -------------------- Settings Link Injection -------------------- */
+
+function injectSettingsLink() {
+  const nav = document.querySelector('.sidebar-nav');
+  if (!nav || document.querySelector('[href="settings.html"]')) return;
+
+  const link = document.createElement('a');
+  link.href = 'settings.html';
+  link.className = 'sidebar-link';
+  const currentPage = window.location.pathname.split('/').pop();
+  if (currentPage === 'settings.html') link.classList.add('active');
+  link.innerHTML = `
+    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+      <circle cx="12" cy="12" r="3" stroke-width="1.5"/>
+    </svg>
+    Settings`;
+  nav.appendChild(link);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.btn-logout').forEach(btn => {
     btn.addEventListener('click', signOut);
   });
   initSidebar();
+  injectSettingsLink();
 });

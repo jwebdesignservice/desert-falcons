@@ -138,6 +138,8 @@
     });
     if (!error) {
       rsvpSet.add(eventId);
+      const ev = (events || []).find(e => e.id === eventId);
+      trackEvent('event_rsvp', 'events.html', { event_id: eventId, title: ev?.title ?? '' });
       renderEvents();
     }
   };
