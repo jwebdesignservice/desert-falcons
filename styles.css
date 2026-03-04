@@ -571,6 +571,23 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
     background: var(--royal-green-light);
 }
 
+.nav-portal {
+    border: 1px solid rgba(184,145,90,0.45);
+    padding: var(--space-xs) var(--space-md) !important;
+    border-radius: var(--border-radius-sm);
+    color: var(--desert-gold) !important;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all var(--transition-fast);
+}
+
+.nav-portal:hover {
+    background: rgba(184,145,90,0.1);
+    border-color: var(--desert-gold);
+}
+
 /* Mobile Navigation Toggle */
 .nav-toggle {
     display: none;
