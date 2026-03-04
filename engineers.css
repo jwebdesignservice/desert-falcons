@@ -21,8 +21,9 @@
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse at 10% 90%, rgba(30, 74, 59, 0.18) 0%, transparent 50%),
-        radial-gradient(ellipse at 90% 10%, rgba(184, 145, 90, 0.07) 0%, transparent 45%);
+        radial-gradient(ellipse at 10% 90%, rgba(30, 74, 59, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(184, 145, 90, 0.1) 0%, transparent 45%),
+        #0A0A0A;
 }
 
 /* Blueprint grid overlay */
@@ -93,14 +94,13 @@
     line-height: 1.1;
     margin-bottom: 2.5rem;
     display: block;
+    -webkit-text-fill-color: #FFFFFF;
 }
 .hero-em {
     display: block;
     font-style: italic;
-    background: linear-gradient(135deg, #B8915A, #D4A96A);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #B8915A;
+    -webkit-text-fill-color: #B8915A;
 }
 
 .eng-hero-sub {
