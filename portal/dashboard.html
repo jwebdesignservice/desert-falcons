@@ -316,15 +316,17 @@
     if (!data || !data.length) { el.innerHTML = '<div class="loading-text">No upcoming events.</div>'; return; }
     el.innerHTML = data.map(ev => {
       const d = new Date(ev.event_date);
-      return `<div class="event-card">
-        <div class="event-date-badge">
-          <span class="event-date-day">${d.getDate()}</span>
-          <span class="event-date-mon">${d.toLocaleDateString('en-US',{month:'short'})}</span>
+      const dateStr = d.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' });
+      return `<div class="dash-event-row">
+        <div class="dash-event-date">
+          <span class="dash-event-day">${d.getDate()}</span>
+          <span class="dash-event-mon">${d.toLocaleDateString('en-US',{month:'short'}).toUpperCase()}</span>
         </div>
-        <div class="event-type">${typeBadgeHtml(ev.event_type)}</div>
-        <div class="event-title">${escapeHtml(ev.title)}</div>
-        <div class="event-desc">${escapeHtml((ev.description||'').slice(0,80))}${(ev.description||'').length>80?'…':''}</div>
-        <a href="events.html" class="btn-rsvp">View & RSVP</a>
+        <div class="dash-event-info">
+          <div class="dash-event-title">${escapeHtml(ev.title)}</div>
+          <div class="dash-event-meta">${typeBadgeHtml(ev.event_type)} <span class="dash-event-datestr">${dateStr}</span></div>
+        </div>
+        <a href="events.html" class="dash-event-rsvp">RSVP →</a>
       </div>`;
     }).join('');
   }
@@ -338,16 +340,20 @@
       .limit(3);
     const el = document.getElementById('recentResources');
     if (!data || !data.length) { el.innerHTML = '<div class="loading-text">No resources yet.</div>'; return; }
-    el.innerHTML = data.map(r => `
-      <div class="resource-card">
-        <div class="flex-between">
-          ${typeBadgeHtml(r.file_type)}
-          <span class="resource-meta">${formatDate(r.created_at)}</span>
+    el.innerHTML = data.map(r => {
+      const icons = { PDF: '📄', EXCEL: '📊', PPT: '📋', IMAGE: '🖼️', CAD: '📐' };
+      const icon = icons[(r.file_type||'').toUpperCase()] || '📎';
+      return `<div class="dash-resource-row">
+        <div class="dash-resource-icon">${icon}</div>
+        <div class="dash-resource-info">
+          <div class="dash-resource-title">${escapeHtml(r.title)}</div>
+          <div class="dash-resource-meta">${typeBadgeHtml(r.file_type)} <span class="dash-resource-date">${formatDate(r.created_at)}</span></div>
         </div>
-        <div class="resource-title">${escapeHtml(r.title)}</div>
-        <span class="resource-meta">${escapeHtml(r.category)}</span>
-        ${r.file_url ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="btn-download">↓ Download</a>` : '<span class="btn-download" style="opacity:0.4;cursor:default;">No file</span>'}
-      </div>`).join('');
+        ${r.file_url
+          ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="dash-resource-dl">↓</a>`
+          : `<span class="dash-resource-soon">Soon</span>`}
+      </div>`;
+    }).join('');
   }
 
   // Load activity feed with realtime

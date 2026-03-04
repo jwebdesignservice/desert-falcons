@@ -712,9 +712,9 @@ ul { list-style: none; }
 
 /* -------------------- Events Strip -------------------- */
 .events-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 .event-card {
   background: var(--card-bg);
@@ -1674,4 +1674,151 @@ ul { list-style: none; }
 @media (max-width: 600px) {
   .directory-grid { grid-template-columns: 1fr 1fr; }
   .event-date-block { display: none; }
+}
+
+/* ============================================================
+   DASHBOARD — Compact Event Row + Resource Row
+   ============================================================ */
+
+.dash-event-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background var(--transition);
+}
+.dash-event-row:last-child { border-bottom: none; }
+.dash-event-row:hover { background: rgba(255,255,255,0.02); }
+
+.dash-event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 40px;
+  flex-shrink: 0;
+}
+.dash-event-day {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--desert-gold);
+  line-height: 1;
+}
+.dash-event-mon {
+  font-family: var(--font-mono);
+  font-size: 0.45rem;
+  letter-spacing: 0.2em;
+  color: rgba(184,145,90,0.6);
+  text-transform: uppercase;
+}
+.dash-event-info { flex: 1; min-width: 0; }
+.dash-event-title {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.dash-event-datestr {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+.dash-event-rsvp {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--desert-gold);
+  text-decoration: none;
+  border: 1px solid rgba(184,145,90,0.3);
+  padding: 0.35rem 0.75rem;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.dash-event-rsvp:hover {
+  background: rgba(184,145,90,0.08);
+  border-color: var(--desert-gold);
+}
+
+/* -------------------- Dashboard Resource Rows -------------------- */
+.dash-resource-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background var(--transition);
+}
+.dash-resource-row:last-child { border-bottom: none; }
+.dash-resource-row:hover { background: rgba(255,255,255,0.02); }
+
+.dash-resource-icon {
+  font-size: 1.375rem;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+}
+.dash-resource-info { flex: 1; min-width: 0; }
+.dash-resource-title {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-resource-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.dash-resource-date {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-muted);
+}
+.dash-resource-dl {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all var(--transition);
+}
+.dash-resource-dl:hover {
+  border-color: rgba(184,145,90,0.4);
+  color: var(--desert-gold);
+}
+.dash-resource-soon {
+  font-family: var(--font-mono);
+  font-size: 0.45rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Update resources-grid on dashboard to single column list */
+#recentResources.resources-grid {
+  grid-template-columns: 1fr;
+  gap: 0;
 }
