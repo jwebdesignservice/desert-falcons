@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join the Desert Falcons Collective. Register your interest as an engineer, designer, or investor.">
+    <title>Join Us | Desert Falcons Collective</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="join.css">
+</head>
+<body class="loading">
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor">
+        <div class="cursor-cross">
+            <div class="cursor-top"></div><div class="cursor-bottom"></div>
+            <div class="cursor-left"></div><div class="cursor-right"></div>
+        </div>
+    </div>
+    <div class="cursor-line cursor-line-extend cursor-line-tr" id="cursorLineTR"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-br" id="cursorLineBR"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-bl" id="cursorLineBL"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-tl" id="cursorLineTL"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <span class="logo-text">DESERT FALCONS</span>
+                <span class="logo-sub">COLLECTIVE</span>
+            </div>
+            <div class="loader-bar"></div>
+            <div class="loader-dots">
+                <span class="loader-dot"></span><span class="loader-dot"></span><span class="loader-dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">DESERT FALCONS</span>
+                <span class="logo-sub">COLLECTIVE</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="founders-story.html" class="nav-link">Founder's Story</a></li>
+                <li><a href="vision.html" class="nav-link">Vision</a></li>
+                <li><a href="engineers.html" class="nav-link">Engineers</a></li>
+                <li><a href="designers.html" class="nav-link">Designers</a></li>
+                <li><a href="investors.html" class="nav-link">Investors</a></li>
+                <li><a href="join.html" class="nav-link active nav-cta">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ================================================
+         HERO
+    ================================================ -->
+    <section class="join-hero">
+        <div class="join-hero-bg"></div>
+        <div class="join-hero-inner">
+            <span class="join-hero-tag">The Collective</span>
+            <h1 class="join-hero-title">Join the Collective</h1>
+            <p class="join-hero-sub">Register your interest. Be part of history.</p>
+        </div>
+        <div class="join-hero-corners">
+            <span class="jhc jhc-tl"></span>
+            <span class="jhc jhc-tr"></span>
+            <span class="jhc jhc-bl"></span>
+            <span class="jhc jhc-br"></span>
+        </div>
+    </section>
+
+    <!-- ================================================
+         FORM SECTION
+    ================================================ -->
+    <section class="join-form-section">
+        <div class="join-form-outer">
+
+            <!-- Left: context -->
+            <div class="join-context">
+                <div class="join-context-inner">
+                    <span class="join-context-tag">Before You Register</span>
+                    <p class="join-context-notice">
+                        This project is currently a <strong>voluntary contribution</strong> to build the team and the idea. We are not offering salaried positions at this stage.
+                    </p>
+                    <p class="join-context-notice">
+                        If you believe in the vision and want to be part of history, you are welcome here.
+                    </p>
+
+                    <div class="join-context-divider"></div>
+
+                    <div class="join-role-pills">
+                        <span class="role-pill role-pill--active" data-role="engineer">Engineer</span>
+                        <span class="role-pill" data-role="designer">Designer</span>
+                        <span class="role-pill" data-role="investor">Investor</span>
+                    </div>
+
+                    <div class="join-context-quote">
+                        <p>"We are not job seekers.<br>We are believers."</p>
+                        <span>— Khalaf Althobaiti, Founder</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: form -->
+            <div class="join-form-wrap">
+                <form class="join-form" id="joinForm" novalidate>
+
+                    <!-- Personal Information -->
+                    <div class="form-group-header">
+                        <span class="form-group-num">01</span>
+                        <span class="form-group-label">Personal Information</span>
+                    </div>
+
+                    <div class="form-row form-row--2">
+                        <div class="form-field">
+                            <label class="form-label" for="fullName">Full Name <span class="required">*</span></label>
+                            <input class="form-input" type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+                            <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input class="form-input" type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+                    </div>
+
+                    <!-- Role & Discipline -->
+                    <div class="form-group-header">
+                        <span class="form-group-num">02</span>
+                        <span class="form-group-label">Your Role</span>
+                    </div>
+
+                    <div class="form-row form-row--2">
+                        <div class="form-field">
+                            <label class="form-label" for="interest">I am interested in <span class="required">*</span></label>
+                            <div class="form-select-wrap">
+                                <select class="form-select" id="interest" name="interest" required>
+                                    <option value="" disabled selected>Select your interest</option>
+                                    <option value="engineer">Engineering</option>
+                                    <option value="designer">Design</option>
+                                    <option value="investor">Investment</option>
+                                    <option value="general">General Interest</option>
+                                </select>
+                                <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 6l4 4 4-4"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="form-field" id="fieldSpecialization">
+                            <label class="form-label" for="specialization">Specialization</label>
+                            <div class="form-select-wrap">
+                                <select class="form-select" id="specialization" name="specialization">
+                                    <option value="" disabled selected>Select your specialization</option>
+                                    <option value="powertrain">Powertrain</option>
+                                    <option value="chassis">Chassis &amp; Suspension</option>
+                                    <option value="battery">Battery &amp; Thermal</option>
+                                    <option value="software">Software &amp; Electronics</option>
+                                    <option value="materials">Materials</option>
+                                    <option value="testing">Testing &amp; Validation</option>
+                                    <option value="other-eng">Other Engineering</option>
+                                </select>
+                                <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 6l4 4 4-4"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row--2">
+                        <div class="form-field" id="fieldExperience">
+                            <label class="form-label" for="experience">Years of Experience</label>
+                            <div class="form-select-wrap">
+                                <select class="form-select" id="experience" name="experience">
+                                    <option value="" disabled selected>Select experience level</option>
+                                    <option value="0-2">0–2 years</option>
+                                    <option value="3-5">3–5 years</option>
+                                    <option value="6-10">6–10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                                <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 6l4 4 4-4"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="form-field" id="fieldDesignDiscipline">
+                            <label class="form-label" for="designDiscipline">Design Discipline</label>
+                            <div class="form-select-wrap">
+                                <select class="form-select" id="designDiscipline" name="designDiscipline">
+                                    <option value="" disabled selected>Select your discipline</option>
+                                    <option value="exterior">Exterior Design</option>
+                                    <option value="interior">Interior Design</option>
+                                    <option value="ux">UX / Digital Interface</option>
+                                    <option value="brand">Brand &amp; Identity</option>
+                                    <option value="other-design">Other Design</option>
+                                </select>
+                                <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 6l4 4 4-4"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="fieldPortfolio">
+                        <div class="form-field">
+                            <label class="form-label" for="portfolio">Portfolio Link</label>
+                            <input class="form-input" type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio.com">
+                        </div>
+                    </div>
+
+                    <!-- Investor Fields -->
+                    <div id="investorFields">
+                        <div class="form-row form-row--2">
+                            <div class="form-field" id="fieldInvestmentRange">
+                                <label class="form-label" for="investmentRange">Investment Range (SAR)</label>
+                                <div class="form-select-wrap">
+                                    <select class="form-select" id="investmentRange" name="investmentRange">
+                                        <option value="" disabled selected>Select investment range</option>
+                                        <option value="50k-100k">SAR 50,000 – 100,000</option>
+                                        <option value="100k-500k">SAR 100,000 – 500,000</option>
+                                        <option value="500k-1m">SAR 500,000 – 1,000,000</option>
+                                        <option value="1m+">SAR 1,000,000+</option>
+                                    </select>
+                                    <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M4 6l4 4 4-4"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="form-field" id="fieldInvestorType">
+                                <label class="form-label" for="investorType">Investor Type</label>
+                                <div class="form-select-wrap">
+                                    <select class="form-select" id="investorType" name="investorType">
+                                        <option value="" disabled selected>Select investor type</option>
+                                        <option value="individual">Individual</option>
+                                        <option value="family-office">Family Office</option>
+                                        <option value="institutional">Institutional</option>
+                                        <option value="vc">Venture Capital</option>
+                                        <option value="angel">Angel Investor</option>
+                                    </select>
+                                    <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M4 6l4 4 4-4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Investor disclaimer -->
+                        <div class="form-investor-disclaimer" id="investorDisclaimer">
+                            <div class="disclaimer-icon">
+                                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="10" cy="10" r="9"/>
+                                    <path d="M10 6v5M10 14v.5"/>
+                                </svg>
+                            </div>
+                            <p>The Investor section is for <strong>expression of interest only</strong>. We are not accepting investments through this website. Any future investment opportunity will be conducted through properly licensed channels in compliance with Saudi CMA regulations. No money is being requested or accepted at this stage.</p>
+                        </div>
+                    </div>
+
+                    <!-- How did you hear -->
+                    <div class="form-group-header">
+                        <span class="form-group-num">03</span>
+                        <span class="form-group-label">Almost There</span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="hearAbout">How did you hear about us?</label>
+                            <div class="form-select-wrap">
+                                <select class="form-select" id="hearAbout" name="hearAbout">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="social">Social Media</option>
+                                    <option value="friend">Friend or Colleague</option>
+                                    <option value="news">News / Press</option>
+                                    <option value="linkedin">LinkedIn</option>
+                                    <option value="search">Search Engine</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 6l4 4 4-4"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms checkbox -->
+                    <div class="form-checkbox-row">
+                        <label class="form-checkbox-label">
+                            <input class="form-checkbox" type="checkbox" id="termsAgree" name="termsAgree" required>
+                            <span class="form-checkbox-custom"></span>
+                            <span class="form-checkbox-text">
+                                I have read and agree to the <a href="terms-of-use.html" target="_blank">Terms of Use</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. I understand this is a voluntary collective and no financial commitment is being made.
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="join-submit-btn">
+                        <span>Join the Collective</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-text">DESERT FALCONS</span>
+                        <span class="logo-sub">COLLECTIVE</span>
+                    </a>
+                    <p class="footer-tagline">Built by Saudi hands.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Navigate</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="founders-story.html">Founder's Story</a></li>
+                            <li><a href="vision.html">Vision</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Join</h4>
+                        <ul>
+                            <li><a href="engineers.html">Engineers</a></li>
+                            <li><a href="designers.html">Designers</a></li>
+                            <li><a href="investors.html">Investors</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Connect</h4>
+                        <ul>
+                            <li><a href="join.html">Join Us</a></li>
+                            <li><a href="mailto:contact@desertfalconscollective.com">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Legal</h4>
+                        <ul>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-of-use.html">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Desert Falcons Collective. All rights reserved.</p>
+                <p class="footer-note">A Vision 2030 Initiative</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        setTimeout(function() {
+            var loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                loader.style.pointerEvents = 'none';
+            }
+            document.body.classList.remove('loading');
+        }, 2500);
+    </script>
+</body>
+</html>
