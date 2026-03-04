@@ -457,7 +457,7 @@
 
 .comparison-flag {
     width: 140px;
-    height: 140px;
+    height: 93px;
     margin: 0 auto 1.5rem;
     display: flex;
     align-items: center;
@@ -516,7 +516,7 @@
 
 .question-flag {
     width: 150px;
-    height: 150px;
+    height: 100px;
     margin: 0 auto 1rem;
     display: flex;
     align-items: center;
