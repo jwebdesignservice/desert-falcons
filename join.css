@@ -2,6 +2,73 @@
    Desert Falcons Collective — Join Us Page
    ============================================ */
 
+/* ---- Form feedback ---- */
+.form-message {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.form-message--error {
+    background: rgba(180, 60, 60, 0.1);
+    border: 1px solid rgba(180, 60, 60, 0.3);
+    color: rgba(220, 100, 100, 0.9);
+}
+.form-message--success {
+    background: rgba(30, 74, 59, 0.15);
+    border: 1px solid rgba(30, 74, 59, 0.4);
+    color: #2A6350;
+}
+
+/* Error input highlight */
+.input-error {
+    border-color: rgba(180, 60, 60, 0.5) !important;
+}
+
+/* ---- Success State ---- */
+.join-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 3rem;
+    min-height: 400px;
+}
+
+.join-success-icon {
+    width: 64px;
+    height: 64px;
+    color: #2A6350;
+    margin-bottom: 2.5rem;
+}
+.join-success-icon svg { width: 100%; height: 100%; }
+
+.join-success-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+}
+
+.join-success-body {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 480px;
+    margin-bottom: 2rem;
+}
+
+.join-success-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.25);
+}
+
 /* ---- Hero ---- */
 .join-hero {
     position: relative;
