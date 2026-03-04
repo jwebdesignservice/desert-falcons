@@ -1,0 +1,381 @@
+/* ============================================
+   Desert Falcons Collective - Legal Pages
+   Privacy Policy & Terms of Use
+   ============================================ */
+
+/* ---- Hero ---- */
+.legal-hero {
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #0A0A0A;
+    padding: 10rem 2rem 6rem;
+    overflow: hidden;
+}
+
+.legal-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 80%, rgba(30, 74, 59, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(184, 145, 90, 0.06) 0%, transparent 40%);
+}
+
+.legal-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.legal-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #B8915A;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(184, 145, 90, 0.3);
+}
+
+.legal-hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.legal-last-updated {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+}
+
+.legal-hero-decoration {
+    position: absolute;
+    inset: 3rem;
+    pointer-events: none;
+}
+
+.legal-hero-decoration .deco-corner {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.legal-hero-decoration .deco-corner-tl {
+    top: 0; left: 0;
+    border-right: none; border-bottom: none;
+}
+
+.legal-hero-decoration .deco-corner-br {
+    bottom: 0; right: 0;
+    border-left: none; border-top: none;
+}
+
+/* ---- Main Content ---- */
+.legal-main {
+    background: #0A0A0A;
+    padding: 6rem 0 10rem;
+}
+
+.legal-container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ---- Intro Block ---- */
+.legal-intro-block {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 3px solid #B8915A;
+    padding: 2.5rem 3rem;
+    margin-bottom: 5rem;
+}
+
+.legal-intro-block p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.legal-intro-block p:last-child {
+    margin-bottom: 0;
+}
+
+.legal-intro-block strong {
+    color: #FFFFFF;
+}
+
+/* ---- Sections ---- */
+.legal-section {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.legal-section:last-of-type {
+    border-bottom: none;
+}
+
+.legal-section-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: #1E1E1E;
+    line-height: 1;
+    padding-top: 0.25rem;
+    user-select: none;
+}
+
+.legal-section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.legal-subsection-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #B8915A;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.legal-section-content p {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1.25rem;
+}
+
+.legal-section-content p:last-child {
+    margin-bottom: 0;
+}
+
+.legal-section-content strong {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ---- Lists ---- */
+.legal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+}
+
+.legal-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 0.5rem;
+}
+
+.legal-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #B8915A;
+    font-size: 0.75rem;
+    top: 0.35rem;
+}
+
+.legal-list--restricted li::before {
+    content: '✗';
+    color: rgba(220, 80, 80, 0.7);
+    font-size: 0.7rem;
+    top: 0.4rem;
+}
+
+.legal-list li strong {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---- Tables ---- */
+.legal-table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.legal-table thead tr {
+    background: #1A1A1A;
+}
+
+.legal-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #B8915A;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.legal-table td {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    vertical-align: top;
+}
+
+.legal-table tr:last-child td {
+    border-bottom: none;
+}
+
+.legal-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.legal-table tbody tr:hover {
+    background: rgba(184, 145, 90, 0.04);
+}
+
+/* ---- Notice Boxes ---- */
+.legal-notice-box {
+    background: rgba(30, 74, 59, 0.15);
+    border: 1px solid rgba(30, 74, 59, 0.4);
+    border-left: 3px solid #1E4A3B;
+    padding: 1.75rem 2rem;
+    margin: 1.5rem 0;
+}
+
+.legal-notice-box--green {
+    background: rgba(30, 74, 59, 0.2);
+    border-color: rgba(30, 74, 59, 0.5);
+    border-left-color: #2A6350;
+}
+
+.legal-notice-label {
+    display: block;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B8915A;
+    margin-bottom: 0.75rem;
+}
+
+.legal-notice-box p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* ---- Links ---- */
+.legal-link {
+    color: #B8915A;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184, 145, 90, 0.3);
+    transition: border-color 0.2s ease;
+}
+
+.legal-link:hover {
+    border-color: #B8915A;
+}
+
+/* ---- Uppercase Notice ---- */
+.legal-uppercase-notice {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5) !important;
+    padding: 1rem 1.5rem;
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 1.25rem !important;
+}
+
+/* ---- Cross-doc Navigation ---- */
+.legal-doc-nav {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    justify-content: center;
+}
+
+.legal-doc-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    padding: 2rem 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.legal-doc-link:hover {
+    border-color: #B8915A;
+    background: rgba(184, 145, 90, 0.04);
+}
+
+.legal-doc-label {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.legal-doc-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.25rem;
+    color: #FFFFFF;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+    .legal-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .legal-section-number {
+        font-size: 1.5rem;
+        color: rgba(184, 145, 90, 0.3);
+    }
+
+    .legal-intro-block {
+        padding: 1.75rem;
+    }
+
+    .legal-table th,
+    .legal-table td {
+        padding: 0.75rem 1rem;
+    }
+}
