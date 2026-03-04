@@ -1104,13 +1104,19 @@
 .meaning-side {
     padding: 4rem;
     text-align: center;
-    background: #1A1A1A;
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.75) 100%),
+        url('images/saudi-emblem.jpg') center center / cover no-repeat;
     border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .meaning-side:hover {
     border-color: #B8915A;
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.65) 100%),
+        url('images/saudi-emblem.jpg') center center / cover no-repeat;
 }
 
 .meaning-icon {
