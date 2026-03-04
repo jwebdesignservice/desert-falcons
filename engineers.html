@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Engineers – Build the Foundation. Join Desert Falcons Collective and engineer the first Saudi luxury vehicle from the ground up.">
+    <meta name="keywords" content="Saudi automotive engineer, luxury car engineering, powertrain, chassis, EV, Saudi Arabia">
+    <title>Engineers | Desert Falcons Collective</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="engineers.css">
+</head>
+<body class="loading">
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor">
+        <div class="cursor-cross">
+            <div class="cursor-top"></div>
+            <div class="cursor-bottom"></div>
+            <div class="cursor-left"></div>
+            <div class="cursor-right"></div>
+        </div>
+    </div>
+    <div class="cursor-line cursor-line-extend cursor-line-tr" id="cursorLineTR"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-br" id="cursorLineBR"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-bl" id="cursorLineBL"></div>
+    <div class="cursor-line cursor-line-extend cursor-line-tl" id="cursorLineTL"></div>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <span class="logo-text">DESERT FALCONS</span>
+                <span class="logo-sub">COLLECTIVE</span>
+            </div>
+            <div class="loader-bar"></div>
+            <div class="loader-dots">
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">DESERT FALCONS</span>
+                <span class="logo-sub">COLLECTIVE</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="founders-story.html" class="nav-link">Founder's Story</a></li>
+                <li><a href="vision.html" class="nav-link">Vision</a></li>
+                <li><a href="engineers.html" class="nav-link active">Engineers</a></li>
+                <li><a href="designers.html" class="nav-link">Designers</a></li>
+                <li><a href="investors.html" class="nav-link">Investors</a></li>
+                <li><a href="join.html" class="nav-link nav-cta">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO
+    ============================================ -->
+    <section class="eng-hero">
+        <div class="eng-hero-bg"></div>
+        <div class="eng-hero-overlay"></div>
+
+        <div class="eng-hero-content">
+            <div class="eng-hero-meta">
+                <span class="eng-meta-tag">The Collective</span>
+                <span class="eng-meta-divider"></span>
+                <span class="eng-meta-label">Engineering Division</span>
+            </div>
+
+            <h1 class="eng-hero-title">
+                Engineers –<br>
+                <span class="title-accent">Build the Foundation</span>
+            </h1>
+
+            <p class="eng-hero-tagline">
+                "From powertrain to chassis, from software to materials –<br>
+                engineer the first Saudi luxury vehicle from the ground up."
+            </p>
+
+            <div class="eng-hero-scroll">
+                <span>Explore the Challenge</span>
+                <div class="scroll-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 5v14M5 12l7 7 7-7"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="eng-hero-grid-lines">
+            <div class="grid-line gl-v1"></div>
+            <div class="grid-line gl-v2"></div>
+            <div class="grid-line gl-h1"></div>
+            <div class="grid-line gl-h2"></div>
+        </div>
+
+        <div class="eng-hero-decoration">
+            <div class="deco-corner deco-corner-tl"></div>
+            <div class="deco-corner deco-corner-br"></div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 1: THE CHALLENGE
+    ============================================ -->
+    <section class="eng-section eng-challenge" id="challenge">
+        <div class="container">
+            <div class="eng-section-header">
+                <span class="eng-section-tag">01 — The Challenge</span>
+                <h2 class="eng-section-title">A Problem Worth Solving</h2>
+            </div>
+
+            <div class="eng-challenge-layout">
+                <div class="eng-challenge-text">
+                    <p class="eng-lead">We are building the first Saudi luxury vehicle from the ground up – and we need the finest engineering minds in the Kingdom to make it happen.</p>
+                    <p>Every system must be engineered to the highest global standards while enduring the unique demands of our climate and roads.</p>
+                    <p>This is not an assembly line job. This is a chance to design, innovate, and problem-solve at the frontier of Saudi automotive engineering.</p>
+                </div>
+
+                <div class="eng-challenge-stats">
+                    <div class="eng-stat">
+                        <span class="eng-stat-value">50°C</span>
+                        <span class="eng-stat-label">Peak operating temperature</span>
+                    </div>
+                    <div class="eng-stat">
+                        <span class="eng-stat-value">6</span>
+                        <span class="eng-stat-label">Core engineering disciplines</span>
+                    </div>
+                    <div class="eng-stat">
+                        <span class="eng-stat-value">01</span>
+                        <span class="eng-stat-label">First Saudi luxury car</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 2: IMPORTANT CLARIFICATION
+    ============================================ -->
+    <section class="eng-section eng-clarification" id="clarification">
+        <div class="container">
+            <div class="eng-clarification-box">
+                <div class="eng-clarification-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                    </svg>
+                </div>
+                <div class="eng-clarification-content">
+                    <span class="eng-clarification-label">⚠️ Important — Please Read Before Applying</span>
+                    <h3 class="eng-clarification-title">This is a voluntary collective.</h3>
+                    <p>We are not offering salaried positions at this stage.</p>
+                    <p>We are looking for passionate Saudi engineers who believe in the vision and want to be part of history – contributing their skills, solving real challenges, and building the first Saudi luxury car.</p>
+                    <div class="eng-clarification-split">
+                        <div class="eng-clarification-no">
+                            <span class="split-label split-label--no">Not for you if...</span>
+                            <p>You're looking for a paycheck.</p>
+                        </div>
+                        <div class="eng-clarification-divider"></div>
+                        <div class="eng-clarification-yes">
+                            <span class="split-label split-label--yes">For you if...</span>
+                            <p>You're looking to build a legacy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: ENGINEERING DISCIPLINES
+    ============================================ -->
+    <section class="eng-section eng-disciplines" id="disciplines">
+        <div class="container">
+            <div class="eng-section-header">
+                <span class="eng-section-tag">03 — Disciplines</span>
+                <h2 class="eng-section-title">Engineering Domains</h2>
+                <p class="eng-section-intro">Six critical systems. Every one needs the best mind available.</p>
+            </div>
+
+            <div class="eng-disciplines-grid">
+
+                <!-- Powertrain -->
+                <div class="eng-discipline-card">
+                    <div class="eng-discipline-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="32" cy="32" r="14"/>
+                            <path d="M32 18v-6M32 52v-6M18 32H12M52 32H46"/>
+                            <circle cx="32" cy="32" r="5" fill="currentColor" stroke="none"/>
+                            <path d="M22 22l-4-4M46 46l-4-4M22 42l-4 4M46 18l-4 4"/>
+                        </svg>
+                    </div>
+                    <div class="eng-discipline-number">01</div>
+                    <h3 class="eng-discipline-name">Powertrain</h3>
+                    <ul class="eng-discipline-areas">
+                        <li>Hybrid / electric systems</li>
+                        <li>Performance tuning</li>
+                        <li>Thermal management for 50°C heat</li>
+                    </ul>
+                </div>
+
+                <!-- Chassis & Suspension -->
+                <div class="eng-discipline-card">
+                    <div class="eng-discipline-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="10" y="28" width="44" height="8" rx="2"/>
+                            <circle cx="18" cy="46" r="8"/>
+                            <circle cx="46" cy="46" r="8"/>
+                            <path d="M18 28v-8M46 28v-8M10 32H6M58 32H54"/>
+                            <path d="M26 20h12"/>
+                        </svg>
+                    </div>
+                    <div class="eng-discipline-number">02</div>
+                    <h3 class="eng-discipline-name">Chassis & Suspension</h3>
+                    <ul class="eng-discipline-areas">
+                        <li>Vehicle dynamics</li>
+                        <li>Air suspension systems</li>
+                        <li>Desert capability &amp; ride comfort</li>
+                    </ul>
+                </div>
+
+                <!-- Battery & Thermal -->
+                <div class="eng-discipline-card">
+                    <div class="eng-discipline-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="12" y="18" width="36" height="28" rx="3"/>
+                            <path d="M48 26h4v12h-4"/>
+                            <path d="M24 30v-6l-8 10h8v6l8-10h-8z"/>
+                        </svg>
+                    </div>
+                    <div class="eng-discipline-number">03</div>
+                    <h3 class="eng-discipline-name">Battery & Thermal</h3>
+                    <ul class="eng-discipline-areas">
+                        <li>Energy storage systems</li>
+                        <li>Cooling architecture</li>
+                        <li>Range optimization in extreme heat</li>
+                    </ul>
+                </div>
+
+                <!-- Software & Electronics -->
+                <div class="eng-discipline-card">
+                    <div class="eng-discipline-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="8" y="12" width="48" height="32" rx="2"/>
+                            <path d="M24 52h16M32 44v8"/>
+                            <path d="M20 28l4-4 4 4 4-4 4 4 4-4"/>
+                            <circle cx="16" cy="20" r="2" fill="currentColor" stroke="none"/>
+                            <circle cx="48" cy="20" r="2" fill="currentColor" stroke="none"/>
+                        </svg>
+                    </div>
+                    <div class="eng-discipline-number">04</div>
+                    <h3 class="eng-discipline-name">Software & Electronics</h3>
+                    <ul class="eng-discipline-areas">
+                        <li>Embedded systems</li>
+                        <li>Connectivity &amp; UI/UX</li>
+                        <li>Arabic language integration</li>
+                    </ul>
+                </div>
+
+                <!-- Materials -->
+                <div class="eng-discipline-card">
+                    <div class="eng-discipline-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M32 8L52 44H12L32 8z"/>
+                            <path d="M22 44v10M42 44v10M17 54h30"/>
+                            <path d="M32 22l10 22H22L32 22z" opacity="0.4" stroke="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="eng-discipline-number">05</div>
+                    <h3 class="eng-discipline-name">Materials</h3>
+                    <ul class="eng-discipline-areas">
+                        <li>Lightweighting strategies</li>
+                        <li>Luxury material selection</li>
+                        <li>Durability &amp; sustainability</li>
+                    </ul>
+                </div>
+
+                <!-- Testing & Validation -->
+                <div class="eng-discipline-card">
+                    <div class="eng-discipline-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="32" cy="32" r="22"/>
+                            <path d="M22 32l8 8 12-14"/>
+                            <path d="M32 10v6M32 48v6M10 32h6M48 32h6"/>
+                        </svg>
+                    </div>
+                    <div class="eng-discipline-number">06</div>
+                    <h3 class="eng-discipline-name">Testing & Validation</h3>
+                    <ul class="eng-discipline-areas">
+                        <li>Quality assurance systems</li>
+                        <li>Performance testing</li>
+                        <li>Safety certification</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: KEY CHALLENGES
+    ============================================ -->
+    <section class="eng-section eng-challenges-section" id="key-challenges">
+        <div class="eng-challenges-bg"></div>
+        <div class="eng-challenges-overlay"></div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="eng-section-header eng-section-header--light">
+                <span class="eng-section-tag eng-section-tag--light">04 — The Problem Space</span>
+                <h2 class="eng-section-title">Key Engineering Challenges</h2>
+            </div>
+
+            <div class="eng-challenges-layout">
+                <blockquote class="eng-challenges-quote">
+                    "Saudi summers reach 50°C. Our roads range from smooth highways to rough desert terrain. Luxury means perfection in every detail. These are not problems – they are opportunities to innovate."
+                </blockquote>
+
+                <div class="eng-challenges-list">
+                    <div class="eng-challenge-item">
+                        <span class="eng-challenge-num">—</span>
+                        <div>
+                            <strong>Thermal management</strong>
+                            <p>Engineering systems that perform flawlessly in extreme desert heat</p>
+                        </div>
+                    </div>
+                    <div class="eng-challenge-item">
+                        <span class="eng-challenge-num">—</span>
+                        <div>
+                            <strong>Suspension for dual terrain</strong>
+                            <p>Comfort on motorways and capability on rough desert terrain</p>
+                        </div>
+                    </div>
+                    <div class="eng-challenge-item">
+                        <span class="eng-challenge-num">—</span>
+                        <div>
+                            <strong>Arabic voice interface</strong>
+                            <p>Native Arabic language integration in all embedded systems</p>
+                        </div>
+                    </div>
+                    <div class="eng-challenge-item">
+                        <span class="eng-challenge-num">—</span>
+                        <div>
+                            <strong>Lightweight luxury materials</strong>
+                            <p>Materials that feel premium without compromising performance</p>
+                        </div>
+                    </div>
+                    <div class="eng-challenge-item">
+                        <span class="eng-challenge-num">—</span>
+                        <div>
+                            <strong>Battery safety in high temperatures</strong>
+                            <p>Reliable energy storage engineered for a 50°C environment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5: WHAT WE'RE LOOKING FOR
+    ============================================ -->
+    <section class="eng-section eng-qualities" id="qualities">
+        <div class="container">
+            <div class="eng-section-header">
+                <span class="eng-section-tag">05 — Profile</span>
+                <h2 class="eng-section-title">What We're Looking For</h2>
+            </div>
+
+            <div class="eng-qualities-grid">
+
+                <div class="eng-quality-card">
+                    <div class="eng-quality-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 4L4 10v6c0 7 5 13 12 15 7-2 12-8 12-15v-6L16 4z"/>
+                        </svg>
+                    </div>
+                    <h4 class="eng-quality-name">Technical Proficiency</h4>
+                    <p class="eng-quality-desc">Deep knowledge in your discipline — not generalists.</p>
+                </div>
+
+                <div class="eng-quality-card">
+                    <div class="eng-quality-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="16" cy="16" r="12"/>
+                            <path d="M16 10v6l4 4"/>
+                        </svg>
+                    </div>
+                    <h4 class="eng-quality-name">Problem-Solving Mindset</h4>
+                    <p class="eng-quality-desc">Engineers who love challenges more than comfort zones.</p>
+                </div>
+
+                <div class="eng-quality-card">
+                    <div class="eng-quality-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="4" y="4" width="10" height="10" rx="1"/>
+                            <rect x="18" y="4" width="10" height="10" rx="1"/>
+                            <rect x="4" y="18" width="10" height="10" rx="1"/>
+                            <rect x="18" y="18" width="10" height="10" rx="1"/>
+                            <path d="M14 9h4M9 14v4M23 14v4M14 23h4"/>
+                        </svg>
+                    </div>
+                    <h4 class="eng-quality-name">Systems Thinking</h4>
+                    <p class="eng-quality-desc">Understanding how your work connects to the whole vehicle.</p>
+                </div>
+
+                <div class="eng-quality-card">
+                    <div class="eng-quality-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 26l7-7 5 5 12-16"/>
+                        </svg>
+                    </div>
+                    <h4 class="eng-quality-name">Practical Approach</h4>
+                    <p class="eng-quality-desc">Realistic about timelines and constraints — no dreamers without plans.</p>
+                </div>
+
+                <div class="eng-quality-card">
+                    <div class="eng-quality-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 6C10 6 6 10 6 16s4 10 10 10 10-4 10-10"/>
+                            <path d="M22 6l4 4-4 4"/>
+                        </svg>
+                    </div>
+                    <h4 class="eng-quality-name">Passion for Cars</h4>
+                    <p class="eng-quality-desc">Genuine enthusiasm for automotive — not just a job application.</p>
+                </div>
+
+                <div class="eng-quality-card">
+                    <div class="eng-quality-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="10" cy="14" r="5"/>
+                            <circle cx="22" cy="14" r="5"/>
+                            <path d="M4 26c0-3.3 2.7-6 6-6h12c3.3 0 6 2.7 6 6"/>
+                        </svg>
+                    </div>
+                    <h4 class="eng-quality-name">Collaborative Spirit</h4>
+                    <p class="eng-quality-desc">Willing to work across disciplines — with designers, testers, and investors.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6: CALL TO ACTION
+    ============================================ -->
+    <section class="eng-section eng-cta" id="apply">
+        <div class="eng-cta-bg"></div>
+        <div class="eng-cta-overlay"></div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="eng-cta-content">
+                <span class="eng-section-tag eng-section-tag--light">06 — Join Us</span>
+
+                <blockquote class="eng-cta-quote">
+                    "If you believe that Saudi excellence can compete with the world,<br>
+                    <span class="eng-cta-highlight">your skills belong here.</span>"
+                </blockquote>
+
+                <a href="join.html" class="btn btn-primary btn-large eng-cta-btn">
+                    <span>Apply as Engineer</span>
+                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-text">DESERT FALCONS</span>
+                        <span class="logo-sub">COLLECTIVE</span>
+                    </a>
+                    <p class="footer-tagline">Built by Saudi hands.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Navigate</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="founders-story.html">Founder's Story</a></li>
+                            <li><a href="vision.html">Vision</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Join</h4>
+                        <ul>
+                            <li><a href="engineers.html">Engineers</a></li>
+                            <li><a href="designers.html">Designers</a></li>
+                            <li><a href="investors.html">Investors</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Connect</h4>
+                        <ul>
+                            <li><a href="join.html">Join Us</a></li>
+                            <li><a href="mailto:contact@desertfalconscollective.com">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Legal</h4>
+                        <ul>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-of-use.html">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Desert Falcons Collective. All rights reserved.</p>
+                <p class="footer-note">A Vision 2030 Initiative</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        setTimeout(function() {
+            var loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                loader.style.pointerEvents = 'none';
+            }
+            document.body.classList.remove('loading');
+        }, 2500);
+    </script>
+</body>
+</html>

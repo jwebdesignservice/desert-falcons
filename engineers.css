@@ -1,0 +1,664 @@
+/* ============================================
+   Desert Falcons Collective – Engineers Page
+   Technical, precise, dark luxury
+   ============================================ */
+
+/* ---- Hero ---- */
+.eng-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #0A0A0A;
+}
+
+.eng-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 15% 85%, rgba(30, 74, 59, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 15%, rgba(184, 145, 90, 0.08) 0%, transparent 40%),
+        linear-gradient(135deg, #0A0A0A 0%, #111111 50%, #0A0A0A 100%);
+}
+
+.eng-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'%3E%3Cpath d='M0 0h60v60H0z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+}
+
+.eng-hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 900px;
+}
+
+.eng-hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.eng-meta-tag {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #B8915A;
+}
+
+.eng-meta-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.eng-meta-label {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.eng-hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+}
+
+.eng-hero-title .title-accent {
+    display: block;
+    background: linear-gradient(135deg, #B8915A, #D4A96A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.eng-hero-tagline {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    margin-bottom: 5rem;
+}
+
+.eng-hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    animation: floatPrompt 2s ease-in-out infinite;
+}
+
+.eng-hero-scroll .scroll-arrow {
+    width: 24px;
+    height: 24px;
+    color: #B8915A;
+}
+
+@keyframes floatPrompt {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* Blueprint grid lines */
+.eng-hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.grid-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.gl-v1 { width: 1px; height: 100%; left: 25%; top: 0; }
+.gl-v2 { width: 1px; height: 100%; left: 75%; top: 0; }
+.gl-h1 { height: 1px; width: 100%; top: 35%; left: 0; }
+.gl-h2 { height: 1px; width: 100%; top: 65%; left: 0; }
+
+.eng-hero-decoration {
+    position: absolute;
+    inset: 3rem;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.eng-hero-decoration .deco-corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+}
+
+.eng-hero-decoration .deco-corner-tl {
+    top: 0; left: 0;
+    border-top: 1px solid rgba(184, 145, 90, 0.3);
+    border-left: 1px solid rgba(184, 145, 90, 0.3);
+}
+
+.eng-hero-decoration .deco-corner-br {
+    bottom: 0; right: 0;
+    border-bottom: 1px solid rgba(184, 145, 90, 0.3);
+    border-right: 1px solid rgba(184, 145, 90, 0.3);
+}
+
+/* ---- Shared Section Styles ---- */
+.eng-section {
+    padding: 10rem 0;
+}
+
+.eng-section-header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.eng-section-header--light .eng-section-title {
+    color: #FFFFFF;
+}
+
+.eng-section-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #B8915A;
+    margin-bottom: 1.5rem;
+}
+
+.eng-section-tag--light {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.eng-section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.2;
+}
+
+.eng-section-intro {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 1rem;
+}
+
+/* ---- Section 1: Challenge ---- */
+.eng-challenge {
+    background: #111111;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.eng-challenge-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .eng-challenge-layout { grid-template-columns: 1fr; gap: 4rem; }
+}
+
+.eng-challenge-text .eng-lead {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.4rem;
+    color: #FFFFFF;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.eng-challenge-text p {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.25rem;
+}
+
+.eng-challenge-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.eng-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 3px solid #B8915A;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.eng-stat-value {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: #B8915A;
+    line-height: 1;
+}
+
+.eng-stat-label {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ---- Section 2: Clarification ---- */
+.eng-clarification {
+    background: #0A0A0A;
+    padding: 5rem 0;
+}
+
+.eng-clarification-box {
+    display: flex;
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(184, 90, 30, 0.06);
+    border: 1px solid rgba(200, 100, 30, 0.25);
+    border-left: 4px solid #C87840;
+    padding: 3rem 3.5rem;
+}
+
+@media (max-width: 700px) {
+    .eng-clarification-box { flex-direction: column; gap: 1.5rem; padding: 2rem; }
+}
+
+.eng-clarification-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    color: #C87840;
+}
+
+.eng-clarification-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.eng-clarification-label {
+    display: block;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C87840;
+    margin-bottom: 1rem;
+}
+
+.eng-clarification-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.eng-clarification-content p {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1rem;
+}
+
+.eng-clarification-split {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 600px) {
+    .eng-clarification-split { flex-direction: column; align-items: flex-start; }
+}
+
+.eng-clarification-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.split-label {
+    display: block;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+
+.split-label--no { color: rgba(200, 80, 80, 0.7); }
+.split-label--yes { color: #2A6350; }
+
+.eng-clarification-no p,
+.eng-clarification-yes p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
+
+/* ---- Section 3: Disciplines ---- */
+.eng-disciplines {
+    background: #111111;
+}
+
+.eng-disciplines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .eng-disciplines-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 580px) {
+    .eng-disciplines-grid { grid-template-columns: 1fr; }
+}
+
+.eng-discipline-card {
+    background: #0A0A0A;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.eng-discipline-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #B8915A, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.eng-discipline-card:hover {
+    border-color: rgba(184, 145, 90, 0.3);
+    transform: translateY(-4px);
+}
+
+.eng-discipline-card:hover::before {
+    opacity: 1;
+}
+
+.eng-discipline-icon {
+    width: 48px;
+    height: 48px;
+    color: #B8915A;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+}
+
+.eng-discipline-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.eng-discipline-number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.06);
+    line-height: 1;
+}
+
+.eng-discipline-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.375rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 1.25rem;
+}
+
+.eng-discipline-areas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.eng-discipline-areas li {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    padding-left: 1rem;
+    margin-bottom: 0.4rem;
+    position: relative;
+}
+
+.eng-discipline-areas li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: #B8915A;
+}
+
+/* ---- Section 4: Key Challenges ---- */
+.eng-challenges-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.eng-challenges-bg {
+    position: absolute;
+    inset: 0;
+    background: url('images/jebel-tuwaiq.jpg') center center / cover no-repeat;
+    z-index: 0;
+}
+
+.eng-challenges-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.88);
+    z-index: 1;
+}
+
+.eng-challenges-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .eng-challenges-layout { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+.eng-challenges-quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #FFFFFF;
+    line-height: 1.6;
+    border-left: 3px solid #B8915A;
+    padding-left: 2rem;
+    margin: 0;
+}
+
+.eng-challenges-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.eng-challenge-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
+.eng-challenge-num {
+    color: #B8915A;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.eng-challenge-item strong {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 0.3rem;
+}
+
+.eng-challenge-item p {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* ---- Section 5: Qualities ---- */
+.eng-qualities {
+    background: #0A0A0A;
+}
+
+.eng-qualities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .eng-qualities-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+    .eng-qualities-grid { grid-template-columns: 1fr; }
+}
+
+.eng-quality-card {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.eng-quality-card:hover {
+    border-color: rgba(184, 145, 90, 0.25);
+    background: #141414;
+}
+
+.eng-quality-icon {
+    width: 36px;
+    height: 36px;
+    color: #1E4A3B;
+    margin-bottom: 1.25rem;
+}
+
+.eng-quality-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.eng-quality-card:hover .eng-quality-icon {
+    color: #B8915A;
+}
+
+.eng-quality-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 0.75rem;
+}
+
+.eng-quality-desc {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+}
+
+/* ---- Section 6: CTA ---- */
+.eng-cta {
+    position: relative;
+    padding: 14rem 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.eng-cta-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 50%, rgba(30, 74, 59, 0.2) 0%, transparent 60%),
+        #0A0A0A;
+}
+
+.eng-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.02)' stroke-width='1'%3E%3Cpath d='M0 0h60v60H0z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+}
+
+.eng-cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.eng-cta-quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    margin: 2.5rem 0 4rem;
+}
+
+.eng-cta-highlight {
+    display: block;
+    color: #B8915A;
+    font-style: normal;
+    margin-top: 0.5rem;
+}
+
+.eng-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+}
