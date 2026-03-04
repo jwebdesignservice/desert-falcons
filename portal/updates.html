@@ -47,9 +47,12 @@
     </div>
 
     <div class="portal-content">
-      <div class="page-header">
-        <h1 class="page-title">Project Progress</h1>
-        <p class="page-subtitle">Live status across all SAIF workstreams</p>
+      <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h1 class="page-title">Project Progress</h1>
+          <p class="page-subtitle">Live status across all SAIF workstreams</p>
+        </div>
+        <button class="btn-create-thread" id="newUpdateBtn" data-role="core_board,admin" style="display:none;">+ Post Update</button>
       </div>
 
       <div class="filter-tabs" id="filterTabs">
@@ -67,24 +70,67 @@
   </main>
 </div>
 
+<!-- New Update Modal (admin only) -->
+<div class="modal-overlay" id="newUpdateModal">
+  <div class="modal">
+    <button class="modal-close" id="closeUpdateModal">✕</button>
+    <h2 class="modal-title">Post Project Update</h2>
+    <p class="modal-subtitle">Share progress on a SAIF workstream</p>
+    <div id="updateFormAlert" class="form-alert hidden"></div>
+    <form id="updateForm">
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-input" id="newUpdTitle" placeholder="Update title…" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select class="form-input" id="newUpdCategory" style="-webkit-appearance:auto;">
+          <option value="Design">Design</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Partnerships">Partnerships</option>
+          <option value="Fundraising">Fundraising</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select class="form-input" id="newUpdStatus" style="-webkit-appearance:auto;">
+          <option value="in_progress">🔄 In Progress</option>
+          <option value="complete">✅ Complete</option>
+          <option value="pending">⏳ Pending</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Body</label>
+        <textarea class="form-input" id="newUpdBody" rows="5" placeholder="Describe the update…" required style="resize:vertical;"></textarea>
+      </div>
+      <button type="submit" class="btn-primary" id="updateSubmit">Post Update</button>
+    </form>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
 (async () => {
   const session = await requireAuth();
   if (!session) return;
-  await initTopbar(session);
+  const profile = await initTopbar(session);
 
   let allUpdates = [];
   let activeFilter = 'all';
+  const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
 
-  const { data } = await _supabase
-    .from('project_updates')
-    .select('*')
-    .order('created_at', { ascending: false });
+  async function loadUpdates() {
+    const { data } = await _supabase
+      .from('project_updates')
+      .select('*')
+      .order('created_at', { ascending: false });
 
-  allUpdates = data || [];
-  renderUpdates();
+    allUpdates = data || [];
+    renderUpdates();
+  }
+
+  await loadUpdates();
 
   document.getElementById('filterTabs').addEventListener('click', (e) => {
     const btn = e.target.closest('.filter-tab');
@@ -102,16 +148,81 @@
 
     if (!items.length) { list.innerHTML = '<div class="loading-text">No updates in this category yet.</div>'; return; }
 
-    list.innerHTML = items.map(u => `
-      <div class="update-card">
-        <div class="update-header">
-          <span class="update-title">${escapeHtml(u.title)}</span>
-          ${statusBadgeHtml(u.status)}
-        </div>
-        <div class="update-meta">${escapeHtml(u.category)} · ${formatDate(u.created_at)}</div>
-        <div class="update-body">${escapeHtml(u.body||'')}</div>
-      </div>`).join('');
+    list.innerHTML = items.map(u => {
+      const adminActions = isAdmin ? `
+        <div class="admin-actions" style="margin-top:0.75rem;">
+          <button class="admin-btn" onclick="editStatus('${u.id}', '${u.status}')">Change Status</button>
+          <button class="admin-btn admin-btn--danger" onclick="deleteUpdate('${u.id}')">Delete</button>
+        </div>` : '';
+      return `
+        <div class="update-card">
+          <div class="update-header">
+            <span class="update-title">${escapeHtml(u.title)}</span>
+            ${statusBadgeHtml(u.status)}
+          </div>
+          <div class="update-meta">${escapeHtml(u.category)} · ${formatDate(u.created_at)}</div>
+          <div class="update-body">${escapeHtml(u.body||'')}</div>
+          ${adminActions}
+        </div>`;
+    }).join('');
   }
+
+  // Admin: new update modal
+  const newBtn = document.getElementById('newUpdateBtn');
+  if (newBtn) {
+    newBtn.addEventListener('click', () => {
+      document.getElementById('newUpdateModal').classList.add('open');
+    });
+  }
+  document.getElementById('closeUpdateModal').addEventListener('click', () => {
+    document.getElementById('newUpdateModal').classList.remove('open');
+  });
+
+  document.getElementById('updateForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn   = document.getElementById('updateSubmit');
+    const alert = document.getElementById('updateFormAlert');
+    btn.disabled = true;
+    btn.textContent = 'Posting…';
+    alert.classList.add('hidden');
+
+    const { error } = await _supabase.from('project_updates').insert({
+      title:     document.getElementById('newUpdTitle').value.trim(),
+      body:      document.getElementById('newUpdBody').value.trim(),
+      category:  document.getElementById('newUpdCategory').value,
+      status:    document.getElementById('newUpdStatus').value,
+      author_id: session.user.id,
+    });
+
+    if (error) {
+      alert.className = 'form-alert form-alert--error';
+      alert.textContent = error.message;
+      alert.classList.remove('hidden');
+    } else {
+      document.getElementById('newUpdateModal').classList.remove('open');
+      document.getElementById('updateForm').reset();
+      await loadUpdates();
+    }
+    btn.disabled = false;
+    btn.textContent = 'Post Update';
+  });
+
+  // Admin: change status inline
+  window.editStatus = async function(id, currentStatus) {
+    const statuses = ['in_progress', 'complete', 'pending'];
+    const labels   = { in_progress: 'In Progress', complete: 'Complete', pending: 'Pending' };
+    const next = statuses[(statuses.indexOf(currentStatus) + 1) % statuses.length];
+    if (!confirm(`Change status to "${labels[next]}"?`)) return;
+    await _supabase.from('project_updates').update({ status: next }).eq('id', id);
+    await loadUpdates();
+  };
+
+  // Admin: delete
+  window.deleteUpdate = async function(id) {
+    if (!confirm('Delete this update? This cannot be undone.')) return;
+    await _supabase.from('project_updates').delete().eq('id', id);
+    await loadUpdates();
+  };
 })();
 </script>
 </body>

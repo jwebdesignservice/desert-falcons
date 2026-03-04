@@ -84,9 +84,12 @@
     </div>
 
     <div class="portal-content">
-      <div class="page-header">
-        <h1 class="page-title">Announcements</h1>
-        <p class="page-subtitle">News and updates from the collective</p>
+      <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h1 class="page-title">Announcements</h1>
+          <p class="page-subtitle">News and updates from the collective</p>
+        </div>
+        <button class="btn-create-thread" id="newAnnouncementBtn" data-role="core_board,admin" style="display:none;">+ New Announcement</button>
       </div>
 
       <div id="pinnedSection">
@@ -102,44 +105,135 @@
   </main>
 </div>
 
+<!-- New Announcement Modal (admin only) -->
+<div class="modal-overlay" id="newAnnouncementModal">
+  <div class="modal">
+    <button class="modal-close" id="closeAnnouncementModal">✕</button>
+    <h2 class="modal-title">New Announcement</h2>
+    <p class="modal-subtitle">This will be visible to all portal members</p>
+    <div id="announcementFormAlert" class="form-alert hidden"></div>
+    <form id="announcementForm">
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-input" id="newAnnTitle" placeholder="Announcement title…" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Body</label>
+        <textarea class="form-input" id="newAnnBody" rows="6" placeholder="Write your announcement…" required style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-checkbox" style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;">
+          <input type="checkbox" id="newAnnPinned">
+          <span style="font-size:0.8125rem;color:var(--text-secondary);">📌 Pin this announcement to the top</span>
+        </label>
+      </div>
+      <button type="submit" class="btn-primary" id="announcementSubmit">Post Announcement</button>
+    </form>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
 (async () => {
   const session = await requireAuth();
   if (!session) return;
-  await initTopbar(session);
+  const profile = await initTopbar(session);
 
-  const { data } = await _supabase
-    .from('announcements')
-    .select('*')
-    .order('pinned', { ascending: false })
-    .order('created_at', { ascending: false });
+  async function loadAnnouncements() {
+    const { data } = await _supabase
+      .from('announcements')
+      .select('*')
+      .order('pinned', { ascending: false })
+      .order('created_at', { ascending: false });
 
-  const pinned = (data || []).filter(a => a.pinned);
-  const rest = (data || []).filter(a => !a.pinned);
+    const pinned = (data || []).filter(a => a.pinned);
+    const rest   = (data || []).filter(a => !a.pinned);
 
-  function renderAnnouncement(a) {
-    return `<div class="announcement-item ${a.pinned ? 'pinned' : ''}" onclick="this.classList.toggle('expanded')">
-      <div class="announcement-header">
-        <span class="announcement-title">${escapeHtml(a.title)}</span>
-        ${a.pinned ? '<span class="pin-icon">📌 Pinned</span>' : ''}
-      </div>
-      <div class="announcement-meta">
-        <span class="card-meta">${formatDate(a.created_at)}</span>
-      </div>
-      <p class="announcement-preview">${escapeHtml((a.body||'').slice(0,200))}${(a.body||'').length>200?'…':''}</p>
-      <div class="announcement-body">${escapeHtml(a.body||'')}</div>
-    </div>`;
+    const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+
+    function renderAnnouncement(a) {
+      const adminActions = isAdmin ? `
+        <div class="admin-actions" onclick="event.stopPropagation()">
+          <button class="admin-btn" onclick="togglePin('${a.id}', ${!a.pinned})">${a.pinned ? 'Unpin' : 'Pin'}</button>
+          <button class="admin-btn admin-btn--danger" onclick="deleteAnnouncement('${a.id}')">Delete</button>
+        </div>` : '';
+      return `<div class="announcement-item ${a.pinned ? 'pinned' : ''}" onclick="this.classList.toggle('expanded')">
+        <div class="announcement-header">
+          <span class="announcement-title">${escapeHtml(a.title)}</span>
+          ${a.pinned ? '<span class="pin-icon">📌 Pinned</span>' : ''}
+        </div>
+        <div class="announcement-meta">
+          <span class="card-meta">${formatDate(a.created_at)}</span>
+        </div>
+        <p class="announcement-preview">${escapeHtml((a.body||'').slice(0,200))}${(a.body||'').length>200?'…':''}</p>
+        <div class="announcement-body">${escapeHtml(a.body||'')}</div>
+        ${adminActions}
+      </div>`;
+    }
+
+    document.getElementById('pinnedList').innerHTML = pinned.length
+      ? pinned.map(renderAnnouncement).join('')
+      : '<div class="loading-text">No pinned announcements.</div>';
+
+    document.getElementById('announcementList').innerHTML = rest.length
+      ? rest.map(renderAnnouncement).join('')
+      : '<div class="loading-text">No announcements yet.</div>';
   }
 
-  document.getElementById('pinnedList').innerHTML = pinned.length
-    ? pinned.map(renderAnnouncement).join('')
-    : '<div class="loading-text">No pinned announcements.</div>';
+  await loadAnnouncements();
 
-  document.getElementById('announcementList').innerHTML = rest.length
-    ? rest.map(renderAnnouncement).join('')
-    : '<div class="loading-text">No announcements yet.</div>';
+  // Admin: new announcement modal
+  const newBtn = document.getElementById('newAnnouncementBtn');
+  if (newBtn) {
+    newBtn.addEventListener('click', () => {
+      document.getElementById('newAnnouncementModal').classList.add('open');
+    });
+  }
+  document.getElementById('closeAnnouncementModal').addEventListener('click', () => {
+    document.getElementById('newAnnouncementModal').classList.remove('open');
+  });
+
+  document.getElementById('announcementForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn   = document.getElementById('announcementSubmit');
+    const alert = document.getElementById('announcementFormAlert');
+    btn.disabled = true;
+    btn.textContent = 'Posting…';
+    alert.classList.add('hidden');
+
+    const { error } = await _supabase.from('announcements').insert({
+      title:     document.getElementById('newAnnTitle').value.trim(),
+      body:      document.getElementById('newAnnBody').value.trim(),
+      pinned:    document.getElementById('newAnnPinned').checked,
+      author_id: session.user.id,
+    });
+
+    if (error) {
+      alert.className = 'form-alert form-alert--error';
+      alert.textContent = error.message;
+      alert.classList.remove('hidden');
+    } else {
+      document.getElementById('newAnnouncementModal').classList.remove('open');
+      document.getElementById('announcementForm').reset();
+      await loadAnnouncements();
+    }
+    btn.disabled = false;
+    btn.textContent = 'Post Announcement';
+  });
+
+  // Admin: pin toggle
+  window.togglePin = async function(id, pinned) {
+    await _supabase.from('announcements').update({ pinned }).eq('id', id);
+    await loadAnnouncements();
+  };
+
+  // Admin: delete
+  window.deleteAnnouncement = async function(id) {
+    if (!confirm('Delete this announcement? This cannot be undone.')) return;
+    await _supabase.from('announcements').delete().eq('id', id);
+    await loadAnnouncements();
+  };
 })();
 </script>
 </body>

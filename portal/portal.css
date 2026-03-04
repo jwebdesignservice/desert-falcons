@@ -2215,3 +2215,44 @@ ul { list-style: none; }
   text-align: right;
   flex-shrink: 0;
 }
+
+/* ============================================================
+   ADMIN ACTIONS (inline management buttons on cards)
+   ============================================================ */
+
+.admin-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.75rem;
+}
+
+.admin-btn {
+  padding: 0.35rem 0.875rem;
+  background: transparent;
+  border: 1px solid var(--border-mid);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.admin-btn:hover {
+  border-color: rgba(255,255,255,0.25);
+  color: var(--white);
+}
+
+.admin-btn--danger {
+  border-color: rgba(220, 60, 60, 0.3);
+  color: rgba(220, 60, 60, 0.7);
+}
+
+.admin-btn--danger:hover {
+  border-color: rgba(220, 60, 60, 0.7);
+  color: rgb(220, 60, 60);
+}

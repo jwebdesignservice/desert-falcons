@@ -157,9 +157,9 @@
           <div class="settings-account-row">
             <div>
               <div class="notif-title">Password</div>
-              <div class="notif-desc">Send a password reset link to your email address</div>
+              <div class="notif-desc">We'll email you a secure link to set a new password</div>
             </div>
-            <button class="btn-secondary" id="resetPasswordBtn">Send Reset Link</button>
+            <button class="btn-secondary" id="resetPasswordBtn">Change Password</button>
           </div>
           <div class="settings-account-row" style="border-bottom:none;">
             <div>
@@ -274,7 +274,7 @@
       alert.textContent = error.message;
     } else {
       alert.className = 'form-alert form-alert--success';
-      alert.textContent = '✓ Password reset link sent to ' + session.user.email;
+      alert.textContent = '✓ Password change link sent to ' + session.user.email;
     }
     btn.disabled = false;
     btn.textContent = 'Send Reset Link';
