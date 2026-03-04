@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Login | Desert Falcons Collective</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="login-bg"></div>
+
+  <!-- Corner tick marks -->
+  <div class="login-corner login-corner--tl"></div>
+  <div class="login-corner login-corner--tr"></div>
+  <div class="login-corner login-corner--bl"></div>
+  <div class="login-corner login-corner--br"></div>
+
+  <div class="login-page">
+    <div class="login-card">
+
+      <!-- Logo -->
+      <div class="login-logo">
+        <span class="logo-text">DESERT FALCONS</span>
+        <span class="logo-sub">COLLECTIVE</span>
+        <span class="logo-divider"></span>
+      </div>
+
+      <!-- Login Form -->
+      <div id="loginSection">
+        <h1 class="login-title">Member Portal</h1>
+        <p class="login-sub">Inner Circle Access</p>
+
+        <div id="loginAlert" class="form-alert form-alert--error hidden"></div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+          <div class="form-row-inline">
+            <label class="form-checkbox">
+              <input type="checkbox" id="remember"> Remember me
+            </label>
+            <button type="button" class="form-link" id="forgotToggle">Forgot password?</button>
+          </div>
+          <button type="submit" class="btn-primary" id="loginBtn">Enter the Portal</button>
+        </form>
+
+        <div class="login-footer" style="margin-top:1.25rem;">
+          Not a member?
+          <a href="../join.html">Join the Collective →</a>
+        </div>
+      </div>
+
+      <!-- Recovery Form (hidden by default) -->
+      <div id="recoverySection" class="hidden">
+        <h1 class="login-title">Reset Password</h1>
+        <p class="login-sub">We'll send a recovery link to your email</p>
+
+        <div id="recoveryAlert" class="form-alert hidden"></div>
+
+        <form id="recoveryForm">
+          <div class="form-group">
+            <label class="form-label" for="recoveryEmail">Email Address</label>
+            <input type="email" id="recoveryEmail" class="form-input" placeholder="you@example.com" required>
+          </div>
+          <button type="submit" class="btn-primary" id="recoveryBtn">Send Recovery Link</button>
+          <button type="button" class="btn-secondary" id="backToLogin" style="margin-top:0.75rem;">Back to Login</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="portal.js"></script>
+  <script>
+    (async () => {
+      // If already logged in, go to dashboard
+      const { data: { session } } = await _supabase.auth.getSession();
+      if (session) { window.location.href = 'dashboard.html'; return; }
+    })();
+
+    // Forgot password toggle
+    document.getElementById('forgotToggle').addEventListener('click', () => {
+      document.getElementById('loginSection').classList.add('hidden');
+      document.getElementById('recoverySection').classList.remove('hidden');
+    });
+    document.getElementById('backToLogin').addEventListener('click', () => {
+      document.getElementById('recoverySection').classList.add('hidden');
+      document.getElementById('loginSection').classList.remove('hidden');
+    });
+
+    // Login form
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('loginBtn');
+      const alert = document.getElementById('loginAlert');
+
+      btn.disabled = true;
+      btn.textContent = 'Signing in…';
+      alert.classList.add('hidden');
+
+      const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        alert.textContent = error.message;
+        alert.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Enter the Portal';
+      } else {
+        window.location.href = 'dashboard.html';
+      }
+    });
+
+    // Recovery form
+    document.getElementById('recoveryForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('recoveryEmail').value.trim();
+      const btn = document.getElementById('recoveryBtn');
+      const alert = document.getElementById('recoveryAlert');
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      alert.className = 'form-alert hidden';
+
+      const { error } = await _supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + '/portal/index.html'
+      });
+
+      alert.classList.remove('hidden');
+      if (error) {
+        alert.className = 'form-alert form-alert--error';
+        alert.textContent = error.message;
+        btn.disabled = false;
+        btn.textContent = 'Send Recovery Link';
+      } else {
+        alert.className = 'form-alert form-alert--success';
+        alert.textContent = 'Recovery link sent — check your email.';
+      }
+    });
+  </script>
+</body>
+</html>

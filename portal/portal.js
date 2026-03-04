@@ -1,0 +1,183 @@
+/* ============================================
+   Desert Falcons Collective — Portal Shared JS
+   ============================================ */
+
+const SUPABASE_URL = 'https://ehcvjxggkfsdhzraucbz.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoY3ZqeGdna2ZzZGh6cmF1Y2J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MjA0MTgsImV4cCI6MjA4ODE5NjQxOH0.VvjiIrgVOONN_UOmwB0Q6hL_0aOjLlmfdVibKd627O8';
+
+// Initialise Supabase client
+const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* -------------------- Auth Helpers -------------------- */
+
+/**
+ * Require authentication. Redirects to index.html if no session.
+ * Returns the session object.
+ */
+async function requireAuth() {
+  const { data: { session } } = await _supabase.auth.getSession();
+  if (!session) {
+    window.location.href = 'index.html';
+    return null;
+  }
+  return session;
+}
+
+/**
+ * Fetch the current member's profile from the members table.
+ */
+async function getProfile(userId) {
+  const { data, error } = await _supabase
+    .from('members')
+    .select('*')
+    .eq('id', userId)
+    .single();
+  if (error) console.error('Profile fetch error:', error);
+  return data;
+}
+
+/**
+ * Sign the user out and redirect to login.
+ */
+async function signOut() {
+  await _supabase.auth.signOut();
+  window.location.href = 'index.html';
+}
+
+/**
+ * Show/hide elements based on data-role attribute matching the user's role.
+ * Elements with data-role="engineer" are shown only to engineers, etc.
+ */
+function showRoleUI(role) {
+  if (!role) return;
+  const r = role.toLowerCase();
+  document.querySelectorAll('[data-role]').forEach(el => {
+    const allowed = el.getAttribute('data-role').toLowerCase().split(',').map(s => s.trim());
+    if (allowed.includes(r) || allowed.includes('all')) {
+      el.style.display = '';
+    } else {
+      el.style.display = 'none';
+    }
+  });
+}
+
+/* -------------------- Sidebar / Mobile -------------------- */
+
+function initSidebar() {
+  const hamburger = document.getElementById('hamburgerBtn');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+
+  if (!hamburger || !sidebar) return;
+
+  hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+  overlay?.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+  });
+}
+
+/* -------------------- Topbar Setup -------------------- */
+
+async function initTopbar(session) {
+  const profile = await getProfile(session.user.id);
+  if (!profile) return profile;
+
+  const welcomeEl = document.getElementById('topbarWelcome');
+  if (welcomeEl) welcomeEl.textContent = `Welcome back, ${profile.full_name} 👋`;
+
+  const roleEl = document.getElementById('topbarRole');
+  if (roleEl) {
+    const r = (profile.role || 'member').toLowerCase();
+    roleEl.textContent = profile.role;
+    roleEl.className = `role-badge ${r}`;
+  }
+
+  const sinceEl = document.getElementById('topbarSince');
+  if (sinceEl) {
+    const d = new Date(profile.created_at);
+    sinceEl.textContent = `Member since ${d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
+  }
+
+  // Sidebar member info
+  const sidebarName = document.getElementById('sidebarMemberName');
+  if (sidebarName) sidebarName.textContent = profile.full_name;
+
+  const sidebarRole = document.getElementById('sidebarMemberRole');
+  if (sidebarRole) sidebarRole.textContent = profile.role;
+
+  const sidebarAvatar = document.getElementById('sidebarAvatar');
+  if (sidebarAvatar) {
+    sidebarAvatar.textContent = getInitials(profile.full_name);
+    const r = (profile.role || '').toLowerCase();
+    if (r === 'designer') sidebarAvatar.classList.add('gold');
+    else if (r === 'investor') sidebarAvatar.classList.add('silver');
+  }
+
+  showRoleUI(profile.role);
+  return profile;
+}
+
+/* -------------------- Utilities -------------------- */
+
+function getInitials(name) {
+  if (!name) return '?';
+  return name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function timeAgo(dateStr) {
+  if (!dateStr) return '';
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  if (days < 7) return `${days}d ago`;
+  return formatDate(dateStr);
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function roleBadgeHtml(role) {
+  if (!role) return '';
+  const r = role.toLowerCase();
+  return `<span class="role-badge ${r}">${escapeHtml(role)}</span>`;
+}
+
+function statusBadgeHtml(status) {
+  const map = {
+    complete:    ['complete',    '✅ Complete'],
+    in_progress: ['in-progress', '🔄 In Progress'],
+    pending:     ['pending',     '⏳ Pending'],
+  };
+  const [cls, label] = map[status] || ['pending', status];
+  return `<span class="status-badge ${cls}">${label}</span>`;
+}
+
+function typeBadgeHtml(type) {
+  const t = (type || '').toLowerCase().replace(/\s+/g, '-');
+  return `<span class="type-badge ${t}">${escapeHtml(type)}</span>`;
+}
+
+/* -------------------- Logout -------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.btn-logout').forEach(btn => {
+    btn.addEventListener('click', signOut);
+  });
+  initSidebar();
+});
