@@ -711,6 +711,17 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
     padding: var(--space-3xl) var(--space-md);
 }
 
+.hero-calligraphy {
+    margin: 0.75rem auto 1.5rem;
+}
+
+.calligraphy-img {
+    height: 48px;
+    width: auto;
+    opacity: 0.9;
+    filter: brightness(0) invert(1);
+}
+
 .hero-title {
     color: var(--white);
     margin-bottom: var(--space-lg);
