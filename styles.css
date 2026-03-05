@@ -713,6 +713,8 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
 
 .hero-calligraphy {
     margin: 0.75rem auto 1.5rem;
+    text-align: center;
+    width: 100%;
 }
 
 .calligraphy-img {
