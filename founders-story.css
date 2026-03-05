@@ -1132,6 +1132,10 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .meaning-sword {
