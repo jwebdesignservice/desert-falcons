@@ -453,113 +453,129 @@
 }
 
 /* ===================================================
-   SECTION 5 — DESIGN PHILOSOPHY
+   SECTION 5 — DESIGN PHILOSOPHY (Split Layout)
    =================================================== */
 .des-philosophy {
-    position: relative;
-    padding: 8rem 2rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    min-height: 90vh;
     overflow: hidden;
 }
 
-.des-phil-bg {
-    position: absolute;
-    inset: 0;
-    background: url('images/desert-dunes.jpg') center center / cover no-repeat;
+/* Left image panel */
+.des-phil-image-panel {
+    position: relative;
+    overflow: hidden;
 }
-.des-phil-overlay {
+.des-phil-image-inner {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(10,6,2,0.92) 0%, rgba(10,6,2,0.88) 100%);
+    background:
+        linear-gradient(to right, rgba(10,6,2,0) 70%, rgba(10,6,2,0.9) 100%),
+        linear-gradient(to bottom, rgba(10,6,2,0.2) 0%, rgba(10,6,2,0.1) 100%),
+        url('images/desert-dunes.jpg') center center / cover no-repeat;
+    transition: transform 0.8s ease;
+}
+.des-philosophy:hover .des-phil-image-inner {
+    transform: scale(1.03);
+}
+.des-phil-image-tag {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    z-index: 2;
+}
+.des-phil-image-tag span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(184,145,90,0.6);
+    background: rgba(10,6,2,0.5);
+    padding: 0.5rem 0.75rem;
+    backdrop-filter: blur(4px);
 }
 
-.des-phil-inner {
-    position: relative;
-    z-index: 2;
-    max-width: 1100px;
-    margin: 0 auto;
+/* Right content panel */
+.des-phil-content-panel {
+    background: #0D0A07;
+    padding: 6rem 4rem 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid rgba(184,145,90,0.08);
 }
 
 .des-phil-header {
-    margin-bottom: 3rem;
-}
-.des-phil-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.625rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #B8915A;
-    display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
 }
 .des-phil-title {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(1.8rem, 3vw, 2.75rem);
-    font-weight: 500;
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
+    font-weight: 400;
     color: #FFFFFF;
+    line-height: 1.15;
     margin: 0;
+    letter-spacing: -0.01em;
+}
+.des-phil-title em {
+    font-style: italic;
+    color: #B8915A;
 }
 
 .des-phil-quote {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-size: 1rem;
     font-style: italic;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.7;
-    margin: 0 0 4rem;
-    padding: 2rem 0 2rem 2rem;
-    border-left: 2px solid rgba(184,145,90,0.3);
-    max-width: 750px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.85;
+    margin: 0 0 3rem;
+    padding: 1.5rem 1.5rem;
+    border-left: 2px solid rgba(184,145,90,0.25);
+    background: rgba(184,145,90,0.04);
 }
-.des-phil-quote strong { color: #B8915A; font-style: normal; }
-.des-phil-qmark {
-    font-size: 2em;
-    line-height: 0;
-    vertical-align: -0.4em;
-    color: rgba(184,145,90,0.3);
-    margin-right: 0.15em;
-}
-.des-phil-qmark--close { margin-right: 0; margin-left: 0.1em; }
 
+/* Philosophy items — vertical stacked list */
 .des-phil-elements {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 0;
-    border: 1px solid rgba(255,255,255,0.06);
 }
 
 .des-phil-item {
-    padding: 2rem 1.75rem;
-    border-right: 1px solid rgba(255,255,255,0.06);
-    transition: background 0.3s ease;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 0 1.25rem;
+    align-items: start;
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s ease;
+    cursor: default;
 }
-.des-phil-item:last-child { border-right: none; }
-.des-phil-item:hover { background: rgba(184,145,90,0.04); }
+.des-phil-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.des-phil-item:hover { background: rgba(184,145,90,0.03); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
 
-.des-phil-num {
+.des-phil-item-num {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.5625rem;
-    letter-spacing: 0.2em;
-    color: rgba(184,145,90,0.4);
-    display: block;
-    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
+    color: rgba(184,145,90,0.45);
+    padding-top: 0.2rem;
+    flex-shrink: 0;
 }
-.des-phil-rule {
-    width: 24px; height: 1px;
-    background: rgba(184,145,90,0.25);
-    margin-bottom: 1rem;
-}
-.des-phil-body strong {
-    display: block;
+
+.des-phil-item-body h4 {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1rem;
+    font-size: 1.0625rem;
     font-weight: 500;
     color: #FFFFFF;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.3rem;
+    line-height: 1.3;
 }
-.des-phil-body p {
+.des-phil-item-body p {
     font-size: 0.8125rem;
     color: rgba(255,255,255,0.35);
-    line-height: 1.7;
+    line-height: 1.65;
     margin: 0;
 }
 
@@ -742,10 +758,15 @@
     .des-disc-num-col { display: none; }
     .des-disc-bar { display: none; }
 
-    .des-phil-elements {
-        grid-template-columns: 1fr 1fr;
+    .des-philosophy {
+        grid-template-columns: 1fr;
     }
-    .des-phil-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .des-phil-image-panel {
+        min-height: 40vh;
+    }
+    .des-phil-content-panel {
+        padding: 4rem 2rem;
+    }
 
     .des-qual-table-head { display: none; }
     .des-qual-row {
