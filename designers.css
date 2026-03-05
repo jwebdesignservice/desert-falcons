@@ -1,0 +1,770 @@
+/* ============================================
+   Desert Falcons Collective — Designers Page
+   Creative, warm aesthetic — gold & burgundy.
+   ============================================ */
+
+/* ===================================================
+   SECTION 1 — HERO
+   =================================================== */
+.des-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #0A0A0A;
+}
+
+.des-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,1) 100%),
+        url('images/arabic-architecture.jpg') center center / cover no-repeat;
+}
+
+/* Sketch grid overlay — softer, artistic */
+.des-sketch-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+.skg-v, .skg-h { position: absolute; background: rgba(184,145,90,0.04); }
+.skg-v { width: 1px; height: 100%; top: 0; }
+.skg-h { height: 1px; width: 100%; left: 0; }
+.skg-v1 { left: 25%; }
+.skg-v2 { left: 75%; }
+.skg-h1 { top: 35%; }
+.skg-h2 { top: 68%; }
+
+.skg-arc {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(184,145,90,0.06);
+    pointer-events: none;
+}
+.skg-arc-1 {
+    width: 500px; height: 500px;
+    top: -100px; right: -100px;
+}
+.skg-arc-2 {
+    width: 300px; height: 300px;
+    bottom: 60px; left: 5%;
+}
+
+/* Hero content */
+.des-hero-inner {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 960px;
+}
+
+.des-hero-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+.des-eyebrow-line {
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: rgba(184,145,90,0.3);
+}
+.des-eyebrow-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #B8915A;
+}
+
+.des-hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+}
+.des-hero-em {
+    display: block;
+    font-style: italic;
+    background: linear-gradient(135deg, #B8915A 0%, #D4AA72 50%, #B8915A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.des-hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    font-style: italic;
+}
+
+.des-hero-scroll-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255,255,255,0.3);
+}
+.des-scroll-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+.des-scroll-icon {
+    width: 20px;
+    height: 20px;
+    animation: des-scroll-bounce 2s ease-in-out infinite;
+}
+@keyframes des-scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* Corner marks */
+.des-hero-corners { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.dhc {
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: rgba(184,145,90,0.25);
+    border-style: solid;
+}
+.dhc-tl { top: 2rem; left: 2rem; border-width: 1px 0 0 1px; }
+.dhc-tr { top: 2rem; right: 2rem; border-width: 1px 1px 0 0; }
+.dhc-bl { bottom: 2rem; left: 2rem; border-width: 0 0 1px 1px; }
+.dhc-br { bottom: 2rem; right: 2rem; border-width: 0 1px 1px 0; }
+
+/* ===================================================
+   SECTION 2 — THE INVITATION
+   =================================================== */
+.des-invitation {
+    background: #0A0A0A;
+    padding: 7rem 0 0;
+}
+
+.des-invitation-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 4rem;
+    align-items: start;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.des-invitation-label-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-top: 0.5rem;
+}
+
+.des-section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    color: rgba(184,145,90,0.5);
+    letter-spacing: 0.15em;
+}
+.des-section-num--light { color: rgba(255,255,255,0.15); }
+.des-section-rule {
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: rgba(184,145,90,0.2);
+}
+.des-section-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.des-invitation-body-col { padding-top: 0.25rem; }
+.des-invitation-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 2.75rem);
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 1.75rem;
+    line-height: 1.2;
+}
+.des-invitation-lead {
+    font-size: 1.0625rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+}
+.des-invitation-text {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+}
+
+/* Stat bar */
+.des-stat-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.des-stat-item {
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+.des-stat-value {
+    display: block;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #B8915A;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+.des-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.6;
+}
+.des-stat-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.06);
+    align-self: stretch;
+    margin: 1rem 0;
+}
+
+/* ===================================================
+   SECTION 3 — CLARIFICATION
+   =================================================== */
+.des-clarification {
+    background: linear-gradient(135deg, #1A0E06 0%, #140A04 100%);
+    border-top: 1px solid rgba(184,145,90,0.15);
+    border-bottom: 1px solid rgba(184,145,90,0.15);
+    padding: 5rem 2rem;
+}
+
+.des-clarification-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.des-clar-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.des-clar-icon {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    color: #B8915A;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+}
+.des-clar-icon svg { width: 100%; height: 100%; }
+
+.des-clar-eyebrow {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B8915A;
+    margin-bottom: 0.75rem;
+}
+.des-clar-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.des-clar-body {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.85;
+    margin-bottom: 3rem;
+    padding-left: calc(48px + 2rem);
+}
+
+.des-clar-split {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    border: 1px solid rgba(184,145,90,0.15);
+}
+.des-clar-half {
+    padding: 2rem 2.5rem;
+}
+.des-clar-half p {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+    line-height: 1.6;
+}
+.des-clar-no { border-right: none; }
+.des-clar-yes { background: rgba(184,145,90,0.04); }
+.des-clar-split-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B8915A;
+    margin-bottom: 0.75rem;
+}
+.des-clar-rule {
+    width: 1px;
+    background: rgba(184,145,90,0.15);
+}
+
+/* ===================================================
+   SECTION 4 — DESIGN DISCIPLINES
+   =================================================== */
+.des-disciplines {
+    background: #0A0A0A;
+    padding: 7rem 0;
+}
+
+.des-disciplines-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.des-disc-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 2.75rem);
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0 0 0.5rem;
+}
+.des-disc-subhead {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.35);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.des-disc-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.des-disc-row {
+    display: grid;
+    grid-template-columns: 80px 80px 1fr 4px;
+    gap: 0 2rem;
+    align-items: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.3s ease;
+    position: relative;
+}
+.des-disc-row:hover { background: rgba(184,145,90,0.02); }
+.des-disc-row:hover .des-disc-bar { background: #B8915A; }
+
+.des-disc-num-col {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    color: rgba(184,145,90,0.4);
+    letter-spacing: 0.1em;
+    padding-left: 1rem;
+}
+
+.des-disc-icon-col {
+    width: 48px; height: 48px;
+    color: rgba(184,145,90,0.5);
+    transition: color 0.3s ease;
+}
+.des-disc-row:hover .des-disc-icon-col { color: #B8915A; }
+.des-disc-icon-col svg { width: 100%; height: 100%; }
+
+.des-disc-content { padding-right: 2rem; }
+.des-disc-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 0.75rem;
+}
+.des-disc-areas {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+}
+.des-disc-areas li {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.35);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    padding-left: 1rem;
+}
+.des-disc-areas li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(184,145,90,0.4);
+}
+
+.des-disc-bar {
+    width: 4px;
+    height: 40px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    transition: background 0.3s ease;
+    justify-self: end;
+}
+
+/* ===================================================
+   SECTION 5 — DESIGN PHILOSOPHY
+   =================================================== */
+.des-philosophy {
+    position: relative;
+    padding: 8rem 2rem;
+    overflow: hidden;
+}
+
+.des-phil-bg {
+    position: absolute;
+    inset: 0;
+    background: url('images/desert-dunes.jpg') center center / cover no-repeat;
+}
+.des-phil-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,6,2,0.92) 0%, rgba(10,6,2,0.88) 100%);
+}
+
+.des-phil-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.des-phil-header {
+    margin-bottom: 3rem;
+}
+.des-phil-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B8915A;
+    display: block;
+    margin-bottom: 1rem;
+}
+.des-phil-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 2.75rem);
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.des-phil-quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin: 0 0 4rem;
+    padding: 2rem 0 2rem 2rem;
+    border-left: 2px solid rgba(184,145,90,0.3);
+    max-width: 750px;
+}
+.des-phil-quote strong { color: #B8915A; font-style: normal; }
+.des-phil-qmark {
+    font-size: 2em;
+    line-height: 0;
+    vertical-align: -0.4em;
+    color: rgba(184,145,90,0.3);
+    margin-right: 0.15em;
+}
+.des-phil-qmark--close { margin-right: 0; margin-left: 0.1em; }
+
+.des-phil-elements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.des-phil-item {
+    padding: 2rem 1.75rem;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s ease;
+}
+.des-phil-item:last-child { border-right: none; }
+.des-phil-item:hover { background: rgba(184,145,90,0.04); }
+
+.des-phil-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.2em;
+    color: rgba(184,145,90,0.4);
+    display: block;
+    margin-bottom: 1rem;
+}
+.des-phil-rule {
+    width: 24px; height: 1px;
+    background: rgba(184,145,90,0.25);
+    margin-bottom: 1rem;
+}
+.des-phil-body strong {
+    display: block;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+}
+.des-phil-body p {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ===================================================
+   SECTION 6 — WHAT WE'RE LOOKING FOR
+   =================================================== */
+.des-qualities {
+    background: #0A0A0A;
+    padding: 7rem 0;
+}
+
+.des-qualities-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.des-qualities-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.des-qual-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 2.75rem);
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0 0 0.5rem;
+}
+.des-qual-subhead {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.35);
+    margin: 0;
+}
+
+.des-qual-table { width: 100%; }
+
+.des-qual-table-head {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2rem;
+    padding: 0 0 1rem 80px;
+    margin-bottom: 0.5rem;
+}
+.des-qth-quality,
+.des-qth-matters {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+}
+
+.des-qual-row {
+    display: grid;
+    grid-template-columns: 56px 260px 1fr;
+    gap: 0 2rem;
+    align-items: center;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.2s ease;
+    padding-left: 24px;
+}
+.des-qual-row:hover { background: rgba(184,145,90,0.02); }
+
+.des-qual-icon {
+    width: 28px; height: 28px;
+    color: rgba(184,145,90,0.35);
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+.des-qual-row:hover .des-qual-icon { color: #B8915A; }
+.des-qual-icon svg { width: 100%; height: 100%; }
+
+.des-qual-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+}
+.des-qual-reason {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+}
+
+/* ===================================================
+   SECTION 7 — CALL TO ACTION
+   =================================================== */
+.des-cta {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 6rem 2rem;
+}
+
+.des-cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(120,60,10,0.35) 0%, rgba(10,6,2,1) 70%);
+}
+
+.des-cta-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+}
+
+.des-cta-tag {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(184,145,90,0.6);
+    margin-bottom: 2.5rem;
+}
+
+.des-cta-quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin: 0 0 3.5rem;
+}
+.des-cta-em {
+    display: block;
+    color: #B8915A;
+    font-size: 1.1em;
+    margin-top: 0.5rem;
+}
+
+.des-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+@media (max-width: 900px) {
+    .des-invitation-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .des-invitation-label-col {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    .des-section-name { writing-mode: horizontal-tb; transform: none; }
+    .des-section-rule { width: 30px; height: 1px; }
+
+    .des-stat-bar {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .des-stat-divider { width: 100%; height: 1px; margin: 0; }
+    .des-stat-item { padding: 1.5rem; }
+
+    .des-clar-body { padding-left: 0; }
+    .des-clar-split { grid-template-columns: 1fr; }
+    .des-clar-rule { width: 100%; height: 1px; }
+
+    .des-disc-row {
+        grid-template-columns: 48px 1fr;
+        gap: 1rem;
+    }
+    .des-disc-num-col { display: none; }
+    .des-disc-bar { display: none; }
+
+    .des-phil-elements {
+        grid-template-columns: 1fr 1fr;
+    }
+    .des-phil-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    .des-qual-table-head { display: none; }
+    .des-qual-row {
+        grid-template-columns: 40px 1fr;
+        grid-template-rows: auto auto;
+        padding-left: 0;
+    }
+    .des-qual-icon { grid-row: 1; }
+    .des-qual-name { grid-row: 1; }
+    .des-qual-reason { grid-column: 1 / -1; grid-row: 2; padding-top: 0.5rem; }
+
+    .des-qualities-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .des-phil-elements { grid-template-columns: 1fr; }
+    .des-hero-title { font-size: 2.2rem; }
+    .des-clar-header { flex-direction: column; gap: 1rem; }
+}
