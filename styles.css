@@ -722,6 +722,8 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
     width: auto;
     opacity: 0.9;
     filter: brightness(0) invert(1);
+    display: block;
+    margin: 0 auto;
 }
 
 .hero-title {
