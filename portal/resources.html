@@ -47,9 +47,12 @@
     </div>
 
     <div class="portal-content">
-      <div class="page-header">
-        <h1 class="page-title">Resource Library</h1>
-        <p class="page-subtitle">Documents, briefs, and assets for the collective</p>
+      <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h1 class="page-title">Resource Library</h1>
+          <p class="page-subtitle">Documents, briefs, and assets for the collective</p>
+        </div>
+        <button class="btn-create-thread" id="newResourceBtn" style="display:none;">+ Upload Resource</button>
       </div>
 
       <div class="filter-tabs" id="filterTabs">
@@ -68,24 +71,72 @@
   </main>
 </div>
 
+<!-- New Resource Modal (admin only) -->
+<div class="modal-overlay" id="newResourceModal">
+  <div class="modal">
+    <button class="modal-close" id="closeResourceModal">✕</button>
+    <h2 class="modal-title">Upload Resource</h2>
+    <p class="modal-subtitle">Add a document, brief, or asset to the library</p>
+    <div id="resourceFormAlert" class="form-alert hidden"></div>
+    <form id="resourceForm">
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-input" id="resTitle" placeholder="Resource title…" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select class="form-input" id="resCategory" style="-webkit-appearance:auto;">
+          <option value="design_briefs">Design Briefs</option>
+          <option value="engineering_specs">Engineering Specs</option>
+          <option value="investor_materials">Investor Materials</option>
+          <option value="meeting_notes">Meeting Notes</option>
+          <option value="brand_assets">Brand Assets</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">File Type</label>
+        <select class="form-input" id="resFileType" style="-webkit-appearance:auto;">
+          <option value="PDF">PDF</option>
+          <option value="PPT">PPT / Presentation</option>
+          <option value="Excel">Excel / Spreadsheet</option>
+          <option value="Image">Image</option>
+          <option value="CAD">CAD</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">File URL <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;">(link to hosted file)</span></label>
+        <input type="url" class="form-input" id="resFileUrl" placeholder="https://…">
+      </div>
+      <button type="submit" class="btn-primary" id="resourceSubmit">Upload Resource</button>
+    </form>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
 (async () => {
   const session = await requireAuth();
   if (!session) return;
-  await initTopbar(session);
+  const profile = await initTopbar(session);
+
+  const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  if (isAdmin) document.getElementById('newResourceBtn').style.display = '';
 
   let allResources = [];
   let activeFilter = 'all';
 
-  const { data } = await _supabase
-    .from('resources')
-    .select('*')
-    .order('created_at', { ascending: false });
+  async function loadResources() {
+    const { data } = await _supabase
+      .from('resources')
+      .select('*')
+      .order('created_at', { ascending: false });
+    allResources = data || [];
+    renderResources();
+  }
 
-  allResources = data || [];
-  renderResources();
+  await loadResources();
 
   document.getElementById('filterTabs').addEventListener('click', (e) => {
     const btn = e.target.closest('.filter-tab');
@@ -127,25 +178,75 @@
       return;
     }
 
-    grid.innerHTML = items.map(r => `
-      <div class="resource-card">
-        <div class="resource-icon">${getFileIcon(r.file_type)}</div>
-        <div class="resource-info">
-          <div class="resource-title">${escapeHtml(r.title)}</div>
-          <div class="resource-meta">
-            <span class="type-badge ${(r.file_type||'').toLowerCase()}">${escapeHtml(r.file_type || 'File')}</span>
-            <span class="resource-cat">${categoryLabel(r.category)}</span>
-            <span class="resource-date">Added ${formatDate(r.created_at)}</span>
+    grid.innerHTML = items.map(r => {
+      const adminActions = isAdmin ? `
+        <div class="admin-actions" onclick="event.stopPropagation()">
+          <button class="admin-btn admin-btn--danger" onclick="deleteResource('${r.id}')">Delete</button>
+        </div>` : '';
+      return `
+        <div class="resource-card">
+          <div class="resource-icon">${getFileIcon(r.file_type)}</div>
+          <div class="resource-info">
+            <div class="resource-title">${escapeHtml(r.title)}</div>
+            <div class="resource-meta">
+              <span class="type-badge ${(r.file_type||'').toLowerCase()}">${escapeHtml(r.file_type || 'File')}</span>
+              <span class="resource-cat">${categoryLabel(r.category)}</span>
+              <span class="resource-date">Added ${formatDate(r.created_at)}</span>
+            </div>
+            ${adminActions}
           </div>
-        </div>
-        <div class="resource-action">
-          ${r.file_url
-            ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="btn-download" onclick="trackEvent('resource_download','resources.html',{title:${JSON.stringify(r.title)},category:${JSON.stringify(r.category)}})">Download</a>`
-            : `<span class="btn-download disabled">Coming Soon</span>`
-          }
-        </div>
-      </div>`).join('');
+          <div class="resource-action">
+            ${r.file_url
+              ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="btn-download" onclick="trackEvent('resource_download','resources.html',{title:${JSON.stringify(r.title)},category:${JSON.stringify(r.category)}})">Download</a>`
+              : `<span class="btn-download disabled">Coming Soon</span>`
+            }
+          </div>
+        </div>`;
+    }).join('');
   }
+
+  // Modal open/close
+  document.getElementById('newResourceBtn').addEventListener('click', () => {
+    document.getElementById('newResourceModal').classList.add('open');
+  });
+  document.getElementById('closeResourceModal').addEventListener('click', () => {
+    document.getElementById('newResourceModal').classList.remove('open');
+  });
+
+  // Submit
+  document.getElementById('resourceForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('resourceSubmit');
+    const alert = document.getElementById('resourceFormAlert');
+    btn.disabled = true; btn.textContent = 'Uploading…';
+    alert.classList.add('hidden');
+
+    const { error } = await _supabase.from('resources').insert({
+      title:      document.getElementById('resTitle').value.trim(),
+      category:   document.getElementById('resCategory').value,
+      file_type:  document.getElementById('resFileType').value,
+      file_url:   document.getElementById('resFileUrl').value.trim() || null,
+      uploaded_by: session.user.id,
+    });
+
+    if (error) {
+      alert.className = 'form-alert form-alert--error';
+      alert.textContent = error.message;
+      alert.classList.remove('hidden');
+    } else {
+      document.getElementById('newResourceModal').classList.remove('open');
+      document.getElementById('resourceForm').reset();
+      await loadResources();
+    }
+    btn.disabled = false; btn.textContent = 'Upload Resource';
+  });
+
+  // Delete
+  window.deleteResource = async function(id) {
+    if (!confirm('Delete this resource? This cannot be undone.')) return;
+    await _supabase.from('resources').delete().eq('id', id);
+    await loadResources();
+  };
 })();
 </script>
 </body>

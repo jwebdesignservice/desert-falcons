@@ -47,9 +47,12 @@
     </div>
 
     <div class="portal-content">
-      <div class="page-header">
-        <h1 class="page-title">Events &amp; Deadlines</h1>
-        <p class="page-subtitle">Upcoming sessions, reviews, and briefings</p>
+      <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h1 class="page-title">Events &amp; Deadlines</h1>
+          <p class="page-subtitle">Upcoming sessions, reviews, and briefings</p>
+        </div>
+        <button class="btn-create-thread" id="newEventBtn" style="display:none;">+ New Event</button>
       </div>
 
       <div class="events-list" id="eventsList">
@@ -59,54 +62,98 @@
   </main>
 </div>
 
+<!-- New Event Modal (admin only) -->
+<div class="modal-overlay" id="newEventModal">
+  <div class="modal">
+    <button class="modal-close" id="closeEventModal">✕</button>
+    <h2 class="modal-title">Create Event</h2>
+    <p class="modal-subtitle">Schedule a session, review, or briefing for the collective</p>
+    <div id="eventFormAlert" class="form-alert hidden"></div>
+    <form id="eventForm">
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-input" id="evTitle" placeholder="Event title…" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Event Type</label>
+        <select class="form-input" id="evType" style="-webkit-appearance:auto;">
+          <option value="team_call">Team Call</option>
+          <option value="design_review">Design Review</option>
+          <option value="engineering_workshop">Engineering Workshop</option>
+          <option value="investor_briefing">Investor Briefing</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date &amp; Time</label>
+        <input type="datetime-local" class="form-input" id="evDate" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-input" id="evDescription" rows="4" placeholder="What's this event about…" style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Meeting Link <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;">(optional)</span></label>
+        <input type="url" class="form-input" id="evLink" placeholder="https://meet.google.com/…">
+      </div>
+      <button type="submit" class="btn-primary" id="eventSubmit">Create Event</button>
+    </form>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
 (async () => {
   const session = await requireAuth();
   if (!session) return;
-  await initTopbar(session);
+  const profile = await initTopbar(session);
 
-  // Load events + user's RSVPs
-  const [{ data: events }, { data: myRsvps }] = await Promise.all([
-    _supabase.from('events').select('*').gte('event_date', new Date().toISOString()).order('event_date'),
-    _supabase.from('event_rsvps').select('event_id').eq('member_id', session.user.id)
-  ]);
+  const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  if (isAdmin) document.getElementById('newEventBtn').style.display = '';
 
-  const rsvpSet = new Set((myRsvps || []).map(r => r.event_id));
-  const list = document.getElementById('eventsList');
+  async function loadEvents() {
+    const [{ data: events }, { data: myRsvps }] = await Promise.all([
+      _supabase.from('events').select('*').gte('event_date', new Date().toISOString()).order('event_date'),
+      _supabase.from('event_rsvps').select('event_id').eq('member_id', session.user.id)
+    ]);
 
-  if (!events || !events.length) {
-    list.innerHTML = '<div class="loading-text">No upcoming events. Check back soon.</div>';
-    return;
-  }
+    const rsvpSet = new Set((myRsvps || []).map(r => r.event_id));
+    const list = document.getElementById('eventsList');
 
-  function eventTypeLabel(type) {
-    const map = {
-      design_review: 'Design Review',
-      engineering_workshop: 'Engineering Workshop',
-      investor_briefing: 'Investor Briefing',
-      team_call: 'Team Call',
-    };
-    return map[type] || type;
-  }
+    if (!events || !events.length) {
+      list.innerHTML = '<div class="loading-text">No upcoming events. Check back soon.</div>';
+      return;
+    }
 
-  function eventTypeClass(type) {
-    const map = {
-      design_review: 'designer',
-      engineering_workshop: 'working_group',
-      investor_briefing: 'investor',
-      team_call: 'general',
-    };
-    return map[type] || 'general';
-  }
+    function eventTypeLabel(type) {
+      const map = {
+        design_review: 'Design Review',
+        engineering_workshop: 'Engineering Workshop',
+        investor_briefing: 'Investor Briefing',
+        team_call: 'Team Call',
+      };
+      return map[type] || type;
+    }
 
-  function renderEvents() {
+    function eventTypeClass(type) {
+      const map = {
+        design_review: 'designer',
+        engineering_workshop: 'working_group',
+        investor_briefing: 'investor',
+        team_call: 'general',
+      };
+      return map[type] || 'general';
+    }
+
     list.innerHTML = events.map(ev => {
       const evDate = new Date(ev.event_date);
       const dateStr = evDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
       const timeStr = evDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
       const going = rsvpSet.has(ev.id);
+      const adminActions = isAdmin ? `
+        <div class="admin-actions" style="margin-top:0.5rem;" onclick="event.stopPropagation()">
+          <button class="admin-btn admin-btn--danger" onclick="deleteEvent('${ev.id}')">Delete</button>
+        </div>` : '';
       return `
         <div class="event-card" id="ev-${ev.id}">
           <div class="event-date-block">
@@ -120,6 +167,8 @@
               <span class="event-time">📅 ${dateStr} · ${timeStr}</span>
             </div>
             ${ev.description ? `<div class="event-desc">${escapeHtml(ev.description)}</div>` : ''}
+            ${ev.meeting_link ? `<a href="${escapeHtml(ev.meeting_link)}" target="_blank" class="founder-card-link" style="margin-top:0.5rem;display:inline-block;">🔗 Join Meeting</a>` : ''}
+            ${adminActions}
           </div>
           <div class="event-rsvp">
             ${going
@@ -129,22 +178,66 @@
           </div>
         </div>`;
     }).join('');
+
+    window.rsvp = async function(eventId) {
+      const { error } = await _supabase.from('event_rsvps').insert({
+        event_id: eventId,
+        member_id: session.user.id
+      });
+      if (!error) {
+        rsvpSet.add(eventId);
+        const ev = (events || []).find(e => e.id === eventId);
+        trackEvent('event_rsvp', 'events.html', { event_id: eventId, title: ev?.title ?? '' });
+        await loadEvents();
+      }
+    };
   }
 
-  window.rsvp = async function(eventId) {
-    const { error } = await _supabase.from('event_rsvps').insert({
-      event_id: eventId,
-      member_id: session.user.id
-    });
-    if (!error) {
-      rsvpSet.add(eventId);
-      const ev = (events || []).find(e => e.id === eventId);
-      trackEvent('event_rsvp', 'events.html', { event_id: eventId, title: ev?.title ?? '' });
-      renderEvents();
-    }
-  };
+  await loadEvents();
 
-  renderEvents();
+  // Modal open/close
+  document.getElementById('newEventBtn').addEventListener('click', () => {
+    document.getElementById('newEventModal').classList.add('open');
+  });
+  document.getElementById('closeEventModal').addEventListener('click', () => {
+    document.getElementById('newEventModal').classList.remove('open');
+  });
+
+  // Submit
+  document.getElementById('eventForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('eventSubmit');
+    const alert = document.getElementById('eventFormAlert');
+    btn.disabled = true; btn.textContent = 'Creating…';
+    alert.classList.add('hidden');
+
+    const { error } = await _supabase.from('events').insert({
+      title:        document.getElementById('evTitle').value.trim(),
+      event_type:   document.getElementById('evType').value,
+      event_date:   new Date(document.getElementById('evDate').value).toISOString(),
+      description:  document.getElementById('evDescription').value.trim() || null,
+      meeting_link: document.getElementById('evLink').value.trim() || null,
+      created_by:   session.user.id,
+    });
+
+    if (error) {
+      alert.className = 'form-alert form-alert--error';
+      alert.textContent = error.message;
+      alert.classList.remove('hidden');
+    } else {
+      document.getElementById('newEventModal').classList.remove('open');
+      document.getElementById('eventForm').reset();
+      await loadEvents();
+    }
+    btn.disabled = false; btn.textContent = 'Create Event';
+  });
+
+  // Delete
+  window.deleteEvent = async function(id) {
+    if (!confirm('Delete this event? This cannot be undone.')) return;
+    await _supabase.from('events').delete().eq('id', id);
+    await loadEvents();
+  };
 })();
 </script>
 </body>

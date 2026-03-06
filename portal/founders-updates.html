@@ -47,10 +47,15 @@
     </div>
 
     <div class="portal-content">
-      <div class="page-header founder-page-header">
-        <div class="founder-header-badge">🎥</div>
-        <h1 class="page-title">From Khalaf's Desk</h1>
-        <p class="page-subtitle">Personal updates, reflections, and guidance from the founder</p>
+      <div class="page-header founder-page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <div class="founder-header-badge">🎥</div>
+          <div>
+            <h1 class="page-title">From Khalaf's Desk</h1>
+            <p class="page-subtitle">Personal updates, reflections, and guidance from the founder</p>
+          </div>
+        </div>
+        <button class="btn-create-thread" id="newFounderUpdateBtn" style="display:none;">+ New Update</button>
       </div>
 
       <div class="founders-list" id="foundersList">
@@ -60,49 +65,139 @@
   </main>
 </div>
 
+<!-- New Founder Update Modal (admin only) -->
+<div class="modal-overlay" id="newFounderUpdateModal">
+  <div class="modal">
+    <button class="modal-close" id="closeFounderUpdateModal">✕</button>
+    <h2 class="modal-title">Post Founder's Update</h2>
+    <p class="modal-subtitle">Share a message, video, or audio update from Khalaf</p>
+    <div id="founderUpdateAlert" class="form-alert hidden"></div>
+    <form id="founderUpdateForm">
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-input" id="fuTitle" placeholder="Update title…" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Type</label>
+        <select class="form-input" id="fuType" style="-webkit-appearance:auto;">
+          <option value="written">📝 Written</option>
+          <option value="video">🎥 Video</option>
+          <option value="audio">🎙️ Audio</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Body</label>
+        <textarea class="form-input" id="fuBody" rows="5" placeholder="Write the update here…" style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Content URL <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;">(video/audio link, optional)</span></label>
+        <input type="url" class="form-input" id="fuContentUrl" placeholder="https://…">
+      </div>
+      <button type="submit" class="btn-primary" id="founderUpdateSubmit">Post Update</button>
+    </form>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
 (async () => {
   const session = await requireAuth();
   if (!session) return;
-  await initTopbar(session);
+  const profile = await initTopbar(session);
 
-  const { data } = await _supabase
-    .from('founders_updates')
-    .select('*')
-    .order('created_at', { ascending: false });
+  const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  if (isAdmin) document.getElementById('newFounderUpdateBtn').style.display = '';
 
-  const list = document.getElementById('foundersList');
+  async function loadUpdates() {
+    const { data } = await _supabase
+      .from('founders_updates')
+      .select('*')
+      .order('created_at', { ascending: false });
 
-  if (!data || !data.length) {
-    list.innerHTML = '<div class="loading-text">No updates yet. Check back soon.</div>';
-    return;
+    const list = document.getElementById('foundersList');
+
+    if (!data || !data.length) {
+      list.innerHTML = '<div class="loading-text">No updates yet. Check back soon.</div>';
+      return;
+    }
+
+    function typeIcon(type) {
+      if (!type) return '📝';
+      const t = type.toLowerCase();
+      if (t === 'video') return '🎥';
+      if (t === 'audio') return '🎙️';
+      return '📝';
+    }
+
+    list.innerHTML = data.map(u => {
+      const adminActions = isAdmin ? `
+        <div class="admin-actions" style="margin-top:0.75rem;">
+          <button class="admin-btn admin-btn--danger" onclick="deleteFounderUpdate('${u.id}')">Delete</button>
+        </div>` : '';
+      return `
+        <div class="founder-card">
+          <div class="founder-card-type-icon">${typeIcon(u.update_type)}</div>
+          <div class="founder-card-content">
+            <div class="founder-card-header">
+              <span class="founder-card-title">${escapeHtml(u.title)}</span>
+              ${typeBadgeHtml(u.update_type || 'Written')}
+            </div>
+            <div class="founder-card-date">${formatDate(u.created_at)}</div>
+            ${u.body ? `<div class="founder-card-body">${escapeHtml(u.body)}</div>` : ''}
+            ${u.content_url ? `<a href="${escapeHtml(u.content_url)}" target="_blank" class="founder-card-link">
+              ${u.update_type === 'video' ? '▶ Watch' : u.update_type === 'audio' ? '🎧 Listen' : '📖 Read more'}
+            </a>` : ''}
+            ${adminActions}
+          </div>
+        </div>`;
+    }).join('');
   }
 
-  function typeIcon(type) {
-    if (!type) return '📝';
-    const t = type.toLowerCase();
-    if (t === 'video') return '🎥';
-    if (t === 'audio') return '🎙️';
-    return '📝';
-  }
+  await loadUpdates();
 
-  list.innerHTML = data.map(u => `
-    <div class="founder-card">
-      <div class="founder-card-type-icon">${typeIcon(u.update_type)}</div>
-      <div class="founder-card-content">
-        <div class="founder-card-header">
-          <span class="founder-card-title">${escapeHtml(u.title)}</span>
-          ${typeBadgeHtml(u.update_type || 'Written')}
-        </div>
-        <div class="founder-card-date">${formatDate(u.created_at)}</div>
-        ${u.body ? `<div class="founder-card-body">${escapeHtml(u.body)}</div>` : ''}
-        ${u.content_url ? `<a href="${escapeHtml(u.content_url)}" target="_blank" class="founder-card-link">
-          ${u.update_type === 'video' ? '▶ Watch' : u.update_type === 'audio' ? '🎧 Listen' : '📖 Read more'}
-        </a>` : ''}
-      </div>
-    </div>`).join('');
+  // Modal open/close
+  document.getElementById('newFounderUpdateBtn').addEventListener('click', () => {
+    document.getElementById('newFounderUpdateModal').classList.add('open');
+  });
+  document.getElementById('closeFounderUpdateModal').addEventListener('click', () => {
+    document.getElementById('newFounderUpdateModal').classList.remove('open');
+  });
+
+  // Submit
+  document.getElementById('founderUpdateForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('founderUpdateSubmit');
+    const alert = document.getElementById('founderUpdateAlert');
+    btn.disabled = true; btn.textContent = 'Posting…';
+    alert.classList.add('hidden');
+
+    const { error } = await _supabase.from('founders_updates').insert({
+      title:       document.getElementById('fuTitle').value.trim(),
+      body:        document.getElementById('fuBody').value.trim(),
+      update_type: document.getElementById('fuType').value,
+      content_url: document.getElementById('fuContentUrl').value.trim() || null,
+      author_id:   session.user.id,
+    });
+
+    if (error) {
+      alert.className = 'form-alert form-alert--error';
+      alert.textContent = error.message;
+      alert.classList.remove('hidden');
+    } else {
+      document.getElementById('newFounderUpdateModal').classList.remove('open');
+      document.getElementById('founderUpdateForm').reset();
+      await loadUpdates();
+    }
+    btn.disabled = false; btn.textContent = 'Post Update';
+  });
+
+  // Delete
+  window.deleteFounderUpdate = async function(id) {
+    if (!confirm('Delete this update? This cannot be undone.')) return;
+    await _supabase.from('founders_updates').delete().eq('id', id);
+    await loadUpdates();
+  };
 })();
 </script>
 </body>
