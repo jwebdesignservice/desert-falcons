@@ -760,12 +760,15 @@
 .inv-register-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     background: var(--royal-green);
     border-color: var(--royal-green);
     margin-bottom: var(--space-2xl);
-    padding: 16px 40px;
+    padding: 18px 48px;
     font-size: 1rem;
+    min-width: 320px;
+    width: auto;
 }
 .inv-register-btn:hover {
     background: var(--royal-green-light);
@@ -812,4 +815,5 @@
     .idb-header { flex-direction: column; }
     .inv-disclaimer-box { padding: var(--space-lg); }
     .inv-cta-reassurance { flex-direction: column; align-items: center; }
+    .inv-register-btn { min-width: unset; width: 100%; }
 }
