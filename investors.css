@@ -138,11 +138,16 @@
     gap: var(--space-sm);
     justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
+}
+.inv-hero-cta .btn {
+    white-space: nowrap;
 }
 
 .inv-cta-btn {
     background: var(--royal-green);
     border-color: var(--royal-green);
+    white-space: nowrap;
 }
 .inv-cta-btn:hover {
     background: var(--royal-green-light);
