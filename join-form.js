@@ -7,6 +7,27 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Pre-select role from URL param: join.html?role=investor
+    (function () {
+        const params = new URLSearchParams(window.location.search);
+        const role = params.get('role');
+        if (!role) return;
+        const interestSel = document.getElementById('interest');
+        if (interestSel) {
+            const match = Array.from(interestSel.options).find(o => o.value === role);
+            if (match) {
+                interestSel.value = role;
+                interestSel.dispatchEvent(new Event('change'));
+            }
+        }
+        // Also activate the matching role pill
+        const pill = document.querySelector(`.role-pill[data-role="${role}"]`);
+        if (pill) {
+            document.querySelectorAll('.role-pill').forEach(p => p.classList.remove('role-pill--active'));
+            pill.classList.add('role-pill--active');
+        }
+    })();
+
     const form = document.getElementById('joinForm');
     if (!form) return;
 
