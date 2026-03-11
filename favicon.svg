@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#0A0A0A"/>
+  <!-- Stylised falcon wing / blade — two sweeping strokes forming a D/wing shape -->
+  <!-- Outer arc -->
+  <path d="M9 6 C9 6 23 6 24 16 C25 24 18 27 9 27" stroke="#B8915A" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Inner arc -->
+  <path d="M9 10 C9 10 19 10 20 16 C21 21 16 23 9 23" stroke="#B8915A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Spine line -->
+  <line x1="9" y1="6" x2="9" y2="27" stroke="#B8915A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Gold dot accent -->
+  <circle cx="9" cy="6" r="1.5" fill="#D4A96A"/>
+</svg>
