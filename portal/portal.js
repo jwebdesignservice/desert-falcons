@@ -142,10 +142,14 @@ async function initTopbar(session) {
 
   const sidebarAvatar = document.getElementById('sidebarAvatar');
   if (sidebarAvatar) {
-    sidebarAvatar.textContent = getInitials(profile.full_name);
-    const r = (profile.role || '').toLowerCase();
-    if (r === 'designer') sidebarAvatar.classList.add('gold');
-    else if (r === 'investor') sidebarAvatar.classList.add('silver');
+    if (profile.avatar_url) {
+      sidebarAvatar.innerHTML = `<img src="${escapeHtml(profile.avatar_url)}" alt="${escapeHtml(profile.full_name || '')}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
+    } else {
+      sidebarAvatar.textContent = getInitials(profile.full_name);
+      const r = (profile.role || '').toLowerCase();
+      if (r === 'designer') sidebarAvatar.classList.add('gold');
+      else if (r === 'investor') sidebarAvatar.classList.add('silver');
+    }
   }
 
   showRoleUI(profile.role);

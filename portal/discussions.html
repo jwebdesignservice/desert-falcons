@@ -117,13 +117,13 @@
 (async () => {
   const session = await requireAuth();
   if (!session) return;
-  await initTopbar(session);
+  const profile = await initTopbar(session);
+  const isAdmin = profile && ['core_board', 'admin'].includes((profile.role || '').toLowerCase());
 
   let allThreads = [];
   let activeFilter = 'all';
-  let openThread = null;
 
-  // Load threads
+  // ── Load threads ──────────────────────────────────────────
   async function loadThreads() {
     const { data } = await _supabase
       .from('discussion_threads')
@@ -137,11 +137,20 @@
     const list = document.getElementById('threadList');
     const items = activeFilter === 'all'
       ? allThreads
-      : allThreads.filter(t => (t.category||'').toLowerCase() === activeFilter);
+      : allThreads.filter(t => (t.category || '').toLowerCase() === activeFilter);
 
-    if (!items.length) { list.innerHTML = '<div class="loading-text">No threads yet. Start one!</div>'; return; }
+    if (!items.length) {
+      list.innerHTML = '<div class="loading-text">No threads yet. Start one!</div>';
+      return;
+    }
+
     list.innerHTML = items.map(t => {
       const replyCount = t.discussion_replies?.[0]?.count ?? 0;
+      const adminThreadControls = isAdmin
+        ? `<div class="admin-actions" onclick="event.stopPropagation()">
+             <button class="admin-btn admin-btn--danger" onclick="deleteThread('${t.id}')">Delete Thread</button>
+           </div>`
+        : '';
       return `
         <div class="thread-item" data-thread-id="${t.id}" onclick="toggleThread('${t.id}')">
           <div class="unread-dot"></div>
@@ -150,10 +159,11 @@
           </div>
           <div class="thread-meta">
             <span>${escapeHtml(t.category)}</span>
-            <span>${replyCount} repl${replyCount===1?'y':'ies'}</span>
+            <span>${replyCount} repl${replyCount === 1 ? 'y' : 'ies'}</span>
             <span>${timeAgo(t.created_at)}</span>
           </div>
-          <div class="thread-preview">${escapeHtml((t.body||'').slice(0,120))}${(t.body||'').length>120?'…':''}</div>
+          <div class="thread-preview">${escapeHtml((t.body || '').slice(0, 120))}${(t.body || '').length > 120 ? '…' : ''}</div>
+          ${adminThreadControls}
         </div>
         <div class="thread-detail" id="detail-${t.id}">
           <div class="reply-list" id="replies-${t.id}"><div class="loading-text">Loading replies…</div></div>
@@ -165,15 +175,18 @@
     }).join('');
   }
 
+  // ── Open / close thread ───────────────────────────────────
   window.toggleThread = async function(threadId) {
     const detail = document.getElementById(`detail-${threadId}`);
     if (!detail) return;
     const isOpen = detail.classList.contains('open');
-    // Close all
     document.querySelectorAll('.thread-detail').forEach(d => d.classList.remove('open'));
     if (isOpen) return;
     detail.classList.add('open');
-    // Load replies
+    await loadReplies(threadId);
+  };
+
+  async function loadReplies(threadId) {
     const { data: replies } = await _supabase
       .from('discussion_replies')
       .select('*')
@@ -182,18 +195,25 @@
     const container = document.getElementById(`replies-${threadId}`);
     if (!replies || !replies.length) {
       container.innerHTML = '<div class="loading-text">No replies yet.</div>';
-    } else {
-      container.innerHTML = replies.map(r => `
-        <div class="reply-item">
+      return;
+    }
+    container.innerHTML = replies.map(r => {
+      const adminReplyControls = isAdmin
+        ? `<button class="admin-btn admin-btn--danger" style="margin-top:0.4rem;font-size:0.7rem;" onclick="deleteReply('${r.id}','${threadId}')">Delete</button>`
+        : '';
+      return `
+        <div class="reply-item" id="reply-${r.id}">
           <div class="activity-avatar" style="flex-shrink:0;">${getInitials('User')}</div>
-          <div>
+          <div style="flex:1;">
             <div class="reply-author">${formatDate(r.created_at)}</div>
             <div class="reply-body">${escapeHtml(r.body)}</div>
+            ${adminReplyControls}
           </div>
-        </div>`).join('');
-    }
-  };
+        </div>`;
+    }).join('');
+  }
 
+  // ── Submit reply ──────────────────────────────────────────
   window.submitReply = async function(threadId) {
     const textarea = document.getElementById(`replyText-${threadId}`);
     const body = textarea?.value?.trim();
@@ -205,12 +225,39 @@
     });
     if (!error) {
       textarea.value = '';
-      await window.toggleThread(threadId);
-      await window.toggleThread(threadId);
+      await loadReplies(threadId);
     }
   };
 
-  // Category filter
+  // ── Admin: delete thread ──────────────────────────────────
+  window.deleteThread = async function(threadId) {
+    if (!confirm('Delete this thread and all its replies? This cannot be undone.')) return;
+    const { error } = await _supabase.from('discussion_threads').delete().eq('id', threadId);
+    if (!error) {
+      allThreads = allThreads.filter(t => t.id !== threadId);
+      renderThreads();
+    } else {
+      alert('Failed to delete thread: ' + error.message);
+    }
+  };
+
+  // ── Admin: delete reply ───────────────────────────────────
+  window.deleteReply = async function(replyId, threadId) {
+    if (!confirm('Delete this reply?')) return;
+    const { error } = await _supabase.from('discussion_replies').delete().eq('id', replyId);
+    if (!error) {
+      document.getElementById(`reply-${replyId}`)?.remove();
+      // Update reply count in thread list
+      const thread = allThreads.find(t => t.id === threadId);
+      if (thread?.discussion_replies?.[0]) {
+        thread.discussion_replies[0].count = Math.max(0, (thread.discussion_replies[0].count || 1) - 1);
+      }
+    } else {
+      alert('Failed to delete reply: ' + error.message);
+    }
+  };
+
+  // ── Category filter ───────────────────────────────────────
   document.querySelectorAll('.category-link').forEach(link => {
     link.addEventListener('click', () => {
       activeFilter = link.dataset.cat;
@@ -219,7 +266,7 @@
     });
   });
 
-  // Create thread modal
+  // ── Create thread modal ───────────────────────────────────
   document.getElementById('createThreadBtn').addEventListener('click', () => {
     document.getElementById('createThreadModal').classList.add('open');
   });
@@ -229,7 +276,7 @@
 
   document.getElementById('threadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = document.getElementById('threadSubmit');
+    const btn   = document.getElementById('threadSubmit');
     const alert = document.getElementById('threadAlert');
     btn.disabled = true;
     btn.textContent = 'Posting…';
