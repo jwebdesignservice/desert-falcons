@@ -2307,3 +2307,20 @@ select.form-input:focus {
   overflow: hidden;
 }
 .avatar-upload-controls { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* -- DFC Logo Image (Portal) ------------------- */
+.nav-logo-img--portal {
+    height: 40px;
+    width: auto;
+    display: block;
+    margin-bottom: 4px;
+}
+.sidebar-logo .logo-tag {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+}

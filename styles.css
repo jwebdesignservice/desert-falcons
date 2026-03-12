@@ -1652,3 +1652,18 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
     background: var(--royal-green);
     color: var(--white);
 }
+
+/* -- DFC Logo Image --------------------------- */
+.nav-logo-img {
+    height: 38px;
+    width: auto;
+    display: block;
+}
+.nav-logo-img--footer {
+    height: 30px;
+    width: auto;
+    display: block;
+}
+@media (max-width: 768px) {
+    .nav-logo-img { height: 30px; }
+}
