@@ -1667,3 +1667,15 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
 @media (max-width: 768px) {
     .nav-logo-img { height: 30px; }
 }
+
+/* -- Nav logo: image + text side by side ------- */
+.nav-logo {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+}
+.nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
