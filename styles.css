@@ -1713,3 +1713,43 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
 .footer-logo-text {
     text-align: left !important;
 }
+
+/* -- FOOTER LOGO: image top, text below ------------------ */
+.footer-logo {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    text-decoration: none;
+}
+.footer-logo-img {
+    height: 40px !important;
+    width: auto !important;
+    max-width: 90px !important;
+    object-fit: contain;
+}
+.footer-logo-text {
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: left !important;
+    line-height: 1.2;
+}
+
+/* -- NAVBAR LOGO: image left, text right ------------------ */
+.nav-logo {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+.nav-logo-img {
+    height: 36px !important;
+    width: auto !important;
+    flex-shrink: 0;
+}
+.nav-logo-text {
+    display: flex !important;
+    flex-direction: column !important;
+    line-height: 1.1;
+    text-align: left;
+}
