@@ -68,7 +68,7 @@
 <div class="modal-overlay" id="newEventModal">
   <div class="modal">
     <button class="modal-close" id="closeEventModal">✕</button>
-    <h2 class="modal-title">Create Event</h2>
+    <h2 class="modal-title" id="eventModalTitle">Create Event</h2>
     <p class="modal-subtitle">Schedule a session, review, or briefing for the collective</p>
     <div id="eventFormAlert" class="form-alert hidden"></div>
     <form id="eventForm">
@@ -113,16 +113,20 @@
   const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
   if (isAdmin) document.getElementById('newEventBtn').style.display = '';
 
+  let allEvents = [];
+  let editingId = null;
+
   async function loadEvents() {
     const [{ data: events }, { data: myRsvps }] = await Promise.all([
       _supabase.from('events').select('*').gte('event_date', new Date().toISOString()).order('event_date'),
       _supabase.from('event_rsvps').select('event_id').eq('member_id', session.user.id)
     ]);
 
+    allEvents = events || [];
     const rsvpSet = new Set((myRsvps || []).map(r => r.event_id));
     const list = document.getElementById('eventsList');
 
-    if (!events || !events.length) {
+    if (!allEvents.length) {
       list.innerHTML = '<div class="loading-text">No upcoming events. Check back soon.</div>';
       return;
     }
@@ -147,13 +151,14 @@
       return map[type] || 'general';
     }
 
-    list.innerHTML = events.map(ev => {
+    list.innerHTML = allEvents.map(ev => {
       const evDate = new Date(ev.event_date);
       const dateStr = evDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
       const timeStr = evDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
       const going = rsvpSet.has(ev.id);
       const adminActions = isAdmin ? `
         <div class="admin-actions" style="margin-top:0.5rem;" onclick="event.stopPropagation()">
+          <button class="admin-btn" onclick="openEditEvent('${ev.id}')">Edit</button>
           <button class="admin-btn admin-btn--danger" onclick="deleteEvent('${ev.id}')">Delete</button>
         </div>` : '';
       return `
@@ -188,7 +193,7 @@
       });
       if (!error) {
         rsvpSet.add(eventId);
-        const ev = (events || []).find(e => e.id === eventId);
+        const ev = allEvents.find(e => e.id === eventId);
         trackEvent('event_rsvp', 'events.html', { event_id: eventId, title: ev?.title ?? '' });
         await loadEvents();
       }
@@ -197,41 +202,75 @@
 
   await loadEvents();
 
+  function closeModal() {
+    document.getElementById('newEventModal').classList.remove('open');
+    document.getElementById('eventForm').reset();
+    document.getElementById('eventFormAlert').classList.add('hidden');
+    editingId = null;
+  }
+
   // Modal open/close
   document.getElementById('newEventBtn').addEventListener('click', () => {
+    editingId = null;
+    document.getElementById('eventModalTitle').textContent = 'Create Event';
+    document.getElementById('eventSubmit').textContent = 'Create Event';
     document.getElementById('newEventModal').classList.add('open');
   });
-  document.getElementById('closeEventModal').addEventListener('click', () => {
-    document.getElementById('newEventModal').classList.remove('open');
-  });
+  document.getElementById('closeEventModal').addEventListener('click', closeModal);
+
+  window.openEditEvent = function(id) {
+    const ev = allEvents.find(x => x.id === id);
+    if (!ev) return;
+    editingId = id;
+    document.getElementById('eventModalTitle').textContent = 'Edit Event';
+    document.getElementById('eventSubmit').textContent = 'Save Changes';
+    document.getElementById('evTitle').value = ev.title || '';
+    document.getElementById('evType').value = ev.event_type || 'team_call';
+    const d = new Date(ev.event_date);
+    const pad = n => String(n).padStart(2, '0');
+    document.getElementById('evDate').value = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    document.getElementById('evDescription').value = ev.description || '';
+    document.getElementById('evLink').value = ev.meeting_link || '';
+    document.getElementById('eventFormAlert').classList.add('hidden');
+    document.getElementById('newEventModal').classList.add('open');
+  };
 
   // Submit
   document.getElementById('eventForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('eventSubmit');
     const alert = document.getElementById('eventFormAlert');
-    btn.disabled = true; btn.textContent = 'Creating…';
+    const wasEditing = !!editingId;
+    btn.disabled = true;
+    btn.textContent = wasEditing ? 'Saving…' : 'Creating…';
     alert.classList.add('hidden');
 
-    const { error } = await _supabase.from('events').insert({
+    const payload = {
       title:        document.getElementById('evTitle').value.trim(),
       event_type:   document.getElementById('evType').value,
       event_date:   new Date(document.getElementById('evDate').value).toISOString(),
       description:  document.getElementById('evDescription').value.trim() || null,
       meeting_link: document.getElementById('evLink').value.trim() || null,
-      created_by:   session.user.id,
-    });
+    };
+
+    let error;
+    if (wasEditing) {
+      ({ error } = await _supabase.from('events').update(payload).eq('id', editingId));
+    } else {
+      ({ error } = await _supabase.from('events').insert({ ...payload, created_by: session.user.id }));
+    }
+
+    btn.disabled = false;
+    btn.textContent = wasEditing ? 'Save Changes' : 'Create Event';
 
     if (error) {
       alert.className = 'form-alert form-alert--error';
       alert.textContent = error.message;
       alert.classList.remove('hidden');
     } else {
-      document.getElementById('newEventModal').classList.remove('open');
-      document.getElementById('eventForm').reset();
+      closeModal();
       await loadEvents();
     }
-    btn.disabled = false; btn.textContent = 'Create Event';
   });
 
   // Delete

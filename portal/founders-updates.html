@@ -71,7 +71,7 @@
 <div class="modal-overlay" id="newFounderUpdateModal">
   <div class="modal">
     <button class="modal-close" id="closeFounderUpdateModal">✕</button>
-    <h2 class="modal-title">Post Founder's Update</h2>
+    <h2 class="modal-title" id="founderUpdateModalTitle">Post Founder's Update</h2>
     <p class="modal-subtitle">Share a message, video, or audio update from Khalaf</p>
     <div id="founderUpdateAlert" class="form-alert hidden"></div>
     <form id="founderUpdateForm">
@@ -111,15 +111,23 @@
   const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
   if (isAdmin) document.getElementById('newFounderUpdateBtn').style.display = '';
 
+  let allFounderUpdates = [];
+  let editingId = null;
+
   async function loadUpdates() {
     const { data } = await _supabase
       .from('founders_updates')
       .select('*')
       .order('created_at', { ascending: false });
 
+    allFounderUpdates = data || [];
+    renderUpdates();
+  }
+
+  function renderUpdates() {
     const list = document.getElementById('foundersList');
 
-    if (!data || !data.length) {
+    if (!allFounderUpdates.length) {
       list.innerHTML = '<div class="loading-text">No updates yet. Check back soon.</div>';
       return;
     }
@@ -132,9 +140,10 @@
       return '📝';
     }
 
-    list.innerHTML = data.map(u => {
+    list.innerHTML = allFounderUpdates.map(u => {
       const adminActions = isAdmin ? `
         <div class="admin-actions" style="margin-top:0.75rem;">
+          <button class="admin-btn" onclick="openEditFounderUpdate('${u.id}')">Edit</button>
           <button class="admin-btn admin-btn--danger" onclick="deleteFounderUpdate('${u.id}')">Delete</button>
         </div>` : '';
       return `
@@ -158,40 +167,71 @@
 
   await loadUpdates();
 
+  function closeModal() {
+    document.getElementById('newFounderUpdateModal').classList.remove('open');
+    document.getElementById('founderUpdateForm').reset();
+    document.getElementById('founderUpdateAlert').classList.add('hidden');
+    editingId = null;
+  }
+
   // Modal open/close
   document.getElementById('newFounderUpdateBtn').addEventListener('click', () => {
+    editingId = null;
+    document.getElementById('founderUpdateModalTitle').textContent = "Post Founder's Update";
+    document.getElementById('founderUpdateSubmit').textContent = 'Post Update';
     document.getElementById('newFounderUpdateModal').classList.add('open');
   });
-  document.getElementById('closeFounderUpdateModal').addEventListener('click', () => {
-    document.getElementById('newFounderUpdateModal').classList.remove('open');
-  });
+  document.getElementById('closeFounderUpdateModal').addEventListener('click', closeModal);
+
+  window.openEditFounderUpdate = function(id) {
+    const u = allFounderUpdates.find(x => x.id === id);
+    if (!u) return;
+    editingId = id;
+    document.getElementById('founderUpdateModalTitle').textContent = "Edit Founder's Update";
+    document.getElementById('founderUpdateSubmit').textContent = 'Save Changes';
+    document.getElementById('fuTitle').value = u.title || '';
+    document.getElementById('fuType').value = u.update_type || 'written';
+    document.getElementById('fuBody').value = u.body || '';
+    document.getElementById('fuContentUrl').value = u.content_url || '';
+    document.getElementById('founderUpdateAlert').classList.add('hidden');
+    document.getElementById('newFounderUpdateModal').classList.add('open');
+  };
 
   // Submit
   document.getElementById('founderUpdateForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('founderUpdateSubmit');
     const alert = document.getElementById('founderUpdateAlert');
-    btn.disabled = true; btn.textContent = 'Posting…';
+    const wasEditing = !!editingId;
+    btn.disabled = true;
+    btn.textContent = wasEditing ? 'Saving…' : 'Posting…';
     alert.classList.add('hidden');
 
-    const { error } = await _supabase.from('founders_updates').insert({
+    const payload = {
       title:       document.getElementById('fuTitle').value.trim(),
       body:        document.getElementById('fuBody').value.trim(),
       update_type: document.getElementById('fuType').value,
       content_url: document.getElementById('fuContentUrl').value.trim() || null,
-      author_id:   session.user.id,
-    });
+    };
+
+    let error;
+    if (wasEditing) {
+      ({ error } = await _supabase.from('founders_updates').update(payload).eq('id', editingId));
+    } else {
+      ({ error } = await _supabase.from('founders_updates').insert({ ...payload, author_id: session.user.id }));
+    }
+
+    btn.disabled = false;
+    btn.textContent = wasEditing ? 'Save Changes' : 'Post Update';
 
     if (error) {
       alert.className = 'form-alert form-alert--error';
       alert.textContent = error.message;
       alert.classList.remove('hidden');
     } else {
-      document.getElementById('newFounderUpdateModal').classList.remove('open');
-      document.getElementById('founderUpdateForm').reset();
+      closeModal();
       await loadUpdates();
     }
-    btn.disabled = false; btn.textContent = 'Post Update';
   });
 
   // Delete

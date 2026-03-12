@@ -76,7 +76,7 @@
 <div class="modal-overlay" id="newUpdateModal">
   <div class="modal">
     <button class="modal-close" id="closeUpdateModal">✕</button>
-    <h2 class="modal-title">Post Project Update</h2>
+    <h2 class="modal-title" id="updateModalTitle">Post Project Update</h2>
     <p class="modal-subtitle">Share progress on a SAIF workstream</p>
     <div id="updateFormAlert" class="form-alert hidden"></div>
     <form id="updateForm">
@@ -120,6 +120,7 @@
 
   let allUpdates = [];
   let activeFilter = 'all';
+  let editingId = null;
   const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
 
   async function loadUpdates() {
@@ -154,6 +155,7 @@
       const adminActions = isAdmin ? `
         <div class="admin-actions" style="margin-top:0.75rem;">
           <button class="admin-btn" onclick="editStatus('${u.id}', '${u.status}')">Change Status</button>
+          <button class="admin-btn" onclick="openEditUpdate('${u.id}')">Edit</button>
           <button class="admin-btn admin-btn--danger" onclick="deleteUpdate('${u.id}')">Delete</button>
         </div>` : '';
       return `
@@ -169,44 +171,73 @@
     }).join('');
   }
 
+  function closeModal() {
+    document.getElementById('newUpdateModal').classList.remove('open');
+    document.getElementById('updateForm').reset();
+    document.getElementById('updateFormAlert').classList.add('hidden');
+    editingId = null;
+  }
+
   // Admin: new update modal
   const newBtn = document.getElementById('newUpdateBtn');
   if (newBtn) {
     newBtn.addEventListener('click', () => {
+      editingId = null;
+      document.getElementById('updateModalTitle').textContent = 'Post Project Update';
+      document.getElementById('updateSubmit').textContent = 'Post Update';
       document.getElementById('newUpdateModal').classList.add('open');
     });
   }
-  document.getElementById('closeUpdateModal').addEventListener('click', () => {
-    document.getElementById('newUpdateModal').classList.remove('open');
-  });
+  document.getElementById('closeUpdateModal').addEventListener('click', closeModal);
+
+  window.openEditUpdate = function(id) {
+    const u = allUpdates.find(x => x.id === id);
+    if (!u) return;
+    editingId = id;
+    document.getElementById('updateModalTitle').textContent = 'Edit Update';
+    document.getElementById('updateSubmit').textContent = 'Save Changes';
+    document.getElementById('newUpdTitle').value = u.title || '';
+    document.getElementById('newUpdCategory').value = u.category || 'Design';
+    document.getElementById('newUpdStatus').value = u.status || 'in_progress';
+    document.getElementById('newUpdBody').value = u.body || '';
+    document.getElementById('updateFormAlert').classList.add('hidden');
+    document.getElementById('newUpdateModal').classList.add('open');
+  };
 
   document.getElementById('updateForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn   = document.getElementById('updateSubmit');
     const alert = document.getElementById('updateFormAlert');
+    const wasEditing = !!editingId;
     btn.disabled = true;
-    btn.textContent = 'Posting…';
+    btn.textContent = wasEditing ? 'Saving…' : 'Posting…';
     alert.classList.add('hidden');
 
-    const { error } = await _supabase.from('project_updates').insert({
-      title:     document.getElementById('newUpdTitle').value.trim(),
-      body:      document.getElementById('newUpdBody').value.trim(),
-      category:  document.getElementById('newUpdCategory').value,
-      status:    document.getElementById('newUpdStatus').value,
-      author_id: session.user.id,
-    });
+    const payload = {
+      title:    document.getElementById('newUpdTitle').value.trim(),
+      body:     document.getElementById('newUpdBody').value.trim(),
+      category: document.getElementById('newUpdCategory').value,
+      status:   document.getElementById('newUpdStatus').value,
+    };
+
+    let error;
+    if (wasEditing) {
+      ({ error } = await _supabase.from('project_updates').update(payload).eq('id', editingId));
+    } else {
+      ({ error } = await _supabase.from('project_updates').insert({ ...payload, author_id: session.user.id }));
+    }
+
+    btn.disabled = false;
+    btn.textContent = wasEditing ? 'Save Changes' : 'Post Update';
 
     if (error) {
       alert.className = 'form-alert form-alert--error';
       alert.textContent = error.message;
       alert.classList.remove('hidden');
     } else {
-      document.getElementById('newUpdateModal').classList.remove('open');
-      document.getElementById('updateForm').reset();
+      closeModal();
       await loadUpdates();
     }
-    btn.disabled = false;
-    btn.textContent = 'Post Update';
   });
 
   // Admin: change status inline

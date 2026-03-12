@@ -107,7 +107,7 @@
 <div class="modal-overlay" id="newAnnouncementModal">
   <div class="modal">
     <button class="modal-close" id="closeAnnouncementModal">✕</button>
-    <h2 class="modal-title">New Announcement</h2>
+    <h2 class="modal-title" id="announcementModalTitle">New Announcement</h2>
     <p class="modal-subtitle">This will be visible to all portal members</p>
     <div id="announcementFormAlert" class="form-alert hidden"></div>
     <form id="announcementForm">
@@ -138,6 +138,10 @@
   if (!session) return;
   const profile = await initTopbar(session);
 
+  const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  let editingId = null;
+  let allAnnouncements = [];
+
   async function loadAnnouncements() {
     const { data } = await _supabase
       .from('announcements')
@@ -145,15 +149,19 @@
       .order('pinned', { ascending: false })
       .order('created_at', { ascending: false });
 
-    const pinned = (data || []).filter(a => a.pinned);
-    const rest   = (data || []).filter(a => !a.pinned);
+    allAnnouncements = data || [];
+    renderAnnouncements();
+  }
 
-    const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  function renderAnnouncements() {
+    const pinned = allAnnouncements.filter(a => a.pinned);
+    const rest   = allAnnouncements.filter(a => !a.pinned);
 
     function renderAnnouncement(a) {
       const adminActions = isAdmin ? `
         <div class="admin-actions" onclick="event.stopPropagation()">
           <button class="admin-btn" onclick="togglePin('${a.id}', ${!a.pinned})">${a.pinned ? 'Unpin' : 'Pin'}</button>
+          <button class="admin-btn" onclick="openEditAnnouncement('${a.id}')">Edit</button>
           <button class="admin-btn admin-btn--danger" onclick="deleteAnnouncement('${a.id}')">Delete</button>
         </div>` : '';
       return `<div class="announcement-item ${a.pinned ? 'pinned' : ''}" onclick="this.classList.toggle('expanded')">
@@ -181,43 +189,71 @@
 
   await loadAnnouncements();
 
+  function closeModal() {
+    document.getElementById('newAnnouncementModal').classList.remove('open');
+    document.getElementById('announcementForm').reset();
+    document.getElementById('announcementFormAlert').classList.add('hidden');
+    editingId = null;
+  }
+
   // Admin: new announcement modal
   const newBtn = document.getElementById('newAnnouncementBtn');
   if (newBtn) {
     newBtn.addEventListener('click', () => {
+      editingId = null;
+      document.getElementById('announcementModalTitle').textContent = 'New Announcement';
+      document.getElementById('announcementSubmit').textContent = 'Post Announcement';
       document.getElementById('newAnnouncementModal').classList.add('open');
     });
   }
-  document.getElementById('closeAnnouncementModal').addEventListener('click', () => {
-    document.getElementById('newAnnouncementModal').classList.remove('open');
-  });
+  document.getElementById('closeAnnouncementModal').addEventListener('click', closeModal);
+
+  window.openEditAnnouncement = function(id) {
+    const a = allAnnouncements.find(x => x.id === id);
+    if (!a) return;
+    editingId = id;
+    document.getElementById('announcementModalTitle').textContent = 'Edit Announcement';
+    document.getElementById('announcementSubmit').textContent = 'Save Changes';
+    document.getElementById('newAnnTitle').value = a.title || '';
+    document.getElementById('newAnnBody').value = a.body || '';
+    document.getElementById('newAnnPinned').checked = !!a.pinned;
+    document.getElementById('announcementFormAlert').classList.add('hidden');
+    document.getElementById('newAnnouncementModal').classList.add('open');
+  };
 
   document.getElementById('announcementForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn   = document.getElementById('announcementSubmit');
     const alert = document.getElementById('announcementFormAlert');
+    const wasEditing = !!editingId;
     btn.disabled = true;
-    btn.textContent = 'Posting…';
+    btn.textContent = wasEditing ? 'Saving…' : 'Posting…';
     alert.classList.add('hidden');
 
-    const { error } = await _supabase.from('announcements').insert({
-      title:     document.getElementById('newAnnTitle').value.trim(),
-      body:      document.getElementById('newAnnBody').value.trim(),
-      pinned:    document.getElementById('newAnnPinned').checked,
-      author_id: session.user.id,
-    });
+    const payload = {
+      title:  document.getElementById('newAnnTitle').value.trim(),
+      body:   document.getElementById('newAnnBody').value.trim(),
+      pinned: document.getElementById('newAnnPinned').checked,
+    };
+
+    let error;
+    if (wasEditing) {
+      ({ error } = await _supabase.from('announcements').update(payload).eq('id', editingId));
+    } else {
+      ({ error } = await _supabase.from('announcements').insert({ ...payload, author_id: session.user.id }));
+    }
+
+    btn.disabled = false;
+    btn.textContent = wasEditing ? 'Save Changes' : 'Post Announcement';
 
     if (error) {
       alert.className = 'form-alert form-alert--error';
       alert.textContent = error.message;
       alert.classList.remove('hidden');
     } else {
-      document.getElementById('newAnnouncementModal').classList.remove('open');
-      document.getElementById('announcementForm').reset();
+      closeModal();
       await loadAnnouncements();
     }
-    btn.disabled = false;
-    btn.textContent = 'Post Announcement';
   });
 
   // Admin: pin toggle
