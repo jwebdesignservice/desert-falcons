@@ -1699,3 +1699,17 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
     flex-direction: column;
     line-height: 1.1;
 }
+
+/* -- Footer logo: force left-align ------------ */
+.footer-brand {
+    align-items: flex-start !important;
+    text-align: left !important;
+}
+.footer-logo {
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+.footer-logo-text {
+    text-align: left !important;
+}
