@@ -321,10 +321,13 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: #FFFFFF;
     font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
+    font-size: 1rem; /* 1rem = 16px — prevents iOS Safari auto-zoom on focus */
     padding: 0.875rem 1.25rem;
+    min-height: 52px;
+    box-sizing: border-box;
     outline: none;
     transition: border-color 0.2s ease;
+    touch-action: manipulation;
     width: 100%;
     box-sizing: border-box;
     -webkit-appearance: none;
@@ -350,14 +353,18 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: #FFFFFF;
     font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
+    font-size: 1rem; /* 1rem prevents iOS auto-zoom on focus */
     padding: 0.875rem 3rem 0.875rem 1.25rem;
     outline: none;
     cursor: pointer;
     transition: border-color 0.2s ease;
     width: 100%;
+    min-height: 52px;
     box-sizing: border-box;
     border-radius: 0;
+    touch-action: manipulation;
+    position: relative;
+    z-index: 1;
 }
 
 .form-select option { background: #1A1A1A; color: #FFFFFF; }
@@ -371,7 +378,8 @@
     width: 16px;
     height: 16px;
     color: rgba(255, 255, 255, 0.3);
-    pointer-events: none;
+    pointer-events: none; /* never blocks touch/click on select */
+    z-index: 0;
 }
 
 /* Investor disclaimer */
@@ -494,4 +502,47 @@
 
 .join-submit-btn:hover svg {
     transform: translateX(4px);
+}
+
+/* -- Mobile / Tablet: Form fixes -------------------------- */
+@media (max-width: 768px) {
+    /* Prevent iOS auto-zoom: all inputs/selects must be >= 16px */
+    .form-input,
+    .form-select,
+    .form-input::placeholder {
+        font-size: 1rem !important;
+    }
+
+    /* Generous touch targets */
+    .form-input,
+    .form-select {
+        min-height: 52px;
+    }
+
+    /* Full-width rows on tablet */
+    .form-row--2 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Submit button full-width on mobile */
+    .join-submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Reduce form wrap padding on small screens */
+    .join-form-wrap {
+        padding: 2rem 1.25rem;
+    }
+
+    /* Ensure select chevron never captures touch */
+    .select-chevron {
+        pointer-events: none;
+        z-index: 0;
+    }
+    .form-select {
+        position: relative;
+        z-index: 1;
+    }
 }
