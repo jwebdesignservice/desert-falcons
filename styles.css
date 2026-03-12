@@ -1679,3 +1679,23 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
     flex-direction: column;
     line-height: 1.1;
 }
+
+/* -- Footer logo: image + text ----------------- */
+.footer-logo {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+.footer-logo-img {
+    height: 36px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.footer-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
