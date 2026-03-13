@@ -1719,8 +1719,9 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 0;
+    grid-template-columns: minmax(0, 620px) 320px;
+    gap: 0 4rem;
+    justify-content: center;
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
@@ -1730,7 +1731,7 @@
 
 /* LEFT side */
 .fi-editorial-left {
-    padding-right: 4rem;
+    padding-right: 2rem;
     border-right: 1px solid rgba(184, 145, 90, 0.18);
 }
 
@@ -1809,7 +1810,7 @@
 
 /* RIGHT side — portrait */
 .fi-editorial-right {
-    padding-left: 3rem;
+    padding-left: 0;
     display: flex;
     justify-content: center;
 }
