@@ -1719,7 +1719,7 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 420px;
     gap: 0 4rem;
     max-width: 1400px;
     width: 100%;
@@ -1821,7 +1821,7 @@
 .fi-portrait-wrap {
     position: relative;
     width: 100%;
-    max-width: 280px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1830,8 +1830,8 @@
 
 .fi-portrait-circle {
     position: relative;
-    width: 280px;
-    height: 280px;
+    width: 380px;
+    height: 380px;
     flex-shrink: 0;
 }
 
@@ -1934,8 +1934,8 @@
     }
 
     .fi-portrait-circle {
-        width: 240px;
-        height: 240px;
+        width: 260px;
+        height: 260px;
     }
 
     .fi-arabic-band {
