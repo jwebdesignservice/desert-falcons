@@ -1800,7 +1800,7 @@ html[dir="rtl"] .nav-logo {
 html[dir="rtl"] .hero-content,
 html[dir="rtl"] .section-intro,
 html[dir="rtl"] .cta-content {
-    text-align: right;
+    text-align: center;
 }
 
 html[dir="rtl"] .tag::before {
