@@ -1721,9 +1721,10 @@
     display: grid;
     grid-template-columns: 1fr 340px;
     gap: 0;
-    max-width: 1200px;
+    max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
-    padding: 5rem 4rem;
+    padding: 5rem 2rem;
     align-items: center;
 }
 
@@ -1872,11 +1873,11 @@
     background: rgba(30, 74, 59, 0.06);
     border-top: 1px solid rgba(184, 145, 90, 0.1);
     border-bottom: 1px solid rgba(184, 145, 90, 0.1);
-    padding: 2.5rem 4rem;
+    padding: 2.5rem 2rem;
 }
 
 .fi-arabic-inner {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     gap: 2rem;
@@ -1907,7 +1908,7 @@
 @media (max-width: 900px) {
     .fi-editorial-grid {
         grid-template-columns: 1fr;
-        padding: 3rem 2rem;
+        padding: 3rem 1.5rem;
         gap: 0;
     }
 
