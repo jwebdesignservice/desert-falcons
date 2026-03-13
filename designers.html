@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="designers.css">
     <!-- Open Graph / Social Sharing -->
@@ -46,8 +47,8 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
-                <span class="logo-text">DESERT FALCONS</span>
-                <span class="logo-sub">COLLECTIVE</span>
+                <span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span>
+                <span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span>
             </div>
             <div class="loader-bar"></div>
             <div class="loader-dots">
@@ -59,18 +60,19 @@
     <!-- Nav -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
+            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="founders-story.html" class="nav-link">Founder's Story</a></li>
-                <li><a href="vision.html" class="nav-link">Vision</a></li>
-                <li><a href="engineers.html" class="nav-link">Engineers</a></li>
-                <li><a href="designers.html" class="nav-link active">Designers</a></li>
-                <li><a href="investors.html" class="nav-link">Investors</a></li>
-                <li><a href="join.html" class="nav-link nav-cta">Join Us</a></li>
+                <li><a href="index.html" class="nav-link"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                <li><a href="founders-story.html" class="nav-link"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                <li><a href="vision.html" class="nav-link"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
+                <li><a href="engineers.html" class="nav-link"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                <li><a href="designers.html" class="nav-link active"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                <li><a href="investors.html" class="nav-link"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
+                <li><a href="join.html" class="nav-link nav-cta"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
+            <li class="lang-toggle-li"><button class="lang-toggle-btn" aria-label="Switch language">عربي</button></li>
             </ul>
         </div>
     </nav>
@@ -94,7 +96,7 @@
         <div class="des-hero-inner">
             <div class="des-hero-eyebrow">
                 <span class="des-eyebrow-line"></span>
-                <span class="des-eyebrow-text">Design Division</span>
+                <span class="des-eyebrow-text"><span data-i18n="des.hero.eyebrow" data-i18n-ar="قسم التصميم">Design Division</span></span>
                 <span class="des-eyebrow-line"></span>
             </div>
 
@@ -109,7 +111,7 @@
             </p>
 
             <div class="des-hero-scroll-prompt">
-                <span class="des-scroll-text">Explore the Vision</span>
+                <span class="des-scroll-text"><span data-i18n="des.hero.scroll" data-i18n-ar="استكشف الرؤية">Explore the Vision</span></span>
                 <svg class="des-scroll-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M12 5v14M5 12l7 7 7-7"/>
                 </svg>
@@ -133,11 +135,11 @@
             <div class="des-invitation-label-col">
                 <span class="des-section-num">01</span>
                 <span class="des-section-rule"></span>
-                <span class="des-section-name">The Invitation</span>
+                <span class="des-section-name"><span data-i18n="des.s1.name" data-i18n-ar="الدعوة">The Invitation</span></span>
             </div>
 
             <div class="des-invitation-body-col">
-                <h2 class="des-invitation-heading">Where SAIF Finds Its Soul</h2>
+                <h2 class="des-invitation-heading"><span data-i18n="des.s1.title" data-i18n-ar="حيث يجد سيف روحه">Where SAIF Finds Its Soul</span></h2>
                 <p class="des-invitation-lead">Design is where SAIF finds its soul. We are creating a new design language – one rooted in the sword and palm, inspired by the vastness of our desert, the warmth of our hospitality, and the pride of our identity.</p>
                 <p class="des-invitation-text">This is not about copying European luxury. It is about expressing who we are through every curve, every surface, every material.</p>
             </div>
@@ -147,17 +149,17 @@
         <div class="des-stat-bar">
             <div class="des-stat-item">
                 <span class="des-stat-value">4</span>
-                <span class="des-stat-label">Core design disciplines needed</span>
+                <span class="des-stat-label"><span data-i18n="des.stat1" data-i18n-ar="تخصصات تصميم أساسية مطلوبة">Core design disciplines needed</span></span>
             </div>
             <div class="des-stat-divider"></div>
             <div class="des-stat-item">
                 <span class="des-stat-value">1</span>
-                <span class="des-stat-label">Entirely new Saudi design language</span>
+                <span class="des-stat-label"><span data-i18n="des.stat2" data-i18n-ar="لغة تصميم سعودية جديدة بالكامل">Entirely new Saudi design language</span></span>
             </div>
             <div class="des-stat-divider"></div>
             <div class="des-stat-item">
                 <span class="des-stat-value">∞</span>
-                <span class="des-stat-label">Cultural heritage to draw from</span>
+                <span class="des-stat-label"><span data-i18n="des.stat3" data-i18n-ar="إرث ثقافي للاستلهام منه">Cultural heritage to draw from</span></span>
             </div>
         </div>
     </section>
@@ -176,7 +178,7 @@
                 </div>
                 <div>
                     <span class="des-clar-eyebrow">⚠️ Important — Please Read Before Applying</span>
-                    <h2 class="des-clar-title">This is a voluntary collective.<br>We are not offering salaried positions at this stage.</h2>
+                    <h2 class="des-clar-title"><span data-i18n="des.clar.title" data-i18n-ar="هذا تجمّع تطوعي.<br>لا نقدم وظائف براتب في هذه المرحلة.">This is a voluntary collective.<br>We are not offering salaried positions at this stage.</span></h2>
                 </div>
             </div>
 
@@ -518,45 +520,45 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
-                    <p class="footer-tagline">Built by Saudi hands.</p>
+                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
+                    <p class="footer-tagline"><span data-i18n="footer.tagline" data-i18n-ar="صُنع بأيدٍ سعودية.">Built by Saudi hands.</span></p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4 class="footer-heading">Navigate</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.navigate" data-i18n-ar="التنقل">Navigate</span></h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="founders-story.html">Founder's Story</a></li>
-                            <li><a href="vision.html">Vision</a></li>
+                            <li><a href="index.html"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                            <li><a href="founders-story.html"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                            <li><a href="vision.html"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Join</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.join" data-i18n-ar="انضم">Join</span></h4>
                         <ul>
-                            <li><a href="engineers.html">Engineers</a></li>
-                            <li><a href="designers.html">Designers</a></li>
-                            <li><a href="investors.html">Investors</a></li>
+                            <li><a href="engineers.html"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                            <li><a href="designers.html"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                            <li><a href="investors.html"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Connect</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.connect" data-i18n-ar="تواصل">Connect</span></h4>
                         <ul>
-                            <li><a href="join.html">Join Us</a></li>
-                            <li><a href="mailto:contact@desertfalconscollective.com">Contact</a></li>
+                            <li><a href="join.html"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
+                            <li><a href="mailto:contact@desertfalconscollective.com"><span data-i18n="footer.contact" data-i18n-ar="تواصل معنا">Contact</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Legal</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.legal" data-i18n-ar="قانوني">Legal</span></h4>
                         <ul>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-use.html">Terms of Use</a></li>
+                            <li><a href="privacy-policy.html"><span data-i18n="footer.privacy" data-i18n-ar="سياسة الخصوصية">Privacy Policy</span></a></li>
+                            <li><a href="terms-of-use.html"><span data-i18n="footer.terms" data-i18n-ar="شروط الاستخدام">Terms of Use</span></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p class="copyright">&copy; 2026 Desert Falcons Collective. All rights reserved.</p>
-                <p class="footer-note">A Vision 2030 Initiative</p>
+                <p class="footer-note"><span data-i18n="footer.vision2030" data-i18n-ar="مبادرة رؤية ٢٠٣٠">A Vision 2030 Initiative</span></p>
             </div>
         </div>
     </footer>
@@ -573,5 +575,6 @@
             document.body.classList.remove('loading');
         }, 2500);
     </script>
+    <script src="i18n.js"></script>
 </body>
 </html>

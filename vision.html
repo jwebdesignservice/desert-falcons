@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -51,8 +52,8 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
-                <span class="logo-text">DESERT FALCONS</span>
-                <span class="logo-sub">COLLECTIVE</span>
+                <span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span>
+                <span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span>
             </div>
             <div class="loader-bar"></div>
             <div class="loader-dots">
@@ -66,21 +67,22 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
+            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
 
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="founders-story.html" class="nav-link">Founder's Story</a></li>
-                <li><a href="vision.html" class="nav-link active">Vision</a></li>
-                <li><a href="engineers.html" class="nav-link">Engineers</a></li>
-                <li><a href="designers.html" class="nav-link">Designers</a></li>
-                <li><a href="investors.html" class="nav-link">Investors</a></li>
-                <li><a href="join.html" class="nav-link nav-cta">Join Us</a></li>
+                <li><a href="index.html" class="nav-link"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                <li><a href="founders-story.html" class="nav-link"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                <li><a href="vision.html" class="nav-link active"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
+                <li><a href="engineers.html" class="nav-link"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                <li><a href="designers.html" class="nav-link"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                <li><a href="investors.html" class="nav-link"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
+                <li><a href="join.html" class="nav-link nav-cta"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
                 
+            <li class="lang-toggle-li"><button class="lang-toggle-btn" aria-label="Switch language">عربي</button></li>
             </ul>
         </div>
     </nav>
@@ -101,12 +103,12 @@
                     <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                     <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                 </svg>
-                <span>The Vision</span>
+                <span><span data-i18n="vis.hero.badge" data-i18n-ar="الرؤية">The Vision</span></span>
             </div>
 
             <h1 class="vision-hero-title">
                 Building the Future of
-                <span class="title-gradient">Saudi Mobility</span>
+                <span class="title-gradient"><span data-i18n="vis.hero.gradient" data-i18n-ar="التنقل السعودي">Saudi Mobility</span></span>
             </h1>
 
             <p class="vision-hero-subtitle">
@@ -116,17 +118,17 @@
             <div class="hero-stats">
                 <div class="stat-item">
                     <span class="stat-number" data-count="2030">2030</span>
-                    <span class="stat-label">Vision Aligned</span>
+                    <span class="stat-label"><span data-i18n="vis.stat1" data-i18n-ar="متوافق مع الرؤية">Vision Aligned</span></span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
                     <span class="stat-number">100%</span>
-                    <span class="stat-label">Saudi Built</span>
+                    <span class="stat-label"><span data-i18n="vis.stat2" data-i18n-ar="صناعة سعودية">Saudi Built</span></span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
                     <span class="stat-number">1st</span>
-                    <span class="stat-label">Luxury Brand</span>
+                    <span class="stat-label"><span data-i18n="vis.stat3" data-i18n-ar="علامة فاخرة">Luxury Brand</span></span>
                 </div>
             </div>
         </div>
@@ -152,7 +154,7 @@
                     <div class="image-frame-accent"></div>
                     <div class="image-tag">
                         <span class="tag-dot"></span>
-                        <span>Concept Render</span>
+                        <span><span data-i18n="vis.concept" data-i18n-ar="تصور أولي">Concept Render</span></span>
                     </div>
                 </div>
             </div>
@@ -164,7 +166,7 @@
                             <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <span class="marker-text">Our Mission</span>
+                    <span class="marker-text"><span data-i18n="vis.mission.tag" data-i18n-ar="مهمتنا">Our Mission</span></span>
                 </div>
 
                 <h2 class="mission-title">
@@ -232,7 +234,7 @@
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
                 </div>
-                <span class="header-label">The Spirit of Tuwaiq</span>
+                <span class="header-label"><span data-i18n="vis.tuwaiq.label" data-i18n-ar="روح طويق">The Spirit of Tuwaiq</span></span>
                 <div class="header-line"></div>
             </div>
 
@@ -503,41 +505,41 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
-                    <p class="footer-tagline">Built by Saudi hands.</p>
+                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
+                    <p class="footer-tagline"><span data-i18n="footer.tagline" data-i18n-ar="صُنع بأيدٍ سعودية.">Built by Saudi hands.</span></p>
                 </div>
 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4 class="footer-heading">Navigate</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.navigate" data-i18n-ar="التنقل">Navigate</span></h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="founders-story.html">Founder's Story</a></li>
-                            <li><a href="vision.html">Vision</a></li>
+                            <li><a href="index.html"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                            <li><a href="founders-story.html"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                            <li><a href="vision.html"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4 class="footer-heading">Join</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.join" data-i18n-ar="انضم">Join</span></h4>
                         <ul>
-                            <li><a href="engineers.html">Engineers</a></li>
-                            <li><a href="designers.html">Designers</a></li>
-                            <li><a href="investors.html">Investors</a></li>
+                            <li><a href="engineers.html"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                            <li><a href="designers.html"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                            <li><a href="investors.html"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4 class="footer-heading">Connect</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.connect" data-i18n-ar="تواصل">Connect</span></h4>
                         <ul>
-                            <li><a href="join.html">Join Us</a></li>
-                            <li><a href="mailto:contact@desertfalconscollective.com">Contact</a></li>
+                            <li><a href="join.html"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
+                            <li><a href="mailto:contact@desertfalconscollective.com"><span data-i18n="footer.contact" data-i18n-ar="تواصل معنا">Contact</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Legal</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.legal" data-i18n-ar="قانوني">Legal</span></h4>
                         <ul>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-use.html">Terms of Use</a></li>
+                            <li><a href="privacy-policy.html"><span data-i18n="footer.privacy" data-i18n-ar="سياسة الخصوصية">Privacy Policy</span></a></li>
+                            <li><a href="terms-of-use.html"><span data-i18n="footer.terms" data-i18n-ar="شروط الاستخدام">Terms of Use</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -545,7 +547,7 @@
 
             <div class="footer-bottom">
                 <p class="copyright">&copy; 2026 Desert Falcons Collective. All rights reserved.</p>
-                <p class="footer-note">A Vision 2030 Initiative</p>
+                <p class="footer-note"><span data-i18n="footer.vision2030" data-i18n-ar="مبادرة رؤية ٢٠٣٠">A Vision 2030 Initiative</span></p>
             </div>
         </div>
     </footer>
@@ -563,5 +565,6 @@
             document.body.classList.remove('loading');
         }, 2500);
     </script>
+    <script src="i18n.js"></script>
 </body>
 </html>

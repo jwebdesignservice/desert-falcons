@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="engineers.css">
     <!-- Open Graph / Social Sharing -->
@@ -46,8 +47,8 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
-                <span class="logo-text">DESERT FALCONS</span>
-                <span class="logo-sub">COLLECTIVE</span>
+                <span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span>
+                <span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span>
             </div>
             <div class="loader-bar"></div>
             <div class="loader-dots">
@@ -59,19 +60,20 @@
     <!-- Nav -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
+            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="founders-story.html" class="nav-link">Founder's Story</a></li>
-                <li><a href="vision.html" class="nav-link">Vision</a></li>
-                <li><a href="engineers.html" class="nav-link active">Engineers</a></li>
-                <li><a href="designers.html" class="nav-link">Designers</a></li>
-                <li><a href="investors.html" class="nav-link">Investors</a></li>
-                <li><a href="join.html" class="nav-link nav-cta">Join Us</a></li>
+                <li><a href="index.html" class="nav-link"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                <li><a href="founders-story.html" class="nav-link"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                <li><a href="vision.html" class="nav-link"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
+                <li><a href="engineers.html" class="nav-link active"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                <li><a href="designers.html" class="nav-link"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                <li><a href="investors.html" class="nav-link"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
+                <li><a href="join.html" class="nav-link nav-cta"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
                 
+            <li class="lang-toggle-li"><button class="lang-toggle-btn" aria-label="Switch language">عربي</button></li>
             </ul>
         </div>
     </nav>
@@ -97,7 +99,7 @@
         <div class="eng-hero-inner">
             <div class="eng-hero-eyebrow">
                 <span class="eyebrow-line"></span>
-                <span class="eyebrow-text">Engineering Division</span>
+                <span class="eyebrow-text"><span data-i18n="eng.hero.eyebrow" data-i18n-ar="قسم الهندسة">Engineering Division</span></span>
                 <span class="eyebrow-line"></span>
             </div>
 
@@ -112,7 +114,7 @@
             </p>
 
             <div class="eng-hero-scroll-prompt">
-                <span class="scroll-text">Explore the Challenge</span>
+                <span class="scroll-text"><span data-i18n="eng.hero.scroll" data-i18n-ar="استكشف التحدي">Explore the Challenge</span></span>
                 <svg class="scroll-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M12 5v14M5 12l7 7 7-7"/>
                 </svg>
@@ -138,11 +140,11 @@
             <div class="eng-challenge-label-col">
                 <span class="section-num">01</span>
                 <span class="section-rule"></span>
-                <span class="section-name">The Challenge</span>
+                <span class="section-name"><span data-i18n="eng.s1.name" data-i18n-ar="التحدي">The Challenge</span></span>
             </div>
 
             <div class="eng-challenge-body-col">
-                <h2 class="eng-challenge-heading">A Problem Worth Solving</h2>
+                <h2 class="eng-challenge-heading"><span data-i18n="eng.s1.title" data-i18n-ar="مشكلة تستحق الحل">A Problem Worth Solving</span></h2>
                 <p class="eng-challenge-lead">We are building the first Saudi luxury vehicle from the ground up – and we need the finest engineering minds in the Kingdom to make it happen.</p>
                 <p class="eng-challenge-text">Every system must be engineered to the highest global standards while enduring the unique demands of our climate and roads.</p>
                 <p class="eng-challenge-text">This is not an assembly line job. This is a chance to design, innovate, and problem-solve at the frontier of Saudi automotive engineering.</p>
@@ -153,17 +155,17 @@
         <div class="eng-stat-bar">
             <div class="eng-stat-item">
                 <span class="stat-value">50°C</span>
-                <span class="stat-label">Peak operating temperature our systems must handle</span>
+                <span class="stat-label"><span data-i18n="eng.stat1" data-i18n-ar="أقصى درجة حرارة تشغيل يجب أن تتحملها أنظمتنا">Peak operating temperature our systems must handle</span></span>
             </div>
             <div class="eng-stat-divider"></div>
             <div class="eng-stat-item">
                 <span class="stat-value">6</span>
-                <span class="stat-label">Core engineering disciplines needed</span>
+                <span class="stat-label"><span data-i18n="eng.stat2" data-i18n-ar="تخصصات هندسية أساسية مطلوبة">Core engineering disciplines needed</span></span>
             </div>
             <div class="eng-stat-divider"></div>
             <div class="eng-stat-item">
                 <span class="stat-value">01</span>
-                <span class="stat-label">The first Saudi luxury car ever built</span>
+                <span class="stat-label"><span data-i18n="eng.stat3" data-i18n-ar="أول سيارة سعودية فاخرة على الإطلاق">The first Saudi luxury car ever built</span></span>
             </div>
         </div>
     </section>
@@ -184,7 +186,7 @@
                 </div>
                 <div>
                     <span class="eng-clar-eyebrow">⚠️ Important — Please Read Before Applying</span>
-                    <h2 class="eng-clar-title">This is a voluntary collective.<br>We are not offering salaried positions at this stage.</h2>
+                    <h2 class="eng-clar-title"><span data-i18n="eng.clar.title" data-i18n-ar="هذا تجمّع تطوعي.<br>لا نقدم وظائف براتب في هذه المرحلة.">This is a voluntary collective.<br>We are not offering salaried positions at this stage.</span></h2>
                 </div>
             </div>
 
@@ -213,7 +215,7 @@
     <section class="eng-disciplines" id="disciplines">
         <div class="eng-disciplines-header">
             <span class="section-num section-num--light">03</span>
-            <h2 class="eng-disc-heading">Engineering Disciplines</h2>
+            <h2 class="eng-disc-heading"><span data-i18n="eng.disc.title" data-i18n-ar="التخصصات الهندسية">Engineering Disciplines</span></h2>
             <p class="eng-disc-subhead">Six critical systems. Every one needs the best mind available.</p>
         </div>
 
@@ -231,7 +233,7 @@
                     </svg>
                 </div>
                 <div class="eng-disc-content">
-                    <h3 class="eng-disc-name">Powertrain</h3>
+                    <h3 class="eng-disc-name"><span data-i18n="eng.d1" data-i18n-ar="نظام الدفع">Powertrain</span></h3>
                     <ul class="eng-disc-areas">
                         <li>Hybrid / electric systems</li>
                         <li>Performance tuning</li>
@@ -253,7 +255,7 @@
                     </svg>
                 </div>
                 <div class="eng-disc-content">
-                    <h3 class="eng-disc-name">Chassis & Suspension</h3>
+                    <h3 class="eng-disc-name"><span data-i18n="eng.d2" data-i18n-ar="الهيكل والتعليق">Chassis &amp; Suspension</span></h3>
                     <ul class="eng-disc-areas">
                         <li>Vehicle dynamics</li>
                         <li>Air suspension systems</li>
@@ -274,7 +276,7 @@
                     </svg>
                 </div>
                 <div class="eng-disc-content">
-                    <h3 class="eng-disc-name">Battery & Thermal</h3>
+                    <h3 class="eng-disc-name"><span data-i18n="eng.d3" data-i18n-ar="البطارية والإدارة الحرارية">Battery &amp; Thermal</span></h3>
                     <ul class="eng-disc-areas">
                         <li>Energy storage systems</li>
                         <li>Cooling architecture</li>
@@ -297,7 +299,7 @@
                     </svg>
                 </div>
                 <div class="eng-disc-content">
-                    <h3 class="eng-disc-name">Software & Electronics</h3>
+                    <h3 class="eng-disc-name"><span data-i18n="eng.d4" data-i18n-ar="البرمجيات والإلكترونيات">Software &amp; Electronics</span></h3>
                     <ul class="eng-disc-areas">
                         <li>Embedded systems</li>
                         <li>Connectivity &amp; UI/UX</li>
@@ -318,7 +320,7 @@
                     </svg>
                 </div>
                 <div class="eng-disc-content">
-                    <h3 class="eng-disc-name">Materials</h3>
+                    <h3 class="eng-disc-name"><span data-i18n="eng.d5" data-i18n-ar="المواد">Materials</span></h3>
                     <ul class="eng-disc-areas">
                         <li>Lightweighting strategies</li>
                         <li>Luxury material selection</li>
@@ -339,7 +341,7 @@
                     </svg>
                 </div>
                 <div class="eng-disc-content">
-                    <h3 class="eng-disc-name">Testing & Validation</h3>
+                    <h3 class="eng-disc-name"><span data-i18n="eng.d6" data-i18n-ar="الاختبار والتحقق">Testing &amp; Validation</span></h3>
                     <ul class="eng-disc-areas">
                         <li>Quality assurance systems</li>
                         <li>Performance testing</li>
@@ -365,7 +367,7 @@
         <div class="eng-kc-inner">
             <div class="eng-kc-header">
                 <span class="eng-kc-tag">04 — The Problem Space</span>
-                <h2 class="eng-kc-title">Key Engineering Challenges</h2>
+                <h2 class="eng-kc-title"><span data-i18n="eng.kc.title" data-i18n-ar="التحديات الهندسية الرئيسية">Key Engineering Challenges</span></h2>
             </div>
 
             <blockquote class="eng-kc-quote">
@@ -431,7 +433,7 @@
             <div class="eng-qualities-header">
                 <span class="section-num">05</span>
                 <div>
-                    <h2 class="eng-qual-heading">What We're Looking For</h2>
+                    <h2 class="eng-qual-heading"><span data-i18n="eng.qual.title" data-i18n-ar="ما نبحث عنه">What We're Looking For</span></h2>
                     <p class="eng-qual-subhead">The profile of an engineer who belongs here.</p>
                 </div>
             </div>
@@ -541,45 +543,45 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
-                    <p class="footer-tagline">Built by Saudi hands.</p>
+                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
+                    <p class="footer-tagline"><span data-i18n="footer.tagline" data-i18n-ar="صُنع بأيدٍ سعودية.">Built by Saudi hands.</span></p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4 class="footer-heading">Navigate</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.navigate" data-i18n-ar="التنقل">Navigate</span></h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="founders-story.html">Founder's Story</a></li>
-                            <li><a href="vision.html">Vision</a></li>
+                            <li><a href="index.html"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                            <li><a href="founders-story.html"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                            <li><a href="vision.html"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Join</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.join" data-i18n-ar="انضم">Join</span></h4>
                         <ul>
-                            <li><a href="engineers.html">Engineers</a></li>
-                            <li><a href="designers.html">Designers</a></li>
-                            <li><a href="investors.html">Investors</a></li>
+                            <li><a href="engineers.html"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                            <li><a href="designers.html"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                            <li><a href="investors.html"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Connect</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.connect" data-i18n-ar="تواصل">Connect</span></h4>
                         <ul>
-                            <li><a href="join.html">Join Us</a></li>
-                            <li><a href="mailto:contact@desertfalconscollective.com">Contact</a></li>
+                            <li><a href="join.html"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
+                            <li><a href="mailto:contact@desertfalconscollective.com"><span data-i18n="footer.contact" data-i18n-ar="تواصل معنا">Contact</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Legal</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.legal" data-i18n-ar="قانوني">Legal</span></h4>
                         <ul>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-use.html">Terms of Use</a></li>
+                            <li><a href="privacy-policy.html"><span data-i18n="footer.privacy" data-i18n-ar="سياسة الخصوصية">Privacy Policy</span></a></li>
+                            <li><a href="terms-of-use.html"><span data-i18n="footer.terms" data-i18n-ar="شروط الاستخدام">Terms of Use</span></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p class="copyright">&copy; 2026 Desert Falcons Collective. All rights reserved.</p>
-                <p class="footer-note">A Vision 2030 Initiative</p>
+                <p class="footer-note"><span data-i18n="footer.vision2030" data-i18n-ar="مبادرة رؤية ٢٠٣٠">A Vision 2030 Initiative</span></p>
             </div>
         </div>
     </footer>
@@ -596,5 +598,6 @@
             document.body.classList.remove('loading');
         }, 2500);
     </script>
+    <script src="i18n.js"></script>
 </body>
 </html>

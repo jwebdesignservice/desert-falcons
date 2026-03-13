@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -52,8 +53,8 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
-                <span class="logo-text">DESERT FALCONS</span>
-                <span class="logo-sub">COLLECTIVE</span>
+                <span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span>
+                <span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span>
             </div>
             <div class="loader-bar"></div>
             <div class="loader-dots">
@@ -67,21 +68,22 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
+            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
 
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="founders-story.html" class="nav-link">Founder's Story</a></li>
-                <li><a href="vision.html" class="nav-link">Vision</a></li>
-                <li><a href="engineers.html" class="nav-link">Engineers</a></li>
-                <li><a href="designers.html" class="nav-link">Designers</a></li>
-                <li><a href="investors.html" class="nav-link">Investors</a></li>
-                <li><a href="join.html" class="nav-link nav-cta">Join Us</a></li>
+                <li><a href="index.html" class="nav-link active"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                <li><a href="founders-story.html" class="nav-link"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                <li><a href="vision.html" class="nav-link"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
+                <li><a href="engineers.html" class="nav-link"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                <li><a href="designers.html" class="nav-link"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                <li><a href="investors.html" class="nav-link"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
+                <li><a href="join.html" class="nav-link nav-cta"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
                 
+            <li class="lang-toggle-li"><button class="lang-toggle-btn" aria-label="Switch language">عربي</button></li>
             </ul>
         </div>
     </nav>
@@ -94,34 +96,29 @@
         </div>
 
         <div class="hero-content">
-            <span class="tag animate-fade-up">Kingdom of Saudi Arabia</span>
+            <span class="tag animate-fade-up"><span data-i18n="home.hero.tag" data-i18n-ar="المملكة العربية السعودية">Kingdom of Saudi Arabia</span></span>
             <div class="hero-calligraphy animate-fade-up">
                 <img src="images/arabic-calligraphy.png" alt="Arabic Calligraphy" class="calligraphy-img"/>
             </div>
 
-            <h1 class="hero-title animate-fade-up delay-1">
-                Engineering the First<br>
-                <span class="title-accent">Saudi Luxury Icon.</span>
-            </h1>
+            <h1 class="hero-title animate-fade-up delay-1"><span data-i18n="home.hero.title" data-i18n-ar="هندسة أول<br><span class='title-accent'>أيقونة سعودية فاخرة.</span>">Engineering the First<br><span class="title-accent">Saudi Luxury Icon.</span></span></h1>
 
-            <p class="hero-subtitle animate-fade-up delay-2">
-                A national collective uniting Saudi engineers, designers, and investors to build a world-class automotive brand. We are not imitating. We are creating.
-            </p>
+            <p class="hero-subtitle animate-fade-up delay-2"><span data-i18n="home.hero.subtitle" data-i18n-ar="تجمّع وطني يوحّد المهندسين والمصممين والمستثمرين السعوديين لبناء علامة تجارية عالمية للسيارات. نحن لا نقلّد. نحن نبتكر.">A national collective uniting Saudi engineers, designers, and investors to build a world-class automotive brand. We are not imitating. We are creating.</span></p>
 
             <div class="hero-cta animate-fade-up delay-3">
                 <a href="join.html" class="btn btn-primary">
-                    <span>Join the Collective</span>
+                    <span><span data-i18n="home.hero.cta1" data-i18n-ar="انضم إلى التجمّع">Join the Collective</span></span>
                     <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                 </a>
                 <a href="investors.html" class="btn btn-secondary">
-                    <span>Become a Founding Investor</span>
+                    <span><span data-i18n="home.hero.cta2" data-i18n-ar="كن مستثمرًا مؤسسًا">Become a Founding Investor</span></span>
                 </a>
             </div>
 
             <div class="hero-scroll animate-fade-up delay-4">
-                <span>Scroll to explore</span>
+                <span><span data-i18n="home.hero.scroll" data-i18n-ar="مرر للاستكشاف">Scroll to explore</span></span>
                 <div class="scroll-indicator">
                     <div class="scroll-dot"></div>
                 </div>
@@ -140,30 +137,28 @@
     <section class="section section-dark" id="teamMessage">
         <div class="container">
             <div class="section-intro animate-on-scroll">
-                <span class="tag">The Collective</span>
-                <h2 class="section-title">A team of believers,<br>not job seekers.</h2>
-                <p class="section-description">
-                    Built by Saudi hands. We are assembling the nation's finest minds—engineers, designers, and visionaries—united by a shared dream of automotive excellence.
-                </p>
+                <span class="tag"><span data-i18n="home.team.tag" data-i18n-ar="التجمّع">The Collective</span></span>
+                <h2 class="section-title"><span data-i18n="home.team.title" data-i18n-ar="فريق من المؤمنين،<br>لا الباحثين عن وظائف.">A team of believers,<br>not job seekers.</span></h2>
+                <p class="section-description"><span data-i18n="home.team.desc" data-i18n-ar="صُنع بأيدٍ سعودية. نحن نجمع أفضل العقول في الوطن — مهندسين ومصممين وأصحاب رؤية — يوحّدهم حلم مشترك بالتميّز في صناعة السيارات.">Built by Saudi hands. We are assembling the nation's finest minds—engineers, designers, and visionaries—united by a shared dream of automotive excellence.</span></p>
             </div>
 
             <div class="numbered-cards">
                 <div class="numbered-card animate-on-scroll">
                     <span class="card-number">01</span>
-                    <h3 class="card-title">Passion Over Paycheck</h3>
-                    <p class="card-text">This is a voluntary contribution to build the team and the idea. We seek those who believe in the vision and want to be part of history.</p>
+                    <h3 class="card-title"><span data-i18n="home.card1.title" data-i18n-ar="الشغف قبل الراتب">Passion Over Paycheck</span></h3>
+                    <p class="card-text"><span data-i18n="home.card1.text" data-i18n-ar="هذه مساهمة تطوعية لبناء الفريق والفكرة. نبحث عمّن يؤمن بالرؤية ويريد أن يكون جزءًا من التاريخ.">This is a voluntary contribution to build the team and the idea. We seek those who believe in the vision and want to be part of history.</span></p>
                 </div>
 
                 <div class="numbered-card animate-on-scroll delay-1">
                     <span class="card-number">02</span>
-                    <h3 class="card-title">Saudi Excellence</h3>
-                    <p class="card-text">Rooted in the heritage of the sword and palm. We are creating something authentically Saudi, not imitating the West.</p>
+                    <h3 class="card-title"><span data-i18n="home.card2.title" data-i18n-ar="التميّز السعودي">Saudi Excellence</span></h3>
+                    <p class="card-text"><span data-i18n="home.card2.text" data-i18n-ar="متجذّرون في إرث السيف والنخلة. نبتكر شيئًا سعوديًا أصيلًا، لا نقلّد الغرب.">Rooted in the heritage of the sword and palm. We are creating something authentically Saudi, not imitating the West.</span></p>
                 </div>
 
                 <div class="numbered-card animate-on-scroll delay-2">
                     <span class="card-number">03</span>
-                    <h3 class="card-title">Vision 2030 Aligned</h3>
-                    <p class="card-text">Contributing to the Kingdom's transformative economic diversification and industrial innovation goals.</p>
+                    <h3 class="card-title"><span data-i18n="home.card3.title" data-i18n-ar="متوافق مع رؤية ٢٠٣٠">Vision 2030 Aligned</span></h3>
+                    <p class="card-text"><span data-i18n="home.card3.text" data-i18n-ar="المساهمة في أهداف المملكة التحويلية للتنويع الاقتصادي والابتكار الصناعي.">Contributing to the Kingdom's transformative economic diversification and industrial innovation goals.</span></p>
                 </div>
             </div>
         </div>
@@ -173,8 +168,8 @@
     <section class="section section-alt" id="pillars">
         <div class="container">
             <div class="section-intro animate-on-scroll">
-                <span class="tag">Our Foundation</span>
-                <h2 class="section-title">Core pillars of<br>the collective.</h2>
+                <span class="tag"><span data-i18n="home.pillars.tag" data-i18n-ar="أساسنا">Our Foundation</span></span>
+                <h2 class="section-title"><span data-i18n="home.pillars.title" data-i18n-ar="الركائز الأساسية<br>للتجمّع.">Core pillars of<br>the collective.</span></h2>
                 <p class="section-description">
                     Every great endeavor stands on principles. These are ours—the values that guide every decision, every design, every partnership.
                 </p>
@@ -183,28 +178,28 @@
             <div class="type-grid">
                 <div class="type-card type-green animate-on-scroll">
                     <span class="type-label">Pillar 01</span>
-                    <h3 class="type-title">Innovation & Sustainability</h3>
+                    <h3 class="type-title"><span data-i18n="home.p1.title" data-i18n-ar="الابتكار والاستدامة">Innovation &amp; Sustainability</span></h3>
                     <p class="type-text">Pioneering automotive technology with environmental responsibility at its core. Leading, not following.</p>
                     <span class="type-meta">Foundation: Technology</span>
                 </div>
 
                 <div class="type-card type-gold animate-on-scroll delay-1">
                     <span class="type-label">Pillar 02</span>
-                    <h3 class="type-title">Cultural Authenticity</h3>
+                    <h3 class="type-title"><span data-i18n="home.p2.title" data-i18n-ar="الأصالة الثقافية">Cultural Authenticity</span></h3>
                     <p class="type-text">Design language rooted in Saudi heritage. The sword and palm, reimagined for the automotive age.</p>
                     <span class="type-meta">Foundation: Identity</span>
                 </div>
 
                 <div class="type-card type-silver animate-on-scroll delay-2">
                     <span class="type-label">Pillar 03</span>
-                    <h3 class="type-title">World-Class Quality</h3>
+                    <h3 class="type-title"><span data-i18n="home.p3.title" data-i18n-ar="جودة عالمية">World-Class Quality</span></h3>
                     <p class="type-text">Competing with the finest marques globally. Ultra-luxury standards in every component and detail.</p>
                     <span class="type-meta">Foundation: Excellence</span>
                 </div>
 
                 <div class="type-card type-royal animate-on-scroll delay-3">
                     <span class="type-label">Pillar 04</span>
-                    <h3 class="type-title">National Pride</h3>
+                    <h3 class="type-title"><span data-i18n="home.p4.title" data-i18n-ar="الفخر الوطني">National Pride</span></h3>
                     <p class="type-text">A symbol of Saudi capability. Proving to the world what Saudi innovation can achieve.</p>
                     <span class="type-meta">Foundation: Purpose</span>
                 </div>
@@ -217,8 +212,8 @@
         <div class="container">
             <div class="split-layout">
                 <div class="split-left animate-on-scroll">
-                    <span class="tag">The Structure</span>
-                    <h2 class="section-title">A collective built<br>for permanence.</h2>
+                    <span class="tag"><span data-i18n="home.arch.tag" data-i18n-ar="الهيكل">The Structure</span></span>
+                    <h2 class="section-title"><span data-i18n="home.arch.title" data-i18n-ar="تجمّع بُني<br>ليدوم.">A collective built<br>for permanence.</span></h2>
                     <p class="section-description">
                         We are assembling experts across every discipline required to design, engineer, and manufacture a world-class luxury vehicle. Each role is critical. Each contributor is valued.
                     </p>
@@ -265,8 +260,8 @@
     <section class="section section-alt" id="roles">
         <div class="container">
             <div class="section-intro animate-on-scroll">
-                <span class="tag">Join the Movement</span>
-                <h2 class="section-title">Find your place<br>in history.</h2>
+                <span class="tag"><span data-i18n="home.roles.tag" data-i18n-ar="انضم إلى الحركة">Join the Movement</span></span>
+                <h2 class="section-title"><span data-i18n="home.roles.title" data-i18n-ar="اعثر على مكانك<br>في التاريخ.">Find your place<br>in history.</span></h2>
                 <p class="section-description">
                     We are seeking passionate Saudis who believe in the vision. Whether you engineer, design, or invest—there is a role for you.
                 </p>
@@ -275,7 +270,7 @@
             <div class="pricing-grid">
                 <a href="engineers.html" class="pricing-card animate-on-scroll">
                     <div class="pricing-header">
-                        <h3 class="pricing-title">Engineers</h3>
+                        <h3 class="pricing-title"><span data-i18n="home.role.eng" data-i18n-ar="المهندسون">Engineers</span></h3>
                         <span class="pricing-badge">Build from Within</span>
                     </div>
                     <p class="pricing-description">Shape the mechanics of tomorrow. Powertrain, chassis, battery, software, and materials specialists.</p>
@@ -286,12 +281,12 @@
                         <li><span>Battery & Thermal</span><span class="feature-value">Open</span></li>
                         <li><span>Software & Electronics</span><span class="feature-value">Open</span></li>
                     </ul>
-                    <span class="pricing-link">Apply as Engineer →</span>
+                    <span class="pricing-link"><span data-i18n="home.role.eng.link" data-i18n-ar="تقدّم كمهندس ←">Apply as Engineer →</span></span>
                 </a>
 
                 <a href="designers.html" class="pricing-card pricing-featured animate-on-scroll delay-1">
                     <div class="pricing-header">
-                        <h3 class="pricing-title">Designers</h3>
+                        <h3 class="pricing-title"><span data-i18n="home.role.des" data-i18n-ar="المصممون">Designers</span></h3>
                         <span class="pricing-badge badge-featured">Shape the Future</span>
                     </div>
                     <p class="pricing-description">Define the aesthetic of Saudi luxury. Create the visual language that will represent our nation.</p>
@@ -302,12 +297,12 @@
                         <li><span>Color & Materials</span><span class="feature-value">Open</span></li>
                         <li><span>Digital Modeling</span><span class="feature-value">Open</span></li>
                     </ul>
-                    <span class="pricing-link">Apply as Designer →</span>
+                    <span class="pricing-link"><span data-i18n="home.role.des.link" data-i18n-ar="تقدّم كمصمم ←">Apply as Designer →</span></span>
                 </a>
 
                 <a href="investors.html" class="pricing-card animate-on-scroll delay-2">
                     <div class="pricing-header">
-                        <h3 class="pricing-title">Investors</h3>
+                        <h3 class="pricing-title"><span data-i18n="home.role.inv" data-i18n-ar="المستثمرون">Investors</span></h3>
                         <span class="pricing-badge">Founding Partners</span>
                     </div>
                     <p class="pricing-description">Be among the first to back the nation's luxury automotive brand. Seed round now open.</p>
@@ -318,7 +313,7 @@
                         <li><span>Tag-along Rights</span><span class="feature-value">Yes</span></li>
                         <li><span>Liquidation Pref</span><span class="feature-value">1x</span></li>
                     </ul>
-                    <span class="pricing-link">Inquire as Investor →</span>
+                    <span class="pricing-link"><span data-i18n="home.role.inv.link" data-i18n-ar="استفسر كمستثمر ←">Inquire as Investor →</span></span>
                 </a>
             </div>
         </div>
@@ -329,8 +324,8 @@
         <div class="container">
             <div class="split-layout split-reverse">
                 <div class="split-left animate-on-scroll">
-                    <span class="tag">The Founder</span>
-                    <h2 class="section-title">A dream that began<br>in 1982.</h2>
+                    <span class="tag"><span data-i18n="home.founder.tag" data-i18n-ar="المؤسس">The Founder</span></span>
+                    <h2 class="section-title"><span data-i18n="home.founder.title" data-i18n-ar="حلمٌ بدأ<br>عام ١٩٨٢.">A dream that began<br>in 1982.</span></h2>
                     <p class="section-description">
                         What started as a wooden car built by a child in the Saudi summer has become a vision to create the Kingdom's first luxury automotive brand. This is not a business venture. This is a calling.
                     </p>
@@ -348,8 +343,8 @@
                         I started with a wooden car in the summer of 1982. Today, I invite you to build the real thing.
                     </blockquote>
                     <div class="quote-author">
-                        <span class="author-name">Khalaf Althobaiti</span>
-                        <span class="author-title">Founder</span>
+                        <span class="author-name"><span data-i18n="home.founder.name" data-i18n-ar="خلف الثبيتي">Khalaf Althobaiti</span></span>
+                        <span class="author-title"><span data-i18n="home.founder.role" data-i18n-ar="المؤسس">Founder</span></span>
                     </div>
                 </div>
             </div>
@@ -360,8 +355,8 @@
     <section class="section section-cta" id="ctaSection">
         <div class="container">
             <div class="cta-content animate-on-scroll">
-                <span class="tag">Take Action</span>
-                <h2 class="section-title">Ready to make history?</h2>
+                <span class="tag"><span data-i18n="home.cta.tag" data-i18n-ar="اتخذ إجراء">Take Action</span></span>
+                <h2 class="section-title"><span data-i18n="home.cta.title" data-i18n-ar="مستعد لصنع التاريخ؟">Ready to make history?</span></h2>
                 <p class="section-description">
                     Join a collective of visionaries building Saudi Arabia's first luxury automotive brand. No job seekers. Only believers.
                 </p>
@@ -383,41 +378,41 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
-                    <p class="footer-tagline">Built by Saudi hands.</p>
+                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
+                    <p class="footer-tagline"><span data-i18n="footer.tagline" data-i18n-ar="صُنع بأيدٍ سعودية.">Built by Saudi hands.</span></p>
                 </div>
 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4 class="footer-heading">Navigate</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.navigate" data-i18n-ar="التنقل">Navigate</span></h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="founders-story.html">Founder's Story</a></li>
-                            <li><a href="vision.html">Vision</a></li>
+                            <li><a href="index.html"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                            <li><a href="founders-story.html"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                            <li><a href="vision.html"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4 class="footer-heading">Join</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.join" data-i18n-ar="انضم">Join</span></h4>
                         <ul>
-                            <li><a href="engineers.html">Engineers</a></li>
-                            <li><a href="designers.html">Designers</a></li>
-                            <li><a href="investors.html">Investors</a></li>
+                            <li><a href="engineers.html"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                            <li><a href="designers.html"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                            <li><a href="investors.html"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4 class="footer-heading">Connect</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.connect" data-i18n-ar="تواصل">Connect</span></h4>
                         <ul>
-                            <li><a href="join.html">Join Us</a></li>
-                            <li><a href="mailto:contact@desertfalconscollective.com">Contact</a></li>
+                            <li><a href="join.html"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
+                            <li><a href="mailto:contact@desertfalconscollective.com"><span data-i18n="footer.contact" data-i18n-ar="تواصل معنا">Contact</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Legal</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.legal" data-i18n-ar="قانوني">Legal</span></h4>
                         <ul>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-use.html">Terms of Use</a></li>
+                            <li><a href="privacy-policy.html"><span data-i18n="footer.privacy" data-i18n-ar="سياسة الخصوصية">Privacy Policy</span></a></li>
+                            <li><a href="terms-of-use.html"><span data-i18n="footer.terms" data-i18n-ar="شروط الاستخدام">Terms of Use</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -425,7 +420,7 @@
 
             <div class="footer-bottom">
                 <p class="copyright">&copy; 2026 Desert Falcons Collective. All rights reserved.</p>
-                <p class="footer-note">A Vision 2030 Initiative</p>
+                <p class="footer-note"><span data-i18n="footer.vision2030" data-i18n-ar="مبادرة رؤية ٢٠٣٠">A Vision 2030 Initiative</span></p>
             </div>
         </div>
     </footer>
@@ -444,5 +439,6 @@
             document.body.classList.remove('loading');
         }, 2500);
     </script>
+    <script src="i18n.js"></script>
 </body>
 </html>

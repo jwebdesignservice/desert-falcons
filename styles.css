@@ -1753,3 +1753,295 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.125rem); }
     line-height: 1.1;
     text-align: left;
 }
+
+
+/* ============================================
+   RTL OVERRIDES — Arabic Language Mode
+   ============================================ */
+
+/* Language toggle button */
+.lang-toggle-btn {
+    background: transparent;
+    border: 1px solid rgba(184, 145, 90, 0.4);
+    color: #B8915A;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border-radius: 2px;
+}
+.lang-toggle-btn:hover {
+    background: rgba(184, 145, 90, 0.12);
+    border-color: #B8915A;
+    color: #F5F0E8;
+}
+
+/* RTL: Flip flex directions, text-align, margins */
+html[dir="rtl"] body {
+    text-align: right;
+}
+
+html[dir="rtl"] .nav-container {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .nav-menu {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .nav-logo {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .hero-content,
+html[dir="rtl"] .section-intro,
+html[dir="rtl"] .cta-content {
+    text-align: right;
+}
+
+html[dir="rtl"] .tag::before {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+html[dir="rtl"] .btn-arrow {
+    transform: scaleX(-1);
+}
+
+html[dir="rtl"] .text-link svg {
+    transform: scaleX(-1);
+}
+
+html[dir="rtl"] .list-item {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+html[dir="rtl"] .list-number {
+    margin-right: 0;
+    margin-left: 1.5rem;
+}
+
+html[dir="rtl"] .split-layout {
+    direction: rtl;
+}
+
+html[dir="rtl"] .footer-top {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .footer-links {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .footer-column {
+    text-align: right;
+}
+
+html[dir="rtl"] .footer-brand {
+    text-align: right;
+}
+
+html[dir="rtl"] .footer-logo {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .footer-bottom {
+    flex-direction: row-reverse;
+}
+
+/* Cards grid stays LTR for visual layout */
+html[dir="rtl"] .numbered-card,
+html[dir="rtl"] .type-card,
+html[dir="rtl"] .pricing-card {
+    text-align: right;
+}
+
+html[dir="rtl"] .pricing-features li {
+    flex-direction: row-reverse;
+}
+
+/* Quote blocks */
+html[dir="rtl"] .quote-block {
+    text-align: right;
+}
+
+html[dir="rtl"] .quote-author {
+    text-align: right;
+}
+
+/* Section headers */
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .section-description {
+    text-align: right;
+}
+
+/* Engineer/Designer page specifics */
+html[dir="rtl"] .eng-challenge-inner,
+html[dir="rtl"] .des-invitation-inner {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .eng-disc-row {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+html[dir="rtl"] .eng-qual-row {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+html[dir="rtl"] .eng-clar-split,
+html[dir="rtl"] .des-clar-split {
+    flex-direction: row-reverse;
+}
+
+/* Founder bio section */
+html[dir="rtl"] .fi-editorial-grid {
+    direction: rtl;
+}
+
+html[dir="rtl"] .fi-editorial-left {
+    padding-right: 0;
+    padding-left: 2rem;
+    border-right: none;
+    border-left: 1px solid rgba(184, 145, 90, 0.18);
+}
+
+html[dir="rtl"] .fi-eyebrow {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .fi-credentials {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .fi-arabic-inner {
+    flex-direction: row-reverse;
+}
+
+/* Vision page */
+html[dir="rtl"] .mission-layout {
+    direction: rtl;
+}
+
+html[dir="rtl"] .mission-content-col {
+    text-align: right;
+}
+
+html[dir="rtl"] .mission-point {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+html[dir="rtl"] .mission-highlight {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .highlight-bar {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+/* Investors page */
+html[dir="rtl"] .inv-thesis-card {
+    text-align: right;
+}
+
+html[dir="rtl"] .inv-faq-item {
+    text-align: right;
+}
+
+/* Join page */
+html[dir="rtl"] .join-form-outer {
+    direction: rtl;
+}
+
+html[dir="rtl"] .join-context-inner {
+    text-align: right;
+}
+
+html[dir="rtl"] .form-label {
+    text-align: right;
+}
+
+/* Founders story page */
+html[dir="rtl"] .chapter-frame {
+    direction: rtl;
+}
+
+html[dir="rtl"] .chapter-content {
+    text-align: right;
+}
+
+html[dir="rtl"] .comparison-grid {
+    direction: rtl;
+}
+
+html[dir="rtl"] .daughters-grid {
+    direction: rtl;
+}
+
+html[dir="rtl"] .sword-palm-split {
+    direction: rtl;
+}
+
+html[dir="rtl"] .meaning-side {
+    text-align: right;
+}
+
+html[dir="rtl"] .timeline-visual {
+    direction: rtl;
+}
+
+html[dir="rtl"] .timeline-text {
+    text-align: right;
+}
+
+html[dir="rtl"] .call-content {
+    text-align: right;
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+    html[dir="rtl"] .nav-menu {
+        flex-direction: column;
+        text-align: right;
+    }
+}
+
+/* Arabic font for RTL mode */
+html[dir="rtl"] body {
+    font-family: 'Tajawal', 'Inter', sans-serif;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .chapter-title,
+html[dir="rtl"] .chapter-title-large {
+    font-family: 'Tajawal', 'Cormorant Garamond', serif;
+}
+
+/* Nav toggle positioning */
+.lang-toggle-li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .lang-toggle-li {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}

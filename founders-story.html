@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -51,8 +52,8 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
-                <span class="logo-text">DESERT FALCONS</span>
-                <span class="logo-sub">COLLECTIVE</span>
+                <span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span>
+                <span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span>
             </div>
             <div class="loader-bar"></div>
             <div class="loader-dots">
@@ -66,21 +67,22 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
+            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
 
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="founders-story.html" class="nav-link active">Founder's Story</a></li>
-                <li><a href="vision.html" class="nav-link">Vision</a></li>
-                <li><a href="engineers.html" class="nav-link">Engineers</a></li>
-                <li><a href="designers.html" class="nav-link">Designers</a></li>
-                <li><a href="investors.html" class="nav-link">Investors</a></li>
-                <li><a href="join.html" class="nav-link nav-cta">Join Us</a></li>
+                <li><a href="index.html" class="nav-link"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                <li><a href="founders-story.html" class="nav-link active"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                <li><a href="vision.html" class="nav-link"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
+                <li><a href="engineers.html" class="nav-link"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                <li><a href="designers.html" class="nav-link"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                <li><a href="investors.html" class="nav-link"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
+                <li><a href="join.html" class="nav-link nav-cta"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
                 
+            <li class="lang-toggle-li"><button class="lang-toggle-btn" aria-label="Switch language">عربي</button></li>
             </ul>
         </div>
     </nav>
@@ -97,9 +99,9 @@
 
         <div class="story-hero-content">
             <div class="story-hero-meta">
-                <span class="story-year">1982 — Present</span>
+                <span class="story-year"><span data-i18n="fs.hero.year" data-i18n-ar="١٩٨٢ — الحاضر">1982 — Present</span></span>
                 <span class="story-divider"></span>
-                <span class="story-label">A Founder's Journey</span>
+                <span class="story-label"><span data-i18n="fs.hero.label" data-i18n-ar="رحلة المؤسس">A Founder's Journey</span></span>
             </div>
 
             <h1 class="story-hero-title">
@@ -113,7 +115,7 @@
             </p>
 
             <div class="story-scroll-prompt">
-                <span>Begin the Journey</span>
+                <span><span data-i18n="fs.hero.scroll" data-i18n-ar="ابدأ الرحلة">Begin the Journey</span></span>
                 <div class="scroll-arrow">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -142,7 +144,7 @@
             <div class="fi-editorial-left">
                 <div class="fi-eyebrow">
                     <span class="fi-label-line"></span>
-                    <span class="fi-label-text">The Founder</span>
+                    <span class="fi-label-text"><span data-i18n="fs.bio.label" data-i18n-ar="المؤسس">The Founder</span></span>
                 </div>
 
                 <h2 class="fi-name-headline">
@@ -203,8 +205,8 @@
             <div class="chapter-text-wrapper">
                 <div class="chapter-number-vertical">01</div>
                 <div class="chapter-content">
-                    <h2 class="chapter-title">A Child's Dream</h2>
-                    <div class="chapter-subtitle">Summer 1982, Taif City - Al-Shurut Village</div>
+                    <h2 class="chapter-title"><span data-i18n="fs.ch1.title" data-i18n-ar="حلم طفل">A Child's Dream</span></h2>
+                    <div class="chapter-subtitle"><span data-i18n="fs.ch1.sub" data-i18n-ar="صيف ١٩٨٢، الطائف - قرية الشروط">Summer 1982, Taif City - Al-Shurut Village</span></div>
 
                     <div class="chapter-body">
                         <p class="lead-text">I was ten years old. We didn't have ready-made toys.</p>
@@ -229,7 +231,7 @@
         <div class="container">
             <div class="chapter-header-centered">
                 <span class="chapter-number-inline">Chapter 02</span>
-                <h2 class="chapter-title-large">The Question That<br>Wouldn't Leave</h2>
+                <h2 class="chapter-title-large"><span data-i18n="fs.ch2.title" data-i18n-ar="السؤال الذي<br>لم يغادر">The Question That<br>Wouldn't Leave</span></h2>
                 <p class="chapter-intro">Years later, I looked around the world:</p>
             </div>
 
@@ -255,7 +257,7 @@
                             <rect x="0" y="0" width="150" height="100" fill="none" stroke="#B8915A" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <span class="comparison-country">America</span>
+                    <span class="comparison-country"><span data-i18n="fs.country.us" data-i18n-ar="أمريكا">America</span></span>
                     <span class="comparison-car">"The Beast"</span>
                 </div>
 
@@ -278,7 +280,7 @@
                             <rect x="0" y="0" width="150" height="100" fill="none" stroke="#B8915A" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <span class="comparison-country">Britain</span>
+                    <span class="comparison-country"><span data-i18n="fs.country.uk" data-i18n-ar="بريطانيا">Britain</span></span>
                     <span class="comparison-car">Royal Rolls-Royces</span>
                 </div>
 
@@ -291,7 +293,7 @@
                             <rect x="0" y="0" width="150" height="100" fill="none" stroke="#B8915A" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <span class="comparison-country">Japan</span>
+                    <span class="comparison-country"><span data-i18n="fs.country.jp" data-i18n-ar="اليابان">Japan</span></span>
                     <span class="comparison-car">Toyota Century</span>
                 </div>
 
@@ -305,7 +307,7 @@
                             <rect x="0" y="0" width="150" height="100" fill="none" stroke="#B8915A" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <span class="comparison-country">Germany</span>
+                    <span class="comparison-country"><span data-i18n="fs.country.de" data-i18n-ar="ألمانيا">Germany</span></span>
                     <span class="comparison-car">Mercedes-Maybach</span>
                 </div>
             </div>
@@ -316,7 +318,7 @@
                     <div class="question-flag">
                         <img src="images/saudi-flag.jpg" alt="Saudi Arabia Flag" class="flag-map-img"/>
                     </div>
-                    <h3 class="question-text">Why doesn't Saudi Arabia have its own?</h3>
+                    <h3 class="question-text"><span data-i18n="fs.question" data-i18n-ar="لماذا لا تملك السعودية سيارتها الخاصة؟">Why doesn't Saudi Arabia have its own?</span></h3>
                 </div>
                 <div class="question-line"></div>
             </div>
@@ -338,8 +340,8 @@
         <div class="container">
             <div class="daughters-intro">
                 <span class="chapter-number-inline">Chapter 03</span>
-                <h2 class="daughters-title">My Daughters</h2>
-                <p class="daughters-subtitle">The Real Reason</p>
+                <h2 class="daughters-title"><span data-i18n="fs.ch3.title" data-i18n-ar="بناتي">My Daughters</span></h2>
+                <p class="daughters-subtitle"><span data-i18n="fs.ch3.sub" data-i18n-ar="السبب الحقيقي">The Real Reason</span></p>
             </div>
 
             <p class="daughters-lead">Then came the most important part of my life.</p>
@@ -375,7 +377,7 @@
             <div class="chapter-text-wrapper">
                 <div class="chapter-number-vertical">04</div>
                 <div class="chapter-content">
-                    <h2 class="chapter-title">The Words That Changed Everything</h2>
+                    <h2 class="chapter-title"><span data-i18n="fs.ch4.title" data-i18n-ar="الكلمات التي غيّرت كل شيء">The Words That Changed Everything</span></h2>
                     <div class="chapter-subtitle">A Conversation With Reema</div>
 
                     <div class="chapter-body">
@@ -413,14 +415,14 @@
         <div class="container">
             <div class="meaning-header">
                 <span class="chapter-number-inline">Chapter 05</span>
-                <h2 class="meaning-title">The Name</h2>
+                <h2 class="meaning-title"><span data-i18n="fs.ch5.title" data-i18n-ar="الاسم">The Name</span></h2>
                 <div class="meaning-arabic">سيف</div>
-                <p class="meaning-translation">SAIF — Sword in Arabic</p>
+                <p class="meaning-translation"><span data-i18n="fs.ch5.meaning" data-i18n-ar="سيف — السيف بالعربية">SAIF — Sword in Arabic</span></p>
             </div>
 
             <div class="sword-palm-split">
                 <div class="meaning-side meaning-sword">
-                    <h3 class="meaning-label">The Sword</h3>
+                    <h3 class="meaning-label"><span data-i18n="fs.sword" data-i18n-ar="السيف">The Sword</span></h3>
                     <p class="meaning-description">On our flag. In our history. In our souls.</p>
                     <ul class="meaning-attributes">
                         <li>Honor</li>
@@ -437,7 +439,7 @@
                 </div>
 
                 <div class="meaning-side meaning-palm">
-                    <h3 class="meaning-label">The Palm</h3>
+                    <h3 class="meaning-label"><span data-i18n="fs.palm" data-i18n-ar="النخلة">The Palm</span></h3>
                     <p class="meaning-description">The tree that gives life in our desert.</p>
                     <ul class="meaning-attributes">
                         <li>Warmth</li>
@@ -460,7 +462,7 @@
 
         <div class="tuwaiq-content">
             <span class="chapter-number-inline light">Chapter 06</span>
-            <h2 class="tuwaiq-title">The Spirit of Tuwaiq</h2>
+            <h2 class="tuwaiq-title"><span data-i18n="fs.ch6.title" data-i18n-ar="روح طويق">The Spirit of Tuwaiq</span></h2>
 
             <div class="tuwaiq-quote-block">
                 <div class="tuwaiq-quote-mark">"</div>
@@ -489,7 +491,7 @@
         <div class="container">
             <div class="timeline-header">
                 <span class="chapter-number-inline">Chapter 07</span>
-                <h2 class="timeline-title">The Wooden Car Returns</h2>
+                <h2 class="timeline-title"><span data-i18n="fs.ch7.title" data-i18n-ar="عودة السيارة الخشبية">The Wooden Car Returns</span></h2>
             </div>
 
             <div class="timeline-visual">
@@ -545,7 +547,7 @@
 
         <div class="call-content">
             <span class="chapter-number-inline light">Chapter 08</span>
-            <h2 class="call-title">The Call</h2>
+            <h2 class="call-title"><span data-i18n="fs.ch8.title" data-i18n-ar="النداء">The Call</span></h2>
 
             <div class="call-message">
                 <p>I share this story not for attention, but for understanding.</p>
@@ -565,7 +567,7 @@
 
             <div class="call-cta">
                 <a href="join.html" class="btn btn-primary btn-large">
-                    <span>Join the Collective</span>
+                    <span><span data-i18n="cta.join" data-i18n-ar="انضم إلى التجمّع">Join the Collective</span></span>
                     <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -579,41 +581,41 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text">DESERT FALCONS</span><span class="logo-sub">COLLECTIVE</span></span></a>
-                    <p class="footer-tagline">Built by Saudi hands.</p>
+                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
+                    <p class="footer-tagline"><span data-i18n="footer.tagline" data-i18n-ar="صُنع بأيدٍ سعودية.">Built by Saudi hands.</span></p>
                 </div>
 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4 class="footer-heading">Navigate</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.navigate" data-i18n-ar="التنقل">Navigate</span></h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="founders-story.html">Founder's Story</a></li>
-                            <li><a href="vision.html">Vision</a></li>
+                            <li><a href="index.html"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                            <li><a href="founders-story.html"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                            <li><a href="vision.html"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4 class="footer-heading">Join</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.join" data-i18n-ar="انضم">Join</span></h4>
                         <ul>
-                            <li><a href="engineers.html">Engineers</a></li>
-                            <li><a href="designers.html">Designers</a></li>
-                            <li><a href="investors.html">Investors</a></li>
+                            <li><a href="engineers.html"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                            <li><a href="designers.html"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                            <li><a href="investors.html"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4 class="footer-heading">Connect</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.connect" data-i18n-ar="تواصل">Connect</span></h4>
                         <ul>
-                            <li><a href="join.html">Join Us</a></li>
-                            <li><a href="mailto:contact@desertfalconscollective.com">Contact</a></li>
+                            <li><a href="join.html"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
+                            <li><a href="mailto:contact@desertfalconscollective.com"><span data-i18n="footer.contact" data-i18n-ar="تواصل معنا">Contact</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading">Legal</h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.legal" data-i18n-ar="قانوني">Legal</span></h4>
                         <ul>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-use.html">Terms of Use</a></li>
+                            <li><a href="privacy-policy.html"><span data-i18n="footer.privacy" data-i18n-ar="سياسة الخصوصية">Privacy Policy</span></a></li>
+                            <li><a href="terms-of-use.html"><span data-i18n="footer.terms" data-i18n-ar="شروط الاستخدام">Terms of Use</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -621,7 +623,7 @@
 
             <div class="footer-bottom">
                 <p class="copyright">&copy; 2026 Desert Falcons Collective. All rights reserved.</p>
-                <p class="footer-note">A Vision 2030 Initiative</p>
+                <p class="footer-note"><span data-i18n="footer.vision2030" data-i18n-ar="مبادرة رؤية ٢٠٣٠">A Vision 2030 Initiative</span></p>
             </div>
         </div>
     </footer>
@@ -639,5 +641,6 @@
             document.body.classList.remove('loading');
         }, 2500);
     </script>
+    <script src="i18n.js"></script>
 </body>
 </html>
