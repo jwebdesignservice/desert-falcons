@@ -1810,3 +1810,98 @@ html[lang="ar"] .chapter-title-large {
         margin-top: 0.5rem;
     }
 }
+
+/* ============================================
+   RTL LAYOUT — Arabic direction overrides
+   ============================================ */
+
+/* Base RTL: flip text alignment and logical spacing */
+html[dir="rtl"] body {
+    text-align: right;
+}
+
+html[dir="rtl"] p,
+html[dir="rtl"] li,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6,
+html[dir="rtl"] span,
+html[dir="rtl"] label {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Nav: reverse flex direction and spacing */
+html[dir="rtl"] nav,
+html[dir="rtl"] .navbar,
+html[dir="rtl"] .nav-inner {
+    direction: rtl;
+}
+
+html[dir="rtl"] .nav-links {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .lang-toggle-li {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+/* Hero and sections */
+html[dir="rtl"] .hero-content,
+html[dir="rtl"] .section-intro,
+html[dir="rtl"] .chapter-intro {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Centered elements stay centered */
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .chapter-title,
+html[dir="rtl"] .chapter-title-large {
+    text-align: center;
+}
+
+/* Cards and grid items */
+html[dir="rtl"] .card,
+html[dir="rtl"] .pillar-card,
+html[dir="rtl"] .quality-item,
+html[dir="rtl"] .timeline-item,
+html[dir="rtl"] .info-block {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Lists */
+html[dir="rtl"] ul,
+html[dir="rtl"] ol {
+    padding-right: 1.5rem;
+    padding-left: 0;
+}
+
+/* Footer */
+html[dir="rtl"] .footer-inner,
+html[dir="rtl"] .footer-nav,
+html[dir="rtl"] .footer-links {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Forms */
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Flex rows: reverse for RTL */
+html[dir="rtl"] .fi-editorial,
+html[dir="rtl"] .two-col,
+html[dir="rtl"] .split-row {
+    flex-direction: row-reverse;
+}

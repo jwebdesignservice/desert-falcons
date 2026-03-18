@@ -21,8 +21,8 @@
   function applyLanguage(lang) {
     const html = document.documentElement;
     html.setAttribute('lang', lang);
-    // Keep LTR layout for both languages — same design, different text
-    html.setAttribute('dir', 'ltr');
+    // Set text direction: RTL for Arabic, LTR for English
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
     // Swap text content
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
