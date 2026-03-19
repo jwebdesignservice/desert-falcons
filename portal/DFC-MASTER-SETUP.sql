@@ -109,11 +109,41 @@ create table if not exists founders_updates (
 -- SECTION 2: SCHEMA PATCHES (safe to re-run)
 -- ============================================================
 
+-- Core column additions
 alter table members          add column if not exists avatar_url   text;
 alter table resources        add column if not exists uploaded_by  uuid references auth.users(id) on delete set null;
 alter table events           add column if not exists meeting_link text;
 alter table events           add column if not exists created_by   uuid references auth.users(id) on delete set null;
 alter table founders_updates add column if not exists author_id    uuid references auth.users(id) on delete set null;
+
+-- Status columns (defensive: in case tables existed from an older partial run)
+alter table project_updates add column if not exists status text default 'in_progress';
+
+-- collective_applications may already exist from a prior individual script run
+-- Add all its columns defensively so the table is always fully formed
+do $$
+begin
+  if not exists (select 1 from information_schema.tables where table_name = 'collective_applications') then
+    -- Table doesn't exist; it will be created fresh in section 10 with all columns
+    null;
+  else
+    -- Table exists — patch any columns that might be missing
+    alter table collective_applications add column if not exists status            text default 'pending';
+    alter table collective_applications add column if not exists notes             text;
+    alter table collective_applications add column if not exists reviewed_by       uuid references auth.users(id) on delete set null;
+    alter table collective_applications add column if not exists reviewed_at       timestamptz;
+    alter table collective_applications add column if not exists interest          text;
+    alter table collective_applications add column if not exists specialization    text;
+    alter table collective_applications add column if not exists experience        text;
+    alter table collective_applications add column if not exists design_discipline text;
+    alter table collective_applications add column if not exists portfolio_url     text;
+    alter table collective_applications add column if not exists investment_range  text;
+    alter table collective_applications add column if not exists investor_type     text;
+    alter table collective_applications add column if not exists hear_about        text;
+    alter table collective_applications add column if not exists terms_agreed      boolean default false;
+  end if;
+end;
+$$;
 
 
 -- ============================================================
