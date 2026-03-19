@@ -153,6 +153,7 @@ async function initTopbar(session) {
   }
 
   showRoleUI(profile.role);
+  injectApplicationsLink(profile.role);
   return profile;
 }
 
@@ -254,6 +255,51 @@ function injectSettingsLink() {
     </svg>
     Settings`;
   nav.appendChild(link);
+}
+
+/* -------------------- Applications Link Injection (admin only) ---- */
+
+/**
+ * Appends the "Applications" nav link for core_board / admin members.
+ * Called after profile is loaded so we know the user's role.
+ * @param {string} role - profile.role value
+ */
+function injectApplicationsLink(role) {
+  if (!role) return;
+  const r = role.toLowerCase();
+  if (r !== 'core_board' && r !== 'admin') return;
+
+  const nav = document.querySelector('.sidebar-nav');
+  if (!nav || document.querySelector('[href="applications.html"]')) return;
+
+  const link = document.createElement('a');
+  link.href = 'applications.html';
+  link.className = 'sidebar-link';
+  const currentPage = window.location.pathname.split('/').pop();
+  if (currentPage === 'applications.html') link.classList.add('active');
+
+  link.innerHTML = `
+    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+    </svg>
+    Applications`;
+
+  // Insert before the sidebar-member footer, after existing nav items
+  nav.appendChild(link);
+
+  // Also load pending count badge asynchronously
+  _supabase
+    .from('collective_applications')
+    .select('id', { count: 'exact', head: true })
+    .eq('status', 'pending')
+    .then(({ count }) => {
+      if (count && count > 0) {
+        const badge = document.createElement('span');
+        badge.textContent = count;
+        badge.style.cssText = 'background:var(--gold);color:#000;font-size:0.65rem;font-family:var(--font-mono);padding:0.1rem 0.35rem;border-radius:99px;margin-left:auto;';
+        link.appendChild(badge);
+      }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
