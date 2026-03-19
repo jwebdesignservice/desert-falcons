@@ -146,6 +146,17 @@
 
   await loadResources();
 
+  // Pre-select category from URL param ?cat=design_briefs (set by dashboard quick links)
+  const urlCat = new URLSearchParams(window.location.search).get('cat');
+  if (urlCat && urlCat !== 'all') {
+    const tab = document.querySelector(`.filter-tab[data-cat="${urlCat}"]`);
+    if (tab) {
+      activeFilter = urlCat;
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t === tab));
+      renderResources();
+    }
+  }
+
   document.getElementById('filterTabs').addEventListener('click', (e) => {
     const btn = e.target.closest('.filter-tab');
     if (!btn) return;
