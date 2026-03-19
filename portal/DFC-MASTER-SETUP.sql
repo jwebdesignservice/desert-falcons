@@ -184,8 +184,14 @@ create policy "insert_replies"  on discussion_replies for insert to authenticate
 create policy "insert_rsvps"    on event_rsvps        for insert to authenticated with check (auth.uid() = member_id);
 create policy "insert_activity" on activity_feed      for insert to authenticated with check (auth.uid() = member_id);
 
--- Realtime on activity feed
-alter publication supabase_realtime add table activity_feed;
+-- Realtime on activity feed (skips if already added)
+do $$
+begin
+  alter publication supabase_realtime add table activity_feed;
+exception when duplicate_object then
+  null;
+end;
+$$;
 
 
 -- ============================================================
