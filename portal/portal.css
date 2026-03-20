@@ -2600,15 +2600,30 @@ html.ar .lang-toggle {
 /* Login-page fixed language toggle */
 .login-lang-toggle {
   position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1.25rem;
+  right: 1.25rem;
   z-index: 200;
   margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.9rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.login-lang-toggle:hover {
+  background: rgba(184, 145, 90, 0.15);
+  border-color: rgba(184, 145, 90, 0.7);
+  color: #B8915A;
 }
 
 html.ar .login-lang-toggle {
   right: auto;
-  left: 1.5rem;
+  left: 1.25rem;
 }
 
 /* Mobile RTL adjustments */
