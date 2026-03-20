@@ -172,13 +172,24 @@ function getInitials(name) {
 function formatDate(dateStr) {
   if (!dateStr) return '';
   const d = new Date(dateStr);
-  return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+  const locale = window.dfc_i18n?.isAr ? 'ar-SA' : 'en-US';
+  return d.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
 function timeAgo(dateStr) {
   if (!dateStr) return '';
+  const isAr = window.dfc_i18n?.isAr;
   const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60000);
+  if (isAr) {
+    if (mins < 1) return 'الآن';
+    if (mins < 60) return `منذ ${mins} د`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `منذ ${hrs} س`;
+    const days = Math.floor(hrs / 24);
+    if (days < 7) return `منذ ${days} أيام`;
+    return formatDate(dateStr);
+  }
   if (mins < 1) return 'just now';
   if (mins < 60) return `${mins}m ago`;
   const hrs = Math.floor(mins / 60);
@@ -196,22 +207,42 @@ function escapeHtml(str) {
 function roleBadgeHtml(role) {
   if (!role) return '';
   const r = role.toLowerCase();
-  return `<span class="role-badge ${r}">${escapeHtml(role)}</span>`;
+  const label = window.dfc_i18n ? window.dfc_i18n.role(role) : role;
+  return `<span class="role-badge ${r}">${escapeHtml(label)}</span>`;
 }
 
 function statusBadgeHtml(status) {
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
   const map = {
-    complete:    ['complete',    '✅ Complete'],
-    in_progress: ['in-progress', '🔄 In Progress'],
-    pending:     ['pending',     '⏳ Pending'],
+    complete:    ['complete',    _t('✅ Complete')],
+    in_progress: ['in-progress', _t('🔄 In Progress')],
+    pending:     ['pending',     _t('⏳ Pending')],
   };
   const [cls, label] = map[status] || ['pending', status];
   return `<span class="status-badge ${cls}">${label}</span>`;
 }
 
 function typeBadgeHtml(type) {
-  const t = (type || '').toLowerCase().replace(/\s+/g, '-');
-  return `<span class="type-badge ${t}">${escapeHtml(type)}</span>`;
+  if (!type) return '';
+  const t = type.toLowerCase().replace(/\s+/g, '-');
+  // Translate known type values
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
+  const typeMap = {
+    written:              _t('مكتوب') !== 'مكتوب' ? _t('مكتوب') : (window.dfc_i18n?.isAr ? 'مكتوب' : 'Written'),
+    video:                window.dfc_i18n?.isAr ? 'فيديو' : 'Video',
+    audio:                window.dfc_i18n?.isAr ? 'صوتي' : 'Audio',
+    pdf:                  'PDF',
+    excel:                'Excel',
+    ppt:                  'PPT',
+    cad:                  'CAD',
+    image:                window.dfc_i18n?.isAr ? 'صورة' : 'Image',
+    design_review:        window.dfc_i18n?.isAr ? 'مراجعة التصميم' : 'Design Review',
+    engineering_workshop: window.dfc_i18n?.isAr ? 'ورشة هندسية' : 'Engineering Workshop',
+    investor_briefing:    window.dfc_i18n?.isAr ? 'إحاطة المستثمرين' : 'Investor Briefing',
+    team_call:            window.dfc_i18n?.isAr ? 'مكالمة الفريق' : 'Team Call',
+  };
+  const label = typeMap[t] || (window.dfc_i18n?.isAr && window.dfc_i18n.t(type) !== type ? window.dfc_i18n.t(type) : type);
+  return `<span class="type-badge ${t}">${escapeHtml(label)}</span>`;
 }
 
 /* -------------------- Logout -------------------- */
@@ -247,7 +278,8 @@ async function saveNotificationPrefs(userId, prefs) {
 function injectSettingsLink() {
   const nav = document.querySelector('.sidebar-nav');
   if (!nav || document.querySelector('[href="settings.html"]')) return;
-
+  const isAr = document.documentElement.classList.contains('ar');
+  const label = isAr ? 'الإعدادات' : 'Settings';
   const link = document.createElement('a');
   link.href = 'settings.html';
   link.className = 'sidebar-link';
@@ -258,7 +290,7 @@ function injectSettingsLink() {
       <path stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
       <circle cx="12" cy="12" r="3" stroke-width="1.5"/>
     </svg>
-    Settings`;
+    ${label}`;
   nav.appendChild(link);
 }
 
@@ -283,11 +315,13 @@ function injectApplicationsLink(role) {
   const currentPage = window.location.pathname.split('/').pop();
   if (currentPage === 'applications.html') link.classList.add('active');
 
+  const isArApps = document.documentElement.classList.contains('ar');
+  const appsLabel = isArApps ? 'الطلبات' : 'Applications';
   link.innerHTML = `
     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
     </svg>
-    Applications`;
+    ${appsLabel}`;
 
   // Insert before the sidebar-member footer, after existing nav items
   nav.appendChild(link);

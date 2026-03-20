@@ -169,7 +169,7 @@
       return `<div class="announcement-item ${a.pinned ? 'pinned' : ''}" onclick="this.classList.toggle('expanded')">
         <div class="announcement-header">
           <span class="announcement-title">${escapeHtml(a.title)}</span>
-          ${a.pinned ? '<span class="pin-icon">📌 Pinned</span>' : ''}
+          ${a.pinned ? `<span class="pin-icon">📌 ${_t('📌 Pinned').replace('📌 ','')}</span>` : ''}
         </div>
         <div class="announcement-meta">
           <span class="card-meta">${formatDate(a.created_at)}</span>

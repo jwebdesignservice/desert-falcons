@@ -183,7 +183,14 @@
   }
 
   function categoryLabel(cat) {
-    const map = {
+    const isAr = window.dfc_i18n?.isAr;
+    const map = isAr ? {
+      design_briefs: 'ملخص تصميم',
+      engineering_specs: 'مواصفات هندسية',
+      investor_materials: 'مواد المستثمرين',
+      meeting_notes: 'ملاحظات الاجتماعات',
+      brand_assets: 'أصول العلامة التجارية',
+    } : {
       design_briefs: 'Design Brief',
       engineering_specs: 'Engineering',
       investor_materials: 'Investor',
@@ -218,7 +225,7 @@
             <div class="resource-meta">
               <span class="type-badge ${(r.file_type||'').toLowerCase()}">${escapeHtml(r.file_type || 'File')}</span>
               <span class="resource-cat">${categoryLabel(r.category)}</span>
-              <span class="resource-date">Added ${formatDate(r.created_at)}</span>
+              <span class="resource-date">${window.dfc_i18n?.isAr ? 'أضيف' : 'Added'} ${formatDate(r.created_at)}</span>
             </div>
             ${adminActions}
           </div>

@@ -2643,3 +2643,168 @@ html.ar .login-lang-toggle {
     margin-left: 0;
   }
 }
+
+/* ── Global RTL text alignment ── */
+html.ar .portal-content,
+html.ar .portal-content * {
+  text-align: right;
+}
+
+/* Keep centre-aligned elements centred */
+html.ar .member-card,
+html.ar .member-card * {
+  text-align: center;
+}
+
+/* Keep numbers, badges, icons inline-neutral */
+html.ar .analytics-stat,
+html.ar .analytics-stat-value {
+  text-align: center;
+}
+
+/* Announcement cards */
+html.ar .announcement-item {
+  direction: rtl;
+  text-align: right;
+}
+html.ar .announcement-header {
+  justify-content: flex-end;
+}
+html.ar .announcement-preview,
+html.ar .announcement-body {
+  text-align: right;
+}
+
+/* Update cards */
+html.ar .update-card {
+  direction: rtl;
+}
+html.ar .update-title {
+  text-align: right;
+}
+html.ar .update-meta {
+  text-align: right;
+}
+html.ar .update-body {
+  text-align: right;
+}
+
+/* Thread items */
+html.ar .thread-item {
+  direction: rtl;
+}
+html.ar .thread-title {
+  text-align: right;
+}
+html.ar .thread-preview {
+  text-align: right;
+}
+
+/* Founder cards */
+html.ar .founder-card-title,
+html.ar .founder-card-date,
+html.ar .founder-card-body {
+  text-align: right;
+}
+
+/* Event cards */
+html.ar .event-title,
+html.ar .event-desc {
+  text-align: right;
+}
+
+/* Resource cards */
+html.ar .resource-title,
+html.ar .resource-meta {
+  text-align: right;
+}
+html.ar .resource-card {
+  direction: rtl;
+}
+
+/* Dashboard sections */
+html.ar .dash-announce-title,
+html.ar .dash-announce-body {
+  text-align: right;
+}
+html.ar .dash-mini-info,
+html.ar .dash-event-info,
+html.ar .dash-resource-info {
+  text-align: right;
+}
+html.ar .activity-content {
+  text-align: right;
+}
+html.ar .activity-desc,
+html.ar .activity-time {
+  text-align: right;
+}
+
+/* Settings */
+html.ar .notif-title,
+html.ar .notif-desc {
+  text-align: right;
+}
+
+/* Modal text */
+html.ar .modal-title,
+html.ar .modal-subtitle {
+  text-align: right;
+}
+html.ar .step-content,
+html.ar .step-title,
+html.ar .step-desc {
+  text-align: right;
+}
+
+/* Login page */
+html.ar .login-card {
+  direction: rtl;
+  text-align: right;
+}
+html.ar .login-title,
+html.ar .login-sub,
+html.ar .login-footer {
+  text-align: right;
+}
+html.ar .form-checkbox {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+html.ar .form-row-inline {
+  text-align: right;
+}
+
+/* Admin actions always LTR (buttons look better) */
+html.ar .admin-actions {
+  direction: ltr;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+/* Sidebar text */
+html.ar .sidebar-member-name,
+html.ar .sidebar-member-role {
+  text-align: right;
+}
+html.ar .logo-tag {
+  text-align: right;
+}
+
+/* Applications page */
+html.ar .app-name,
+html.ar .app-email,
+html.ar .app-field {
+  text-align: right;
+}
+html.ar .notes-label {
+  text-align: right;
+}
+html.ar .notif-info {
+  text-align: right;
+}
+
+/* Settings card */
+html.ar .settings-card {
+  direction: rtl;
+}

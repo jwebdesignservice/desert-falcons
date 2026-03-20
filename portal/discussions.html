@@ -161,7 +161,7 @@
             <span class="thread-title">${escapeHtml(t.title)}</span>
           </div>
           <div class="thread-meta">
-            <span>${escapeHtml(t.category)}</span>
+            <span>${escapeHtml(window.dfc_i18n?.isAr ? ({'general':'عام','engineering':'هندسة','design':'تصميم','investment-strategy':'الاستثمار والاستراتيجية','introductions':'التعريفات'}[t.category]||t.category) : t.category)}</span>
             <span>${replyCount} ${replyWord}</span>
             <span>${timeAgo(t.created_at)}</span>
           </div>

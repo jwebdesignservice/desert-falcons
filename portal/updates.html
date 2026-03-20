@@ -177,7 +177,7 @@
             <span class="update-title">${escapeHtml(u.title)}</span>
             ${statusBadgeHtml(u.status)}
           </div>
-          <div class="update-meta">${escapeHtml(u.category)} · ${formatDate(u.created_at)}</div>
+          <div class="update-meta">${escapeHtml(_t(u.category) !== u.category ? _t(u.category) : (window.dfc_i18n?.isAr ? ({Design:'التصميم',Engineering:'الهندسة',Partnerships:'الشراكات',Fundraising:'جمع التمويل'}[u.category]||u.category) : u.category))} · ${formatDate(u.created_at)}</div>
           <div class="update-body">${escapeHtml(u.body||'')}</div>
           ${adminActions}
         </div>`;
