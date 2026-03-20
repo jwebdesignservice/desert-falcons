@@ -390,10 +390,35 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyTranslations);
-  } else {
+  // ── Inject lang toggle into topbar (portal pages) ──────────
+  function injectI18nToggle() {
+    // Portal pages: inject into .topbar-right
+    var topbarRight = document.querySelector('.topbar-right');
+    if (topbarRight && !document.getElementById('langToggleBtn')) {
+      var btn = document.createElement('button');
+      btn.id = 'langToggleBtn';
+      btn.className = 'lang-toggle';
+      btn.setAttribute('aria-label', 'Toggle language / تبديل اللغة');
+      btn.textContent = isAr ? 'EN' : 'AR';
+      btn.addEventListener('click', function () { window.toggleLang(); });
+      topbarRight.appendChild(btn);
+    }
+    // Login page: update the hardcoded loginLangBtn text
+    var loginBtn = document.getElementById('loginLangBtn');
+    if (loginBtn) {
+      loginBtn.textContent = isAr ? 'EN' : 'AR';
+    }
+  }
+
+  function onReady() {
     applyTranslations();
+    injectI18nToggle();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onReady);
+  } else {
+    onReady();
   }
 
   // ── Toggle language (preserves current page + other params) ─

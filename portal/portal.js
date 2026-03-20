@@ -310,6 +310,8 @@ function injectApplicationsLink(role) {
 /* -------------------- Language Toggle Injection ------------- */
 
 function injectLangToggle() {
+  // portal-i18n.js injects the button on DOMContentLoaded.
+  // This is a safety fallback in case the topbar renders after i18n runs.
   const topbarRight = document.querySelector('.topbar-right');
   if (!topbarRight || document.getElementById('langToggleBtn')) return;
   const btn = document.createElement('button');
