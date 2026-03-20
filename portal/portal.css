@@ -2601,7 +2601,8 @@ html.ar .lang-toggle {
 .login-lang-toggle {
   position: fixed;
   top: 1.25rem;
-  right: 1.25rem;
+  left: 1.25rem;
+  right: auto;
   z-index: 200;
   margin: 0;
   font-family: 'JetBrains Mono', monospace;
@@ -2622,8 +2623,8 @@ html.ar .lang-toggle {
 }
 
 html.ar .login-lang-toggle {
-  right: auto;
   left: 1.25rem;
+  right: auto;
 }
 
 /* Mobile RTL adjustments */
