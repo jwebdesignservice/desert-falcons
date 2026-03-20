@@ -60,8 +60,8 @@
 
     <div class="portal-content">
       <div class="page-header">
-        <h1 class="page-title">Settings</h1>
-        <p class="page-subtitle">Manage your profile and preferences</p>
+        <h1 class="page-title" data-ar="الإعدادات">Settings</h1>
+        <p class="page-subtitle" data-ar="إدارة ملفك الشخصي وتفضيلاتك">Manage your profile and preferences</p>
       </div>
 
       <div class="settings-layout">
@@ -69,8 +69,8 @@
         <!-- Avatar Section -->
         <div class="settings-card">
           <div class="settings-card-header">
-            <h2 class="settings-card-title">Profile Photo</h2>
-            <p class="settings-card-sub">Upload a photo to personalise your portal presence</p>
+            <h2 class="settings-card-title" data-ar="صورة الملف الشخصي">Profile Photo</h2>
+            <p class="settings-card-sub" data-ar="ارفع صورة لتخصيص حضورك في البوابة">Upload a photo to personalise your portal presence</p>
           </div>
           <div id="avatarAlert" class="form-alert hidden"></div>
           <div class="avatar-upload-row">
@@ -79,55 +79,55 @@
             </div>
             <div class="avatar-upload-controls">
               <input type="file" id="avatarFile" accept="image/jpeg,image/png,image/webp" style="display:none;">
-              <button class="btn-secondary" id="avatarChooseBtn" type="button">Choose Photo</button>
-              <p class="settings-role-note" style="margin-top:0.5rem;">JPG, PNG or WebP · Max 2MB</p>
+              <button class="btn-secondary" id="avatarChooseBtn" type="button" data-ar="اختر صورة">Choose Photo</button>
+              <p class="settings-role-note" style="margin-top:0.5rem;" data-ar="JPG أو PNG أو WebP · الحد الأقصى 2 ميغابايت">JPG, PNG or WebP · Max 2MB</p>
               <p class="settings-role-note" id="avatarFileName"></p>
             </div>
           </div>
-          <button class="btn-primary settings-save-btn" id="avatarSave" disabled style="margin-top:1.25rem;">Upload Photo</button>
+          <button class="btn-primary settings-save-btn" id="avatarSave" disabled style="margin-top:1.25rem;" data-ar="رفع الصورة">Upload Photo</button>
         </div>
 
         <!-- Profile Section -->
         <div class="settings-card">
           <div class="settings-card-header">
-            <h2 class="settings-card-title">Profile</h2>
-            <p class="settings-card-sub">Update your display name, location, and bio</p>
+            <h2 class="settings-card-title" data-ar="الملف الشخصي">Profile</h2>
+            <p class="settings-card-sub" data-ar="تحديث اسمك ونبذتك وموقعك">Update your display name, location, and bio</p>
           </div>
           <div id="profileAlert" class="form-alert hidden"></div>
           <form id="profileForm">
             <div class="form-group">
-              <label class="form-label">Full Name</label>
-              <input type="text" class="form-input" id="profileName" placeholder="Your full name" required>
+              <label class="form-label" data-ar="الاسم الكامل">Full Name</label>
+              <input type="text" class="form-input" id="profileName" placeholder="Your full name" data-ar-placeholder="اسمك الكامل" required>
             </div>
             <div class="form-group">
-              <label class="form-label">Location</label>
-              <input type="text" class="form-input" id="profileLocation" placeholder="City, Country">
+              <label class="form-label" data-ar="الموقع">Location</label>
+              <input type="text" class="form-input" id="profileLocation" placeholder="City, Country" data-ar-placeholder="المدينة، البلد">
             </div>
             <div class="form-group">
-              <label class="form-label">Bio</label>
-              <textarea class="form-input" id="profileBio" rows="3" placeholder="A brief introduction…" style="resize:vertical;"></textarea>
+              <label class="form-label" data-ar="نبذة شخصية">Bio</label>
+              <textarea class="form-input" id="profileBio" rows="3" placeholder="A brief introduction…" data-ar-placeholder="نبذة مختصرة…" style="resize:vertical;"></textarea>
             </div>
             <div class="form-group settings-role-row">
-              <label class="form-label">Role</label>
+              <label class="form-label" data-ar="الدور">Role</label>
               <span id="profileRole" class="role-badge">—</span>
-              <span class="settings-role-note">Role is set by admins — contact Khalaf to update.</span>
+              <span class="settings-role-note" data-ar="يتم تعيين الدور من قِبل المسؤولين — تواصل مع خلف للتحديث.">Role is set by admins — contact Khalaf to update.</span>
             </div>
-            <button type="submit" class="btn-primary settings-save-btn" id="profileSave">Save Profile</button>
+            <button type="submit" class="btn-primary settings-save-btn" id="profileSave" data-ar="حفظ الملف الشخصي">Save Profile</button>
           </form>
         </div>
 
         <!-- Email Notifications Section -->
         <div class="settings-card">
           <div class="settings-card-header">
-            <h2 class="settings-card-title">Email Notifications</h2>
-            <p class="settings-card-sub">Choose what you want to be notified about</p>
+            <h2 class="settings-card-title" data-ar="إشعارات البريد الإلكتروني">Email Notifications</h2>
+            <p class="settings-card-sub" data-ar="اختر ما تريد أن تُخطَر به">Choose what you want to be notified about</p>
           </div>
           <div id="notifAlert" class="form-alert hidden"></div>
 
           <div class="notif-row">
             <div class="notif-info">
-              <div class="notif-title">New Discussions</div>
-              <div class="notif-desc">Email me when a new thread is posted in any forum</div>
+              <div class="notif-title" data-ar="نقاشات جديدة">New Discussions</div>
+              <div class="notif-desc" data-ar="أرسل لي بريداً إلكترونياً عند نشر موضوع جديد في أي منتدى">Email me when a new thread is posted in any forum</div>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="notifThreads" checked>
@@ -139,8 +139,8 @@
 
           <div class="notif-row">
             <div class="notif-info">
-              <div class="notif-title">Replies to My Threads</div>
-              <div class="notif-desc">Email me when someone replies to a thread I'm subscribed to</div>
+              <div class="notif-title" data-ar="ردود على مواضيعي">Replies to My Threads</div>
+              <div class="notif-desc" data-ar="أرسل لي بريداً إلكترونياً عند رد شخص ما على موضوع اشتركت فيه">Email me when someone replies to a thread I'm subscribed to</div>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="notifReplies" checked>
@@ -152,8 +152,8 @@
 
           <div class="notif-row" style="border-bottom:none;">
             <div class="notif-info">
-              <div class="notif-title">Announcements</div>
-              <div class="notif-desc">Email me when a new announcement is posted from Khalaf</div>
+              <div class="notif-title" data-ar="الإعلانات">Announcements</div>
+              <div class="notif-desc" data-ar="أرسل لي بريداً إلكترونياً عند نشر إعلان جديد من خلف">Email me when a new announcement is posted from Khalaf</div>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="notifAnnouncements" checked>
@@ -163,26 +163,26 @@
             </label>
           </div>
 
-          <button class="btn-primary settings-save-btn" id="notifSave" style="margin-top:1.5rem;">Save Preferences</button>
+          <button class="btn-primary settings-save-btn" id="notifSave" style="margin-top:1.5rem;" data-ar="حفظ التفضيلات">Save Preferences</button>
         </div>
 
         <!-- Password / Account Section -->
         <div class="settings-card">
           <div class="settings-card-header">
-            <h2 class="settings-card-title">Account</h2>
-            <p class="settings-card-sub">Password and account management</p>
+            <h2 class="settings-card-title" data-ar="الحساب">Account</h2>
+            <p class="settings-card-sub" data-ar="إدارة كلمة المرور والحساب">Password and account management</p>
           </div>
           <div id="passwordAlert" class="form-alert hidden"></div>
           <div class="settings-account-row">
             <div>
-              <div class="notif-title">Password</div>
-              <div class="notif-desc">We'll email you a secure link to set a new password</div>
+              <div class="notif-title" data-ar="كلمة المرور">Password</div>
+              <div class="notif-desc" data-ar="سنرسل لك رابطاً آمناً لتعيين كلمة مرور جديدة">We'll email you a secure link to set a new password</div>
             </div>
-            <button class="btn-secondary" id="resetPasswordBtn">Change Password</button>
+            <button class="btn-secondary" id="resetPasswordBtn" data-ar="تغيير كلمة المرور">Change Password</button>
           </div>
           <div class="settings-account-row" style="border-bottom:none;">
             <div>
-              <div class="notif-title">Email Address</div>
+              <div class="notif-title" data-ar="عنوان البريد الإلكتروني">Email Address</div>
               <div id="accountEmail" class="notif-desc">Loading…</div>
             </div>
           </div>
@@ -193,6 +193,7 @@
   </main>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
@@ -202,6 +203,7 @@
 
   const profile = await initTopbar(session);
   if (!profile) return;
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
 
   // ── Avatar preview init ──
   const avatarPreviewEl = document.getElementById('avatarPreview');
@@ -225,7 +227,7 @@
     if (file.size > 2 * 1024 * 1024) {
       const a = document.getElementById('avatarAlert');
       a.className = 'form-alert form-alert--error';
-      a.textContent = 'File too large. Maximum size is 2MB.';
+      a.textContent = _t('File too large. Maximum size is 2MB.');
       a.classList.remove('hidden');
       e.target.value = '';
       return;

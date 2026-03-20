@@ -51,19 +51,19 @@
     <div class="portal-content">
       <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
         <div>
-          <h1 class="page-title">Resource Library</h1>
-          <p class="page-subtitle">Documents, briefs, and assets for the collective</p>
+          <h1 class="page-title" data-ar="مكتبة الموارد">Resource Library</h1>
+          <p class="page-subtitle" data-ar="المستندات والملخصات والأصول للمجموعة">Documents, briefs, and assets for the collective</p>
         </div>
-        <button class="btn-create-thread" id="newResourceBtn" style="display:none;">+ Upload Resource</button>
+        <button class="btn-create-thread" id="newResourceBtn" style="display:none;" data-ar="+ رفع مورد">+ Upload Resource</button>
       </div>
 
       <div class="filter-tabs" id="filterTabs">
-        <button class="filter-tab active" data-cat="all">All</button>
-        <button class="filter-tab" data-cat="design_briefs">Design Briefs</button>
-        <button class="filter-tab" data-cat="engineering_specs">Engineering Specs</button>
-        <button class="filter-tab" data-cat="investor_materials">Investor Materials</button>
-        <button class="filter-tab" data-cat="meeting_notes">Meeting Notes</button>
-        <button class="filter-tab" data-cat="brand_assets">Brand Assets</button>
+        <button class="filter-tab active" data-cat="all" data-ar="الكل">All</button>
+        <button class="filter-tab" data-cat="design_briefs" data-ar="ملخصات التصميم">Design Briefs</button>
+        <button class="filter-tab" data-cat="engineering_specs" data-ar="مواصفات هندسية">Engineering Specs</button>
+        <button class="filter-tab" data-cat="investor_materials" data-ar="مواد المستثمرين">Investor Materials</button>
+        <button class="filter-tab" data-cat="meeting_notes" data-ar="ملاحظات الاجتماعات">Meeting Notes</button>
+        <button class="filter-tab" data-cat="brand_assets" data-ar="أصول العلامة التجارية">Brand Assets</button>
       </div>
 
       <div class="resources-grid" id="resourcesGrid">
@@ -77,8 +77,8 @@
 <div class="modal-overlay" id="newResourceModal">
   <div class="modal">
     <button class="modal-close" id="closeResourceModal">✕</button>
-    <h2 class="modal-title" id="resourceModalTitle">Upload Resource</h2>
-    <p class="modal-subtitle">Add a document, brief, or asset to the library</p>
+    <h2 class="modal-title" id="resourceModalTitle" data-ar="رفع مورد">Upload Resource</h2>
+    <p class="modal-subtitle" data-ar="أضف مستنداً أو ملخصاً أو أصلاً إلى المكتبة">Add a document, brief, or asset to the library</p>
     <div id="resourceFormAlert" class="form-alert hidden"></div>
     <form id="resourceForm">
       <div class="form-group">
@@ -120,6 +120,7 @@
   </div>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
@@ -129,6 +130,7 @@
   const profile = await initTopbar(session);
 
   const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
   if (isAdmin) document.getElementById('newResourceBtn').style.display = '';
 
   let allResources = [];
@@ -198,15 +200,15 @@
       : allResources.filter(r => r.category === activeFilter);
 
     if (!items.length) {
-      grid.innerHTML = '<div class="loading-text">No resources in this category yet.</div>';
+      grid.innerHTML = `<div class="loading-text">${_t('No resources in this category yet.')}</div>`;
       return;
     }
 
     grid.innerHTML = items.map(r => {
       const adminActions = isAdmin ? `
         <div class="admin-actions" onclick="event.stopPropagation()">
-          <button class="admin-btn" onclick="openEditResource('${r.id}')">Edit</button>
-          <button class="admin-btn admin-btn--danger" onclick="deleteResource('${r.id}')">Delete</button>
+          <button class="admin-btn" onclick="openEditResource('${r.id}')">${_t('Edit')}</button>
+          <button class="admin-btn admin-btn--danger" onclick="deleteResource('${r.id}')">${_t('Delete')}</button>
         </div>` : '';
       return `
         <div class="resource-card">
@@ -222,8 +224,8 @@
           </div>
           <div class="resource-action">
             ${r.file_url
-              ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="btn-download" onclick="trackEvent('resource_download','resources.html',{title:${JSON.stringify(r.title)},category:${JSON.stringify(r.category)}})">Download</a>`
-              : `<span class="btn-download disabled">Coming Soon</span>`
+              ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="btn-download" onclick="trackEvent('resource_download','resources.html',{title:${JSON.stringify(r.title)},category:${JSON.stringify(r.category)}})">${_t('Download')}</a>`
+              : `<span class="btn-download disabled">${_t('Coming Soon')}</span>`
             }
           </div>
         </div>`;
@@ -325,7 +327,7 @@
   });
 
   window.deleteResource = async function(id) {
-    if (!confirm('Delete this resource? This cannot be undone.')) return;
+    if (!(window.dfc_i18n ? window.dfc_i18n.confirm('Delete this resource? This cannot be undone.') : confirm('Delete this resource? This cannot be undone.'))) return;
     await _supabase.from('resources').delete().eq('id', id);
     await loadResources();
   };

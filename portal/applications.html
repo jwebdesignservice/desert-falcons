@@ -204,8 +204,8 @@
 
     <div class="portal-content">
       <div class="page-header">
-        <h1 class="page-title">Applications</h1>
-        <p class="page-subtitle">Review and manage collective applications</p>
+        <h1 class="page-title" data-ar="الطلبات">Applications</h1>
+        <p class="page-subtitle" data-ar="مراجعة وإدارة طلبات الانضمام">Review and manage collective applications</p>
       </div>
 
       <!-- Access denied for non-admins -->
@@ -217,18 +217,18 @@
 
         <!-- Stats -->
         <div class="app-stats" id="appStats">
-          <div class="app-stat"><div class="app-stat-value" id="statTotal">—</div><div class="app-stat-label">Total</div></div>
-          <div class="app-stat"><div class="app-stat-value" id="statPending">—</div><div class="app-stat-label">Pending</div></div>
-          <div class="app-stat"><div class="app-stat-value" id="statApproved">—</div><div class="app-stat-label">Approved</div></div>
-          <div class="app-stat"><div class="app-stat-value" id="statRejected">—</div><div class="app-stat-label">Rejected</div></div>
+          <div class="app-stat"><div class="app-stat-value" id="statTotal">—</div><div class="app-stat-label" data-ar="الإجمالي">Total</div></div>
+          <div class="app-stat"><div class="app-stat-value" id="statPending">—</div><div class="app-stat-label" data-ar="معلّق">Pending</div></div>
+          <div class="app-stat"><div class="app-stat-value" id="statApproved">—</div><div class="app-stat-label" data-ar="مقبول">Approved</div></div>
+          <div class="app-stat"><div class="app-stat-value" id="statRejected">—</div><div class="app-stat-label" data-ar="مرفوض">Rejected</div></div>
         </div>
 
         <!-- Filter tabs -->
         <div class="filter-tabs" id="statusFilter">
-          <button class="filter-tab active" data-status="all">All</button>
-          <button class="filter-tab" data-status="pending">Pending</button>
-          <button class="filter-tab" data-status="approved">Approved</button>
-          <button class="filter-tab" data-status="rejected">Rejected</button>
+          <button class="filter-tab active" data-status="all" data-ar="الكل">All</button>
+          <button class="filter-tab" data-status="pending" data-ar="معلّق">Pending</button>
+          <button class="filter-tab" data-status="approved" data-ar="مقبول">Approved</button>
+          <button class="filter-tab" data-status="rejected" data-ar="مرفوض">Rejected</button>
         </div>
 
         <div id="applicationsList">
@@ -240,6 +240,7 @@
   </main>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>

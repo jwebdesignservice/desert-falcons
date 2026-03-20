@@ -2324,3 +2324,306 @@ select.form-input:focus {
     color: var(--text-muted);
     margin-top: 4px;
 }
+
+
+/* ============================================================
+   Arabic / RTL Overrides  (html.ar class set by portal-i18n.js)
+   ============================================================ */
+
+html.ar {
+  direction: rtl;
+}
+
+/* Sidebar flips to right side */
+html.ar .sidebar {
+  right: 0;
+  left: auto;
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+
+html.ar .portal-main {
+  margin-left: 0;
+  margin-right: 260px;
+}
+
+html.ar .sidebar-nav a {
+  flex-direction: row-reverse;
+}
+
+html.ar .nav-icon {
+  margin-right: 0;
+  margin-left: 0.75rem;
+}
+
+html.ar .sidebar-member-info {
+  flex-direction: row-reverse;
+}
+
+html.ar .btn-logout {
+  flex-direction: row-reverse;
+}
+
+/* Topbar */
+html.ar .topbar-left {
+  flex-direction: row-reverse;
+}
+
+html.ar .topbar-right {
+  flex-direction: row-reverse;
+}
+
+html.ar .topbar-welcome {
+  direction: rtl;
+}
+
+/* Page header */
+html.ar .page-header {
+  text-align: right;
+}
+
+html.ar .page-header[style*="justify-content"] {
+  flex-direction: row-reverse;
+}
+
+/* Forms */
+html.ar .form-label {
+  text-align: right;
+  display: block;
+}
+
+html.ar .form-row-inline {
+  flex-direction: row-reverse;
+}
+
+/* Modals */
+html.ar .modal {
+  text-align: right;
+}
+
+/* Dashboard */
+html.ar .dashboard-grid {
+  direction: rtl;
+}
+
+html.ar .section-block-header {
+  flex-direction: row-reverse;
+}
+
+html.ar .dash-event-row {
+  flex-direction: row-reverse;
+}
+
+html.ar .dash-mini-event {
+  flex-direction: row-reverse;
+}
+
+html.ar .dash-resource-row {
+  flex-direction: row-reverse;
+}
+
+html.ar .quick-links {
+  direction: rtl;
+}
+
+html.ar .analytics-row {
+  flex-direction: row-reverse;
+}
+
+html.ar .analytics-tables {
+  direction: rtl;
+}
+
+html.ar .onboarding-step {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* Announcements */
+html.ar .announcement-header {
+  flex-direction: row-reverse;
+}
+
+html.ar .admin-actions {
+  justify-content: flex-end;
+}
+
+/* Discussions */
+html.ar .discussions-layout {
+  flex-direction: row-reverse;
+}
+
+html.ar .thread-meta {
+  flex-direction: row-reverse;
+}
+
+html.ar .thread-header {
+  flex-direction: row-reverse;
+}
+
+html.ar .reply-item {
+  flex-direction: row-reverse;
+}
+
+/* Resources */
+html.ar .resource-card {
+  flex-direction: row-reverse;
+}
+
+html.ar .resource-meta {
+  flex-direction: row-reverse;
+}
+
+html.ar .filter-tabs {
+  direction: rtl;
+}
+
+/* Directory */
+html.ar .directory-controls {
+  flex-direction: row-reverse;
+}
+
+html.ar .member-card {
+  text-align: center;
+}
+
+/* Events */
+html.ar .event-card {
+  flex-direction: row-reverse;
+}
+
+html.ar .event-body {
+  text-align: right;
+}
+
+html.ar .event-meta {
+  flex-direction: row-reverse;
+}
+
+/* Founder updates */
+html.ar .founder-card {
+  flex-direction: row-reverse;
+}
+
+html.ar .founder-card-content {
+  text-align: right;
+}
+
+html.ar .founder-card-header {
+  flex-direction: row-reverse;
+}
+
+/* Project updates */
+html.ar .update-card {
+  text-align: right;
+}
+
+html.ar .update-header {
+  flex-direction: row-reverse;
+}
+
+/* Settings */
+html.ar .settings-layout {
+  direction: rtl;
+}
+
+html.ar .notif-row {
+  flex-direction: row-reverse;
+}
+
+html.ar .settings-account-row {
+  flex-direction: row-reverse;
+}
+
+html.ar .avatar-upload-row {
+  flex-direction: row-reverse;
+}
+
+html.ar .settings-card-header {
+  text-align: right;
+}
+
+/* Applications */
+html.ar .app-header {
+  flex-direction: row-reverse;
+}
+
+html.ar .app-actions {
+  flex-direction: row-reverse;
+}
+
+html.ar .app-field {
+  text-align: right;
+}
+
+html.ar .app-meta {
+  flex-direction: row-reverse;
+}
+
+html.ar .app-stats {
+  flex-direction: row-reverse;
+}
+
+/* Login */
+html.ar .login-footer {
+  direction: rtl;
+}
+
+/* Language toggle button */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  margin-left: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.lang-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+html.ar .lang-toggle {
+  margin-left: 0;
+  margin-right: 0.75rem;
+}
+
+/* Login-page fixed language toggle */
+.login-lang-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  margin: 0;
+}
+
+html.ar .login-lang-toggle {
+  right: auto;
+  left: 1.5rem;
+}
+
+/* Mobile RTL adjustments */
+@media (max-width: 1024px) {
+  html.ar .sidebar {
+    right: -260px;
+    left: auto;
+    transform: none;
+  }
+  html.ar .sidebar.open {
+    right: 0;
+    left: auto;
+  }
+  html.ar .portal-main {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}

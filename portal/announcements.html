@@ -84,20 +84,20 @@
     <div class="portal-content">
       <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
         <div>
-          <h1 class="page-title">Announcements</h1>
-          <p class="page-subtitle">News and updates from the collective</p>
+          <h1 class="page-title" data-ar="الإعلانات">Announcements</h1>
+          <p class="page-subtitle" data-ar="أخبار وتحديثات من المجموعة">News and updates from the collective</p>
         </div>
-        <button class="btn-create-thread" id="newAnnouncementBtn" data-role="core_board,admin" style="display:none;">+ New Announcement</button>
+        <button class="btn-create-thread" id="newAnnouncementBtn" data-role="core_board,admin" style="display:none;" data-ar="+ إعلان جديد">+ New Announcement</button>
       </div>
 
       <div id="pinnedSection">
-        <div class="dashboard-section-title">📌 Pinned</div>
-        <div id="pinnedList"><div class="loading-text">Loading…</div></div>
+        <div class="dashboard-section-title" data-ar="📌 مثبّت">📌 Pinned</div>
+        <div id="pinnedList"><div class="loading-text" data-ar="جارٍ التحميل…">Loading…</div></div>
       </div>
 
       <div style="margin-top:2rem;">
-        <div class="dashboard-section-title">All Announcements</div>
-        <div id="announcementList"><div class="loading-text">Loading…</div></div>
+        <div class="dashboard-section-title" data-ar="جميع الإعلانات">All Announcements</div>
+        <div id="announcementList"><div class="loading-text" data-ar="جارٍ التحميل…">Loading…</div></div>
       </div>
     </div>
   </main>
@@ -107,29 +107,30 @@
 <div class="modal-overlay" id="newAnnouncementModal">
   <div class="modal">
     <button class="modal-close" id="closeAnnouncementModal">✕</button>
-    <h2 class="modal-title" id="announcementModalTitle">New Announcement</h2>
-    <p class="modal-subtitle">This will be visible to all portal members</p>
+    <h2 class="modal-title" id="announcementModalTitle" data-ar="إعلان جديد">New Announcement</h2>
+    <p class="modal-subtitle" data-ar="سيكون مرئياً لجميع أعضاء البوابة">This will be visible to all portal members</p>
     <div id="announcementFormAlert" class="form-alert hidden"></div>
     <form id="announcementForm">
       <div class="form-group">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-input" id="newAnnTitle" placeholder="Announcement title…" required>
+        <label class="form-label" data-ar="العنوان">Title</label>
+        <input type="text" class="form-input" id="newAnnTitle" placeholder="Announcement title…" data-ar-placeholder="عنوان الإعلان…" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Body</label>
-        <textarea class="form-input" id="newAnnBody" rows="6" placeholder="Write your announcement…" required style="resize:vertical;"></textarea>
+        <label class="form-label" data-ar="المحتوى">Body</label>
+        <textarea class="form-input" id="newAnnBody" rows="6" placeholder="Write your announcement…" data-ar-placeholder="اكتب إعلانك…" required style="resize:vertical;"></textarea>
       </div>
       <div class="form-group">
         <label class="form-checkbox" style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;">
           <input type="checkbox" id="newAnnPinned">
-          <span style="font-size:0.8125rem;color:var(--text-secondary);">📌 Pin this announcement to the top</span>
+          <span style="font-size:0.8125rem;color:var(--text-secondary);" data-ar="📌 تثبيت هذا الإعلان في الأعلى">📌 Pin this announcement to the top</span>
         </label>
       </div>
-      <button type="submit" class="btn-primary" id="announcementSubmit">Post Announcement</button>
+      <button type="submit" class="btn-primary" id="announcementSubmit" data-ar="نشر الإعلان">Post Announcement</button>
     </form>
   </div>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
@@ -139,6 +140,7 @@
   const profile = await initTopbar(session);
 
   const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
   let editingId = null;
   let allAnnouncements = [];
 
@@ -160,9 +162,9 @@
     function renderAnnouncement(a) {
       const adminActions = isAdmin ? `
         <div class="admin-actions" onclick="event.stopPropagation()">
-          <button class="admin-btn" onclick="togglePin('${a.id}', ${!a.pinned})">${a.pinned ? 'Unpin' : 'Pin'}</button>
-          <button class="admin-btn" onclick="openEditAnnouncement('${a.id}')">Edit</button>
-          <button class="admin-btn admin-btn--danger" onclick="deleteAnnouncement('${a.id}')">Delete</button>
+          <button class="admin-btn" onclick="togglePin('${a.id}', ${!a.pinned})">${a.pinned ? _t('Unpin') : _t('Pin')}</button>
+          <button class="admin-btn" onclick="openEditAnnouncement('${a.id}')">${_t('Edit')}</button>
+          <button class="admin-btn admin-btn--danger" onclick="deleteAnnouncement('${a.id}')">${_t('Delete')}</button>
         </div>` : '';
       return `<div class="announcement-item ${a.pinned ? 'pinned' : ''}" onclick="this.classList.toggle('expanded')">
         <div class="announcement-header">
@@ -180,11 +182,11 @@
 
     document.getElementById('pinnedList').innerHTML = pinned.length
       ? pinned.map(renderAnnouncement).join('')
-      : '<div class="loading-text">No pinned announcements.</div>';
+      : `<div class="loading-text">${_t('No pinned announcements.')}</div>`;
 
     document.getElementById('announcementList').innerHTML = rest.length
       ? rest.map(renderAnnouncement).join('')
-      : '<div class="loading-text">No announcements yet.</div>';
+      : `<div class="loading-text">${_t('No announcements yet.')}</div>`;
   }
 
   await loadAnnouncements();
@@ -201,8 +203,8 @@
   if (newBtn) {
     newBtn.addEventListener('click', () => {
       editingId = null;
-      document.getElementById('announcementModalTitle').textContent = 'New Announcement';
-      document.getElementById('announcementSubmit').textContent = 'Post Announcement';
+      document.getElementById('announcementModalTitle').textContent = _t('New Announcement');
+      document.getElementById('announcementSubmit').textContent = _t('Post Announcement');
       document.getElementById('newAnnouncementModal').classList.add('open');
     });
   }
@@ -212,8 +214,8 @@
     const a = allAnnouncements.find(x => x.id === id);
     if (!a) return;
     editingId = id;
-    document.getElementById('announcementModalTitle').textContent = 'Edit Announcement';
-    document.getElementById('announcementSubmit').textContent = 'Save Changes';
+    document.getElementById('announcementModalTitle').textContent = _t('Edit Announcement');
+    document.getElementById('announcementSubmit').textContent = _t('Save Changes');
     document.getElementById('newAnnTitle').value = a.title || '';
     document.getElementById('newAnnBody').value = a.body || '';
     document.getElementById('newAnnPinned').checked = !!a.pinned;
@@ -244,7 +246,7 @@
     }
 
     btn.disabled = false;
-    btn.textContent = wasEditing ? 'Save Changes' : 'Post Announcement';
+    btn.textContent = wasEditing ? _t('Save Changes') : _t('Post Announcement');
 
     if (error) {
       alert.className = 'form-alert form-alert--error';
@@ -264,7 +266,7 @@
 
   // Admin: delete
   window.deleteAnnouncement = async function(id) {
-    if (!confirm('Delete this announcement? This cannot be undone.')) return;
+    if (!(window.dfc_i18n ? window.dfc_i18n.confirm('Delete this announcement? This cannot be undone.') : confirm('Delete this announcement? This cannot be undone.'))) return;
     await _supabase.from('announcements').delete().eq('id', id);
     await loadAnnouncements();
   };

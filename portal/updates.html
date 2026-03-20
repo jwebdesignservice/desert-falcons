@@ -51,18 +51,18 @@
     <div class="portal-content">
       <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
         <div>
-          <h1 class="page-title">Project Progress</h1>
-          <p class="page-subtitle">Live status across all SAIF workstreams</p>
+          <h1 class="page-title" data-ar="تقدم المشروع">Project Progress</h1>
+          <p class="page-subtitle" data-ar="الحالة المباشرة لجميع مسارات عمل سيف">Live status across all SAIF workstreams</p>
         </div>
-        <button class="btn-create-thread" id="newUpdateBtn" data-role="core_board,admin" style="display:none;">+ Post Update</button>
+        <button class="btn-create-thread" id="newUpdateBtn" data-role="core_board,admin" style="display:none;" data-ar="+ نشر تحديث">+ Post Update</button>
       </div>
 
       <div class="filter-tabs" id="filterTabs">
-        <button class="filter-tab active" data-cat="all">All</button>
-        <button class="filter-tab" data-cat="design">Design</button>
-        <button class="filter-tab" data-cat="engineering">Engineering</button>
-        <button class="filter-tab" data-cat="partnerships">Partnerships</button>
-        <button class="filter-tab" data-cat="fundraising">Fundraising</button>
+        <button class="filter-tab active" data-cat="all" data-ar="الكل">All</button>
+        <button class="filter-tab" data-cat="design" data-ar="التصميم">Design</button>
+        <button class="filter-tab" data-cat="engineering" data-ar="الهندسة">Engineering</button>
+        <button class="filter-tab" data-cat="partnerships" data-ar="الشراكات">Partnerships</button>
+        <button class="filter-tab" data-cat="fundraising" data-ar="جمع التمويل">Fundraising</button>
       </div>
 
       <div class="updates-grid" id="updatesList">
@@ -76,40 +76,41 @@
 <div class="modal-overlay" id="newUpdateModal">
   <div class="modal">
     <button class="modal-close" id="closeUpdateModal">✕</button>
-    <h2 class="modal-title" id="updateModalTitle">Post Project Update</h2>
-    <p class="modal-subtitle">Share progress on a SAIF workstream</p>
+    <h2 class="modal-title" id="updateModalTitle" data-ar="نشر تحديث المشروع">Post Project Update</h2>
+    <p class="modal-subtitle" data-ar="شارك تقدمك في مسار عمل سيف">Share progress on a SAIF workstream</p>
     <div id="updateFormAlert" class="form-alert hidden"></div>
     <form id="updateForm">
       <div class="form-group">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-input" id="newUpdTitle" placeholder="Update title…" required>
+        <label class="form-label" data-ar="العنوان">Title</label>
+        <input type="text" class="form-input" id="newUpdTitle" placeholder="Update title…" data-ar-placeholder="عنوان التحديث…" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Category</label>
+        <label class="form-label" data-ar="الفئة">Category</label>
         <select class="form-input" id="newUpdCategory">
-          <option value="Design">Design</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Partnerships">Partnerships</option>
-          <option value="Fundraising">Fundraising</option>
+          <option value="Design" data-ar="التصميم">Design</option>
+          <option value="Engineering" data-ar="الهندسة">Engineering</option>
+          <option value="Partnerships" data-ar="الشراكات">Partnerships</option>
+          <option value="Fundraising" data-ar="جمع التمويل">Fundraising</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Status</label>
+        <label class="form-label" data-ar="الحالة">Status</label>
         <select class="form-input" id="newUpdStatus">
-          <option value="in_progress">🔄 In Progress</option>
-          <option value="complete">✅ Complete</option>
-          <option value="pending">⏳ Pending</option>
+          <option value="in_progress" data-ar="🔄 قيد التنفيذ">🔄 In Progress</option>
+          <option value="complete" data-ar="✅ مكتمل">✅ Complete</option>
+          <option value="pending" data-ar="⏳ معلّق">⏳ Pending</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Body</label>
-        <textarea class="form-input" id="newUpdBody" rows="5" placeholder="Describe the update…" required style="resize:vertical;"></textarea>
+        <label class="form-label" data-ar="المحتوى">Body</label>
+        <textarea class="form-input" id="newUpdBody" rows="5" placeholder="Describe the update…" data-ar-placeholder="اوصف التحديث…" required style="resize:vertical;"></textarea>
       </div>
-      <button type="submit" class="btn-primary" id="updateSubmit">Post Update</button>
+      <button type="submit" class="btn-primary" id="updateSubmit" data-ar="نشر التحديث">Post Update</button>
     </form>
   </div>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
@@ -122,6 +123,7 @@
   let activeFilter = 'all';
   let editingId = null;
   const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
 
   async function loadUpdates() {
     const { data } = await _supabase
@@ -160,14 +162,14 @@
       ? allUpdates
       : allUpdates.filter(u => (u.category||'').toLowerCase() === activeFilter);
 
-    if (!items.length) { list.innerHTML = '<div class="loading-text">No updates in this category yet.</div>'; return; }
+    if (!items.length) { list.innerHTML = `<div class="loading-text">${_t('No updates in this category yet.')}</div>`; return; }
 
     list.innerHTML = items.map(u => {
       const adminActions = isAdmin ? `
         <div class="admin-actions" style="margin-top:0.75rem;">
-          <button class="admin-btn" onclick="editStatus('${u.id}', '${u.status}')">Change Status</button>
-          <button class="admin-btn" onclick="openEditUpdate('${u.id}')">Edit</button>
-          <button class="admin-btn admin-btn--danger" onclick="deleteUpdate('${u.id}')">Delete</button>
+          <button class="admin-btn" onclick="editStatus('${u.id}', '${u.status}')">${_t('Change Status')}</button>
+          <button class="admin-btn" onclick="openEditUpdate('${u.id}')">${_t('Edit')}</button>
+          <button class="admin-btn admin-btn--danger" onclick="deleteUpdate('${u.id}')">${_t('Delete')}</button>
         </div>` : '';
       return `
         <div class="update-card">
@@ -194,8 +196,8 @@
   if (newBtn) {
     newBtn.addEventListener('click', () => {
       editingId = null;
-      document.getElementById('updateModalTitle').textContent = 'Post Project Update';
-      document.getElementById('updateSubmit').textContent = 'Post Update';
+      document.getElementById('updateModalTitle').textContent = _t('Post Project Update');
+      document.getElementById('updateSubmit').textContent = _t('Post Update');
       document.getElementById('newUpdateModal').classList.add('open');
     });
   }
@@ -205,8 +207,8 @@
     const u = allUpdates.find(x => x.id === id);
     if (!u) return;
     editingId = id;
-    document.getElementById('updateModalTitle').textContent = 'Edit Update';
-    document.getElementById('updateSubmit').textContent = 'Save Changes';
+    document.getElementById('updateModalTitle').textContent = _t('Edit Update');
+    document.getElementById('updateSubmit').textContent = _t('Save Changes');
     document.getElementById('newUpdTitle').value = u.title || '';
     document.getElementById('newUpdCategory').value = u.category || 'Design';
     document.getElementById('newUpdStatus').value = u.status || 'in_progress';
@@ -239,7 +241,7 @@
     }
 
     btn.disabled = false;
-    btn.textContent = wasEditing ? 'Save Changes' : 'Post Update';
+    btn.textContent = wasEditing ? _t('Save Changes') : _t('Post Update');
 
     if (error) {
       alert.className = 'form-alert form-alert--error';
@@ -263,7 +265,7 @@
 
   // Admin: delete
   window.deleteUpdate = async function(id) {
-    if (!confirm('Delete this update? This cannot be undone.')) return;
+    if (!(window.dfc_i18n ? window.dfc_i18n.confirm('Delete this update? This cannot be undone.') : confirm('Delete this update? This cannot be undone.'))) return;
     await _supabase.from('project_updates').delete().eq('id', id);
     await loadUpdates();
   };

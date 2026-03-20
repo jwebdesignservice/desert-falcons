@@ -117,20 +117,24 @@ async function initTopbar(session) {
   const profile = await getProfile(session.user.id);
   if (!profile) return profile;
 
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
+  const isAr = window.dfc_i18n?.isAr;
+  const locale = isAr ? 'ar-SA' : 'en-US';
+
   const welcomeEl = document.getElementById('topbarWelcome');
-  if (welcomeEl) welcomeEl.textContent = `Welcome back, ${profile.full_name} 👋`;
+  if (welcomeEl) welcomeEl.textContent = `${_t('Welcome back,')} ${profile.full_name} 👋`;
 
   const roleEl = document.getElementById('topbarRole');
   if (roleEl) {
     const r = (profile.role || 'member').toLowerCase();
-    roleEl.textContent = profile.role;
+    roleEl.textContent = window.dfc_i18n ? window.dfc_i18n.role(profile.role) : profile.role;
     roleEl.className = `role-badge ${r}`;
   }
 
   const sinceEl = document.getElementById('topbarSince');
   if (sinceEl) {
     const d = new Date(profile.created_at);
-    sinceEl.textContent = `Member since ${d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
+    sinceEl.textContent = `${_t('Member since')} ${d.toLocaleDateString(locale, { month: 'short', year: 'numeric' })}`;
   }
 
   // Sidebar member info
@@ -154,6 +158,7 @@ async function initTopbar(session) {
 
   showRoleUI(profile.role);
   injectApplicationsLink(profile.role);
+  injectLangToggle();
   return profile;
 }
 
@@ -300,6 +305,23 @@ function injectApplicationsLink(role) {
         link.appendChild(badge);
       }
     });
+}
+
+/* -------------------- Language Toggle Injection ------------- */
+
+function injectLangToggle() {
+  const topbarRight = document.querySelector('.topbar-right');
+  if (!topbarRight || document.getElementById('langToggleBtn')) return;
+  const btn = document.createElement('button');
+  btn.id = 'langToggleBtn';
+  btn.className = 'lang-toggle';
+  btn.setAttribute('aria-label', 'Toggle language / تبديل اللغة');
+  const isAr = document.documentElement.classList.contains('ar');
+  btn.textContent = isAr ? 'EN' : 'AR';
+  btn.addEventListener('click', () => {
+    if (typeof window.toggleLang === 'function') window.toggleLang();
+  });
+  topbarRight.appendChild(btn);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

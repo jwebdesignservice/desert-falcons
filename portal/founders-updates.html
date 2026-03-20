@@ -53,11 +53,11 @@
         <div style="display:flex;align-items:center;gap:1rem;">
           <div class="founder-header-badge">🎥</div>
           <div>
-            <h1 class="page-title">From Khalaf's Desk</h1>
-            <p class="page-subtitle">Personal updates, reflections, and guidance from the founder</p>
+            <h1 class="page-title" data-ar="من مكتب خلف">From Khalaf's Desk</h1>
+            <p class="page-subtitle" data-ar="تحديثات شخصية وتأملات وإرشادات من المؤسس">Personal updates, reflections, and guidance from the founder</p>
           </div>
         </div>
-        <button class="btn-create-thread" id="newFounderUpdateBtn" style="display:none;">+ New Update</button>
+        <button class="btn-create-thread" id="newFounderUpdateBtn" style="display:none;" data-ar="+ تحديث جديد">+ New Update</button>
       </div>
 
       <div class="founders-list" id="foundersList">
@@ -71,35 +71,36 @@
 <div class="modal-overlay" id="newFounderUpdateModal">
   <div class="modal">
     <button class="modal-close" id="closeFounderUpdateModal">✕</button>
-    <h2 class="modal-title" id="founderUpdateModalTitle">Post Founder's Update</h2>
-    <p class="modal-subtitle">Share a message, video, or audio update from Khalaf</p>
+    <h2 class="modal-title" id="founderUpdateModalTitle" data-ar="نشر تحديث المؤسس">Post Founder's Update</h2>
+    <p class="modal-subtitle" data-ar="شارك رسالة أو فيديو أو تحديث صوتي من خلف">Share a message, video, or audio update from Khalaf</p>
     <div id="founderUpdateAlert" class="form-alert hidden"></div>
     <form id="founderUpdateForm">
       <div class="form-group">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-input" id="fuTitle" placeholder="Update title…" required>
+        <label class="form-label" data-ar="العنوان">Title</label>
+        <input type="text" class="form-input" id="fuTitle" placeholder="Update title…" data-ar-placeholder="عنوان التحديث…" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Type</label>
+        <label class="form-label" data-ar="النوع">Type</label>
         <select class="form-input" id="fuType">
-          <option value="written">📝 Written</option>
-          <option value="video">🎥 Video</option>
-          <option value="audio">🎙️ Audio</option>
+          <option value="written" data-ar="📝 مكتوب">📝 Written</option>
+          <option value="video" data-ar="🎥 فيديو">🎥 Video</option>
+          <option value="audio" data-ar="🎙️ صوتي">🎙️ Audio</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Body</label>
-        <textarea class="form-input" id="fuBody" rows="5" placeholder="Write the update here…" style="resize:vertical;"></textarea>
+        <label class="form-label" data-ar="المحتوى">Body</label>
+        <textarea class="form-input" id="fuBody" rows="5" placeholder="Write the update here…" data-ar-placeholder="اكتب التحديث هنا…" style="resize:vertical;"></textarea>
       </div>
       <div class="form-group">
-        <label class="form-label">Content URL <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;">(video/audio link, optional)</span></label>
+        <label class="form-label" data-ar="رابط المحتوى">Content URL <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;" data-ar="(اختياري)">(video/audio link, optional)</span></label>
         <input type="url" class="form-input" id="fuContentUrl" placeholder="https://…">
       </div>
-      <button type="submit" class="btn-primary" id="founderUpdateSubmit">Post Update</button>
+      <button type="submit" class="btn-primary" id="founderUpdateSubmit" data-ar="نشر التحديث">Post Update</button>
     </form>
   </div>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
@@ -109,6 +110,7 @@
   const profile = await initTopbar(session);
 
   const isAdmin = profile && ['core_board','admin'].includes((profile.role||'').toLowerCase());
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
   if (isAdmin) document.getElementById('newFounderUpdateBtn').style.display = '';
 
   let allFounderUpdates = [];
@@ -128,7 +130,7 @@
     const list = document.getElementById('foundersList');
 
     if (!allFounderUpdates.length) {
-      list.innerHTML = '<div class="loading-text">No updates yet. Check back soon.</div>';
+      list.innerHTML = `<div class="loading-text">${_t('No updates yet. Check back soon.')}</div>`;
       return;
     }
 
@@ -143,8 +145,8 @@
     list.innerHTML = allFounderUpdates.map(u => {
       const adminActions = isAdmin ? `
         <div class="admin-actions" style="margin-top:0.75rem;">
-          <button class="admin-btn" onclick="openEditFounderUpdate('${u.id}')">Edit</button>
-          <button class="admin-btn admin-btn--danger" onclick="deleteFounderUpdate('${u.id}')">Delete</button>
+          <button class="admin-btn" onclick="openEditFounderUpdate('${u.id}')">${_t('Edit')}</button>
+          <button class="admin-btn admin-btn--danger" onclick="deleteFounderUpdate('${u.id}')">${_t('Delete')}</button>
         </div>` : '';
       return `
         <div class="founder-card">
@@ -157,7 +159,7 @@
             <div class="founder-card-date">${formatDate(u.created_at)}</div>
             ${u.body ? `<div class="founder-card-body">${escapeHtml(u.body)}</div>` : ''}
             ${u.content_url ? `<a href="${escapeHtml(u.content_url)}" target="_blank" class="founder-card-link">
-              ${u.update_type === 'video' ? '▶ Watch' : u.update_type === 'audio' ? '🎧 Listen' : '📖 Read more'}
+              ${u.update_type === 'video' ? _t('▶ Watch') : u.update_type === 'audio' ? _t('🎧 Listen') : _t('📖 Read more')}
             </a>` : ''}
             ${adminActions}
           </div>
@@ -177,8 +179,8 @@
   // Modal open/close
   document.getElementById('newFounderUpdateBtn').addEventListener('click', () => {
     editingId = null;
-    document.getElementById('founderUpdateModalTitle').textContent = "Post Founder's Update";
-    document.getElementById('founderUpdateSubmit').textContent = 'Post Update';
+    document.getElementById('founderUpdateModalTitle').textContent = _t("Post Founder's Update");
+    document.getElementById('founderUpdateSubmit').textContent = _t('Post Update');
     document.getElementById('newFounderUpdateModal').classList.add('open');
   });
   document.getElementById('closeFounderUpdateModal').addEventListener('click', closeModal);
@@ -187,8 +189,8 @@
     const u = allFounderUpdates.find(x => x.id === id);
     if (!u) return;
     editingId = id;
-    document.getElementById('founderUpdateModalTitle').textContent = "Edit Founder's Update";
-    document.getElementById('founderUpdateSubmit').textContent = 'Save Changes';
+    document.getElementById('founderUpdateModalTitle').textContent = _t("Edit Founder's Update");
+    document.getElementById('founderUpdateSubmit').textContent = _t('Save Changes');
     document.getElementById('fuTitle').value = u.title || '';
     document.getElementById('fuType').value = u.update_type || 'written';
     document.getElementById('fuBody').value = u.body || '';
@@ -222,7 +224,7 @@
     }
 
     btn.disabled = false;
-    btn.textContent = wasEditing ? 'Save Changes' : 'Post Update';
+    btn.textContent = wasEditing ? _t('Save Changes') : _t('Post Update');
 
     if (error) {
       alert.className = 'form-alert form-alert--error';
@@ -236,7 +238,7 @@
 
   // Delete
   window.deleteFounderUpdate = async function(id) {
-    if (!confirm('Delete this update? This cannot be undone.')) return;
+    if (!(window.dfc_i18n ? window.dfc_i18n.confirm('Delete this update? This cannot be undone.') : confirm('Delete this update? This cannot be undone.'))) return;
     await _supabase.from('founders_updates').delete().eq('id', id);
     await loadUpdates();
   };

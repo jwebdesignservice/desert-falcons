@@ -88,8 +88,8 @@
 
     <div class="portal-content">
       <div class="page-header">
-        <h1 class="page-title">Dashboard</h1>
-        <p class="page-subtitle">Your inner circle overview</p>
+        <h1 class="page-title" data-ar="لوحة التحكم">Dashboard</h1>
+        <p class="page-subtitle" data-ar="نظرة عامة على الدائرة الداخلية">Your inner circle overview</p>
       </div>
 
       <!-- 3-column grid -->
@@ -97,72 +97,68 @@
 
         <!-- Col 1: Latest Announcement + upcoming events -->
         <div>
-          <div class="dashboard-section-title">Latest Announcement</div>
-          <div id="latestAnnouncement" class="loading-text">Loading…</div>
-          <div class="dashboard-section-title" style="margin-top:1.5rem;">Upcoming Events</div>
-          <div id="dashboardEvents" class="loading-text">Loading…</div>
+          <div class="dashboard-section-title" data-ar="آخر إعلان">Latest Announcement</div>
+          <div id="latestAnnouncement" class="loading-text" data-ar="جارٍ التحميل…">Loading…</div>
+          <div class="dashboard-section-title" style="margin-top:1.5rem;" data-ar="الفعاليات القادمة">Upcoming Events</div>
+          <div id="dashboardEvents" class="loading-text" data-ar="جارٍ التحميل…">Loading…</div>
         </div>
 
         <!-- Col 2: Activity Feed -->
         <div>
-          <div class="dashboard-section-title">Live Activity</div>
+          <div class="dashboard-section-title" data-ar="النشاط المباشر">Live Activity</div>
           <div class="activity-feed" id="activityFeed">
-            <div class="loading-text">Loading…</div>
+            <div class="loading-text" data-ar="جارٍ التحميل…">Loading…</div>
           </div>
         </div>
 
         <!-- Col 3: Quick Links (role-based) -->
         <div>
-          <div class="dashboard-section-title">Quick Links</div>
+          <div class="dashboard-section-title" data-ar="روابط سريعة">Quick Links</div>
           <div class="quick-links">
             <!-- Engineer links — shown only to engineers / admin -->
             <a href="resources.html?cat=engineering_specs" class="quick-link" data-role="working_group,admin">
               <span class="quick-link-icon">⚙️</span>
-              <span class="quick-link-label">Engineering Specs</span>
+              <span class="quick-link-label" data-ar="مواصفات هندسية">Engineering Specs</span>
             </a>
             <a href="updates.html?cat=engineering" class="quick-link" data-role="working_group,admin">
               <span class="quick-link-icon">🔧</span>
-              <span class="quick-link-label">Engineering Updates</span>
+              <span class="quick-link-label" data-ar="تحديثات هندسية">Engineering Updates</span>
             </a>
-            <!-- Designer links — shown only to designers / admin -->
             <a href="resources.html?cat=design_briefs" class="quick-link" data-role="designer,admin">
               <span class="quick-link-icon">🎨</span>
-              <span class="quick-link-label">Design Briefs</span>
+              <span class="quick-link-label" data-ar="ملخصات التصميم">Design Briefs</span>
             </a>
             <a href="resources.html?cat=brand_assets" class="quick-link" data-role="designer,admin">
               <span class="quick-link-icon">🖼️</span>
-              <span class="quick-link-label">Brand Assets</span>
+              <span class="quick-link-label" data-ar="أصول العلامة التجارية">Brand Assets</span>
             </a>
             <a href="updates.html?cat=design" class="quick-link" data-role="designer,admin">
               <span class="quick-link-icon">✏️</span>
-              <span class="quick-link-label">Design Updates</span>
+              <span class="quick-link-label" data-ar="تحديثات التصميم">Design Updates</span>
             </a>
-            <!-- Investor links — shown only to investors / admin -->
             <a href="resources.html?cat=investor_materials" class="quick-link" data-role="investor,admin">
               <span class="quick-link-icon">📊</span>
-              <span class="quick-link-label">Investor Materials</span>
+              <span class="quick-link-label" data-ar="مواد المستثمرين">Investor Materials</span>
             </a>
             <a href="updates.html?cat=fundraising" class="quick-link" data-role="investor,admin">
               <span class="quick-link-icon">📄</span>
-              <span class="quick-link-label">Fundraising Updates</span>
+              <span class="quick-link-label" data-ar="تحديثات جمع التمويل">Fundraising Updates</span>
             </a>
-            <!-- Core board — admin panel shortcuts -->
             <a href="applications.html" class="quick-link" data-role="core_board,admin">
               <span class="quick-link-icon">📋</span>
-              <span class="quick-link-label">Applications</span>
+              <span class="quick-link-label" data-ar="الطلبات">Applications</span>
             </a>
-            <!-- Common links — visible to all -->
             <a href="discussions.html" class="quick-link">
               <span class="quick-link-icon">💬</span>
-              <span class="quick-link-label">Discussions</span>
+              <span class="quick-link-label" data-ar="النقاشات">Discussions</span>
             </a>
             <a href="resources.html" class="quick-link">
               <span class="quick-link-icon">📁</span>
-              <span class="quick-link-label">Resource Library</span>
+              <span class="quick-link-label" data-ar="مكتبة الموارد">Resource Library</span>
             </a>
             <a href="events.html" class="quick-link">
               <span class="quick-link-icon">📅</span>
-              <span class="quick-link-label">Upcoming Events</span>
+              <span class="quick-link-label" data-ar="الفعاليات القادمة">Upcoming Events</span>
             </a>
           </div>
         </div>
@@ -172,65 +168,65 @@
       <!-- Full-width: Events strip -->
       <div class="section-block">
         <div class="section-block-header">
-          <div class="dashboard-section-title" style="margin-bottom:0;">Upcoming Events</div>
-          <a href="events.html" class="form-link">View all →</a>
+          <div class="dashboard-section-title" style="margin-bottom:0;" data-ar="الفعاليات القادمة">Upcoming Events</div>
+          <a href="events.html" class="form-link" data-ar="عرض الكل ←">View all →</a>
         </div>
         <div class="events-strip" id="eventsStrip">
-          <div class="loading-text" style="grid-column:1/-1;">Loading…</div>
+          <div class="loading-text" style="grid-column:1/-1;" data-ar="جارٍ التحميل…">Loading…</div>
         </div>
       </div>
 
       <!-- Full-width: Recent resources -->
       <div class="section-block">
         <div class="section-block-header">
-          <div class="dashboard-section-title" style="margin-bottom:0;">Recent Resources</div>
-          <a href="resources.html" class="form-link">View all →</a>
+          <div class="dashboard-section-title" style="margin-bottom:0;" data-ar="الموارد الأخيرة">Recent Resources</div>
+          <a href="resources.html" class="form-link" data-ar="عرض الكل ←">View all →</a>
         </div>
         <div class="resources-grid" id="recentResources">
-          <div class="loading-text" style="grid-column:1/-1;">Loading…</div>
+          <div class="loading-text" style="grid-column:1/-1;" data-ar="جارٍ التحميل…">Loading…</div>
         </div>
       </div>
 
       <!-- Analytics Widget — Core Board / Admin only -->
       <div class="section-block analytics-block" data-role="core_board,admin" style="display:none;">
         <div class="section-block-header">
-          <div class="dashboard-section-title" style="margin-bottom:0;">📊 Engagement Analytics</div>
-          <span class="analytics-period">Last 30 days</span>
+          <div class="dashboard-section-title" style="margin-bottom:0;" data-ar="📊 تحليلات التفاعل">📊 Engagement Analytics</div>
+          <span class="analytics-period" data-ar="آخر 30 يومًا">Last 30 days</span>
         </div>
         <div class="analytics-grid">
           <div class="analytics-stat">
             <div class="analytics-stat-value" id="statTotalMembers">—</div>
-            <div class="analytics-stat-label">Total Members</div>
+            <div class="analytics-stat-label" data-ar="إجمالي الأعضاء">Total Members</div>
           </div>
           <div class="analytics-stat">
             <div class="analytics-stat-value" id="statWeeklyActive">—</div>
-            <div class="analytics-stat-label">Active This Week</div>
+            <div class="analytics-stat-label" data-ar="نشطون هذا الأسبوع">Active This Week</div>
           </div>
           <div class="analytics-stat">
             <div class="analytics-stat-value" id="statPageViews">—</div>
-            <div class="analytics-stat-label">Page Views (30d)</div>
+            <div class="analytics-stat-label" data-ar="مشاهدات الصفحة (30 يومًا)">Page Views (30d)</div>
           </div>
           <div class="analytics-stat">
             <div class="analytics-stat-value" id="statThreads">—</div>
-            <div class="analytics-stat-label">Total Discussions</div>
+            <div class="analytics-stat-label" data-ar="إجمالي النقاشات">Total Discussions</div>
           </div>
           <div class="analytics-stat">
             <div class="analytics-stat-value" id="statDownloads">—</div>
-            <div class="analytics-stat-label">Downloads (30d)</div>
+            <div class="analytics-stat-label" data-ar="التنزيلات (30 يومًا)">Downloads (30d)</div>
           </div>
           <div class="analytics-stat">
             <div class="analytics-stat-value" id="statRsvps">—</div>
-            <div class="analytics-stat-label">Event RSVPs</div>
+            <div class="analytics-stat-label" data-ar="تأكيدات الحضور">Event RSVPs</div>
           </div>
         </div>
         <div class="analytics-tables">
           <div class="analytics-table-block">
-            <div class="analytics-table-title">Top Pages (30d)</div>
-            <div id="analyticsTopPages" class="loading-text">Loading…</div>
+            <div class="analytics-table-title" data-ar="أكثر الصفحات زيارة (30 يومًا)">Top Pages (30d)</div>
+            <div id="analyticsTopPages" class="loading-text" data-ar="جارٍ التحميل…">Loading…</div>
           </div>
           <div class="analytics-table-block">
-            <div class="analytics-table-title">Top Downloads (30d)</div>
-            <div id="analyticsTopDownloads" class="loading-text">Loading…</div>
+            <div class="analytics-table-title" data-ar="أكثر التنزيلات (30 يومًا)">Top Downloads (30d)</div>
+            <div id="analyticsTopDownloads" class="loading-text" data-ar="جارٍ التحميل…">Loading…</div>
           </div>
         </div>
       </div>
@@ -243,44 +239,45 @@
 <div class="modal-overlay" id="welcomeModal">
   <div class="modal">
     <button class="modal-close" id="welcomeClose">✕</button>
-    <h2 class="modal-title">Welcome to the DFC Portal</h2>
-    <p class="modal-subtitle">You're now part of the inner circle building SAIF</p>
+    <h2 class="modal-title" data-ar="مرحباً بك في بوابة DFC">Welcome to the DFC Portal</h2>
+    <p class="modal-subtitle" data-ar="أنت الآن جزء من الدائرة الداخلية لبناء سيف">You're now part of the inner circle building SAIF</p>
 
     <div class="onboarding-steps">
       <div class="onboarding-step">
         <div class="step-num">01</div>
         <div class="step-content">
-          <div class="step-title">Complete Your Profile</div>
-          <div class="step-desc">Add your location, bio, and specialisation to help the team connect with you.</div>
+          <div class="step-title" data-ar="أكمل ملفك الشخصي">Complete Your Profile</div>
+          <div class="step-desc" data-ar="أضف موقعك ونبذتك وتخصصك لمساعدة الفريق على التواصل معك.">Add your location, bio, and specialisation to help the team connect with you.</div>
         </div>
       </div>
       <div class="onboarding-step">
         <div class="step-num">02</div>
         <div class="step-content">
-          <div class="step-title">Introduce Yourself</div>
-          <div class="step-desc">Head to Discussions → Introductions and post a brief intro for the collective.</div>
+          <div class="step-title" data-ar="قدّم نفسك">Introduce Yourself</div>
+          <div class="step-desc" data-ar="توجه إلى النقاشات ← التعريفات وأضف نبذة مختصرة.">Head to Discussions → Introductions and post a brief intro for the collective.</div>
         </div>
       </div>
       <div class="onboarding-step">
         <div class="step-num">03</div>
         <div class="step-content">
-          <div class="step-title">Explore the Resources</div>
-          <div class="step-desc">The Resource Library holds key documents, specs, and reference materials for SAIF.</div>
+          <div class="step-title" data-ar="استكشف الموارد">Explore the Resources</div>
+          <div class="step-desc" data-ar="تحتوي مكتبة الموارد على المستندات والمواصفات ومواد المرجعية لسيف.">The Resource Library holds key documents, specs, and reference materials for SAIF.</div>
         </div>
       </div>
       <div class="onboarding-step">
         <div class="step-num">04</div>
         <div class="step-content">
-          <div class="step-title">RSVP to Your First Event</div>
-          <div class="step-desc">Check the Events calendar — your first DFC session is closer than you think.</div>
+          <div class="step-title" data-ar="أكد حضورك لأول فعالية">RSVP to Your First Event</div>
+          <div class="step-desc" data-ar="تحقق من تقويم الفعاليات — جلستك الأولى مع DFC أقرب مما تتوقع.">Check the Events calendar — your first DFC session is closer than you think.</div>
         </div>
       </div>
     </div>
 
-    <button class="btn-primary" id="welcomeDismiss">Enter the Inner Circle →</button>
+    <button class="btn-primary" id="welcomeDismiss" data-ar="ادخل الدائرة الداخلية ←">Enter the Inner Circle →</button>
   </div>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
@@ -304,6 +301,8 @@
     });
   });
 
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
+
   // Load latest announcement
   async function loadAnnouncement() {
     const { data } = await _supabase
@@ -314,14 +313,14 @@
       .limit(1)
       .single();
     const el = document.getElementById('latestAnnouncement');
-    if (!data) { el.textContent = 'No announcements yet.'; return; }
+    if (!data) { el.textContent = _t('No announcements yet.'); return; }
     el.innerHTML = `
       <div class="dash-announcement">
         ${data.pinned ? '<div class="dash-announce-pin">📌 Pinned</div>' : ''}
         <div class="dash-announce-title">${escapeHtml(data.title)}</div>
         <div class="dash-announce-date">${formatDate(data.created_at)}</div>
         <p class="dash-announce-body">${escapeHtml((data.body||'').slice(0,180))}${(data.body||'').length > 180 ? '…' : ''}</p>
-        <a href="announcements.html" class="dash-announce-link">Read more →</a>
+        <a href="announcements.html" class="dash-announce-link">${_t('Read more →')}</a>
       </div>`;
   }
 
@@ -334,7 +333,7 @@
       .order('event_date')
       .limit(2);
     const el = document.getElementById('dashboardEvents');
-    if (!data || !data.length) { el.textContent = 'No upcoming events.'; return; }
+    if (!data || !data.length) { el.textContent = _t('No upcoming events.'); return; }
     el.innerHTML = `<div class="dash-events-list">${data.map(ev => {
       const d = new Date(ev.event_date);
       return `<div class="dash-mini-event">
@@ -359,7 +358,7 @@
       .order('event_date')
       .limit(3);
     const el = document.getElementById('eventsStrip');
-    if (!data || !data.length) { el.innerHTML = '<div class="loading-text">No upcoming events.</div>'; return; }
+    if (!data || !data.length) { el.innerHTML = `<div class="loading-text">${_t('No upcoming events.')}</div>`; return; }
     el.innerHTML = data.map(ev => {
       const d = new Date(ev.event_date);
       const dateStr = d.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' });
@@ -372,7 +371,7 @@
           <div class="dash-event-title">${escapeHtml(ev.title)}</div>
           <div class="dash-event-meta">${typeBadgeHtml(ev.event_type)} <span class="dash-event-datestr">${dateStr}</span></div>
         </div>
-        <a href="events.html" class="dash-event-rsvp">RSVP →</a>
+        <a href="events.html" class="dash-event-rsvp">${_t('RSVP →')}</a>
       </div>`;
     }).join('');
   }
@@ -385,7 +384,7 @@
       .order('created_at', { ascending: false })
       .limit(3);
     const el = document.getElementById('recentResources');
-    if (!data || !data.length) { el.innerHTML = '<div class="loading-text">No resources yet.</div>'; return; }
+    if (!data || !data.length) { el.innerHTML = `<div class="loading-text">${_t('No resources yet.')}</div>`; return; }
     el.innerHTML = data.map(r => {
       const icons = { PDF: '📄', EXCEL: '📊', PPT: '📋', IMAGE: '🖼️', CAD: '📐' };
       const icon = icons[(r.file_type||'').toUpperCase()] || '📎';
@@ -397,7 +396,7 @@
         </div>
         ${r.file_url
           ? `<a href="${escapeHtml(r.file_url)}" target="_blank" class="dash-resource-dl">↓</a>`
-          : `<span class="dash-resource-soon">Soon</span>`}
+          : `<span class="dash-resource-soon">${_t('Coming Soon')}</span>`}
       </div>`;
     }).join('');
   }
@@ -434,7 +433,7 @@
 
   function renderActivity(items) {
     const el = document.getElementById('activityFeed');
-    if (!items.length) { el.innerHTML = '<div class="loading-text">No activity yet.</div>'; return; }
+    if (!items.length) { el.innerHTML = `<div class="loading-text">${_t('No activity yet.')}</div>`; return; }
     el.innerHTML = items.map(renderActivityItem).join('');
   }
 
@@ -494,7 +493,7 @@
 
     const topPagesEl = document.getElementById('analyticsTopPages');
     if (!topPagesArr.length) {
-      topPagesEl.innerHTML = '<div class="loading-text">No data yet.</div>';
+      topPagesEl.innerHTML = `<div class="loading-text">${_t('No data yet.')}</div>`;
     } else {
       topPagesEl.innerHTML = topPagesArr.map(([page, count]) => `
         <div class="analytics-row">
@@ -516,7 +515,7 @@
 
     const topDlEl = document.getElementById('analyticsTopDownloads');
     if (!topDlArr.length) {
-      topDlEl.innerHTML = '<div class="loading-text">No downloads yet.</div>';
+      topDlEl.innerHTML = `<div class="loading-text">${_t('No data yet.')}</div>`;
     } else {
       topDlEl.innerHTML = topDlArr.map(([title, count]) => `
         <div class="analytics-row">

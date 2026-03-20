@@ -51,22 +51,22 @@
     <div class="portal-content">
       <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;">
         <div>
-          <h1 class="page-title">Discussions</h1>
-          <p class="page-subtitle">Collective conversations</p>
+          <h1 class="page-title" data-ar="النقاشات">Discussions</h1>
+          <p class="page-subtitle" data-ar="محادثات جماعية">Collective conversations</p>
         </div>
-        <button class="btn-create-thread" id="createThreadBtn">+ New Thread</button>
+        <button class="btn-create-thread" id="createThreadBtn" data-ar="+ موضوع جديد">+ New Thread</button>
       </div>
 
       <div class="discussions-layout">
         <!-- Category sidebar -->
         <div class="category-sidebar">
-          <div class="dashboard-section-title">Categories</div>
-          <a class="category-link active" data-cat="all">All</a>
-          <a class="category-link" data-cat="general">General</a>
-          <a class="category-link" data-cat="engineering">Engineering</a>
-          <a class="category-link" data-cat="design">Design</a>
-          <a class="category-link" data-cat="investment-strategy">Investment &amp; Strategy</a>
-          <a class="category-link" data-cat="introductions">Introductions</a>
+          <div class="dashboard-section-title" data-ar="الفئات">Categories</div>
+          <a class="category-link active" data-cat="all" data-ar="الكل">All</a>
+          <a class="category-link" data-cat="general" data-ar="عام">General</a>
+          <a class="category-link" data-cat="engineering" data-ar="هندسة">Engineering</a>
+          <a class="category-link" data-cat="design" data-ar="تصميم">Design</a>
+          <a class="category-link" data-cat="investment-strategy" data-ar="الاستثمار والاستراتيجية">Investment &amp; Strategy</a>
+          <a class="category-link" data-cat="introductions" data-ar="التعريفات">Introductions</a>
         </div>
 
         <!-- Thread list -->
@@ -84,33 +84,34 @@
 <div class="modal-overlay" id="createThreadModal">
   <div class="modal">
     <button class="modal-close" id="closeThreadModal">✕</button>
-    <h2 class="modal-title">New Thread</h2>
-    <p class="modal-subtitle">Start a collective discussion</p>
+    <h2 class="modal-title" data-ar="موضوع جديد">New Thread</h2>
+    <p class="modal-subtitle" data-ar="ابدأ نقاشاً جماعياً">Start a collective discussion</p>
     <div id="threadAlert" class="form-alert hidden"></div>
     <form id="threadForm">
       <div class="form-group">
-        <label class="form-label">Category</label>
+        <label class="form-label" data-ar="الفئة">Category</label>
         <select class="form-input" id="threadCategory">
-          <option value="general">General</option>
-          <option value="engineering">Engineering</option>
-          <option value="design">Design</option>
-          <option value="investment-strategy">Investment &amp; Strategy</option>
-          <option value="introductions">Introductions</option>
+          <option value="general" data-ar="عام">General</option>
+          <option value="engineering" data-ar="هندسة">Engineering</option>
+          <option value="design" data-ar="تصميم">Design</option>
+          <option value="investment-strategy" data-ar="الاستثمار والاستراتيجية">Investment &amp; Strategy</option>
+          <option value="introductions" data-ar="التعريفات">Introductions</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-input" id="threadTitle" placeholder="Thread title…" required>
+        <label class="form-label" data-ar="العنوان">Title</label>
+        <input type="text" class="form-input" id="threadTitle" placeholder="Thread title…" data-ar-placeholder="عنوان الموضوع…" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Body</label>
-        <textarea class="form-input" id="threadBody" rows="5" placeholder="What's on your mind?" required style="resize:vertical;"></textarea>
+        <label class="form-label" data-ar="المحتوى">Body</label>
+        <textarea class="form-input" id="threadBody" rows="5" placeholder="What's on your mind?" data-ar-placeholder="ما الذي يدور في ذهنك؟" required style="resize:vertical;"></textarea>
       </div>
-      <button type="submit" class="btn-primary" id="threadSubmit">Post Thread</button>
+      <button type="submit" class="btn-primary" id="threadSubmit" data-ar="نشر الموضوع">Post Thread</button>
     </form>
   </div>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
@@ -119,6 +120,7 @@
   if (!session) return;
   const profile = await initTopbar(session);
   const isAdmin = profile && ['core_board', 'admin'].includes((profile.role || '').toLowerCase());
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
 
   let allThreads = [];
   let activeFilter = 'all';
@@ -140,15 +142,16 @@
       : allThreads.filter(t => (t.category || '').toLowerCase() === activeFilter);
 
     if (!items.length) {
-      list.innerHTML = '<div class="loading-text">No threads yet. Start one!</div>';
+      list.innerHTML = `<div class="loading-text">${_t('No threads yet. Start one!')}</div>`;
       return;
     }
 
     list.innerHTML = items.map(t => {
       const replyCount = t.discussion_replies?.[0]?.count ?? 0;
+      const replyWord = replyCount === 1 ? _t('reply') : _t('replies');
       const adminThreadControls = isAdmin
         ? `<div class="admin-actions" onclick="event.stopPropagation()">
-             <button class="admin-btn admin-btn--danger" onclick="deleteThread('${t.id}')">Delete Thread</button>
+             <button class="admin-btn admin-btn--danger" onclick="deleteThread('${t.id}')">${_t('Delete Thread')}</button>
            </div>`
         : '';
       return `
@@ -159,7 +162,7 @@
           </div>
           <div class="thread-meta">
             <span>${escapeHtml(t.category)}</span>
-            <span>${replyCount} repl${replyCount === 1 ? 'y' : 'ies'}</span>
+            <span>${replyCount} ${replyWord}</span>
             <span>${timeAgo(t.created_at)}</span>
           </div>
           <div class="thread-preview">${escapeHtml((t.body || '').slice(0, 120))}${(t.body || '').length > 120 ? '…' : ''}</div>
@@ -168,8 +171,8 @@
         <div class="thread-detail" id="detail-${t.id}">
           <div class="reply-list" id="replies-${t.id}"><div class="loading-text">Loading replies…</div></div>
           <div class="reply-form">
-            <textarea id="replyText-${t.id}" placeholder="Write a reply…"></textarea>
-            <button class="btn-primary" style="width:auto;padding:0.5rem 1.25rem;" onclick="submitReply('${t.id}')">Post Reply</button>
+            <textarea id="replyText-${t.id}" placeholder="${_t('Write a reply…')}"></textarea>
+            <button class="btn-primary" style="width:auto;padding:0.5rem 1.25rem;" onclick="submitReply('${t.id}')">${_t('Post Reply')}</button>
           </div>
         </div>`;
     }).join('');
@@ -194,12 +197,12 @@
       .order('created_at');
     const container = document.getElementById(`replies-${threadId}`);
     if (!replies || !replies.length) {
-      container.innerHTML = '<div class="loading-text">No replies yet.</div>';
+      container.innerHTML = `<div class="loading-text">${_t('No replies yet.')}</div>`;
       return;
     }
     container.innerHTML = replies.map(r => {
       const adminReplyControls = isAdmin
-        ? `<button class="admin-btn admin-btn--danger" style="margin-top:0.4rem;font-size:0.7rem;" onclick="deleteReply('${r.id}','${threadId}')">Delete</button>`
+        ? `<button class="admin-btn admin-btn--danger" style="margin-top:0.4rem;font-size:0.7rem;" onclick="deleteReply('${r.id}','${threadId}')">${_t('Delete')}</button>`
         : '';
       return `
         <div class="reply-item" id="reply-${r.id}">
@@ -231,19 +234,19 @@
 
   // ── Admin: delete thread ──────────────────────────────────
   window.deleteThread = async function(threadId) {
-    if (!confirm('Delete this thread and all its replies? This cannot be undone.')) return;
+    if (!(window.dfc_i18n ? window.dfc_i18n.confirm('Delete this thread and all its replies? This cannot be undone.') : confirm('Delete this thread and all its replies? This cannot be undone.'))) return;
     const { error } = await _supabase.from('discussion_threads').delete().eq('id', threadId);
     if (!error) {
       allThreads = allThreads.filter(t => t.id !== threadId);
       renderThreads();
     } else {
-      alert('Failed to delete thread: ' + error.message);
+      alert((_t('Failed to delete thread: ')) + error.message);
     }
   };
 
   // ── Admin: delete reply ───────────────────────────────────
   window.deleteReply = async function(replyId, threadId) {
-    if (!confirm('Delete this reply?')) return;
+    if (!(window.dfc_i18n ? window.dfc_i18n.confirm('Delete this reply?') : confirm('Delete this reply?'))) return;
     const { error } = await _supabase.from('discussion_replies').delete().eq('id', replyId);
     if (!error) {
       document.getElementById(`reply-${replyId}`)?.remove();
@@ -301,7 +304,7 @@
       await loadThreads();
     }
     btn.disabled = false;
-    btn.textContent = 'Post Thread';
+    btn.textContent = _t('Post Thread');
   });
 
   await loadThreads();

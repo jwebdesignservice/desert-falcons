@@ -11,6 +11,9 @@
 </head>
 <body>
 
+  <!-- Language toggle -->
+  <button class="lang-toggle login-lang-toggle" id="loginLangBtn" onclick="if(window.toggleLang)window.toggleLang()">AR</button>
+
   <!-- Background -->
   <div class="login-bg"></div>
 
@@ -26,61 +29,62 @@
       <!-- Logo -->
       <div class="login-logo">
         <span class="logo-text">DESERT FALCONS</span>
-        <span class="logo-sub">COLLECTIVE</span>
+        <span class="logo-sub" data-ar="مجموعة">COLLECTIVE</span>
         <span class="logo-divider"></span>
       </div>
 
       <!-- Login Form -->
       <div id="loginSection">
-        <h1 class="login-title">Member Portal</h1>
-        <p class="login-sub">Inner Circle Access</p>
+        <h1 class="login-title" data-ar="بوابة الأعضاء">Member Portal</h1>
+        <p class="login-sub" data-ar="وصول الدائرة الداخلية">Inner Circle Access</p>
 
         <div id="loginAlert" class="form-alert form-alert--error hidden"></div>
 
         <form id="loginForm">
           <div class="form-group">
-            <label class="form-label" for="email">Email Address</label>
-            <input type="email" id="email" class="form-input" placeholder="you@example.com" required autocomplete="email">
+            <label class="form-label" for="email" data-ar="عنوان البريد الإلكتروني">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="you@example.com" data-ar-placeholder="بريدك الإلكتروني" required autocomplete="email">
           </div>
           <div class="form-group">
-            <label class="form-label" for="password">Password</label>
+            <label class="form-label" for="password" data-ar="كلمة المرور">Password</label>
             <input type="password" id="password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
           </div>
           <div class="form-row-inline">
             <label class="form-checkbox">
-              <input type="checkbox" id="remember"> Remember me
+              <input type="checkbox" id="remember"> <span data-ar="تذكرني">Remember me</span>
             </label>
-            <button type="button" class="form-link" id="forgotToggle">Forgot password?</button>
+            <button type="button" class="form-link" id="forgotToggle" data-ar="نسيت كلمة المرور؟">Forgot password?</button>
           </div>
-          <button type="submit" class="btn-primary" id="loginBtn">Enter the Portal</button>
+          <button type="submit" class="btn-primary" id="loginBtn" data-ar="ادخل البوابة">Enter the Portal</button>
         </form>
 
         <div class="login-footer" style="margin-top:1.25rem;">
-          Not a member?
-          <a href="../join.html">Join the Collective →</a>
+          <span data-ar="لست عضوًا؟">Not a member?</span>
+          <a href="../join.html" data-ar="انضم إلى المجموعة ←">Join the Collective →</a>
         </div>
       </div>
 
       <!-- Recovery Form (hidden by default) -->
       <div id="recoverySection" class="hidden">
-        <h1 class="login-title">Reset Password</h1>
-        <p class="login-sub">We'll send a recovery link to your email</p>
+        <h1 class="login-title" data-ar="إعادة تعيين كلمة المرور">Reset Password</h1>
+        <p class="login-sub" data-ar="سنرسل رابط استعادة إلى بريدك الإلكتروني">We'll send a recovery link to your email</p>
 
         <div id="recoveryAlert" class="form-alert hidden"></div>
 
         <form id="recoveryForm">
           <div class="form-group">
-            <label class="form-label" for="recoveryEmail">Email Address</label>
-            <input type="email" id="recoveryEmail" class="form-input" placeholder="you@example.com" required>
+            <label class="form-label" for="recoveryEmail" data-ar="عنوان البريد الإلكتروني">Email Address</label>
+            <input type="email" id="recoveryEmail" class="form-input" placeholder="you@example.com" data-ar-placeholder="بريدك الإلكتروني" required>
           </div>
-          <button type="submit" class="btn-primary" id="recoveryBtn">Send Recovery Link</button>
-          <button type="button" class="btn-secondary" id="backToLogin" style="margin-top:0.75rem;">Back to Login</button>
+          <button type="submit" class="btn-primary" id="recoveryBtn" data-ar="إرسال رابط الاستعادة">Send Recovery Link</button>
+          <button type="button" class="btn-secondary" id="backToLogin" style="margin-top:0.75rem;" data-ar="العودة إلى تسجيل الدخول">Back to Login</button>
         </form>
       </div>
 
     </div>
   </div>
 
+  <script src="portal-i18n.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="portal.js"></script>
   <script>
@@ -106,19 +110,20 @@
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       const btn = document.getElementById('loginBtn');
-      const alert = document.getElementById('loginAlert');
+      const alertEl = document.getElementById('loginAlert');
+      const i18n = window.dfc_i18n;
 
       btn.disabled = true;
-      btn.textContent = 'Signing in…';
-      alert.classList.add('hidden');
+      btn.textContent = i18n ? i18n.t('Signing in…') : 'Signing in…';
+      alertEl.classList.add('hidden');
 
       const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
 
       if (error) {
-        alert.textContent = error.message;
-        alert.classList.remove('hidden');
+        alertEl.textContent = error.message;
+        alertEl.classList.remove('hidden');
         btn.disabled = false;
-        btn.textContent = 'Enter the Portal';
+        btn.textContent = i18n ? i18n.t('Enter the Portal') : 'Enter the Portal';
       } else {
         window.location.href = 'dashboard.html';
       }
@@ -129,25 +134,26 @@
       e.preventDefault();
       const email = document.getElementById('recoveryEmail').value.trim();
       const btn = document.getElementById('recoveryBtn');
-      const alert = document.getElementById('recoveryAlert');
+      const alertEl = document.getElementById('recoveryAlert');
+      const i18n = window.dfc_i18n;
 
       btn.disabled = true;
-      btn.textContent = 'Sending…';
-      alert.className = 'form-alert hidden';
+      btn.textContent = i18n ? i18n.t('Sending…') : 'Sending…';
+      alertEl.className = 'form-alert hidden';
 
       const { error } = await _supabase.auth.resetPasswordForEmail(email, {
         redirectTo: window.location.origin + '/portal/index.html'
       });
 
-      alert.classList.remove('hidden');
+      alertEl.classList.remove('hidden');
       if (error) {
-        alert.className = 'form-alert form-alert--error';
-        alert.textContent = error.message;
+        alertEl.className = 'form-alert form-alert--error';
+        alertEl.textContent = error.message;
         btn.disabled = false;
-        btn.textContent = 'Send Recovery Link';
+        btn.textContent = i18n ? i18n.t('Send Recovery Link') : 'Send Recovery Link';
       } else {
-        alert.className = 'form-alert form-alert--success';
-        alert.textContent = 'Recovery link sent — check your email.';
+        alertEl.className = 'form-alert form-alert--success';
+        alertEl.textContent = i18n ? i18n.t('Recovery link sent — check your email.') : 'Recovery link sent — check your email.';
       }
     });
   </script>

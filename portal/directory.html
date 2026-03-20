@@ -50,19 +50,19 @@
 
     <div class="portal-content">
       <div class="page-header">
-        <h1 class="page-title">Member Directory</h1>
-        <p class="page-subtitle">The people building SAIF</p>
+        <h1 class="page-title" data-ar="دليل الأعضاء">Member Directory</h1>
+        <p class="page-subtitle" data-ar="الأشخاص الذين يبنون سيف">The people building SAIF</p>
       </div>
 
       <div class="directory-controls">
-        <input type="text" class="form-input" id="searchInput" placeholder="Search members…" style="max-width:320px;">
+        <input type="text" class="form-input" id="searchInput" placeholder="Search members…" data-ar-placeholder="ابحث عن أعضاء…" style="max-width:320px;">
         <div class="filter-tabs" id="roleFilter" style="margin-top:0;">
-          <button class="filter-tab active" data-role="all">All</button>
-          <button class="filter-tab" data-role="core_board">Core Board</button>
-          <button class="filter-tab" data-role="working_group">Working Group</button>
-          <button class="filter-tab" data-role="advisor">Advisor</button>
-          <button class="filter-tab" data-role="investor">Investor</button>
-          <button class="filter-tab" data-role="general">General</button>
+          <button class="filter-tab active" data-role="all" data-ar="الكل">All</button>
+          <button class="filter-tab" data-role="core_board" data-ar="المجلس التأسيسي">Core Board</button>
+          <button class="filter-tab" data-role="working_group" data-ar="فريق العمل">Working Group</button>
+          <button class="filter-tab" data-role="advisor" data-ar="مستشار">Advisor</button>
+          <button class="filter-tab" data-role="investor" data-ar="مستثمر">Investor</button>
+          <button class="filter-tab" data-role="general" data-ar="عضو عام">General</button>
         </div>
       </div>
 
@@ -73,6 +73,7 @@
   </main>
 </div>
 
+<script src="portal-i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="portal.js"></script>
 <script>
@@ -80,6 +81,7 @@
   const session = await requireAuth();
   if (!session) return;
   await initTopbar(session);
+  const _t = k => window.dfc_i18n ? window.dfc_i18n.t(k) : k;
 
   let allMembers = [];
   let activeRole = 'all';
@@ -121,21 +123,22 @@
     }
 
     if (!items.length) {
-      grid.innerHTML = '<div class="loading-text">No members found.</div>';
+      grid.innerHTML = `<div class="loading-text">${_t('No members found.')}</div>`;
       return;
     }
 
+    const locale = window.dfc_i18n?.isAr ? 'ar-SA' : 'en-US';
     grid.innerHTML = items.map(m => {
       const initials = getInitials(m.full_name);
       const role = m.role || 'member';
-      const joinDate = new Date(m.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+      const joinDate = new Date(m.created_at).toLocaleDateString(locale, { month: 'short', year: 'numeric' });
       return `
         <div class="member-card">
           <div class="member-card-avatar ${role.toLowerCase().replace('_','-')}">${initials}</div>
           <div class="member-card-name">${escapeHtml(m.full_name || 'Unknown')}</div>
           ${roleBadgeHtml(role)}
           ${m.location ? `<div class="member-card-location">📍 ${escapeHtml(m.location)}</div>` : ''}
-          <div class="member-card-since">Joined ${joinDate}</div>
+          <div class="member-card-since">${_t('Joined')} ${joinDate}</div>
         </div>`;
     }).join('');
   }
