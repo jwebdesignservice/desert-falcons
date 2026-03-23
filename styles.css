@@ -1960,12 +1960,27 @@ html[dir="rtl"] .nav-menu {
 html[dir="rtl"] .footer-brand {
     align-items: flex-end !important;
     text-align: right !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
 }
 html[dir="rtl"] .footer-logo {
     align-items: flex-end !important;
+    flex-direction: column !important;
 }
 html[dir="rtl"] .footer-logo-text {
     text-align: right !important;
+    align-items: flex-end !important;
+}
+html[dir="rtl"] .footer-tagline {
+    text-align: right;
+}
+/* Footer nav grid: flip to RTL layout */
+html[dir="rtl"] .footer-inner {
+    direction: rtl;
+}
+html[dir="rtl"] .footer-nav {
+    direction: rtl;
+    justify-content: flex-end;
 }
 html[dir="rtl"] .nav-logo-text {
     text-align: right;
