@@ -905,3 +905,12 @@ html[dir="rtl"] .eng-kc-item:last-child {
 html[dir="rtl"] .ipl-item:hover {
     transform: translateX(-6px);
 }
+
+/* Hero: text-align:center in LTR — keep centred in RTL */
+html[dir="rtl"] .eng-hero-inner,
+html[dir="rtl"] .eng-hero-inner *,
+html[dir="rtl"] .eng-hero-title,
+html[dir="rtl"] .eng-hero-eyebrow,
+html[dir="rtl"] .eng-hero-sub {
+    text-align: center !important;
+}
