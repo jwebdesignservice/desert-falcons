@@ -1961,6 +1961,61 @@
    Arabic / RTL Overrides
    ============================================================ */
 
+/* ── Centre-preservation: these sections are text-align:center in LTR — keep them centred in RTL ── */
+html[dir="rtl"] .chapter-header-centered,
+html[dir="rtl"] .chapter-header-centered *,
+html[dir="rtl"] .story-chapter-daughters,
+html[dir="rtl"] .daughters-intro,
+html[dir="rtl"] .daughters-title,
+html[dir="rtl"] .daughters-subtitle,
+html[dir="rtl"] .daughters-lead,
+html[dir="rtl"] .daughters-closing,
+html[dir="rtl"] .daughter-card,
+html[dir="rtl"] .daughter-name,
+html[dir="rtl"] .chapter-title-large,
+html[dir="rtl"] .chapter-statement,
+html[dir="rtl"] .meaning-header,
+html[dir="rtl"] .meaning-header *,
+html[dir="rtl"] .meaning-title,
+html[dir="rtl"] .meaning-arabic,
+html[dir="rtl"] .meaning-translation,
+html[dir="rtl"] .meaning-side,
+html[dir="rtl"] .meaning-side *,
+html[dir="rtl"] .meaning-label,
+html[dir="rtl"] .meaning-description,
+html[dir="rtl"] .meaning-application,
+html[dir="rtl"] .story-chapter-tuwaiq,
+html[dir="rtl"] .tuwaiq-content,
+html[dir="rtl"] .tuwaiq-content *,
+html[dir="rtl"] .tuwaiq-title,
+html[dir="rtl"] .tuwaiq-quote,
+html[dir="rtl"] .tuwaiq-description p,
+html[dir="rtl"] .tuwaiq-statement,
+html[dir="rtl"] .story-chapter-call,
+html[dir="rtl"] .call-content,
+html[dir="rtl"] .call-content *,
+html[dir="rtl"] .call-title,
+html[dir="rtl"] .call-final-quote,
+html[dir="rtl"] .call-highlight-box p,
+html[dir="rtl"] .chapter-number-inline,
+html[dir="rtl"] .timeline-header,
+html[dir="rtl"] .timeline-header * {
+    text-align: center !important;
+}
+
+/* ── Right-align: sections that are left-aligned in LTR ── */
+html[dir="rtl"] .chapter-content,
+html[dir="rtl"] .chapter-content *,
+html[dir="rtl"] .chapter-title,
+html[dir="rtl"] .chapter-subtitle,
+html[dir="rtl"] .chapter-body p,
+html[dir="rtl"] .chapter-intro,
+html[dir="rtl"] .fi-bio-en,
+html[dir="rtl"] .fi-bio-en *,
+html[dir="rtl"] .inline-quote {
+    text-align: right;
+}
+
 html[dir="rtl"] .inline-quote {
     border-left: none;
     border-right: 3px solid #B8915A;

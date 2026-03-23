@@ -1462,3 +1462,11 @@ html[dir="rtl"] .timeline-track-horizontal {
 html[dir="rtl"] .analytics-row-count {
     text-align: left;
 }
+
+/* Centre-preservation: sections explicitly text-align:center in LTR must stay centred in RTL */
+html[dir="rtl"] .vision-hero-content,
+html[dir="rtl"] .vision-hero-content *,
+html[dir="rtl"] .vision-hero-title,
+html[dir="rtl"] .vision-hero-subtitle {
+    text-align: center;
+}

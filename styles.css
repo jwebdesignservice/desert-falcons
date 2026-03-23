@@ -1815,8 +1815,10 @@ html[lang="ar"] .chapter-title-large {
    RTL LAYOUT — Arabic direction overrides
    ============================================ */
 
-/* Base RTL: flip text alignment and logical spacing */
+/* Base RTL: set direction only — do NOT force text-align on all elements.
+   text-align: right is applied selectively below so centred sections stay centred. */
 html[dir="rtl"] body {
+    direction: rtl;
     text-align: right;
 }
 
@@ -1831,6 +1833,22 @@ html[dir="rtl"] h6,
 html[dir="rtl"] span,
 html[dir="rtl"] label {
     direction: rtl;
+    /* text-align intentionally omitted here — elements inherit from their parent.
+       Centred containers stay centred; left-aligned containers flip to right. */
+}
+
+/* Explicitly right-align standard content blocks (left-aligned in LTR) */
+html[dir="rtl"] .chapter-body p,
+html[dir="rtl"] .section-intro p,
+html[dir="rtl"] .chapter-intro,
+html[dir="rtl"] .card p,
+html[dir="rtl"] .pillar-card p,
+html[dir="rtl"] .info-block p,
+html[dir="rtl"] .footer-inner p,
+html[dir="rtl"] .footer-inner span,
+html[dir="rtl"] .footer-nav,
+html[dir="rtl"] .footer-links,
+html[dir="rtl"] label {
     text-align: right;
 }
 
@@ -1875,7 +1893,9 @@ html[dir="rtl"] .chapter-title-large {
     text-align: right;
 }
 
-/* CTA section is text-align:center in LTR — keep its title centred in RTL */
+/* CTA section and hero: text-align:center in LTR — keep centred in RTL */
+html[dir="rtl"] .cta-content,
+html[dir="rtl"] .cta-content *,
 html[dir="rtl"] .cta-content .section-title {
     text-align: center;
 }
@@ -1949,6 +1969,13 @@ html[dir="rtl"] .footer-logo-text {
 }
 html[dir="rtl"] .nav-logo-text {
     text-align: right;
+}
+
+/* Loader is centred in LTR — keep centred in RTL */
+html[dir="rtl"] .loader-content,
+html[dir="rtl"] .loader-logo,
+html[dir="rtl"] .loader-logo * {
+    text-align: center;
 }
 
 /* Nav lang toggle: margin-left → margin-right */
