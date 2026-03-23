@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="../favicon-dfc.png">
@@ -67,7 +67,7 @@
       </div>
 
       <div class="resources-grid" id="resourcesGrid">
-        <div class="loading-text">Loading resources…</div>
+        <div class="loading-text" data-ar="جارٍ تحميل الموارد…">Loading resources…</div>
       </div>
     </div>
   </main>
@@ -82,40 +82,40 @@
     <div id="resourceFormAlert" class="form-alert hidden"></div>
     <form id="resourceForm">
       <div class="form-group">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-input" id="resTitle" placeholder="Resource title…" required>
+        <label class="form-label" data-ar="العنوان">Title</label>
+        <input type="text" class="form-input" id="resTitle" placeholder="Resource title…" data-ar-placeholder="عنوان المورد…" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Category</label>
+        <label class="form-label" data-ar="الفئة">Category</label>
         <select class="form-input" id="resCategory">
-          <option value="design_briefs">Design Briefs</option>
-          <option value="engineering_specs">Engineering Specs</option>
-          <option value="investor_materials">Investor Materials</option>
-          <option value="meeting_notes">Meeting Notes</option>
-          <option value="brand_assets">Brand Assets</option>
+          <option value="design_briefs" data-ar="ملخصات التصميم">Design Briefs</option>
+          <option value="engineering_specs" data-ar="مواصفات هندسية">Engineering Specs</option>
+          <option value="investor_materials" data-ar="مواد المستثمرين">Investor Materials</option>
+          <option value="meeting_notes" data-ar="ملاحظات الاجتماعات">Meeting Notes</option>
+          <option value="brand_assets" data-ar="أصول العلامة التجارية">Brand Assets</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">File Type</label>
+        <label class="form-label" data-ar="نوع الملف">File Type</label>
         <select class="form-input" id="resFileType">
-          <option value="PDF">PDF</option>
-          <option value="PPT">PPT / Presentation</option>
-          <option value="Excel">Excel / Spreadsheet</option>
-          <option value="Image">Image</option>
-          <option value="CAD">CAD</option>
-          <option value="Other">Other</option>
+          <option value="PDF" data-ar="PDF">PDF</option>
+          <option value="PPT" data-ar="PPT / عرض تقديمي">PPT / Presentation</option>
+          <option value="Excel" data-ar="Excel / جدول بيانات">Excel / Spreadsheet</option>
+          <option value="Image" data-ar="صورة">Image</option>
+          <option value="CAD" data-ar="CAD">CAD</option>
+          <option value="Other" data-ar="أخرى">Other</option>
         </select>
       </div>
       <div class="form-group" id="fileUploadGroup">
-        <label class="form-label">Upload File</label>
+        <label class="form-label" data-ar="رفع الملف">Upload File</label>
         <input type="file" class="form-input" id="resFile" accept=".pdf,.ppt,.pptx,.xls,.xlsx,.png,.jpg,.jpeg" style="padding:0.4rem;">
         <span id="resFileName" style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.25rem;display:block;"></span>
       </div>
       <div class="form-group">
-        <label class="form-label">Or paste URL <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;">(optional)</span></label>
+        <label class="form-label" data-ar="أو الصق رابطاً">Or paste URL <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;" data-ar="(اختياري)">(optional)</span></label>
         <input type="url" class="form-input" id="resFileUrl" placeholder="https://…">
       </div>
-      <button type="submit" class="btn-primary" id="resourceSubmit">Upload Resource</button>
+      <button type="submit" class="btn-primary" id="resourceSubmit" data-ar="رفع مورد">Upload Resource</button>
     </form>
   </div>
 </div>

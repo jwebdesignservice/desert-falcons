@@ -2808,3 +2808,88 @@ html.ar .notif-info {
 html.ar .settings-card {
   direction: rtl;
 }
+
+/* RTL Overrides — auto-generated */
+
+/* Sidebar active indicator: left:0 → right:0 */
+html.ar .sidebar-link.active::before {
+  left: auto;
+  right: 0;
+}
+
+/* Activity item: border-left → border-right */
+html.ar .activity-item {
+  border-left: none;
+  border-right: 2px solid var(--border);
+}
+html.ar .activity-item:hover {
+  border-right-color: var(--desert-gold);
+  border-left-color: transparent;
+}
+
+/* Announcement item: border-left → border-right */
+html.ar .announcement-item {
+  border-left: none;
+  border-right: 3px solid transparent;
+}
+html.ar .announcement-item:hover {
+  border-right-color: var(--border-mid);
+}
+html.ar .announcement-item.pinned {
+  border-right-color: var(--desert-gold);
+}
+
+/* Dash announcement: border-left → border-right */
+html.ar .dash-announcement {
+  border-left: none;
+  border-right: 3px solid var(--desert-gold);
+}
+
+/* Category link: border-left → border-right */
+html.ar .category-link {
+  border-left: none;
+  border-right: 2px solid transparent;
+}
+html.ar .category-link.active {
+  border-right-color: var(--desert-gold);
+}
+
+/* Unread dot: right:1.25rem → left:1.25rem */
+html.ar .unread-dot {
+  right: auto;
+  left: 1.25rem;
+}
+
+/* Modal close button: right:1.5rem → left:1.5rem */
+html.ar .modal-close {
+  right: auto;
+  left: 1.5rem;
+}
+
+/* Select dropdown: background-position right → left */
+html.ar select.form-input {
+  background-position: left 0.85rem center;
+  padding-right: 1rem;
+  padding-left: 2.5rem;
+}
+
+/* Login corner positions: swap tl/tr/bl/br */
+html.ar .login-corner--tl { left: auto; right: 24px; }
+html.ar .login-corner--tl::before { left: auto; right: 0; }
+html.ar .login-corner--tl::after  { left: auto; right: 0; }
+html.ar .login-corner--tr { right: auto; left: 24px; }
+html.ar .login-corner--tr::before { right: auto; left: 0; }
+html.ar .login-corner--tr::after  { right: auto; left: 0; }
+html.ar .login-corner--bl { left: auto; right: 24px; }
+html.ar .login-corner--bl::before { left: auto; right: 0; }
+html.ar .login-corner--bl::after  { left: auto; right: 0; }
+html.ar .login-corner--br { right: auto; left: 24px; }
+html.ar .login-corner--br::before { right: auto; left: 0; }
+html.ar .login-corner--br::after  { right: auto; left: 0; }
+
+/* lang-toggle: margin-left → margin-right (already set above via html.ar .lang-toggle) */
+
+/* Avatar upload controls: align-items flex-start → flex-end */
+html.ar .avatar-upload-controls {
+  align-items: flex-end;
+}

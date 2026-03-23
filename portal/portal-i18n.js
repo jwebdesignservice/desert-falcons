@@ -8,6 +8,11 @@
   var AR = {
     // Generic
     'Loading…': 'جارٍ التحميل…',
+    'Loading applications…': 'جارٍ تحميل الطلبات…',
+    'Loading members…': 'جارٍ تحميل الأعضاء…',
+    'Loading events…': 'جارٍ تحميل الفعاليات…',
+    'Loading updates…': 'جارٍ تحميل التحديثات…',
+    'Loading resources…': 'جارٍ تحميل الموارد…',
     'Save Changes': 'حفظ التغييرات',
     'Edit': 'تعديل',
     'Delete': 'حذف',
@@ -144,6 +149,10 @@
     'Failed to delete reply: ': 'فشل حذف الرد: ',
 
     // Resources
+    'File Type': 'نوع الملف',
+    'Upload File': 'رفع الملف',
+    'Resource title…': 'عنوان المورد…',
+    'Edit Resource': 'تعديل المورد',
     'Documents, briefs, and assets for the collective': 'المستندات والملخصات والأصول للمجموعة',
     '+ Upload Resource': '+ رفع مورد',
     'No resources in this category yet.': 'لا توجد موارد في هذه الفئة بعد.',

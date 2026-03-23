@@ -116,8 +116,8 @@
                     </div>
 
                     <div class="join-context-quote">
-                        <p>"We are not job seekers.<br>We are believers."</p>
-                        <span>— Khalaf Althobaiti, Founder</span>
+                        <p><span data-i18n="join.quote" data-i18n-ar="&quot;لسنا باحثين عن عمل.<br>نحن مؤمنون.&quot;">"We are not job seekers.<br>We are believers."</span></p>
+                        <span><span data-i18n="join.quote.attr" data-i18n-ar="— خلف الثبيتي، المؤسس">— Khalaf Althobaiti, Founder</span></span>
                     </div>
                 </div>
             </div>
@@ -135,18 +135,18 @@
                     <div class="form-row form-row--2">
                         <div class="form-field">
                             <label class="form-label" for="fullName"><span data-i18n="join.label.name" data-i18n-ar="الاسم الكامل <span class='required'>*</span>">Full Name <span class="required">*</span></span></label>
-                            <input class="form-input" type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                            <input class="form-input" type="text" id="fullName" name="fullName" placeholder="Enter your full name" data-i18n-ph-ar="أدخل اسمك الكامل" required>
                         </div>
                         <div class="form-field">
                             <label class="form-label" for="email"><span data-i18n="join.label.email" data-i18n-ar="البريد الإلكتروني <span class='required'>*</span>">Email Address <span class="required">*</span></span></label>
-                            <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email address" required>
+                            <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email address" data-i18n-ph-ar="أدخل بريدك الإلكتروني" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-field">
                             <label class="form-label" for="phone"><span data-i18n="join.label.phone" data-i18n-ar="رقم الهاتف">Phone Number</span></label>
-                            <input class="form-input" type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            <input class="form-input" type="tel" id="phone" name="phone" placeholder="Enter your phone number" data-i18n-ph-ar="أدخل رقم هاتفك">
                         </div>
                     </div>
 
@@ -161,11 +161,11 @@
                             <label class="form-label" for="interest"><span data-i18n="join.label.interest" data-i18n-ar="أنا مهتم بـ <span class='required'>*</span>">I am interested in <span class="required">*</span></span></label>
                             <div class="form-select-wrap">
                                 <select class="form-select" id="interest" name="interest" required>
-                                    <option value="" disabled selected>Select your interest</option>
-                                    <option value="engineer">Engineering</option>
-                                    <option value="designer">Design</option>
-                                    <option value="investor">Investment</option>
-                                    <option value="general">General Interest</option>
+                                    <option value="" disabled selected data-i18n-ar="اختر اهتمامك">Select your interest</option>
+                                    <option value="engineer" data-i18n-ar="الهندسة">Engineering</option>
+                                    <option value="designer" data-i18n-ar="التصميم">Design</option>
+                                    <option value="investor" data-i18n-ar="الاستثمار">Investment</option>
+                                    <option value="general" data-i18n-ar="اهتمام عام">General Interest</option>
                                 </select>
                                 <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M4 6l4 4 4-4"/>
@@ -177,14 +177,14 @@
                             <label class="form-label" for="specialization"><span data-i18n="join.label.spec" data-i18n-ar="التخصص">Specialization</span></label>
                             <div class="form-select-wrap">
                                 <select class="form-select" id="specialization" name="specialization">
-                                    <option value="" disabled selected>Select your specialization</option>
-                                    <option value="powertrain">Powertrain</option>
-                                    <option value="chassis">Chassis &amp; Suspension</option>
-                                    <option value="battery">Battery &amp; Thermal</option>
-                                    <option value="software">Software &amp; Electronics</option>
-                                    <option value="materials">Materials</option>
-                                    <option value="testing">Testing &amp; Validation</option>
-                                    <option value="other-eng">Other Engineering</option>
+                                    <option value="" disabled selected data-i18n-ar="اختر تخصصك">Select your specialization</option>
+                                    <option value="powertrain" data-i18n-ar="نظام الدفع">Powertrain</option>
+                                    <option value="chassis" data-i18n-ar="الهيكل والتعليق">Chassis &amp; Suspension</option>
+                                    <option value="battery" data-i18n-ar="البطارية والحرارة">Battery &amp; Thermal</option>
+                                    <option value="software" data-i18n-ar="البرمجيات والإلكترونيات">Software &amp; Electronics</option>
+                                    <option value="materials" data-i18n-ar="المواد">Materials</option>
+                                    <option value="testing" data-i18n-ar="الاختبار والتحقق">Testing &amp; Validation</option>
+                                    <option value="other-eng" data-i18n-ar="هندسة أخرى">Other Engineering</option>
                                 </select>
                                 <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M4 6l4 4 4-4"/>
@@ -198,11 +198,11 @@
                             <label class="form-label" for="experience"><span data-i18n="join.label.exp" data-i18n-ar="سنوات الخبرة">Years of Experience</span></label>
                             <div class="form-select-wrap">
                                 <select class="form-select" id="experience" name="experience">
-                                    <option value="" disabled selected>Select experience level</option>
-                                    <option value="0-2">0–2 years</option>
-                                    <option value="3-5">3–5 years</option>
-                                    <option value="6-10">6–10 years</option>
-                                    <option value="10+">10+ years</option>
+                                    <option value="" disabled selected data-i18n-ar="اختر مستوى الخبرة">Select experience level</option>
+                                    <option value="0-2" data-i18n-ar="٠–٢ سنوات">0–2 years</option>
+                                    <option value="3-5" data-i18n-ar="٣–٥ سنوات">3–5 years</option>
+                                    <option value="6-10" data-i18n-ar="٦–١٠ سنوات">6–10 years</option>
+                                    <option value="10+" data-i18n-ar="١٠+ سنوات">10+ years</option>
                                 </select>
                                 <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M4 6l4 4 4-4"/>
@@ -214,12 +214,12 @@
                             <label class="form-label" for="designDiscipline"><span data-i18n="join.label.design" data-i18n-ar="تخصص التصميم">Design Discipline</span></label>
                             <div class="form-select-wrap">
                                 <select class="form-select" id="designDiscipline" name="designDiscipline">
-                                    <option value="" disabled selected>Select your discipline</option>
-                                    <option value="exterior">Exterior Design</option>
-                                    <option value="interior">Interior Design</option>
-                                    <option value="ux">UX / Digital Interface</option>
-                                    <option value="brand">Brand &amp; Identity</option>
-                                    <option value="other-design">Other Design</option>
+                                    <option value="" disabled selected data-i18n-ar="اختر تخصصك">Select your discipline</option>
+                                    <option value="exterior" data-i18n-ar="التصميم الخارجي">Exterior Design</option>
+                                    <option value="interior" data-i18n-ar="التصميم الداخلي">Interior Design</option>
+                                    <option value="ux" data-i18n-ar="تجربة المستخدم / الواجهة الرقمية">UX / Digital Interface</option>
+                                    <option value="brand" data-i18n-ar="العلامة التجارية والهوية">Brand &amp; Identity</option>
+                                    <option value="other-design" data-i18n-ar="تصميم آخر">Other Design</option>
                                 </select>
                                 <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M4 6l4 4 4-4"/>
@@ -231,7 +231,7 @@
                     <div class="form-row" id="fieldPortfolio">
                         <div class="form-field">
                             <label class="form-label" for="portfolio"><span data-i18n="join.label.portfolio" data-i18n-ar="رابط المعرض">Portfolio Link</span></label>
-                            <input class="form-input" type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio.com">
+                            <input class="form-input" type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio.com" data-i18n-ph-ar="https://معرض-أعمالك.com">
                         </div>
                     </div>
 
@@ -239,14 +239,14 @@
                     <div id="investorFields">
                         <div class="form-row form-row--2">
                             <div class="form-field" id="fieldInvestmentRange">
-                                <label class="form-label" for="investmentRange">Investment Range (SAR)</label>
+                                <label class="form-label" for="investmentRange"><span data-i18n="join.label.invrange" data-i18n-ar="نطاق الاستثمار (ريال سعودي)">Investment Range (SAR)</span></label>
                                 <div class="form-select-wrap">
                                     <select class="form-select" id="investmentRange" name="investmentRange">
-                                        <option value="" disabled selected>Select investment range</option>
-                                        <option value="50k-100k">SAR 50,000 – 100,000</option>
-                                        <option value="100k-500k">SAR 100,000 – 500,000</option>
-                                        <option value="500k-1m">SAR 500,000 – 1,000,000</option>
-                                        <option value="1m+">SAR 1,000,000+</option>
+                                        <option value="" disabled selected data-i18n-ar="اختر نطاق الاستثمار">Select investment range</option>
+                                        <option value="50k-100k" data-i18n-ar="٥٠٬٠٠٠ – ١٠٠٬٠٠٠ ريال">SAR 50,000 – 100,000</option>
+                                        <option value="100k-500k" data-i18n-ar="١٠٠٬٠٠٠ – ٥٠٠٬٠٠٠ ريال">SAR 100,000 – 500,000</option>
+                                        <option value="500k-1m" data-i18n-ar="٥٠٠٬٠٠٠ – ١٬٠٠٠٬٠٠٠ ريال">SAR 500,000 – 1,000,000</option>
+                                        <option value="1m+" data-i18n-ar="١٬٠٠٠٬٠٠٠+ ريال">SAR 1,000,000+</option>
                                     </select>
                                     <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <path d="M4 6l4 4 4-4"/>
@@ -255,15 +255,15 @@
                             </div>
 
                             <div class="form-field" id="fieldInvestorType">
-                                <label class="form-label" for="investorType">Investor Type</label>
+                                <label class="form-label" for="investorType"><span data-i18n="join.label.invtype" data-i18n-ar="نوع المستثمر">Investor Type</span></label>
                                 <div class="form-select-wrap">
                                     <select class="form-select" id="investorType" name="investorType">
-                                        <option value="" disabled selected>Select investor type</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="family-office">Family Office</option>
-                                        <option value="institutional">Institutional</option>
-                                        <option value="vc">Venture Capital</option>
-                                        <option value="angel">Angel Investor</option>
+                                        <option value="" disabled selected data-i18n-ar="اختر نوع المستثمر">Select investor type</option>
+                                        <option value="individual" data-i18n-ar="فرد">Individual</option>
+                                        <option value="family-office" data-i18n-ar="مكتب عائلي">Family Office</option>
+                                        <option value="institutional" data-i18n-ar="مؤسسي">Institutional</option>
+                                        <option value="vc" data-i18n-ar="رأس مال مغامر">Venture Capital</option>
+                                        <option value="angel" data-i18n-ar="مستثمر ملاك">Angel Investor</option>
                                     </select>
                                     <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <path d="M4 6l4 4 4-4"/>
@@ -280,28 +280,28 @@
                                     <path d="M10 6v5M10 14v.5"/>
                                 </svg>
                             </div>
-                            <p>The Investor section is for <strong>expression of interest only</strong>. We are not accepting investments through this website. Any future investment opportunity will be conducted through properly licensed channels in compliance with Saudi CMA regulations. No money is being requested or accepted at this stage.</p>
+                            <p><span data-i18n="join.inv.disclaimer" data-i18n-ar="قسم المستثمر هو <strong>للتعبير عن الاهتمام فقط</strong>. لا نقبل الاستثمارات عبر هذا الموقع. أي فرصة استثمارية مستقبلية ستُجرى عبر قنوات مرخصة وفق أنظمة هيئة السوق المالية السعودية. لا يُطلب أي أموال ولا يُقبل في هذه المرحلة.">The Investor section is for <strong>expression of interest only</strong>. We are not accepting investments through this website. Any future investment opportunity will be conducted through properly licensed channels in compliance with Saudi CMA regulations. No money is being requested or accepted at this stage.</span></p>
                         </div>
                     </div>
 
                     <!-- How did you hear -->
                     <div class="form-group-header">
                         <span class="form-group-num">03</span>
-                        <span class="form-group-label">Almost There</span>
+                        <span class="form-group-label"><span data-i18n="join.form.almost" data-i18n-ar="اقتربت من الإنهاء">Almost There</span></span>
                     </div>
 
                     <div class="form-row">
                         <div class="form-field">
-                            <label class="form-label" for="hearAbout">How did you hear about us?</label>
+                            <label class="form-label" for="hearAbout"><span data-i18n="join.label.hear" data-i18n-ar="كيف سمعت عنا؟">How did you hear about us?</span></label>
                             <div class="form-select-wrap">
                                 <select class="form-select" id="hearAbout" name="hearAbout">
-                                    <option value="" disabled selected>Select an option</option>
-                                    <option value="social">Social Media</option>
-                                    <option value="friend">Friend or Colleague</option>
-                                    <option value="news">News / Press</option>
-                                    <option value="linkedin">LinkedIn</option>
-                                    <option value="search">Search Engine</option>
-                                    <option value="other">Other</option>
+                                    <option value="" disabled selected data-i18n-ar="اختر خيارًا">Select an option</option>
+                                    <option value="social" data-i18n-ar="وسائل التواصل الاجتماعي">Social Media</option>
+                                    <option value="friend" data-i18n-ar="صديق أو زميل">Friend or Colleague</option>
+                                    <option value="news" data-i18n-ar="أخبار / صحافة">News / Press</option>
+                                    <option value="linkedin" data-i18n-ar="لينكدإن">LinkedIn</option>
+                                    <option value="search" data-i18n-ar="محرك البحث">Search Engine</option>
+                                    <option value="other" data-i18n-ar="أخرى">Other</option>
                                 </select>
                                 <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M4 6l4 4 4-4"/>
@@ -316,14 +316,14 @@
                             <input class="form-checkbox" type="checkbox" id="termsAgree" name="termsAgree" required>
                             <span class="form-checkbox-custom"></span>
                             <span class="form-checkbox-text">
-                                I have read and agree to the <a href="terms-of-use.html" target="_blank">Terms of Use</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. I understand this is a voluntary collective and no financial commitment is being made.
+                                <span data-i18n="join.terms.text" data-i18n-ar="لقد قرأت وأوافق على <a href='terms-of-use.html' target='_blank'>شروط الاستخدام</a> و<a href='privacy-policy.html' target='_blank'>سياسة الخصوصية</a>. أفهم أن هذا تجمّع تطوعي ولا يُتّخذ أي التزام مالي.">I have read and agree to the <a href="terms-of-use.html" target="_blank">Terms of Use</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. I understand this is a voluntary collective and no financial commitment is being made.</span>
                             </span>
                         </label>
                     </div>
 
                     <!-- Submit -->
                     <button type="submit" class="join-submit-btn">
-                        <span>Join the Collective</span>
+                        <span><span data-i18n="join.submit" data-i18n-ar="انضم إلى التجمّع">Join the Collective</span></span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>

@@ -1956,3 +1956,98 @@
         padding: 2.5rem 1.25rem;
     }
 }
+
+/* ============================================================
+   Arabic / RTL Overrides
+   ============================================================ */
+
+html[dir="rtl"] .inline-quote {
+    border-left: none;
+    border-right: 3px solid #B8915A;
+    padding-left: 0;
+    padding-right: 2rem;
+}
+
+html[dir="rtl"] .fi-editorial-left {
+    border-right: none;
+    border-left: 1px solid rgba(184, 145, 90, 0.18);
+    padding-right: 0;
+    padding-left: 2rem;
+}
+
+/* RTL Overrides — auto-generated */
+
+/* Story hero decoration corners: swap left↔right */
+html[dir="rtl"] .deco-corner-tl {
+    left: auto;
+    right: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: none;
+}
+html[dir="rtl"] .deco-corner-br {
+    right: auto;
+    left: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none;
+}
+
+/* Deco lines: left:0 / right:0 positional swap */
+html[dir="rtl"] .deco-line-1 {
+    left: auto;
+    right: 0;
+}
+html[dir="rtl"] .deco-line-2 {
+    right: auto;
+    left: 0;
+}
+
+/* Inline quote: border-left → border-right */
+/* (already handled above; this is confirmation) */
+
+/* Frame corner tl/br in quote section */
+html[dir="rtl"] .frame-corner.frame-tl {
+    left: auto;
+    right: 0;
+    border-top: 1px solid #B8915A;
+    border-right: 1px solid #B8915A;
+    border-left: none;
+}
+html[dir="rtl"] .frame-corner.frame-br {
+    right: auto;
+    left: 0;
+    border-bottom: 1px solid #B8915A;
+    border-left: 1px solid #B8915A;
+    border-right: none;
+}
+
+/* Quote image badge: right:-20px → left:-20px */
+html[dir="rtl"] .quote-image-badge {
+    right: auto;
+    left: -20px;
+}
+
+/* Realization decoration: left:2rem → right:2rem */
+html[dir="rtl"] .realization-decoration {
+    left: auto;
+    right: 2rem;
+}
+
+/* fi-editorial-left padding-right → padding-left (already set above) */
+
+/* fi-arabic-bar: decorative LTR bar — fine as-is in RTL (gradient still from top) */
+
+/* fi-title-divider: gradient left→right — flip for RTL */
+html[dir="rtl"] .fi-title-divider {
+    background: linear-gradient(270deg, #B8915A 0%, transparent 100%);
+}
+
+/* Chapter year badge: right:-40px → left:-40px */
+html[dir="rtl"] .chapter-year-badge {
+    right: auto;
+    left: -40px;
+    transform-origin: bottom left;
+}

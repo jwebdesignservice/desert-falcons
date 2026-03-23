@@ -867,3 +867,75 @@
     .des-clar-header { flex-direction: column; gap: 1rem; }
     .des-qual-grid { grid-template-columns: 1fr; }
 }
+
+/* RTL Overrides — auto-generated */
+
+/* Corner marks: swap left↔right positioning */
+html[dir="rtl"] .dhc-tl { left: auto; right: 2rem; border-width: 1px 1px 0 0; }
+html[dir="rtl"] .dhc-tr { right: auto; left: 2rem; border-width: 1px 0 0 1px; }
+html[dir="rtl"] .dhc-bl { left: auto; right: 2rem; border-width: 0 1px 1px 0; }
+html[dir="rtl"] .dhc-br { right: auto; left: 2rem; border-width: 0 0 1px 1px; }
+
+/* Sketch grid horizontal lines: left:0 decorative — no functional flip needed */
+
+/* Sketch arc: bottom-left arc swap */
+html[dir="rtl"] .skg-arc-2 {
+    left: auto;
+    right: 5%;
+}
+
+/* Clarification body: padding-left → padding-right */
+html[dir="rtl"] .des-clar-body {
+    padding-left: 0;
+    padding-right: calc(48px + 2rem);
+}
+@media (max-width: 900px) {
+    html[dir="rtl"] .des-clar-body { padding-right: 0; }
+}
+
+/* Discipline list items: bullet uses left:0, padding-left */
+html[dir="rtl"] .des-disc-areas li {
+    padding-left: 0;
+    padding-right: 1rem;
+}
+html[dir="rtl"] .des-disc-areas li::before {
+    left: auto;
+    right: 0;
+}
+
+/* Discipline number column: padding-left → padding-right */
+html[dir="rtl"] .des-disc-num-col {
+    padding-left: 0;
+    padding-right: 1rem;
+}
+
+/* Philosophy: border-left on quote → border-right */
+html[dir="rtl"] .des-phil-quote {
+    border-left: none;
+    border-right: 2px solid rgba(184,145,90,0.25);
+}
+
+/* Philosophy image tag: left → right */
+html[dir="rtl"] .des-phil-image-tag {
+    left: auto;
+    right: 2.5rem;
+}
+
+/* Philosophy content panel: border-left → border-right */
+html[dir="rtl"] .des-phil-content-panel {
+    border-left: none;
+    border-right: 1px solid rgba(184,145,90,0.08);
+}
+
+/* Quality card CTA: border-left → border-right */
+html[dir="rtl"] .des-qual-card--cta {
+    border-left: none;
+    border-right: 2px solid rgba(184,145,90,0.2);
+}
+
+/* Quality card bottom pseudo: gradient from right in RTL */
+html[dir="rtl"] .des-qual-card::after {
+    left: auto;
+    right: 0;
+    background: linear-gradient(270deg, #B8915A, transparent);
+}

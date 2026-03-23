@@ -822,3 +822,66 @@
     .inv-cta-reassurance { flex-direction: column; align-items: center; }
     .inv-register-btn { min-width: unset; width: 100%; }
 }
+
+/* ============================================================
+   Arabic / RTL Overrides
+   ============================================================ */
+
+html[dir="rtl"] .inv-section-header--left {
+    text-align: right;
+}
+
+html[dir="rtl"] .idb-suitability {
+    border-left: none;
+    border-right: 2px solid rgba(184,145,90,0.4);
+    padding-left: 0;
+    padding-right: var(--space-sm);
+}
+
+html[dir="rtl"] .ifaq-a p {
+    border-left: none;
+    border-right: 2px solid var(--royal-green);
+    padding-left: 0;
+    padding-right: var(--space-sm);
+}
+
+/* RTL Overrides — auto-generated */
+
+/* Hero corner marks: swap left↔right */
+html[dir="rtl"] .ihc-tl { left: auto; right: 0; border-width: 1px 1px 0 0; }
+html[dir="rtl"] .ihc-tr { right: auto; left: 0; border-width: 1px 0 0 1px; }
+html[dir="rtl"] .ihc-bl { left: auto; right: 0; border-width: 0 1px 1px 0; }
+html[dir="rtl"] .ihc-br { right: auto; left: 0; border-width: 0 0 1px 1px; }
+
+/* Hero glow glows: left:-100px is decorative — swap for visual balance */
+html[dir="rtl"] .inv-hero-glow-1 {
+    left: auto;
+    right: -100px;
+}
+html[dir="rtl"] .inv-hero-glow-2 {
+    right: auto;
+    left: -80px;
+}
+
+/* Profile glow: right:-200px → left:-200px */
+html[dir="rtl"] .profile-bg-glow {
+    right: auto;
+    left: -200px;
+}
+
+/* Thesis card number: positioned top/right → top/left */
+html[dir="rtl"] .itc-num {
+    right: auto;
+    left: var(--space-md);
+}
+
+/* Terms table: border-right on term → border-left */
+html[dir="rtl"] .itt-term {
+    border-right: none;
+    border-left: 1px solid var(--border-color);
+}
+
+/* Profile item hover: translateX(6px) → translateX(-6px) */
+html[dir="rtl"] .ipl-item:hover {
+    transform: translateX(-6px);
+}

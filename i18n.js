@@ -53,6 +53,18 @@
       }
     });
 
+    // Swap select option text
+    document.querySelectorAll('option[data-i18n-ar]').forEach(function (el) {
+      if (!el.hasAttribute('data-i18n-en')) {
+        el.setAttribute('data-i18n-en', el.textContent);
+      }
+      if (lang === 'ar') {
+        el.textContent = el.getAttribute('data-i18n-ar');
+      } else {
+        el.textContent = el.getAttribute('data-i18n-en');
+      }
+    });
+
     // Update toggle button text
     document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
       btn.textContent = lang === 'ar' ? 'EN' : 'عربي';

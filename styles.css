@@ -1905,3 +1905,79 @@ html[dir="rtl"] .two-col,
 html[dir="rtl"] .split-row {
     flex-direction: row-reverse;
 }
+
+/* RTL Overrides — auto-generated */
+
+/* Navbar mobile menu: slides from left in LTR, flip for RTL */
+html[dir="rtl"] .nav-menu {
+    right: auto;
+    left: -100%;
+}
+html[dir="rtl"] .nav-menu.active {
+    left: 0;
+    right: auto;
+}
+html[dir="rtl"] .nav-menu {
+    border-left: none;
+    border-right: 1px solid var(--border-color);
+}
+
+/* Footer logo: left-align → right-align in RTL */
+html[dir="rtl"] .footer-brand {
+    align-items: flex-end !important;
+    text-align: right !important;
+}
+html[dir="rtl"] .footer-logo {
+    align-items: flex-end !important;
+}
+html[dir="rtl"] .footer-logo-text {
+    text-align: right !important;
+}
+html[dir="rtl"] .nav-logo-text {
+    text-align: right;
+}
+
+/* Nav lang toggle: margin-left → margin-right */
+html[dir="rtl"] .lang-toggle-li {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+/* List items with left accent line */
+html[dir="rtl"] .list-item:hover .list-number {
+    padding-left: 0;
+    padding-right: var(--space-sm);
+}
+html[dir="rtl"] .list-number::before {
+    left: auto;
+    right: 0;
+}
+
+/* Button shine effect: left:-100% → right:-100% */
+html[dir="rtl"] .btn::before {
+    left: auto;
+    right: -100%;
+}
+html[dir="rtl"] .btn:hover::before {
+    right: 100%;
+    left: auto;
+}
+
+/* btn-arrow should move left in RTL */
+html[dir="rtl"] .btn:hover .btn-arrow {
+    transform: translateX(-5px);
+}
+
+/* text-link arrow */
+html[dir="rtl"] .text-link:hover svg {
+    transform: translateX(-4px);
+}
+
+/* Loader bar fills left→right — fine for decoration; no flip needed */
+
+/* Footer bottom: left-to-right flex becomes right-to-left */
+html[dir="rtl"] .footer-bottom {
+    flex-direction: row-reverse;
+}
+
+/* Hero lines: positioned with left: %; keep for decorative symmetry — no flip needed */
