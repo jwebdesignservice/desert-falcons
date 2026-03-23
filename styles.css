@@ -1850,19 +1850,33 @@ html[dir="rtl"] .lang-toggle-li {
     margin-right: 0.5rem;
 }
 
-/* Hero and sections */
-html[dir="rtl"] .hero-content,
+/* Hero content: text-align:center in LTR — keep direction rtl but do NOT override to right */
+html[dir="rtl"] .hero-content {
+    direction: rtl;
+}
+
+/* Section / chapter intros: no explicit text-align in LTR (inherits left) → right in RTL */
 html[dir="rtl"] .section-intro,
 html[dir="rtl"] .chapter-intro {
     direction: rtl;
     text-align: right;
 }
 
-/* Centered elements stay centered */
+/* Hero titles stay centred — hero-content is text-align:center in LTR */
 html[dir="rtl"] .hero-title,
+html[dir="rtl"] .hero-subtitle {
+    text-align: center;
+}
+
+/* Section / chapter titles: left in LTR → right in RTL (not centre) */
 html[dir="rtl"] .section-title,
 html[dir="rtl"] .chapter-title,
 html[dir="rtl"] .chapter-title-large {
+    text-align: right;
+}
+
+/* CTA section is text-align:center in LTR — keep its title centred in RTL */
+html[dir="rtl"] .cta-content .section-title {
     text-align: center;
 }
 

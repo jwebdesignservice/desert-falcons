@@ -12,6 +12,14 @@ Full site audit — review every page, check for broken links, inconsistencies, 
 - Brand/tone not yet confirmed by operators — do NOT write new copy
 - Supabase present — do not modify DB schema
 
+## Nightly Agent Rules (hard policy — no exceptions)
+
+- Always create a fresh `nightly/YYYY-MM-DD` branch from latest `main` before touching anything
+- NEVER commit to main. NEVER merge to main. NEVER deploy.
+- Use the iteration loop: make changes → validate (check files, no broken HTML/JS) → pass = commit, fail = revert + try different approach
+- Max 5 iterations, 45-minute budget. If nothing ships, document in GOTCHAS.md and report failure.
+- Branch stays isolated until operators approve in the morning via synthesis handover.
+
 ## Off-Limits
 - Do not modify supabase-setup.sql
 - Do not write new marketing copy (brand not confirmed)

@@ -2700,6 +2700,11 @@ html.ar .thread-preview {
   text-align: right;
 }
 
+/* Founder page header: text-align:center in LTR — keep centred in RTL */
+html.ar .founder-page-header {
+  text-align: center;
+}
+
 /* Founder cards */
 html.ar .founder-card-title,
 html.ar .founder-card-date,
@@ -2762,10 +2767,11 @@ html.ar .login-card {
   direction: rtl;
   text-align: right;
 }
+/* login-title / login-sub / login-footer are text-align:center in LTR — keep centred */
 html.ar .login-title,
 html.ar .login-sub,
 html.ar .login-footer {
-  text-align: right;
+  text-align: center;
 }
 html.ar .form-checkbox {
   flex-direction: row-reverse;
