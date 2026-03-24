@@ -73,4 +73,6 @@ If you encounter an unrecoverable error, post to Discord channel 148569782732482
 - Portal is a separate product — treat it distinctly from the public site in all audit findings
 
 ## Recently Completed
+- 2026-03-24: Full site audit — DEV-IN-PROGRESS.md created (258-line prioritised fix list, both public + portal)
 - 2026-03-23: Arabic RTL i18n + alignment fixes across all pages and portal
+ll pages and portal

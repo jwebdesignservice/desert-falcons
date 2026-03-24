@@ -2644,21 +2644,49 @@ html.ar .login-lang-toggle {
   }
 }
 
-/* ── Global RTL text alignment ── */
-html.ar .portal-content,
-html.ar .portal-content * {
-  text-align: right;
+/* ── Global RTL text alignment ──
+   Only set direction here — text-align:right is handled by
+   html.ar { direction:rtl } (default start = right in RTL).
+   The old wildcard * selector was crushing text-align:center
+   on explicitly centred elements, so it has been removed. */
+html.ar .portal-content {
+  direction: rtl;
 }
 
-/* Keep centre-aligned elements centred */
+/* ── Preserve centre-alignment for elements that are
+   text-align:center in LTR — must stay centred in RTL ── */
+
+/* Member cards (grid cards) */
 html.ar .member-card,
 html.ar .member-card * {
   text-align: center;
 }
 
-/* Keep numbers, badges, icons inline-neutral */
+/* Analytics stats */
 html.ar .analytics-stat,
 html.ar .analytics-stat-value {
+  text-align: center;
+}
+
+/* Loading / empty-state text */
+html.ar .loading-text {
+  text-align: center;
+}
+
+/* Download button (resource cards) */
+html.ar .btn-download {
+  text-align: center;
+}
+
+/* Icon columns in cards */
+html.ar .resource-icon,
+html.ar .founder-card-type-icon,
+html.ar .dash-resource-icon {
+  text-align: center;
+}
+
+/* Login logo block */
+html.ar .login-logo {
   text-align: center;
 }
 
