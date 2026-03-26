@@ -169,7 +169,7 @@
           ${adminThreadControls}
         </div>
         <div class="thread-detail" id="detail-${t.id}">
-          <div class="reply-list" id="replies-${t.id}"><div class="loading-text">Loading replies…</div></div>
+          <div class="reply-list" id="replies-${t.id}"><div class="loading-text">${_t('Loading replies…')}</div></div>
           <div class="reply-form">
             <textarea id="replyText-${t.id}" placeholder="${_t('Write a reply…')}"></textarea>
             <button class="btn-primary" style="width:auto;padding:0.5rem 1.25rem;" onclick="submitReply('${t.id}')">${_t('Post Reply')}</button>
@@ -256,7 +256,7 @@
         thread.discussion_replies[0].count = Math.max(0, (thread.discussion_replies[0].count || 1) - 1);
       }
     } else {
-      alert('Failed to delete reply: ' + error.message);
+      alert(_t('Failed to delete reply: ') + error.message);
     }
   };
 
@@ -282,7 +282,7 @@
     const btn   = document.getElementById('threadSubmit');
     const alert = document.getElementById('threadAlert');
     btn.disabled = true;
-    btn.textContent = 'Posting…';
+    btn.textContent = _t('Posting…');
     alert.classList.add('hidden');
 
     const category = document.getElementById('threadCategory').value;

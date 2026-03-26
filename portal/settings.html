@@ -254,7 +254,7 @@
     const btn   = document.getElementById('avatarSave');
     const alert = document.getElementById('avatarAlert');
     btn.disabled = true;
-    btn.textContent = 'Uploading…';
+    btn.textContent = _t('Uploading…');
     alert.classList.add('hidden');
 
     const ext  = file.name.split('.').pop().toLowerCase();
@@ -266,10 +266,10 @@
 
     if (uploadError) {
       alert.className = 'form-alert form-alert--error';
-      alert.textContent = 'Upload failed: ' + uploadError.message;
+      alert.textContent = _t('Upload failed: ') + uploadError.message;
       alert.classList.remove('hidden');
       btn.disabled = false;
-      btn.textContent = 'Upload Photo';
+      btn.textContent = _t('Upload Photo');
       return;
     }
 
@@ -287,14 +287,14 @@
       alert.textContent = 'Photo uploaded but profile update failed: ' + updateError.message;
     } else {
       alert.className = 'form-alert form-alert--success';
-      alert.textContent = '✓ Profile photo updated.';
+      alert.textContent = _t('✓ Profile photo updated.');
       // Refresh sidebar avatar
       const sa = document.getElementById('sidebarAvatar');
       if (sa) sa.innerHTML = `<img src="${avatarUrl}" alt="Avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
       setTimeout(() => alert.classList.add('hidden'), 3000);
     }
     btn.disabled = false;
-    btn.textContent = 'Upload Photo';
+    btn.textContent = _t('Upload Photo');
   });
 
   // ── Populate profile form ──
@@ -316,7 +316,7 @@
     const btn   = document.getElementById('profileSave');
     const alert = document.getElementById('profileAlert');
     btn.disabled = true;
-    btn.textContent = 'Saving…';
+    btn.textContent = _t('Saving…');
     alert.classList.add('hidden');
 
     const { error } = await _supabase.from('members').update({
@@ -331,10 +331,10 @@
       alert.textContent = error.message;
     } else {
       alert.className = 'form-alert form-alert--success';
-      alert.textContent = '✓ Profile updated successfully.';
+      alert.textContent = _t('✓ Profile updated successfully.');
     }
     btn.disabled = false;
-    btn.textContent = 'Save Profile';
+    btn.textContent = _t('Save Profile');
   });
 
   // ── Load and save notification preferences ──
@@ -347,7 +347,7 @@
     const btn   = document.getElementById('notifSave');
     const alert = document.getElementById('notifAlert');
     btn.disabled = true;
-    btn.textContent = 'Saving…';
+    btn.textContent = _t('Saving…');
     alert.classList.add('hidden');
 
     const ok = await saveNotificationPrefs(session.user.id, {
@@ -359,13 +359,13 @@
     alert.classList.remove('hidden');
     if (ok) {
       alert.className = 'form-alert form-alert--success';
-      alert.textContent = '✓ Notification preferences saved.';
+      alert.textContent = _t('✓ Notification preferences saved.');
     } else {
       alert.className = 'form-alert form-alert--error';
-      alert.textContent = 'Failed to save preferences. Please try again.';
+      alert.textContent = _t('Failed to save preferences. Please try again.');
     }
     btn.disabled = false;
-    btn.textContent = 'Save Preferences';
+    btn.textContent = _t('Save Preferences');
     setTimeout(() => alert.classList.add('hidden'), 3000);
   });
 
@@ -374,7 +374,7 @@
     const btn   = document.getElementById('resetPasswordBtn');
     const alert = document.getElementById('passwordAlert');
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = _t('Sending…');
     alert.classList.add('hidden');
 
     const { error } = await _supabase.auth.resetPasswordForEmail(session.user.email, {
@@ -387,10 +387,10 @@
       alert.textContent = error.message;
     } else {
       alert.className = 'form-alert form-alert--success';
-      alert.textContent = '✓ Password change link sent to ' + session.user.email;
+      alert.textContent = _t('✓ Password change link sent to') + ' ' + session.user.email;
     }
     btn.disabled = false;
-    btn.textContent = 'Send Reset Link';
+    btn.textContent = _t('Send Reset Link');
   });
 })();
 </script>

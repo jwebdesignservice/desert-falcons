@@ -253,8 +253,8 @@
 
   document.getElementById('newResourceBtn').addEventListener('click', () => {
     editingId = null;
-    document.getElementById('resourceModalTitle').textContent = 'Upload Resource';
-    document.getElementById('resourceSubmit').textContent = 'Upload Resource';
+    document.getElementById('resourceModalTitle').textContent = _t('Upload Resource');
+    document.getElementById('resourceSubmit').textContent = _t('Upload Resource');
     document.getElementById('fileUploadGroup').style.display = '';
     openModal();
   });
@@ -264,8 +264,8 @@
     const r = allResources.find(x => x.id === id);
     if (!r) return;
     editingId = id;
-    document.getElementById('resourceModalTitle').textContent = 'Edit Resource';
-    document.getElementById('resourceSubmit').textContent = 'Save Changes';
+    document.getElementById('resourceModalTitle').textContent = _t('Edit Resource');
+    document.getElementById('resourceSubmit').textContent = _t('Save Changes');
     document.getElementById('fileUploadGroup').style.display = 'none';
     document.getElementById('resTitle').value = r.title || '';
     document.getElementById('resCategory').value = r.category || 'design_briefs';
@@ -281,7 +281,7 @@
     const alert = document.getElementById('resourceFormAlert');
     const wasEditing = !!editingId;
     btn.disabled = true;
-    btn.textContent = wasEditing ? 'Saving…' : 'Uploading…';
+    btn.textContent = wasEditing ? _t('Saving…') : _t('Uploading…');
     alert.classList.add('hidden');
 
     let file_url = document.getElementById('resFileUrl').value.trim() || null;
@@ -298,7 +298,7 @@
           alert.textContent = uploadError.message;
           alert.classList.remove('hidden');
           btn.disabled = false;
-          btn.textContent = 'Upload Resource';
+          btn.textContent = _t('Upload Resource');
           return;
         }
         const { data: urlData } = _supabase.storage.from('resources').getPublicUrl(path);
@@ -321,7 +321,7 @@
     }
 
     btn.disabled = false;
-    btn.textContent = wasEditing ? 'Save Changes' : 'Upload Resource';
+    btn.textContent = wasEditing ? _t('Save Changes') : _t('Upload Resource');
 
     if (error) {
       alert.className = 'form-alert form-alert--error';

@@ -53,6 +53,26 @@
       }
     });
 
+    // Swap aria-labels
+    document.querySelectorAll('[data-i18n-aria-ar]').forEach(function (el) {
+      if (!el.hasAttribute('data-i18n-aria-en')) {
+        el.setAttribute('data-i18n-aria-en', el.getAttribute('aria-label') || '');
+      }
+      el.setAttribute('aria-label', lang === 'ar'
+        ? el.getAttribute('data-i18n-aria-ar')
+        : el.getAttribute('data-i18n-aria-en'));
+    });
+
+    // Swap alt attributes
+    document.querySelectorAll('[data-i18n-alt-ar]').forEach(function (el) {
+      if (!el.hasAttribute('data-i18n-alt-en')) {
+        el.setAttribute('data-i18n-alt-en', el.getAttribute('alt') || '');
+      }
+      el.setAttribute('alt', lang === 'ar'
+        ? el.getAttribute('data-i18n-alt-ar')
+        : el.getAttribute('data-i18n-alt-en'));
+    });
+
     // Swap select option text
     document.querySelectorAll('option[data-i18n-ar]').forEach(function (el) {
       if (!el.hasAttribute('data-i18n-en')) {

@@ -223,7 +223,7 @@
     const alert = document.getElementById('updateFormAlert');
     const wasEditing = !!editingId;
     btn.disabled = true;
-    btn.textContent = wasEditing ? 'Saving…' : 'Posting…';
+    btn.textContent = wasEditing ? _t('Saving…') : _t('Posting…');
     alert.classList.add('hidden');
 
     const payload = {
