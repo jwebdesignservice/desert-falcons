@@ -206,6 +206,7 @@ select.form-input {
 select.form-input option {
   background: #111111;
   color: #ffffff;
+  background-image: none;
 }
 select.form-input:focus {
   border-color: var(--desert-gold);
