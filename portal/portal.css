@@ -2927,3 +2927,208 @@ html.ar .login-corner--br::after  { right: auto; left: 0; }
 html.ar .avatar-upload-controls {
   align-items: flex-end;
 }
+
+/* ============================================================
+   RTL LAYOUT CORRECTIONS — Full portal structural fixes
+   ============================================================ */
+
+/* ── Activity feed: avatar on right, content flows right ── */
+html.ar .activity-item {
+  flex-direction: row-reverse;
+  border-left: none;
+  border-right: 2px solid var(--border);
+}
+html.ar .activity-item:hover {
+  border-right-color: var(--desert-gold);
+  border-left: none;
+}
+html.ar .activity-content,
+html.ar .activity-desc,
+html.ar .activity-time {
+  text-align: right;
+}
+
+/* ── Thread items: title and meta on right, unread dot on left ── */
+html.ar .thread-header {
+  flex-direction: row-reverse;
+}
+html.ar .thread-meta {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+html.ar .thread-title,
+html.ar .thread-preview {
+  text-align: right;
+}
+html.ar .unread-dot {
+  right: auto;
+  left: 1.25rem;
+}
+/* Category sidebar: border-left → border-right */
+html.ar .category-link {
+  border-left: none;
+  border-right: 2px solid transparent;
+  text-align: right;
+}
+html.ar .category-link.active,
+html.ar .category-link:hover {
+  border-right-color: var(--desert-gold);
+}
+
+/* ── Update cards: header reversed, body text right ── */
+html.ar .update-header {
+  flex-direction: row-reverse;
+}
+html.ar .update-title,
+html.ar .update-meta,
+html.ar .update-body {
+  text-align: right;
+}
+
+/* ── Founder cards: icon on right, content text right ── */
+html.ar .founder-card {
+  flex-direction: row-reverse;
+}
+html.ar .founder-card-header {
+  flex-direction: row-reverse;
+}
+html.ar .founder-card-title,
+html.ar .founder-card-date,
+html.ar .founder-card-body {
+  text-align: right;
+}
+
+/* ── Resource cards: icon on right ── */
+html.ar .resource-card {
+  flex-direction: row-reverse;
+}
+html.ar .resource-meta {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+html.ar .resource-title,
+html.ar .resource-meta {
+  text-align: right;
+}
+
+/* ── Event cards: title, description, meta right-aligned ── */
+html.ar .event-card {
+  flex-direction: row-reverse;
+}
+html.ar .event-body {
+  text-align: right;
+}
+html.ar .event-meta {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  text-align: right;
+}
+html.ar .event-title,
+html.ar .event-desc {
+  text-align: right;
+}
+
+/* ── Announcement items: full RTL ── */
+html.ar .announcement-header {
+  flex-direction: row-reverse;
+}
+html.ar .announcement-preview,
+html.ar .announcement-body,
+html.ar .announcement-title {
+  text-align: right;
+}
+
+/* ── Dashboard quick-stat rows ── */
+html.ar .dash-mini-info,
+html.ar .dash-event-info,
+html.ar .dash-resource-info,
+html.ar .dash-announce-title,
+html.ar .dash-announce-body {
+  text-align: right;
+}
+
+/* ── Applications: header and fields ── */
+html.ar .app-header {
+  flex-direction: row-reverse;
+}
+html.ar .app-name,
+html.ar .app-email,
+html.ar .app-field,
+html.ar .app-meta,
+html.ar .notes-label {
+  text-align: right;
+}
+html.ar .app-actions {
+  flex-direction: row-reverse;
+}
+
+/* ── Page headers across all portal pages ── */
+html.ar .page-header {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+html.ar .page-title,
+html.ar .page-subtitle {
+  text-align: right;
+}
+
+/* ── Form labels and inputs ── */
+html.ar .form-label {
+  text-align: right;
+  display: block;
+}
+html.ar .form-row-inline {
+  flex-direction: row-reverse;
+}
+
+/* ── Settings layout ── */
+html.ar .settings-card-header {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+html.ar .notif-row {
+  flex-direction: row-reverse;
+}
+html.ar .notif-title,
+html.ar .notif-desc,
+html.ar .notif-info {
+  text-align: right;
+}
+html.ar .settings-account-row {
+  flex-direction: row-reverse;
+}
+
+/* ── Modal ── */
+html.ar .modal-title,
+html.ar .modal-subtitle {
+  text-align: right;
+}
+
+/* ── Onboarding steps ── */
+html.ar .step-content,
+html.ar .step-title,
+html.ar .step-desc {
+  text-align: right;
+}
+
+/* ── Admin actions group ── */
+html.ar .admin-actions {
+  flex-direction: row-reverse;
+}
+
+/* ── Section block headers ── */
+html.ar .section-block-header {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* ── Sidebar member info text ── */
+html.ar .sidebar-member-name,
+html.ar .sidebar-member-role {
+  text-align: right;
+}
+
+/* ── Logo tag in sidebar ── */
+html.ar .logo-tag {
+  text-align: right;
+}
