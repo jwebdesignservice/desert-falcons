@@ -60,6 +60,8 @@
     'complete': 'مكتمل',
     'in_progress': 'قيد التنفيذ',
     'pending': 'معلّق',
+    'approved': 'مقبول',
+    'rejected': 'مرفوض',
 
     // Dashboard
     'Your inner circle overview': 'نظرة عامة على الدائرة الداخلية',
@@ -294,6 +296,22 @@
     'Delete this announcement? This cannot be undone.': 'حذف هذا الإعلان؟ لا يمكن التراجع عن هذا الإجراء.',
     'Delete this update? This cannot be undone.': 'حذف هذا التحديث؟ لا يمكن التراجع عن هذا الإجراء.',
     'Delete this resource? This cannot be undone.': 'حذف هذا المورد؟ لا يمكن التراجع عن هذا الإجراء.',
+
+    // Discussions — inline strings
+    'Write a reply…': 'اكتب رداً…',
+
+    // Events — modal edit title
+    'Edit Event': 'تعديل الفعالية',
+
+    // Updates — modal edit title
+    'Edit Update': 'تعديل التحديث',
+
+    // Applications — inline placeholders and feedback
+    'Add notes…': 'أضف ملاحظات…',
+
+    // Settings — upload/save feedback
+    'Upload failed: ': 'فشل الرفع: ',
+    '✓ Password change link sent to': '✓ تم إرسال رابط تغيير كلمة المرور إلى',
   };
 
   // ── Detect and store language ──────────────────────────────

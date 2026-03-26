@@ -247,7 +247,7 @@
     const alert = document.getElementById('eventFormAlert');
     const wasEditing = !!editingId;
     btn.disabled = true;
-    btn.textContent = wasEditing ? 'Saving…' : 'Creating…';
+    btn.textContent = wasEditing ? _t('Saving…') : _t('Creating…');
     alert.classList.add('hidden');
 
     const payload = {

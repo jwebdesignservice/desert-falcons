@@ -297,11 +297,11 @@
 
   function interestLabel(val) {
     const map = {
-      engineer: 'Engineer',
-      designer: 'Designer',
-      investor: 'Investor',
-      advisor:  'Advisor',
-      general:  'General',
+      engineer: _t('Engineer'),
+      designer: _t('Designer'),
+      investor: _t('Investor'),
+      advisor:  _t('Advisor'),
+      general:  _t('General'),
     };
     return map[val] || val || '—';
   }
@@ -313,36 +313,36 @@
       : allApps.filter(a => a.status === activeStatus);
 
     if (!items.length) {
-      list.innerHTML = `<div class="loading-text">No ${activeStatus === 'all' ? '' : activeStatus + ' '}applications.</div>`;
+      list.innerHTML = `<div class="loading-text">${_t('No applications.')}</div>`;
       return;
     }
 
     list.innerHTML = items.map(a => {
       const statusClass = a.status || 'pending';
       const fields = [];
-      if (a.phone)             fields.push(`<div class="app-field">📞 <strong>Phone:</strong> ${escapeHtml(a.phone)}</div>`);
-      if (a.specialization)    fields.push(`<div class="app-field">🔧 <strong>Specialization:</strong> ${escapeHtml(a.specialization)}</div>`);
-      if (a.design_discipline) fields.push(`<div class="app-field">🎨 <strong>Design Discipline:</strong> ${escapeHtml(a.design_discipline)}</div>`);
-      if (a.experience)        fields.push(`<div class="app-field">📋 <strong>Experience:</strong> ${escapeHtml(a.experience)}</div>`);
-      if (a.investment_range)  fields.push(`<div class="app-field">💰 <strong>Investment Range:</strong> ${escapeHtml(a.investment_range)}</div>`);
-      if (a.investor_type)     fields.push(`<div class="app-field">🏦 <strong>Investor Type:</strong> ${escapeHtml(a.investor_type)}</div>`);
-      if (a.portfolio_url)     fields.push(`<div class="app-field">🔗 <strong>Portfolio:</strong> <a href="${escapeHtml(a.portfolio_url)}" target="_blank" style="color:var(--gold);">${escapeHtml(a.portfolio_url)}</a></div>`);
-      if (a.hear_about)        fields.push(`<div class="app-field">📣 <strong>Heard about us:</strong> ${escapeHtml(a.hear_about)}</div>`);
+      if (a.phone)             fields.push(`<div class="app-field">📞 <strong>${_t('Phone')}:</strong> ${escapeHtml(a.phone)}</div>`);
+      if (a.specialization)    fields.push(`<div class="app-field">🔧 <strong>${_t('Specialization')}:</strong> ${escapeHtml(a.specialization)}</div>`);
+      if (a.design_discipline) fields.push(`<div class="app-field">🎨 <strong>${_t('Design Discipline')}:</strong> ${escapeHtml(a.design_discipline)}</div>`);
+      if (a.experience)        fields.push(`<div class="app-field">📋 <strong>${_t('Experience')}:</strong> ${escapeHtml(a.experience)}</div>`);
+      if (a.investment_range)  fields.push(`<div class="app-field">💰 <strong>${_t('Investment Range')}:</strong> ${escapeHtml(a.investment_range)}</div>`);
+      if (a.investor_type)     fields.push(`<div class="app-field">🏦 <strong>${_t('Investor Type')}:</strong> ${escapeHtml(a.investor_type)}</div>`);
+      if (a.portfolio_url)     fields.push(`<div class="app-field">🔗 <strong>${_t('Portfolio')}:</strong> <a href="${escapeHtml(a.portfolio_url)}" target="_blank" style="color:var(--gold);">${escapeHtml(a.portfolio_url)}</a></div>`);
+      if (a.hear_about)        fields.push(`<div class="app-field">📣 <strong>${_t('Heard about us')}:</strong> ${escapeHtml(a.hear_about)}</div>`);
 
       const notesSection = `
         <div style="margin-top:0.75rem;">
-          <div class="notes-label">Admin notes</div>
-          <textarea class="notes-input" id="notes-${a.id}" rows="2" placeholder="Add notes…">${escapeHtml(a.notes || '')}</textarea>
+          <div class="notes-label">${_t('Admin notes')}</div>
+          <textarea class="notes-input" id="notes-${a.id}" rows="2" placeholder="${_t('Add notes…')}">${escapeHtml(a.notes || '')}</textarea>
         </div>`;
 
       const actionBtns = a.status === 'pending'
-        ? `<button class="btn-approve" onclick="updateStatus('${a.id}', 'approved')">✓ Approve</button>
-           <button class="btn-reject"  onclick="updateStatus('${a.id}', 'rejected')">✕ Reject</button>`
+        ? `<button class="btn-approve" onclick="updateStatus('${a.id}', 'approved')">${_t('✓ Approve')}</button>
+           <button class="btn-reject"  onclick="updateStatus('${a.id}', 'rejected')">${_t('✕ Reject')}</button>`
         : a.status === 'approved'
-          ? `<button class="btn-reject"   onclick="updateStatus('${a.id}', 'rejected')">✕ Reject</button>
-             <button class="btn-pending"  onclick="updateStatus('${a.id}', 'pending')">↩ Reset</button>`
-          : `<button class="btn-approve"  onclick="updateStatus('${a.id}', 'approved')">✓ Approve</button>
-             <button class="btn-pending"  onclick="updateStatus('${a.id}', 'pending')">↩ Reset</button>`;
+          ? `<button class="btn-reject"   onclick="updateStatus('${a.id}', 'rejected')">${_t('✕ Reject')}</button>
+             <button class="btn-pending"  onclick="updateStatus('${a.id}', 'pending')">${_t('↩ Reset')}</button>`
+          : `<button class="btn-approve"  onclick="updateStatus('${a.id}', 'approved')">${_t('✓ Approve')}</button>
+             <button class="btn-pending"  onclick="updateStatus('${a.id}', 'pending')">${_t('↩ Reset')}</button>`;
 
       return `
         <div class="app-card status-${statusClass}" id="app-${a.id}">
@@ -352,7 +352,7 @@
               <div class="app-email">${escapeHtml(a.email || '—')}</div>
             </div>
             <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
-              <span class="status-badge-app ${statusClass}">${statusClass}</span>
+              <span class="status-badge-app ${statusClass}">${_t(statusClass)}</span>
               <span class="app-date">${formatDate(a.created_at)}</span>
             </div>
           </div>
@@ -364,7 +364,7 @@
           ${notesSection}
           <div class="app-actions">
             ${actionBtns}
-            <button class="btn-secondary" style="font-size:0.7rem;padding:0.4rem 0.85rem;" onclick="saveNotes('${a.id}')">Save Notes</button>
+            <button class="btn-secondary" style="font-size:0.7rem;padding:0.4rem 0.85rem;" onclick="saveNotes('${a.id}')">${_t('Save Notes')}</button>
           </div>
         </div>`;
     }).join('');
@@ -402,7 +402,7 @@
       const btn = document.querySelector(`#app-${id} .app-actions .btn-secondary`);
       if (btn) {
         const orig = btn.textContent;
-        btn.textContent = 'Saved ✓';
+        btn.textContent = _t('Saved ✓');
         setTimeout(() => { btn.textContent = orig; }, 1500);
       }
     }
