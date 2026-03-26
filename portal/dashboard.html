@@ -317,7 +317,7 @@
     el.innerHTML = `
       <div class="dash-announcement">
         ${data.pinned ? '<div class="dash-announce-pin">📌 Pinned</div>' : ''}
-        <div class="dash-announce-title">${escapeHtml(data.title)}</div>
+        <div class="dash-announce-title">${escapeHtml((window.dfc_i18n?.isAr && data.title_ar) ? data.title_ar : data.title)}</div>
         <div class="dash-announce-date">${formatDate(data.created_at)}</div>
         <p class="dash-announce-body">${escapeHtml((data.body||'').slice(0,180))}${(data.body||'').length > 180 ? '…' : ''}</p>
         <a href="announcements.html" class="dash-announce-link">${_t('Read more →')}</a>
@@ -342,7 +342,7 @@
           <span class="dash-mini-mon">${d.toLocaleDateString('en-US',{month:'short'}).toUpperCase()}</span>
         </div>
         <div class="dash-mini-info">
-          <div class="dash-mini-title">${escapeHtml(ev.title)}</div>
+          <div class="dash-mini-title">${escapeHtml((window.dfc_i18n?.isAr && ev.title_ar) ? ev.title_ar : ev.title)}</div>
           <div class="dash-mini-badge">${typeBadgeHtml(ev.event_type)}</div>
         </div>
       </div>`;
@@ -368,7 +368,7 @@
           <span class="dash-event-mon">${d.toLocaleDateString('en-US',{month:'short'}).toUpperCase()}</span>
         </div>
         <div class="dash-event-info">
-          <div class="dash-event-title">${escapeHtml(ev.title)}</div>
+          <div class="dash-event-title">${escapeHtml((window.dfc_i18n?.isAr && ev.title_ar) ? ev.title_ar : ev.title)}</div>
           <div class="dash-event-meta">${typeBadgeHtml(ev.event_type)} <span class="dash-event-datestr">${dateStr}</span></div>
         </div>
         <a href="events.html" class="dash-event-rsvp">${_t('RSVP →')}</a>
@@ -391,7 +391,7 @@
       return `<div class="dash-resource-row">
         <div class="dash-resource-icon">${icon}</div>
         <div class="dash-resource-info">
-          <div class="dash-resource-title">${escapeHtml(r.title)}</div>
+          <div class="dash-resource-title">${escapeHtml((window.dfc_i18n?.isAr && r.title_ar) ? r.title_ar : r.title)}</div>
           <div class="dash-resource-meta">${typeBadgeHtml(r.file_type)} <span class="dash-resource-date">${formatDate(r.created_at)}</span></div>
         </div>
         ${r.file_url

@@ -79,6 +79,15 @@
         <label class="form-label" data-ar="العنوان">Title</label>
         <input type="text" class="form-input" id="fuTitle" placeholder="Update title…" data-ar-placeholder="عنوان التحديث…" required>
       </div>
+      <div class="form-lang-divider"><span>Arabic Version (اختياري)</span></div>
+      <div class="form-group">
+        <label class="form-label">العنوان (Arabic Title)</label>
+        <input type="text" class="form-input" id="fuTitleAr" placeholder="عنوان التحديث بالعربية">
+      </div>
+      <div class="form-group">
+        <label class="form-label">المحتوى (Arabic Body)</label>
+        <textarea class="form-input" id="fuContentAr" rows="4" placeholder="اكتب التحديث بالعربية…" style="resize:vertical;"></textarea>
+      </div>
       <div class="form-group">
         <label class="form-label" data-ar="النوع">Type</label>
         <select class="form-input" id="fuType">
@@ -128,6 +137,7 @@
 
   function renderUpdates() {
     const list = document.getElementById('foundersList');
+    const isAr = window.dfc_i18n?.isAr;
 
     if (!allFounderUpdates.length) {
       list.innerHTML = `<div class="loading-text">${_t('No updates yet. Check back soon.')}</div>`;
@@ -148,16 +158,18 @@
           <button class="admin-btn" onclick="openEditFounderUpdate('${u.id}')">${_t('Edit')}</button>
           <button class="admin-btn admin-btn--danger" onclick="deleteFounderUpdate('${u.id}')">${_t('Delete')}</button>
         </div>` : '';
+      const displayTitle = (isAr && u.title_ar) ? u.title_ar : u.title;
+      const displayBody  = (isAr && u.content_ar) ? u.content_ar : u.body;
       return `
         <div class="founder-card">
           <div class="founder-card-type-icon">${typeIcon(u.update_type)}</div>
           <div class="founder-card-content">
             <div class="founder-card-header">
-              <span class="founder-card-title">${escapeHtml(u.title)}</span>
+              <span class="founder-card-title">${escapeHtml(displayTitle)}</span>
               ${typeBadgeHtml(u.update_type || 'Written')}
             </div>
             <div class="founder-card-date">${formatDate(u.created_at)}</div>
-            ${u.body ? `<div class="founder-card-body">${escapeHtml(u.body)}</div>` : ''}
+            ${displayBody ? `<div class="founder-card-body">${escapeHtml(displayBody)}</div>` : ''}
             ${u.content_url ? `<a href="${escapeHtml(u.content_url)}" target="_blank" class="founder-card-link">
               ${u.update_type === 'video' ? _t('▶ Watch') : u.update_type === 'audio' ? _t('🎧 Listen') : _t('📖 Read more')}
             </a>` : ''}
@@ -192,8 +204,10 @@
     document.getElementById('founderUpdateModalTitle').textContent = _t("Edit Founder's Update");
     document.getElementById('founderUpdateSubmit').textContent = _t('Save Changes');
     document.getElementById('fuTitle').value = u.title || '';
+    document.getElementById('fuTitleAr').value = u.title_ar || '';
     document.getElementById('fuType').value = u.update_type || 'written';
     document.getElementById('fuBody').value = u.body || '';
+    document.getElementById('fuContentAr').value = u.content_ar || '';
     document.getElementById('fuContentUrl').value = u.content_url || '';
     document.getElementById('founderUpdateAlert').classList.add('hidden');
     document.getElementById('newFounderUpdateModal').classList.add('open');
@@ -211,7 +225,9 @@
 
     const payload = {
       title:       document.getElementById('fuTitle').value.trim(),
+      title_ar:    document.getElementById('fuTitleAr').value.trim() || null,
       body:        document.getElementById('fuBody').value.trim(),
+      content_ar:  document.getElementById('fuContentAr').value.trim() || null,
       update_type: document.getElementById('fuType').value,
       content_url: document.getElementById('fuContentUrl').value.trim() || null,
     };

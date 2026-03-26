@@ -3133,3 +3133,6 @@ html.ar .sidebar-member-role {
 html.ar .logo-tag {
   text-align: right;
 }
+
+/* ── Bilingual content form divider ── */
+.form-lang-divider { border-top: 1px solid var(--border); margin: 1.5rem 0 1rem; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--desert-gold); padding-top: 1rem; }

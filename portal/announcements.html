@@ -125,6 +125,15 @@
           <span style="font-size:0.8125rem;color:var(--text-secondary);" data-ar="📌 تثبيت هذا الإعلان في الأعلى">📌 Pin this announcement to the top</span>
         </label>
       </div>
+      <div class="form-lang-divider"><span>Arabic Version (اختياري)</span></div>
+      <div class="form-group">
+        <label class="form-label">العنوان (Arabic Title)</label>
+        <input type="text" class="form-input" id="newAnnTitleAr" placeholder="عنوان الإعلان…">
+      </div>
+      <div class="form-group">
+        <label class="form-label">المحتوى (Arabic Body)</label>
+        <textarea class="form-input" id="newAnnBodyAr" rows="6" placeholder="اكتب إعلانك بالعربية…" style="resize:vertical;"></textarea>
+      </div>
       <button type="submit" class="btn-primary" id="announcementSubmit" data-ar="نشر الإعلان">Post Announcement</button>
     </form>
   </div>
@@ -166,16 +175,19 @@
           <button class="admin-btn" onclick="openEditAnnouncement('${a.id}')">${_t('Edit')}</button>
           <button class="admin-btn admin-btn--danger" onclick="deleteAnnouncement('${a.id}')">${_t('Delete')}</button>
         </div>` : '';
+      const isAr = window.dfc_i18n?.isAr;
+      const displayTitle = isAr ? (a.title_ar || a.title) : a.title;
+      const displayBody  = isAr ? (a.body_ar  || a.body)  : a.body;
       return `<div class="announcement-item ${a.pinned ? 'pinned' : ''}" onclick="this.classList.toggle('expanded')">
         <div class="announcement-header">
-          <span class="announcement-title">${escapeHtml(a.title)}</span>
+          <span class="announcement-title">${escapeHtml(displayTitle)}</span>
           ${a.pinned ? `<span class="pin-icon">📌 ${_t('📌 Pinned').replace('📌 ','')}</span>` : ''}
         </div>
         <div class="announcement-meta">
           <span class="card-meta">${formatDate(a.created_at)}</span>
         </div>
-        <p class="announcement-preview">${escapeHtml((a.body||'').slice(0,200))}${(a.body||'').length>200?'…':''}</p>
-        <div class="announcement-body">${escapeHtml(a.body||'')}</div>
+        <p class="announcement-preview">${escapeHtml((displayBody||'').slice(0,200))}${(displayBody||'').length>200?'…':''}</p>
+        <div class="announcement-body">${escapeHtml(displayBody||'')}</div>
         ${adminActions}
       </div>`;
     }
@@ -218,6 +230,8 @@
     document.getElementById('announcementSubmit').textContent = _t('Save Changes');
     document.getElementById('newAnnTitle').value = a.title || '';
     document.getElementById('newAnnBody').value = a.body || '';
+    document.getElementById('newAnnTitleAr').value = a.title_ar || '';
+    document.getElementById('newAnnBodyAr').value = a.body_ar || '';
     document.getElementById('newAnnPinned').checked = !!a.pinned;
     document.getElementById('announcementFormAlert').classList.add('hidden');
     document.getElementById('newAnnouncementModal').classList.add('open');
@@ -233,9 +247,11 @@
     alert.classList.add('hidden');
 
     const payload = {
-      title:  document.getElementById('newAnnTitle').value.trim(),
-      body:   document.getElementById('newAnnBody').value.trim(),
-      pinned: document.getElementById('newAnnPinned').checked,
+      title:    document.getElementById('newAnnTitle').value.trim(),
+      body:     document.getElementById('newAnnBody').value.trim(),
+      title_ar: document.getElementById('newAnnTitleAr').value.trim() || null,
+      body_ar:  document.getElementById('newAnnBodyAr').value.trim() || null,
+      pinned:   document.getElementById('newAnnPinned').checked,
     };
 
     let error;

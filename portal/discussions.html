@@ -102,6 +102,11 @@
         <label class="form-label" data-ar="العنوان">Title</label>
         <input type="text" class="form-input" id="threadTitle" placeholder="Thread title…" data-ar-placeholder="عنوان الموضوع…" required>
       </div>
+      <div class="form-lang-divider"><span>Arabic Version (اختياري)</span></div>
+      <div class="form-group">
+        <label class="form-label">العنوان (Arabic Title)</label>
+        <input type="text" class="form-input" id="threadTitleAr" placeholder="عنوان الموضوع بالعربية">
+      </div>
       <div class="form-group">
         <label class="form-label" data-ar="المحتوى">Body</label>
         <textarea class="form-input" id="threadBody" rows="5" placeholder="What's on your mind?" data-ar-placeholder="ما الذي يدور في ذهنك؟" required style="resize:vertical;"></textarea>
@@ -158,7 +163,7 @@
         <div class="thread-item" data-thread-id="${t.id}" onclick="toggleThread('${t.id}')">
           <div class="unread-dot"></div>
           <div class="thread-header">
-            <span class="thread-title">${escapeHtml(t.title)}</span>
+            <span class="thread-title">${escapeHtml((window.dfc_i18n?.isAr && t.title_ar) ? t.title_ar : t.title)}</span>
           </div>
           <div class="thread-meta">
             <span>${escapeHtml(window.dfc_i18n?.isAr ? ({'general':'عام','engineering':'هندسة','design':'تصميم','investment-strategy':'الاستثمار والاستراتيجية','introductions':'التعريفات'}[t.category]||t.category) : t.category)}</span>
@@ -287,10 +292,11 @@
 
     const category = document.getElementById('threadCategory').value;
     const title    = document.getElementById('threadTitle').value.trim();
+    const title_ar = document.getElementById('threadTitleAr').value.trim() || null;
     const body     = document.getElementById('threadBody').value.trim();
 
     const { error } = await _supabase.from('discussion_threads').insert({
-      category, title, body, author_id: session.user.id
+      category, title, title_ar, body, author_id: session.user.id
     });
 
     if (error) {

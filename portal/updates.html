@@ -84,6 +84,15 @@
         <label class="form-label" data-ar="العنوان">Title</label>
         <input type="text" class="form-input" id="newUpdTitle" placeholder="Update title…" data-ar-placeholder="عنوان التحديث…" required>
       </div>
+      <div class="form-lang-divider"><span>Arabic Version (اختياري)</span></div>
+      <div class="form-group">
+        <label class="form-label">العنوان (Arabic Title)</label>
+        <input type="text" class="form-input" id="upTitleAr" placeholder="عنوان التحديث بالعربية">
+      </div>
+      <div class="form-group">
+        <label class="form-label">المحتوى (Arabic Body)</label>
+        <textarea class="form-input" id="upContentAr" rows="4" placeholder="اوصف التحديث بالعربية…" style="resize:vertical;"></textarea>
+      </div>
       <div class="form-group">
         <label class="form-label" data-ar="الفئة">Category</label>
         <select class="form-input" id="newUpdCategory">
@@ -158,6 +167,7 @@
 
   function renderUpdates() {
     const list = document.getElementById('updatesList');
+    const isAr = window.dfc_i18n?.isAr;
     const items = activeFilter === 'all'
       ? allUpdates
       : allUpdates.filter(u => (u.category||'').toLowerCase() === activeFilter);
@@ -174,11 +184,11 @@
       return `
         <div class="update-card">
           <div class="update-header">
-            <span class="update-title">${escapeHtml(u.title)}</span>
+            <span class="update-title">${escapeHtml((isAr && u.title_ar) ? u.title_ar : u.title)}</span>
             ${statusBadgeHtml(u.status)}
           </div>
-          <div class="update-meta">${escapeHtml(_t(u.category) !== u.category ? _t(u.category) : (window.dfc_i18n?.isAr ? ({Design:'التصميم',Engineering:'الهندسة',Partnerships:'الشراكات',Fundraising:'جمع التمويل'}[u.category]||u.category) : u.category))} · ${formatDate(u.created_at)}</div>
-          <div class="update-body">${escapeHtml(u.body||'')}</div>
+          <div class="update-meta">${escapeHtml(_t(u.category) !== u.category ? _t(u.category) : (isAr ? ({Design:'التصميم',Engineering:'الهندسة',Partnerships:'الشراكات',Fundraising:'جمع التمويل'}[u.category]||u.category) : u.category))} · ${formatDate(u.created_at)}</div>
+          <div class="update-body">${escapeHtml((isAr && u.content_ar) ? u.content_ar : (u.body||''))}</div>
           ${adminActions}
         </div>`;
     }).join('');
@@ -210,9 +220,11 @@
     document.getElementById('updateModalTitle').textContent = _t('Edit Update');
     document.getElementById('updateSubmit').textContent = _t('Save Changes');
     document.getElementById('newUpdTitle').value = u.title || '';
+    document.getElementById('upTitleAr').value = u.title_ar || '';
     document.getElementById('newUpdCategory').value = u.category || 'Design';
     document.getElementById('newUpdStatus').value = u.status || 'in_progress';
     document.getElementById('newUpdBody').value = u.body || '';
+    document.getElementById('upContentAr').value = u.content_ar || '';
     document.getElementById('updateFormAlert').classList.add('hidden');
     document.getElementById('newUpdateModal').classList.add('open');
   };
@@ -227,10 +239,12 @@
     alert.classList.add('hidden');
 
     const payload = {
-      title:    document.getElementById('newUpdTitle').value.trim(),
-      body:     document.getElementById('newUpdBody').value.trim(),
-      category: document.getElementById('newUpdCategory').value,
-      status:   document.getElementById('newUpdStatus').value,
+      title:      document.getElementById('newUpdTitle').value.trim(),
+      title_ar:   document.getElementById('upTitleAr').value.trim() || null,
+      body:       document.getElementById('newUpdBody').value.trim(),
+      content_ar: document.getElementById('upContentAr').value.trim() || null,
+      category:   document.getElementById('newUpdCategory').value,
+      status:     document.getElementById('newUpdStatus').value,
     };
 
     let error;
