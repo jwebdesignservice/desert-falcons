@@ -472,6 +472,9 @@
 .tuwaiq-bg {
     position: absolute;
     inset: 0;
+    background-image: url('../images/jebel-tuwaiq.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .tuwaiq-image-placeholder {
