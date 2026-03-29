@@ -28,26 +28,31 @@ After your task is complete, append any reusable finding (format in that file). 
 
 ## Tonight's Task
 **ONE task only. Do not spawn subagents. Do all work inline.**
-Full site audit. Review BOTH the public marketing pages AND the portal separately.
 
-For each section, check:
-- Broken links or missing assets (images, CSS, JS files)
-- Inconsistent styling or visual gaps
-- Copy issues (placeholder text, wrong tone, missing content)
-- Mobile responsiveness problems
-- Missing or weak meta tags (title, description, OG)
-- Console errors (check for obvious JS errors in the code)
+Implement three quick-win fixes from the DEV-IN-PROGRESS.md priority list.
+Audit is complete after 5 passes. Time to ship fixes.
 
-Write all findings to `DEV-IN-PROGRESS.md` as a prioritised fix list:
-- URGENT: broken functionality, 404s, auth failures
-- HIGH: visible UI bugs, missing content
-- MEDIUM: styling inconsistencies, missing meta tags
-- LOW: nice-to-have improvements
+### Fix 1 — M8: Wire jebel-tuwaiq.jpg into vision.css (2-line fix)
+- Open `vision.css`
+- Find `.tuwaiq-bg { position: absolute; inset: 0; }`
+- Add: `background-image: url('../images/jebel-tuwaiq.jpg'); background-size: cover; background-position: center;`
+- Verify `images/jebel-tuwaiq.jpg` exists — it does (confirmed in prior audit)
+
+### Fix 2 — H1: Add portal nav link to all 9 public pages
+- Add `<li><a href="portal/index.html" class="nav-link nav-portal">Member Portal</a></li>` to the `<ul>` nav list on:
+  `index.html`, `founders-story.html`, `vision.html`, `engineers.html`, `designers.html`, `investors.html`, `join.html`, `privacy-policy.html`, `terms-of-use.html`
+- The `.nav-portal` CSS class already exists in `styles.css` — just wire the HTML
+- Place it as the last `<li>` in the nav list on each page
+
+### Fix 3 — M6: Add noindex to all 11 portal pages
+- Add `<meta name="robots" content="noindex, nofollow">` inside `<head>` of every portal page:
+  `portal/index.html`, `portal/dashboard.html`, `portal/profile.html`, `portal/settings.html`, `portal/applications.html`, `portal/announcements.html`, `portal/discussions.html`, `portal/directory.html`, `portal/resources.html`, `portal/events.html`, `portal/updates.html`
+  (Check directory for exact filenames — adjust if any differ)
 
 Definition of done:
-- `DEV-IN-PROGRESS.md` created with full prioritised findings
-- Both public site AND portal covered separately
-- Committed to `nightly/YYYY-MM-DD` branch (no build required — vanilla HTML, commit directly)
+- All 3 fixes implemented across all affected files
+- Open `DEV-IN-PROGRESS.md` and mark M8, H1/M6 as RESOLVED with today's date
+- Committed to `nightly/YYYY-MM-DD` branch (no build step required — vanilla HTML, commit directly)
 - Pushed to origin
 
 ## Do NOT Touch
@@ -73,6 +78,12 @@ If you encounter an unrecoverable error, post to Discord channel 148569782732482
 - Portal is a separate product — treat it distinctly from the public site in all audit findings
 
 ## Recently Completed
+- 2026-03-29: Three quick-win fixes shipped — M8 (jebel-tuwaiq.jpg wired into vision.css), H1 (portal nav link on all 9 public pages), M6 (noindex on all 11 portal pages). nightly/2026-03-29 ready to merge.
+- 2026-03-28: Fifth full audit pass — DEV-IN-PROGRESS.md updated, new finding L10 (legal.html missing), all prior findings re-verified. nightly/2026-03-28 ready to merge.
+- 2026-03-27: Fourth audit pass — DEV-IN-PROGRESS.md refreshed, all findings verified, quick win order documented.
 - 2026-03-24: Full site audit — DEV-IN-PROGRESS.md created (258-line prioritised fix list, both public + portal)
 - 2026-03-23: Arabic RTL i18n + alignment fixes across all pages and portal
-ll pages and portal
+EV-IN-PROGRESS.md updated, new finding L10 (legal.html missing), all prior findings re-verified. nightly/2026-03-28 pushed.
+- 2026-03-27: Fourth audit pass — DEV-IN-PROGRESS.md refreshed, all findings verified, quick win order documented.
+- 2026-03-24: Full site audit — DEV-IN-PROGRESS.md created (258-line prioritised fix list, both public + portal)
+- 2026-03-23: Arabic RTL i18n + alignment fixes across all pages and portal

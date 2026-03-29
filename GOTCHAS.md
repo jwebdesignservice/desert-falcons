@@ -25,3 +25,13 @@ Read this before touching anything. Format: [YYYY-MM-DD] What I tried → what w
 **Tried:** Using `_t('Loading replies…')` with Unicode ellipsis (U+2026) in discussions.html
 **Problem:** portal-i18n.js has the key as `'Loading replies.'` (plain period) — character-level mismatch. `_t()` returns the key string unchanged instead of the Arabic translation. No error is thrown; it silently falls back to English.
 **Fix:** Always verify exact character-level key matching when adding new i18n entries. Establish a consistent encoding convention: either always use Unicode ellipsis (…) or always use three dots (...) — never mix them. When adding a new `_t()` call, copy the key string directly from portal-i18n.js rather than typing it.
+
+## [2026-03-29] File encoding split — public pages UTF-16 LE, portal pages UTF-8
+**Context:** Nightly agent discovered this when editing HTML files across both directories in the same session.
+**Problem:** Public pages (index.html, designers.html, engineers.html, etc.) are UTF-16 LE with BOM (FF FE). Portal pages (portal/*.html) are plain UTF-8, no BOM. Using the wrong encoding when writing corrupts the file — garbled characters, broken HTML.
+**Fix:** Always sniff encoding before editing any HTML file:
+- Read first 4 bytes: `FF FE` = UTF-16 LE, `EF BB BF` = UTF-8 with BOM, no BOM = plain UTF-8
+- Public pages: use `[System.IO.File]::ReadAllBytes` / `WriteAllBytes` with `[System.Text.Encoding]::Unicode`
+- Portal pages: use `[System.Text.Encoding]::UTF8`
+- NEVER use PowerShell `Get-Content` / `Set-Content` without explicitly specifying `-Encoding Unicode` for public pages
+**Rule:** Never assume encoding. Detect first, then edit.
