@@ -1,4 +1,13 @@
 # DEV-IN-PROGRESS.md — Desert Falcons Audit
+---
+
+## RESOLVED — 2026-03-29 (nightly/2026-03-29)
+
+- **M8 — RESOLVED 2026-03-29**: Wired jebel-tuwaiq.jpg into .tuwaiq-bg in ision.css (added ackground-image, ackground-size, ackground-position properties)
+- **H1 — RESOLVED 2026-03-29**: Added <li><a href="portal/index.html" class="nav-link nav-portal">Member Portal</a></li> to all 9 public pages (index.html, founders-story.html, vision.html, engineers.html, designers.html, investors.html, join.html, privacy-policy.html, terms-of-use.html)
+- **M6 — RESOLVED 2026-03-29**: Added <meta name="robots" content="noindex, nofollow"> inside <head> of all 11 portal pages (index.html, dashboard.html, settings.html, applications.html, announcements.html, discussions.html, directory.html, resources.html, events.html, founders-updates.html, updates.html)
+
+---
 **Audit Date:** 2026-03-26 (third pass — delta audit + i18n key sweep)
 **Branch:** nightly/2026-03-26
 **Agent:** Nightly Audit Agent
