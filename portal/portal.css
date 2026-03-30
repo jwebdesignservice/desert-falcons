@@ -2468,7 +2468,7 @@ html.ar .reply-item {
 
 /* Resources */
 html.ar .resource-card {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 
 html.ar .resource-meta {
@@ -2503,7 +2503,7 @@ html.ar .event-meta {
 
 /* Founder updates */
 html.ar .founder-card {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 
 html.ar .founder-card-content {
@@ -2511,7 +2511,7 @@ html.ar .founder-card-content {
 }
 
 html.ar .founder-card-header {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 
 /* Project updates */
@@ -2990,10 +2990,10 @@ html.ar .update-body {
 
 /* ── Founder cards: icon on right, content text right ── */
 html.ar .founder-card {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 html.ar .founder-card-header {
-  flex-direction: row-reverse;
+  /* row-reverse removed */
 }
 html.ar .founder-card-title,
 html.ar .founder-card-date,
@@ -3003,7 +3003,7 @@ html.ar .founder-card-body {
 
 /* ── Resource cards: icon on right ── */
 html.ar .resource-card {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 html.ar .resource-meta {
   flex-direction: row-reverse;
