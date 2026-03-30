@@ -2753,9 +2753,7 @@ html.ar .resource-title,
 html.ar .resource-meta {
   text-align: right;
 }
-html.ar .resource-card {
-  direction: rtl;
-}
+/* html.ar .resource-card direction:rtl removed — global html.ar already sets rtl; redundant here and conflicts with row-reverse */
 
 /* Dashboard sections */
 html.ar .dash-announce-title,
