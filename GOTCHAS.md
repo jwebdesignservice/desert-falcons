@@ -35,3 +35,9 @@ Read this before touching anything. Format: [YYYY-MM-DD] What I tried → what w
 - Portal pages: use `[System.Text.Encoding]::UTF8`
 - NEVER use PowerShell `Get-Content` / `Set-Content` without explicitly specifying `-Encoding Unicode` for public pages
 **Rule:** Never assume encoding. Detect first, then edit.
+## [2026-03-30] direction:rtl does NOT flip flex child order — row-reverse is still required
+**Context:** Spent a session removing lex-direction:row-reverse from AR card rules believing direction:rtl (inherited from html.ar) would handle the visual flip. It does not.
+**What direction:rtl does:** Affects text direction, inline flow, and logical properties (margin-inline etc). Does NOT change the visual order of flex children.
+**What actually reverses flex order:** lex-direction: row-reverse — always needed on AR flex containers that need visual flip.
+**The one real exception:** If a flex container has BOTH lex-direction:row-reverse AND an explicit direction:rtl set directly on the element itself (not inherited), the logical+visual axes both flip and they cancel out. Fix in that case: remove the explicit direction:rtl from the element, keep ow-reverse.
+**Rule:** Always keep lex-direction:row-reverse on AR flex cards. Only remove it if the same selector also has direction:rtl set explicitly (not inherited).

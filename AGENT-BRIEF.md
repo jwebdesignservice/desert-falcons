@@ -1,4 +1,4 @@
-# AGENT-BRIEF.md — Desert Falcons
+﻿# AGENT-BRIEF.md — Desert Falcons
 
 This file steers the nightly agent. Update it to change what gets worked on tonight.
 The agent reads this at the start of every run.
@@ -65,8 +65,8 @@ Definition of done:
 - Always create a fresh `nightly/YYYY-MM-DD` branch from latest `main` before touching anything
 - NEVER commit to main. NEVER merge to main. NEVER deploy.
 - Do not spawn subagents — do all work inline.
-- Tonight is audit-only — no code changes. No build step required.
-- For future nights with code changes: make changes → validate → pass=commit, fail=`git checkout . && git clean -fd` then try a different approach
+- No build step required (vanilla HTML/CSS/JS).
+- Make changes → validate → commit. If something breaks: `git checkout . && git clean -fd` then try a different approach.
 - Max 5 iterations, 45-minute budget. If nothing ships, document in GOTCHAS.md and post failure to Discord channel 1485697827324825611 then STOP.
 
 ## STOP Instruction
@@ -78,6 +78,7 @@ If you encounter an unrecoverable error, post to Discord channel 148569782732482
 - Portal is a separate product — treat it distinctly from the public site in all audit findings
 
 ## Recently Completed
+- 2026-03-30: M7 (portal meta description), M2 (canonical links on all 9 public pages), M3 (join form field show/hide logic — #interest change listener). nightly/2026-03-30 ready to merge.
 - 2026-03-29: Three quick-win fixes shipped — M8 (jebel-tuwaiq.jpg wired into vision.css), H1 (portal nav link on all 9 public pages), M6 (noindex on all 11 portal pages). nightly/2026-03-29 ready to merge.
 - 2026-03-28: Fifth full audit pass — DEV-IN-PROGRESS.md updated, new finding L10 (legal.html missing), all prior findings re-verified. nightly/2026-03-28 ready to merge.
 - 2026-03-27: Fourth audit pass — DEV-IN-PROGRESS.md refreshed, all findings verified, quick win order documented.
