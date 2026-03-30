@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    Desert Falcons Collective — Member Portal
    Dark luxury app aesthetic
    ============================================ */
@@ -2724,6 +2724,7 @@ html.ar .thread-item {
 }
 html.ar .thread-title {
   text-align: right;
+  width: 100%;
 }
 html.ar .thread-preview {
   text-align: right;
@@ -2960,6 +2961,9 @@ html.ar .thread-meta {
 html.ar .thread-title,
 html.ar .thread-preview {
   text-align: right;
+}
+html.ar .thread-title {
+  width: 100%;
 }
 html.ar .unread-dot {
   right: auto;
