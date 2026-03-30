@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    Desert Falcons Collective — Member Portal
    Dark luxury app aesthetic
    ============================================ */
@@ -2490,7 +2490,7 @@ html.ar .member-card {
 
 /* Events */
 html.ar .event-card {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 
 html.ar .event-body {
@@ -2724,6 +2724,7 @@ html.ar .thread-item {
 }
 html.ar .thread-title {
   text-align: right;
+  width: 100%;
 }
 html.ar .thread-preview {
   text-align: right;
@@ -2752,9 +2753,7 @@ html.ar .resource-title,
 html.ar .resource-meta {
   text-align: right;
 }
-html.ar .resource-card {
-  direction: rtl;
-}
+/* html.ar .resource-card direction:rtl removed — global html.ar already sets rtl; redundant here and conflicts with row-reverse */
 
 /* Dashboard sections */
 html.ar .dash-announce-title,
@@ -2961,6 +2960,9 @@ html.ar .thread-title,
 html.ar .thread-preview {
   text-align: right;
 }
+html.ar .thread-title {
+  width: 100%;
+}
 html.ar .unread-dot {
   right: auto;
   left: 1.25rem;
@@ -3014,7 +3016,7 @@ html.ar .resource-meta {
 
 /* ── Event cards: title, description, meta right-aligned ── */
 html.ar .event-card {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 html.ar .event-body {
   text-align: right;

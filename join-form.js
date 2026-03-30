@@ -6,7 +6,28 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// Show/hide role-specific fields based on selected interest
+function updateFieldVisibility(interest) {
+    const fieldSpec    = document.getElementById('fieldSpecialization');
+    const fieldDesign  = document.getElementById('fieldDesignDiscipline');
+    const investorFields = document.getElementById('investorFields');
+
+    if (fieldSpec)       fieldSpec.style.display       = (interest === 'engineer') ? '' : 'none';
+    if (fieldDesign)     fieldDesign.style.display     = (interest === 'designer') ? '' : 'none';
+    if (investorFields)  investorFields.style.display  = (interest === 'investor') ? '' : 'none';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+    // Wire field show/hide to interest select
+    const interestSelectEl = document.getElementById('interest');
+    if (interestSelectEl) {
+        interestSelectEl.addEventListener('change', function () {
+            updateFieldVisibility(this.value);
+        });
+        // Set initial state on load
+        updateFieldVisibility(interestSelectEl.value);
+    }
+
     // Pre-select role from URL param: join.html?role=investor
     (function () {
         const params = new URLSearchParams(window.location.search);

@@ -1,6 +1,14 @@
 # DEV-IN-PROGRESS.md — Desert Falcons Audit
 ---
 
+## RESOLVED — 2026-03-30 (nightly/2026-03-30)
+
+- **M7 — RESOLVED 2026-03-30**: Added `<meta name="description" content="Member login for Desert Falcons Collective — the inner circle portal.">` to `portal/index.html`
+- **M2 — RESOLVED 2026-03-30**: Added `<link rel="canonical">` to all 9 public pages using base URL `https://desert-falcons.vercel.app/`
+- **M3 — RESOLVED 2026-03-30**: Added `updateFieldVisibility()` function and `change` listener on `#interest` select in `join-form.js`. On `engineer`: shows `fieldSpecialization`, hides others. On `designer`: shows `fieldDesignDiscipline`, hides others. On `investor`: shows `investorFields`, hides others. On `general`/empty: hides all three. Also fires on page load to set initial state.
+
+---
+
 ## RESOLVED — 2026-03-29 (nightly/2026-03-29)
 
 - **M8 — RESOLVED 2026-03-29**: Wired jebel-tuwaiq.jpg into .tuwaiq-bg in ision.css (added ackground-image, ackground-size, ackground-position properties)
