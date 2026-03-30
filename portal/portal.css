@@ -2490,7 +2490,7 @@ html.ar .member-card {
 
 /* Events */
 html.ar .event-card {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 
 html.ar .event-body {
@@ -3016,7 +3016,7 @@ html.ar .resource-meta {
 
 /* ── Event cards: title, description, meta right-aligned ── */
 html.ar .event-card {
-  flex-direction: row-reverse;
+  /* row-reverse removed — direction:rtl handles flip */
 }
 html.ar .event-body {
   text-align: right;
