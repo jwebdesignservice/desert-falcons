@@ -128,17 +128,26 @@ function showFormMessage(msg, type) {
 
 function showSuccessState() {
     const formWrap = document.querySelector('.join-form-wrap');
+    const lang = window.DFC_i18n ? window.DFC_i18n.getLang() : 'en';
+    const isAr = lang === 'ar';
+
+    const title = isAr ? 'أنت الآن في المجموعة.' : "You're in the Collective.";
+    const body = isAr
+        ? 'شكراً لتسجيل اهتمامك. لقد استلمنا طلبك وسنتواصل معك في الوقت المناسب.'
+        : "Thank you for registering your interest. We've received your application and will be in touch when the time is right.";
+    const sub = isAr ? '— صقور الصحراء' : '— Desert Falcons Collective';
+
     formWrap.innerHTML = `
-        <div class="join-success">
+        <div class="join-success"${isAr ? ' dir="rtl"' : ''}>
             <div class="join-success-icon">
                 <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
                     <circle cx="24" cy="24" r="20"/>
                     <path d="M14 24l8 8 12-14"/>
                 </svg>
             </div>
-            <h2 class="join-success-title">You're in the Collective.</h2>
-            <p class="join-success-body">Thank you for registering your interest. We've received your application and will be in touch when the time is right.</p>
-            <p class="join-success-sub">— Desert Falcons Collective</p>
+            <h2 class="join-success-title">${title}</h2>
+            <p class="join-success-body">${body}</p>
+            <p class="join-success-sub">${sub}</p>
         </div>
     `;
 }

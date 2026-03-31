@@ -1,6 +1,14 @@
 # DEV-IN-PROGRESS.md — Desert Falcons Audit
 ---
 
+## RESOLVED — 2026-03-31 (nightly/2026-03-31)
+
+- **M4 — RESOLVED 2026-03-31**: Fixed Arabic success state in `join-form.js`. `showSuccessState()` now checks `window.DFC_i18n.getLang()` and renders Arabic text (title, body, signature) when language is `ar`. Also sets `dir="rtl"` on the success container.
+- **L1 — RESOLVED 2026-03-31**: Added `robots.txt` (disallowing `/portal/`) and `sitemap.xml` (listing all 9 public pages with lastmod 2026-03-31) to project root.
+- **M5 — RESOLVED 2026-03-31**: Reordered script loading on all 9 public pages. `i18n.js` now loads before `script.js` (preventative fix — ensures i18n is available if script.js ever needs it).
+
+---
+
 ## RESOLVED — 2026-03-30 (nightly/2026-03-30)
 
 - **M7 — RESOLVED 2026-03-30**: Added `<meta name="description" content="Member login for Desert Falcons Collective — the inner circle portal.">` to `portal/index.html`

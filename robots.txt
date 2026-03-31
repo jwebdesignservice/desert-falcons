@@ -1,0 +1,7 @@
+# robots.txt — Desert Falcons Collective
+
+User-agent: *
+Allow: /
+Disallow: /portal/
+
+Sitemap: https://desert-falcons.vercel.app/sitemap.xml
