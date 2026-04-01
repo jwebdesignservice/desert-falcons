@@ -1,4 +1,4 @@
-﻿# AGENT-BRIEF.md — Desert Falcons
+# AGENT-BRIEF.md — Desert Falcons
 
 This file steers the nightly agent. Update it to change what gets worked on tonight.
 The agent reads this at the start of every run.
@@ -20,7 +20,7 @@ Multi-page static website for Desert Falcons — targeting designers, engineers,
 - `portal/` — full bilingual member portal (11 pages, Arabic RTL, Supabase auth)
 - `portal/portal-i18n.js` — Arabic/English i18n system
 - `GOTCHAS.md` — bugs and wrong assumptions, read before starting
-- `DEV-IN-PROGRESS.md` — current audit findings and fix queue (if exists)
+- `DEV-IN-PROGRESS.md` — current audit findings and fix queue
 
 ## Shared Memory
 Read `C:\Users\Jack\.openclaw\workspace\NIGHTLY-NOTES.md` at the start of every run — check for relevant discoveries from other agents.
@@ -30,28 +30,26 @@ After your task is complete, append any reusable finding (format in that file). 
 **ONE task only. Do not spawn subagents. Do all work inline.**
 
 Implement three quick-win fixes from the DEV-IN-PROGRESS.md priority list.
-Audit is complete after 5 passes. Time to ship fixes.
 
-### Fix 1 — M8: Wire jebel-tuwaiq.jpg into vision.css (2-line fix)
-- Open `vision.css`
-- Find `.tuwaiq-bg { position: absolute; inset: 0; }`
-- Add: `background-image: url('../images/jebel-tuwaiq.jpg'); background-size: cover; background-position: center;`
-- Verify `images/jebel-tuwaiq.jpg` exists — it does (confirmed in prior audit)
+### Fix 1 — M1: OG share images use hero instead of logo
+- All 9 public pages use `images/dfc-logo.png` as OG image (512×512 square)
+- Check if `images/saudi sunset hero bg.jpg` or another hero exists — if so, use it
+- If no suitable 1200×630 hero exists, document in GOTCHAS.md and skip
+- Update `<meta property="og:image">` on all 9 public pages to use the hero image
 
-### Fix 2 — H1: Add portal nav link to all 9 public pages
-- Add `<li><a href="portal/index.html" class="nav-link nav-portal">Member Portal</a></li>` to the `<ul>` nav list on:
-  `index.html`, `founders-story.html`, `vision.html`, `engineers.html`, `designers.html`, `investors.html`, `join.html`, `privacy-policy.html`, `terms-of-use.html`
-- The `.nav-portal` CSS class already exists in `styles.css` — just wire the HTML
-- Place it as the last `<li>` in the nav list on each page
+### Fix 2 — PM1: Add maxlength to discussion thread inputs
+- Open `portal/discussions.html`
+- Add `maxlength="200"` to `<input id="threadTitle">`
+- Add `maxlength="5000"` to `<textarea id="threadBody">`
 
-### Fix 3 — M6: Add noindex to all 11 portal pages
-- Add `<meta name="robots" content="noindex, nofollow">` inside `<head>` of every portal page:
-  `portal/index.html`, `portal/dashboard.html`, `portal/profile.html`, `portal/settings.html`, `portal/applications.html`, `portal/announcements.html`, `portal/discussions.html`, `portal/directory.html`, `portal/resources.html`, `portal/events.html`, `portal/updates.html`
-  (Check directory for exact filenames — adjust if any differ)
+### Fix 3 — L8: Add aria-label to join submit button
+- Open `join.html`
+- Find `<button type="submit" class="join-submit-btn">`
+- Add `aria-label="Join the Collective"`
 
 Definition of done:
 - All 3 fixes implemented across all affected files
-- Open `DEV-IN-PROGRESS.md` and mark M8, H1/M6 as RESOLVED with today's date
+- Open `DEV-IN-PROGRESS.md` and mark M1, PM1, L8 as RESOLVED with today's date
 - Committed to `nightly/YYYY-MM-DD` branch (no build step required — vanilla HTML, commit directly)
 - Pushed to origin
 
@@ -76,15 +74,18 @@ If you encounter an unrecoverable error, post to Discord channel 148569782732482
 ## Known Issues
 - Brand/tone not confirmed — copy tasks blocked
 - Portal is a separate product — treat it distinctly from the public site in all audit findings
+- File encoding: public pages are UTF-16 LE, portal pages are UTF-8 — always detect encoding before editing (see GOTCHAS.md)
 
 ## Recently Completed
-- 2026-03-30: M7 (portal meta description), M2 (canonical links on all 9 public pages), M3 (join form field show/hide logic — #interest change listener). nightly/2026-03-30 ready to merge.
-- 2026-03-29: Three quick-win fixes shipped — M8 (jebel-tuwaiq.jpg wired into vision.css), H1 (portal nav link on all 9 public pages), M6 (noindex on all 11 portal pages). nightly/2026-03-29 ready to merge.
-- 2026-03-28: Fifth full audit pass — DEV-IN-PROGRESS.md updated, new finding L10 (legal.html missing), all prior findings re-verified. nightly/2026-03-28 ready to merge.
-- 2026-03-27: Fourth audit pass — DEV-IN-PROGRESS.md refreshed, all findings verified, quick win order documented.
-- 2026-03-24: Full site audit — DEV-IN-PROGRESS.md created (258-line prioritised fix list, both public + portal)
-- 2026-03-23: Arabic RTL i18n + alignment fixes across all pages and portal
-EV-IN-PROGRESS.md updated, new finding L10 (legal.html missing), all prior findings re-verified. nightly/2026-03-28 pushed.
-- 2026-03-27: Fourth audit pass — DEV-IN-PROGRESS.md refreshed, all findings verified, quick win order documented.
-- 2026-03-24: Full site audit — DEV-IN-PROGRESS.md created (258-line prioritised fix list, both public + portal)
-- 2026-03-23: Arabic RTL i18n + alignment fixes across all pages and portal
+- 2026-03-31: M4 (Arabic success state in join-form.js), L1 (robots.txt + sitemap.xml), M5 (i18n load order fix on all 9 public pages). nightly/2026-03-31 ready to merge.
+- 2026-03-30: M7 (portal meta description), M2 (canonical links on all 9 public pages), M3 (join form field show/hide logic). nightly/2026-03-30 ready to merge.
+- 2026-03-29: M8 (jebel-tuwaiq.jpg wired), H1 (portal nav link on all 9 pages), M6 (noindex on all 11 portal pages). nightly/2026-03-29 ready to merge.
+- 2026-03-28: Fifth full audit pass — DEV-IN-PROGRESS.md updated. nightly/2026-03-28 ready to merge.
+- 2026-03-27: Fourth audit pass — findings verified.
+- 2026-03-24: Full site audit — DEV-IN-PROGRESS.md created
+- 2026-03-23: Arabic RTL i18n + alignment fixes
+
+## Context
+- Audit phase complete (5 passes). Now shipping fixes from the quick win queue.
+- ⚠️ Merge queue: nightly/2026-03-28 → nightly/2026-03-29 → nightly/2026-03-30 → nightly/2026-03-31 (operators should merge in order)
+- ⚠️ Brand/tone still not confirmed — copy work remains blocked until operators sign off

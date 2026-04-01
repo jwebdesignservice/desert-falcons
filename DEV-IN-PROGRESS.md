@@ -1,6 +1,14 @@
 # DEV-IN-PROGRESS.md — Desert Falcons Audit
 ---
 
+## RESOLVED — 2026-04-01 (nightly/2026-04-01)
+
+- **M1 — RESOLVED 2026-04-01**: Updated `og:image` on all 9 public pages to use hero image `images/saudi%20sunset%20hero%20bg.jpg` (1200×630). Changed `og:image:width` to 1200, `og:image:height` to 630, and `twitter:card` from `summary` to `summary_large_image` for better social previews.
+- **PM1 — RESOLVED 2026-04-01**: Added `maxlength="200"` to `#threadTitle` input and `maxlength="5000"` to `#threadBody` textarea in `portal/discussions.html`.
+- **L8 — RESOLVED 2026-04-01**: Added `aria-label="Join the Collective"` to submit button in `join.html`.
+
+---
+
 ## RESOLVED — 2026-03-30 (nightly/2026-03-30)
 
 - **M7 — RESOLVED 2026-03-30**: Added `<meta name="description" content="Member login for Desert Falcons Collective — the inner circle portal.">` to `portal/index.html`
@@ -75,11 +83,6 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 ---
 
 ### MEDIUM
-
-**M1 — All OG share images use logo (512×512) instead of a hero image** *(still outstanding)*
-- Every public page uses `images/dfc-logo.png` as the OG/Twitter card image
-- Social shares (WhatsApp, Twitter, LinkedIn) show a square logo rather than a compelling hero
-- **Fix:** Create a 1200×630px hero image, or switch to one of the existing hero images (e.g. `images/saudi sunset hero bg.jpg`)
 
 **M2 — No canonical links on any public pages** *(still outstanding)*
 - None of the 9 public pages include `<link rel="canonical" href="...">`
@@ -156,10 +159,6 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 - `contact@desertfalconscollective.com` present in footer across all pages
 - Operators should confirm this mailbox is active
 
-**L8 — `join.html` submit button: no `aria-label` attribute**
-- `<button type="submit" class="join-submit-btn">` has visible text via inner span (accessible)
-- **Fix (low):** Add explicit `aria-label="Join the Collective"` for robustness
-
 ---
 
 ## PORTAL — Prioritised Findings
@@ -177,10 +176,6 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 ---
 
 ### MEDIUM
-
-**PM1 — `discussions.html` thread title and body inputs have no `maxlength`** *(still outstanding)*
-- `<input id="threadTitle">` and `<textarea id="threadBody">` have no `maxlength`
-- **Fix:** Add `maxlength="200"` to `#threadTitle` and `maxlength="5000"` to `#threadBody`
 
 **PM2 — `settings.html` avatar upload — Supabase storage bucket setup**
 - `supabase-avatars-setup.sql` exists in the portal directory
@@ -225,14 +220,7 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 
 ## QUICK WIN PRIORITY ORDER (for next nightly agent)
 
-1. **Wire `jebel-tuwaiq.jpg` into `.tuwaiq-bg` in `vision.css`** (M8) — 2-line CSS fix, confirmed image exists
-2. **Add portal link to all 9 public nav menus** (H1) — find-replace friendly, 9 files
-3. **Add `<meta name="robots" content="noindex, nofollow">` to all 11 portal pages** (M6) — bulk find-replace
-4. **Add meta description to `portal/index.html` login page** (M7 priority) — single file, 1-line fix
-5. **Add canonical links to all 9 public pages** (M2) — bulk insert, know the Vercel URL
-6. **Fix join form field show/hide logic** (M3) — add `change` listener on `#interest` in `join-form.js`
-7. **Fix Arabic success state in `join-form.js`** (M4) — uses `window.DFC_i18n` or inline check
-8. **Add `robots.txt` and basic `sitemap.xml`** (L1) — new files, short
-9. **Swap `i18n.js` to load before `script.js` on all 9 public pages** (M5) — preventative
-10. **Add `maxlength` to discussion thread title/body inputs** (PM1)
-11. **Add `aria-label` to join submit button** (L8)
+1. **Add focus trap to portal mobile menu** (PM4) — WCAG 2.4.3 accessibility fix
+2. **Add styled empty state to dashboard activity feed** (PM3) — icon/visual for no-activity state
+3. **Verify Supabase storage bucket setup for avatar upload** (PM2) — operators action
+4. **Compress portal login background image** (PL1) — optional performance improvement

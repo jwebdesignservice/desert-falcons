@@ -101,7 +101,7 @@
       </div>
       <div class="form-group">
         <label class="form-label" data-ar="العنوان">Title</label>
-        <input type="text" class="form-input" id="threadTitle" placeholder="Thread title…" data-ar-placeholder="عنوان الموضوع…" required>
+        <input type="text" class="form-input" id="threadTitle" placeholder="Thread title…" data-ar-placeholder="عنوان الموضوع…" maxlength="200" required>
       </div>
       <div class="form-lang-divider"><span>Arabic Version (اختياري)</span></div>
       <div class="form-group">
@@ -110,7 +110,7 @@
       </div>
       <div class="form-group">
         <label class="form-label" data-ar="المحتوى">Body</label>
-        <textarea class="form-input" id="threadBody" rows="5" placeholder="What's on your mind?" data-ar-placeholder="ما الذي يدور في ذهنك؟" required style="resize:vertical;"></textarea>
+        <textarea class="form-input" id="threadBody" rows="5" placeholder="What's on your mind?" data-ar-placeholder="ما الذي يدور في ذهنك؟" maxlength="5000" required style="resize:vertical;"></textarea>
       </div>
       <button type="submit" class="btn-primary" id="threadSubmit" data-ar="نشر الموضوع">Post Thread</button>
     </form>
