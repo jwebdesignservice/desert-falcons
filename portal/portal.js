@@ -94,6 +94,54 @@ function showRoleUI(role) {
 
 /* -------------------- Sidebar / Mobile -------------------- */
 
+/**
+ * Focus trap for mobile sidebar (WCAG 2.4.3).
+ * Traps Tab/Shift+Tab within the sidebar when open.
+ */
+let sidebarTrapHandler = null;
+let sidebarOpenTrigger = null;
+
+function trapFocusInSidebar(sidebar) {
+  const focusableSelectors = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const focusables = sidebar.querySelectorAll(focusableSelectors);
+  if (!focusables.length) return;
+
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+
+  sidebarTrapHandler = (e) => {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      // Shift+Tab: if on first element, wrap to last
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      // Tab: if on last element, wrap to first
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  };
+
+  document.addEventListener('keydown', sidebarTrapHandler);
+  first.focus();
+}
+
+function releaseFocusTrap() {
+  if (sidebarTrapHandler) {
+    document.removeEventListener('keydown', sidebarTrapHandler);
+    sidebarTrapHandler = null;
+  }
+  // Return focus to the element that opened the sidebar
+  if (sidebarOpenTrigger) {
+    sidebarOpenTrigger.focus();
+    sidebarOpenTrigger = null;
+  }
+}
+
 function initSidebar() {
   const hamburger = document.getElementById('hamburgerBtn');
   const sidebar = document.getElementById('sidebar');
@@ -102,12 +150,31 @@ function initSidebar() {
   if (!hamburger || !sidebar) return;
 
   hamburger.addEventListener('click', () => {
+    const isOpening = !sidebar.classList.contains('open');
     sidebar.classList.toggle('open');
-    overlay.classList.toggle('open');
+    overlay?.classList.toggle('open');
+
+    if (isOpening) {
+      sidebarOpenTrigger = hamburger;
+      trapFocusInSidebar(sidebar);
+    } else {
+      releaseFocusTrap();
+    }
   });
+
   overlay?.addEventListener('click', () => {
     sidebar.classList.remove('open');
     overlay.classList.remove('open');
+    releaseFocusTrap();
+  });
+
+  // Close sidebar on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+      sidebar.classList.remove('open');
+      overlay?.classList.remove('open');
+      releaseFocusTrap();
+    }
   });
 }
 

@@ -1,6 +1,13 @@
 # DEV-IN-PROGRESS.md — Desert Falcons Audit
 ---
 
+## RESOLVED — 2026-04-02 (nightly/2026-04-02)
+
+- **PM4 — RESOLVED 2026-04-02**: Added focus trap to portal mobile sidebar in `portal/portal.js`. Tab/Shift+Tab now cycles within the sidebar when open, Escape key closes it, and focus returns to the hamburger button that opened it. (WCAG 2.4.3)
+- **PM3 — RESOLVED 2026-04-02**: Added styled empty state to dashboard activity feed. New `.activity-empty` CSS with clock icon SVG and styled "No activity yet" text. Updated `renderActivity()` in `portal/dashboard.html` to use the new component.
+
+---
+
 ## RESOLVED — 2026-04-01 (nightly/2026-04-01)
 
 - **M1 — RESOLVED 2026-04-01**: Updated `og:image` on all 9 public pages to use hero image `images/saudi%20sunset%20hero%20bg.jpg` (1200×630). Changed `og:image:width` to 1200, `og:image:height` to 630, and `twitter:card` from `summary` to `summary_large_image` for better social previews.
@@ -181,13 +188,9 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 - `supabase-avatars-setup.sql` exists in the portal directory
 - **Action:** Operators must verify this SQL has been run against the Supabase instance
 
-**PM3 — Dashboard `activity_feed` no styled empty state**
-- Activity feed shows "Loading…" but no visual spinner; empty state is plain text
-- **Fix (medium):** Add an icon for the no-activity empty state
+**PM3 — RESOLVED 2026-04-02** *(see RESOLVED section above)*
 
-**PM4 — Portal mobile menu has no focus trap**
-- Keyboard focus can escape behind the overlay when sidebar opens on mobile
-- **Fix:** Add basic focus trap when mobile sidebar is open (WCAG 2.4.3)
+**PM4 — RESOLVED 2026-04-02** *(see RESOLVED section above)*
 
 ---
 
@@ -220,7 +223,5 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 
 ## QUICK WIN PRIORITY ORDER (for next nightly agent)
 
-1. **Add focus trap to portal mobile menu** (PM4) — WCAG 2.4.3 accessibility fix
-2. **Add styled empty state to dashboard activity feed** (PM3) — icon/visual for no-activity state
-3. **Verify Supabase storage bucket setup for avatar upload** (PM2) — operators action
-4. **Compress portal login background image** (PL1) — optional performance improvement
+1. **Verify Supabase storage bucket setup for avatar upload** (PM2) — operators action
+2. **Compress portal login background image** (PL1) — optional performance improvement
