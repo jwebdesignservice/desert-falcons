@@ -4,6 +4,7 @@
 ## RESOLVED — 2026-04-03 (nightly/2026-04-03)
 
 - **PL1 — RESOLVED 2026-04-03**: Compressed `images/founders-hero.jpg` from 1.79MB to 488KB (73% reduction) using ImageMagick. Quality 80, chroma subsampling 4:2:0, metadata stripped. Improves portal login page load time on mobile.
+- **L5 — RESOLVED 2026-04-03**: Removed redundant inline `setTimeout` loader fallback from all 9 public pages. `script.js` already handles loader hide at 2300ms — the inline 2500ms fallback was unnecessary.
 
 ---
 
@@ -149,10 +150,7 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 - 5 cursor divs hidden via CSS on mobile, but still in DOM
 - Negligible impact
 
-**L5 — Loading screen: dual timer pattern on all 9 public pages**
-- All pages load `script.js` (hides loader at ~2300ms) AND have an inline `setTimeout` at 2500ms
-- Harmless but redundant
-- **Fix (low):** Remove inline `setTimeout` from pages that load `script.js`
+**L5 — RESOLVED 2026-04-03**: Removed redundant inline setTimeout loader fallback from all 9 public pages. See RESOLVED section above.
 
 **L6 — Social media links absent from footer** *(unchanged)*
 - Footer "Connect" column: only "Join Us" and "Contact" — no social links
@@ -229,7 +227,8 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 
 ## QUICK WIN PRIORITY ORDER (for next nightly agent)
 
-1. **L5 — Remove redundant inline setTimeout loaders** from all 9 public pages — `script.js` handles this at ~2300ms, inline 2500ms timeout is redundant
-2. **PM2 — Verify Supabase storage bucket setup for avatar upload** — operators action, not agent work
-3. **PL2 — Add `favicon.svg` to portal pages** — cosmetic consistency only
-4. **PL3 — Verify admin analytics widget renders in production** — operators should verify role matching works
+1. **PM2 — Verify Supabase storage bucket setup for avatar upload** — operators action, not agent work
+2. **PL2 — Add `favicon.svg` to portal pages** — cosmetic consistency only
+3. **PL3 — Verify admin analytics widget renders in production** — operators should verify role matching works
+
+*(Note: All high/medium priority quick wins have been resolved. Only low-priority polish and operator actions remain.)*
