@@ -1,6 +1,12 @@
 # DEV-IN-PROGRESS.md — Desert Falcons Audit
 ---
 
+## RESOLVED — 2026-04-03 (nightly/2026-04-03)
+
+- **PL1 — RESOLVED 2026-04-03**: Compressed `images/founders-hero.jpg` from 1.79MB to 488KB (73% reduction) using ImageMagick. Quality 80, chroma subsampling 4:2:0, metadata stripped. Improves portal login page load time on mobile.
+
+---
+
 ## RESOLVED — 2026-03-30 (nightly/2026-03-30)
 
 - **M7 — RESOLVED 2026-03-30**: Added `<meta name="description" content="Member login for Desert Falcons Collective — the inner circle portal.">` to `portal/index.html`
@@ -198,9 +204,7 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 
 ### LOW
 
-**PL1 — Portal login page background image not lazy-loaded**
-- `founders-hero.jpg` as CSS background fires immediately
-- Consider compressing the image if load times are slow on mobile
+**PL1 — RESOLVED 2026-04-03**: Compressed `founders-hero.jpg` from 1.79MB to 488KB (73% reduction). See RESOLVED section above.
 
 **PL2 — No `favicon.svg` on portal pages** *(minor inconsistency)*
 - Portal pages: `favicon-dfc.png` only; public pages also have `favicon.svg`
@@ -225,14 +229,7 @@ All 19 uncommitted files from the 2026-03-25 session have been committed to this
 
 ## QUICK WIN PRIORITY ORDER (for next nightly agent)
 
-1. **Wire `jebel-tuwaiq.jpg` into `.tuwaiq-bg` in `vision.css`** (M8) — 2-line CSS fix, confirmed image exists
-2. **Add portal link to all 9 public nav menus** (H1) — find-replace friendly, 9 files
-3. **Add `<meta name="robots" content="noindex, nofollow">` to all 11 portal pages** (M6) — bulk find-replace
-4. **Add meta description to `portal/index.html` login page** (M7 priority) — single file, 1-line fix
-5. **Add canonical links to all 9 public pages** (M2) — bulk insert, know the Vercel URL
-6. **Fix join form field show/hide logic** (M3) — add `change` listener on `#interest` in `join-form.js`
-7. **Fix Arabic success state in `join-form.js`** (M4) — uses `window.DFC_i18n` or inline check
-8. **Add `robots.txt` and basic `sitemap.xml`** (L1) — new files, short
-9. **Swap `i18n.js` to load before `script.js` on all 9 public pages** (M5) — preventative
-10. **Add `maxlength` to discussion thread title/body inputs** (PM1)
-11. **Add `aria-label` to join submit button** (L8)
+1. **L5 — Remove redundant inline setTimeout loaders** from all 9 public pages — `script.js` handles this at ~2300ms, inline 2500ms timeout is redundant
+2. **PM2 — Verify Supabase storage bucket setup for avatar upload** — operators action, not agent work
+3. **PL2 — Add `favicon.svg` to portal pages** — cosmetic consistency only
+4. **PL3 — Verify admin analytics widget renders in production** — operators should verify role matching works
