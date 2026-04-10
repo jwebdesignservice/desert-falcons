@@ -1141,27 +1141,27 @@
 .meaning-sword {
     background:
         linear-gradient(135deg, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.75) 100%),
-        url('images/sword-image.jpg') center center / cover no-repeat;
+        url('images/sword-image.png') center center / cover no-repeat;
 }
 
 .meaning-sword:hover {
     border-color: #B8915A;
     background:
         linear-gradient(135deg, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.65) 100%),
-        url('images/sword-image.jpg') center center / cover no-repeat;
+        url('images/sword-image.png') center center / cover no-repeat;
 }
 
 .meaning-palm {
     background:
         linear-gradient(135deg, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.75) 100%),
-        url('images/palm-image.jpg') center center / cover no-repeat;
+        url('images/palm-image.png') center center / cover no-repeat;
 }
 
 .meaning-palm:hover {
     border-color: #B8915A;
     background:
         linear-gradient(135deg, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.65) 100%),
-        url('images/palm-image.jpg') center center / cover no-repeat;
+        url('images/palm-image.png') center center / cover no-repeat;
 }
 
 .meaning-icon {
