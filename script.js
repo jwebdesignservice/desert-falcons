@@ -96,7 +96,7 @@
         animateCursor();
 
         // Hover effect on interactive elements
-        const hoverTargets = document.querySelectorAll('a, button, [role="button"], input, textarea, .btn, .nav-link, .pricing-card, .numbered-card, .type-card, .list-item, .comparison-card, .daughter-card, .meaning-side, .timeline-point');
+        const hoverTargets = document.querySelectorAll('a, button, [role="button"], input, textarea, .btn, .nav-link, .pricing-card, .numbered-card, .type-card, .list-item, .comparison-card, .meaning-side, .timeline-point');
 
         hoverTargets.forEach(function(target) {
             target.addEventListener('mouseenter', function() {
