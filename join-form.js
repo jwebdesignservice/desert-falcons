@@ -1,10 +1,7 @@
 // Desert Falcons Collective — Join Form Handler
-// Supabase integration
+// Posts directly to /api/notify-application (no database).
 
-const SUPABASE_URL = 'https://ehcvjxggkfsdhzraucbz.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoY3ZqeGdna2ZzZGh6cmF1Y2J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MjA0MTgsImV4cCI6MjA4ODE5NjQxOH0.VvjiIrgVOONN_UOmwB0Q6hL_0aOjLlmfdVibKd627O8';
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const SUBMIT_ENDPOINT = '/api/notify-application';
 
 // Show/hide role-specific fields based on selected interest
 function updateFieldVisibility(interest) {
@@ -24,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
         interestSelectEl.addEventListener('change', function () {
             updateFieldVisibility(this.value);
         });
-        // Set initial state on load
         updateFieldVisibility(interestSelectEl.value);
     }
 
@@ -41,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 interestSel.dispatchEvent(new Event('change'));
             }
         }
-        // Also activate the matching role pill
         const pill = document.querySelector(`.role-pill[data-role="${role}"]`);
         if (pill) {
             document.querySelectorAll('.role-pill').forEach(p => p.classList.remove('role-pill--active'));
@@ -58,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const btn = form.querySelector('.join-submit-btn');
         const btnText = btn.querySelector('span');
 
-        // Basic validation
         const required = form.querySelectorAll('[required]');
         let valid = true;
         required.forEach(el => {
@@ -74,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Build payload
         const payload = {
             full_name:         getValue('fullName'),
             email:             getValue('email'),
@@ -90,21 +83,25 @@ document.addEventListener('DOMContentLoaded', function () {
             terms_agreed:      document.getElementById('termsAgree').checked
         };
 
-        // Loading state
         btn.disabled = true;
         btnText.textContent = 'Submitting...';
 
-        const { error } = await supabase
-            .from('collective_applications')
-            .insert([payload]);
-
-        if (error) {
-            console.error('Supabase error:', error);
+        try {
+            const res = await fetch(SUBMIT_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            if (!res.ok) {
+                const body = await res.json().catch(() => ({}));
+                throw new Error(body.error || `HTTP ${res.status}`);
+            }
+            showSuccessState();
+        } catch (err) {
+            console.error('Submission error:', err);
             showFormMessage('Something went wrong. Please try again.', 'error');
             btn.disabled = false;
             btnText.textContent = 'Join the Collective';
-        } else {
-            showSuccessState();
         }
     });
 });

@@ -1,69 +1,128 @@
-// Desert Falcons Collective — Application notification endpoint
+// Desert Falcons Collective — Application submission endpoint
 //
-// Called by Supabase Database Webhook after an INSERT into
-// public.collective_applications. Sends two emails via Resend:
-//   1. Confirmation to the applicant
-//   2. New-application summary to the admin inbox
+// Called directly by join-form.js on submit. Does three things:
+//   1. Appends a row to the Google Sheet (via Apps Script web app)
+//   2. Sends a new-application summary to the admin inbox
+//   3. Sends a confirmation email to the applicant
 
 import { Resend } from 'resend'
 
 const ADMIN_EMAIL = 'contact@desertfalconscollective.com'
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Desert Falcons <onboarding@resend.dev>'
-const SHARED_SECRET = process.env.WEBHOOK_SECRET
+const GSHEET_WEBAPP_URL = process.env.GSHEET_WEBAPP_URL
+
+const ALLOWED_ORIGINS = [
+  'https://desert-falcons.vercel.app',
+  'https://desertfalconscollective.com',
+  'https://www.desertfalconscollective.com',
+]
+
+function setCors(req, res) {
+  const origin = req.headers.origin
+  const allow = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]
+  res.setHeader('Access-Control-Allow-Origin', allow)
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  res.setHeader('Vary', 'Origin')
+}
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'method_not_allowed' })
+  setCors(req, res)
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end()
   }
 
-  // Lightweight shared-secret check. Supabase webhook is configured to send
-  // this in a custom header; if WEBHOOK_SECRET is unset, skip the check
-  // (useful while wiring things up, but set it in prod).
-  if (SHARED_SECRET) {
-    const provided = req.headers['x-webhook-secret']
-    if (provided !== SHARED_SECRET) {
-      return res.status(401).json({ error: 'unauthorized' })
-    }
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'method_not_allowed' })
   }
 
   if (!process.env.RESEND_API_KEY) {
     return res.status(500).json({ error: 'resend_api_key_not_configured' })
   }
 
-  const body = req.body || {}
-  const record = body.record || body
+  const record = normalizeRecord(req.body || {})
 
-  if (!record?.email) {
-    return res.status(400).json({ error: 'missing_record_email' })
+  if (!record.email || !isValidEmail(record.email)) {
+    return res.status(400).json({ error: 'invalid_email' })
+  }
+  if (!record.full_name) {
+    return res.status(400).json({ error: 'missing_name' })
+  }
+  if (!record.interest) {
+    return res.status(400).json({ error: 'missing_interest' })
   }
 
   const resend = new Resend(process.env.RESEND_API_KEY)
-
   const summary = formatApplicationSummary(record)
   const interestLabel = formatInterest(record.interest)
 
-  const adminResult = await resend.emails.send({
-    from: FROM_EMAIL,
-    to: ADMIN_EMAIL,
-    subject: `New application — ${record.full_name || 'Unknown'} (${interestLabel})`,
-    html: buildAdminHtml(record, summary),
-    reply_to: record.email,
-  })
+  // Fan out: Sheets (optional) + admin email + applicant email in parallel.
+  const [sheetResult, adminResult, applicantResult] = await Promise.allSettled([
+    appendToSheet(record),
+    resend.emails.send({
+      from: FROM_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: `New application — ${record.full_name} (${interestLabel})`,
+      html: buildAdminHtml(record, summary),
+      reply_to: record.email,
+    }),
+    resend.emails.send({
+      from: FROM_EMAIL,
+      to: record.email,
+      subject: 'We received your application — Desert Falcons Collective',
+      html: buildApplicantHtml(record),
+    }),
+  ])
 
-  const applicantResult = await resend.emails.send({
-    from: FROM_EMAIL,
-    to: record.email,
-    subject: 'We received your application — Desert Falcons Collective',
-    html: buildApplicantHtml(record),
-  })
+  // Consider the submission successful as long as the admin gets their email.
+  // Sheet failure shouldn't block — we still have the inbox record.
+  const adminOk = adminResult.status === 'fulfilled' && !adminResult.value?.error
+
+  if (!adminOk) {
+    console.error('admin email failed', adminResult)
+    return res.status(502).json({ error: 'email_send_failed' })
+  }
 
   return res.status(200).json({
     ok: true,
-    admin_id: adminResult?.data?.id || null,
-    applicant_id: applicantResult?.data?.id || null,
-    admin_error: adminResult?.error || null,
-    applicant_error: applicantResult?.error || null,
+    sheet: sheetResult.status === 'fulfilled',
+    applicant_sent: applicantResult.status === 'fulfilled' && !applicantResult.value?.error,
   })
+}
+
+function normalizeRecord(body) {
+  const pick = (k) => (typeof body[k] === 'string' ? body[k].trim() : body[k] ?? null)
+  return {
+    full_name: pick('full_name') || pick('fullName'),
+    email: pick('email'),
+    phone: pick('phone'),
+    interest: pick('interest'),
+    specialization: pick('specialization'),
+    experience: pick('experience'),
+    design_discipline: pick('design_discipline') || pick('designDiscipline'),
+    portfolio_url: pick('portfolio_url') || pick('portfolio'),
+    investment_range: pick('investment_range') || pick('investmentRange'),
+    investor_type: pick('investor_type') || pick('investorType'),
+    hear_about: pick('hear_about') || pick('hearAbout'),
+    terms_agreed: Boolean(body.terms_agreed ?? body.termsAgreed),
+    submitted_at: new Date().toISOString(),
+  }
+}
+
+function isValidEmail(e) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)
+}
+
+async function appendToSheet(record) {
+  if (!GSHEET_WEBAPP_URL) return { skipped: true }
+  const res = await fetch(GSHEET_WEBAPP_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(record),
+  })
+  if (!res.ok) throw new Error(`sheet append failed: ${res.status}`)
+  return { ok: true }
 }
 
 function formatInterest(interest) {
@@ -73,11 +132,11 @@ function formatInterest(interest) {
     investor: 'Investor',
     general: 'General Interest',
   }
-  return map[interest] || 'Unknown'
+  return map[interest] || interest || 'Unknown'
 }
 
 function formatApplicationSummary(r) {
-  const rows = [
+  return [
     ['Name', r.full_name],
     ['Email', r.email],
     ['Phone', r.phone],
@@ -90,7 +149,6 @@ function formatApplicationSummary(r) {
     ['Investor type', r.investor_type],
     ['How they heard', r.hear_about],
   ].filter(([, v]) => v)
-  return rows
 }
 
 function esc(s) {
@@ -122,7 +180,7 @@ function buildAdminHtml(record, summary) {
       <table role="presentation" width="620" cellpadding="0" cellspacing="0" style="max-width:620px;background:#111111;border:1px solid #1f1f1f;">
         <tr><td style="padding:32px 40px 8px;">
           <p style="margin:0 0 4px;font-family:monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#B8915A;">New Application</p>
-          <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:500;color:#ffffff;">${esc(record.full_name || 'Unknown applicant')}</h1>
+          <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:500;color:#ffffff;">${esc(record.full_name)}</h1>
           <p style="margin:6px 0 0;font-family:Inter,Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.5);">${esc(formatInterest(record.interest))} · ${esc(record.email)}</p>
         </td></tr>
         <tr><td style="padding:16px 40px 32px;">
