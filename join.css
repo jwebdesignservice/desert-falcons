@@ -150,6 +150,12 @@
     align-items: start;
 }
 
+/* ---- Left: Context Panel ---- */
+.join-context {
+    position: sticky;
+    top: 120px;
+}
+
 @media (max-width: 960px) {
     .join-form-outer {
         grid-template-columns: 1fr;
@@ -159,12 +165,6 @@
     .join-context {
         position: static;
     }
-}
-
-/* ---- Left: Context Panel ---- */
-.join-context {
-    position: sticky;
-    top: 120px;
 }
 
 .join-context-inner {
