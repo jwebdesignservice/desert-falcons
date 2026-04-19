@@ -1,1 +1,9 @@
 .vercel
+node_modules/
+.env
+.env.local
+.env.*.local
+.DS_Store
+*.log
+.fix-arabic.ps1
+.*-utf8.tmp

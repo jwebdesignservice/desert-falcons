@@ -1,0 +1,9 @@
+{
+  "name": "desert-falcons",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Desert Falcons Collective — Saudi luxury automotive brand website",
+  "dependencies": {
+    "resend": "^6.2.0"
+  }
+}
