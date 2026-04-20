@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="favicon-dfc.png">
@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -51,8 +52,8 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
-                <span class="logo-text"><span>DESERT FALCONS</span></span>
-                <span class="logo-sub"><span>COLLECTIVE</span></span>
+                <span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span>
+                <span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span>
             </div>
             <div class="loader-bar"></div>
             <div class="loader-dots">
@@ -66,21 +67,23 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text"><span>DESERT FALCONS</span></span><span class="logo-sub"><span>COLLECTIVE</span></span></span></a>
+            <a href="index.html" class="nav-logo"><img src="images/dfc-logo.png" alt="DFC" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
 
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" data-i18n-aria-ar="تبديل التنقل">
                 <span class="hamburger"></span>
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link"><span>Home</span></a></li>
-                <li><a href="founders-story.html" class="nav-link active"><span>Founder's Story</span></a></li>
-                <li><a href="vision.html" class="nav-link"><span>Vision</span></a></li>
-                <li><a href="engineers.html" class="nav-link"><span>Engineers</span></a></li>
-                <li><a href="designers.html" class="nav-link"><span>Designers</span></a></li>
-                <li><a href="investors.html" class="nav-link"><span>Investors</span></a></li>
-                <li><a href="join.html" class="nav-link nav-cta"><span>Join Us</span></a></li>
+                <li><a href="index.html" class="nav-link"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                <li><a href="founders-story.html" class="nav-link active"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                <li><a href="vision.html" class="nav-link"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
+                <li><a href="engineers.html" class="nav-link"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                <li><a href="designers.html" class="nav-link"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                <li><a href="investors.html" class="nav-link"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
+                <li><a href="join.html" class="nav-link nav-cta"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
                 
+                            <li><a href="portal/index.html" class="nav-link nav-portal"><span data-i18n="nav.portal" data-i18n-ar="بوابة الأعضاء">Member Portal</span></a></li>
+            <li class="lang-toggle-li"><button class="lang-toggle-btn" aria-label="Switch language">عربي</button></li>
             </ul>
         </div>
     </nav>
@@ -97,17 +100,17 @@
 
         <div class="story-hero-content">
             <div class="story-hero-meta">
-                <span class="story-year"><span>1982 - Present</span></span>
+                <span class="story-year"><span data-i18n="fs.hero.year" data-i18n-ar="١٩٨٢ — الحاضر">1982 — Present</span></span>
                 <span class="story-divider"></span>
-                <span class="story-label"><span>A Founder's Journey</span></span>
+                <span class="story-label"><span data-i18n="fs.hero.label" data-i18n-ar="رحلة المؤسس">A Founder's Journey</span></span>
             </div>
 
-            <h1 class="story-hero-title"><span>The Story<br><span class="title-accent">Behind SAIF</span></span></h1>
+            <h1 class="story-hero-title"><span data-i18n="fs.hero.title" data-i18n-ar="القصة<br><span class='title-accent'>وراء سيف</span>">The Story<br><span class="title-accent">Behind SAIF</span></span></h1>
 
-            <p class="story-hero-tagline"><span>A dream that began with a wooden car in 1982,<br>and a question that would not rest.</span></p>
+            <p class="story-hero-tagline"><span data-i18n="fs.hero.tagline" data-i18n-ar="حلمٌ بدأ بسيارة خشبية عام ١٩٨٢،<br>وسؤال لم يهدأ أبدًا.">A dream that began with a wooden car in 1982,<br>and a question that would not rest.</span></p>
 
             <div class="story-scroll-prompt">
-                <span><span>Begin the Journey</span></span>
+                <span><span data-i18n="fs.hero.scroll" data-i18n-ar="ابدأ الرحلة">Begin the Journey</span></span>
                 <div class="scroll-arrow">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -136,21 +139,21 @@
             <div class="fi-editorial-left">
                 <div class="fi-eyebrow">
                     <span class="fi-label-line"></span>
-                    <span class="fi-label-text"><span>The Founder</span></span>
+                    <span class="fi-label-text"><span data-i18n="fs.bio.label" data-i18n-ar="المؤسس">The Founder</span></span>
                 </div>
 
-                <h2 class="fi-name-headline"><span>Khalaf<br><em class="fi-name-italic">Althobaiti</em></span></h2>
+                <h2 class="fi-name-headline"><span data-i18n="fs.bio.name" data-i18n-ar="خلف<br><em class='fi-name-italic'>الثبيتي</em>">Khalaf<br><em class="fi-name-italic">Althobaiti</em></span></h2>
 
                 <div class="fi-title-divider"></div>
 
-                <p class="fi-bio-en"><span>"I'm Khalaf Althobaiti, with over 15 years of experience in security operations and safety management. I've worked with major organizations like Sadara Chemical Company, KAUST, and Al-Amoudi Holding Company. But this project? It started long before all of that. When I was ten years old, I built a wooden car from scrap wood and old nails in my village. That childhood dream stayed with me. Today, I'm building that car again - but this time it's real. I founded Desert Falcons Collective to bring together Saudi engineers, designers, and investors to create SAIF, the first Saudi luxury car. I'm doing this for my family, and for my country. Because I believe Saudi Arabia deserves its own official vehicle - just like every other major nation."</span></p>
+                <p class="fi-bio-en"><span data-i18n="fs.bio.en" data-i18n-ar="&quot;أنا خلف الثبيتي، بخبرة تزيد عن ١٥ عامًا في عمليات الأمن والسلامة. عملت مع مؤسسات كبرى مثل شركة صدارة للكيماويات وجامعة الملك عبدالله للعلوم والتقنية (كاوست) وشركة العمودي القابضة. لكن هذا المشروع؟ بدايته كانت قبل كل هذا بسنوات. في العاشرة من عمري، صنعت سيارة خشبية من خشب قديم ومسامير مستعملة في قريتي. حلم الطفولة ظل معي. واليوم، أعيد بناء تلك السيارة مجددًا – ولكن هذه المرة حقيقية. أسست صقور الصحراء لأجمع المهندسين والمصممين والمستثمرين السعوديين لبناء 'سيف'، أول سيارة سعودية فاخرة. أفعل هذا من أجل عائلتي، ومن أجل وطني. لأنني أؤمن أن السعودية تستحق سيارتها الرسمية – تمامًا مثل كل دولة كبرى.&quot;">"I'm Khalaf Althobaiti, with over 15 years of experience in security operations and safety management. I've worked with major organizations like Sadara Chemical Company, KAUST, and Al-Amoudi Holding Company. But this project? It started long before all of that. When I was ten years old, I built a wooden car from scrap wood and old nails in my village. That childhood dream stayed with me. Today, I'm building that car again – but this time it's real. I founded Desert Falcons Collective to bring together Saudi engineers, designers, and investors to create SAIF, the first Saudi luxury car. I'm doing this for my family, and for my country. Because I believe Saudi Arabia deserves its own official vehicle – just like every other major nation."</span></p>
 
                 <div class="fi-credentials">
-                    <span class="fi-credential"><span>Sadara Chemical Company</span></span>
+                    <span class="fi-credential"><span data-i18n="fs.cred1" data-i18n-ar="شركة صدارة للكيماويات">Sadara Chemical Company</span></span>
                     <span class="fi-cred-sep">·</span>
-                    <span class="fi-credential"><span>KAUST</span></span>
+                    <span class="fi-credential"><span data-i18n="fs.cred2" data-i18n-ar="كاوست">KAUST</span></span>
                     <span class="fi-cred-sep">·</span>
-                    <span class="fi-credential"><span>Al-Amoudi Holding</span></span>
+                    <span class="fi-credential"><span data-i18n="fs.cred3" data-i18n-ar="العمودي القابضة">Al-Amoudi Holding</span></span>
                 </div>
             </div>
 
@@ -158,13 +161,20 @@
             <div class="fi-editorial-right">
                 <div class="fi-portrait-wrap">
                     <div class="fi-portrait-circle">
-                        <img src="images/khalaf-althobaiti.png" alt="Founder, Desert Falcons Collective" class="fi-portrait-img" />
+                        <img src="images/khalaf-althobaiti.png" alt="Khalaf Althobaiti — Founder, Desert Falcons Collective" data-i18n-alt-ar="خلف الثبيتي — مؤسس صقور الصحراء التجمّع" class="fi-portrait-img" />
                         <div class="fi-bracket"></div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Arabic Bio -->
+        <div class="fi-arabic-band">
+            <div class="fi-arabic-inner">
+                <div class="fi-arabic-bar"></div>
+                <p class="fi-bio-ar" dir="rtl" lang="ar">"أنا خلف الثبيتي، بخبرة تزيد عن ١٥ عامًا في عمليات الأمن والسلامة. عملت مع مؤسسات كبرى مثل شركة صدارة للكيماويات وجامعة الملك عبدالله للعلوم والتقنية (كاوست) وشركة العمودي القابضة. لكن هذا المشروع؟ بدايته كانت قبل كل هذا بسنوات. في العاشرة من عمري، صنعت سيارة خشبية من خشب قديم ومسامير مستعملة في قريتي. حلم الطفولة ظل معي. واليوم، أعيد بناء تلك السيارة مجددًا – ولكن هذه المرة حقيقية. أسست صقور الصحراء لأجمع المهندسين والمصممين والمستثمرين السعوديين لبناء 'سيف'، أول سيارة سعودية فاخرة. أفعل هذا من أجل عائلتي، ومن أجل وطني. لأنني أؤمن أن السعودية تستحق سيارتها الرسمية – تمامًا مثل كل دولة كبرى."</p>
+            </div>
+        </div>
 
         <div class="fi-rule fi-rule-bottom"></div>
     </section>
@@ -177,7 +187,7 @@
         <div class="chapter-frame">
             <div class="chapter-image-wrapper">
                 <div class="chapter-image">
-                    <img src="images/woodern-car.jpeg" alt="Wooden Car 1982" class="chapter-img"/>
+                    <img src="images/woodern-car.jpeg" alt="Wooden Car 1982" data-i18n-alt-ar="السيارة الخشبية ١٩٨٢" class="chapter-img"/>
                 </div>
                 <div class="chapter-image-frame"></div>
                 <span class="chapter-year-badge">1982</span>
@@ -186,18 +196,18 @@
             <div class="chapter-text-wrapper">
                 <div class="chapter-number-vertical">01</div>
                 <div class="chapter-content">
-                    <h2 class="chapter-title"><span>A Child's Dream</span></h2>
-                    <div class="chapter-subtitle"><span>Summer 1982, Taif City - Al-Shurut Village</span></div>
+                    <h2 class="chapter-title"><span data-i18n="fs.ch1.title" data-i18n-ar="حلم طفل">A Child's Dream</span></h2>
+                    <div class="chapter-subtitle"><span data-i18n="fs.ch1.sub" data-i18n-ar="صيف ١٩٨٢، الطائف - قرية الشروط">Summer 1982, Taif City - Al-Shurut Village</span></div>
 
                     <div class="chapter-body">
-                        <p class="lead-text"><span>I was ten years old. We didn't have ready-made toys.</span></p>
-                        <p><span>So I made my own.</span></p>
+                        <p class="lead-text"><span data-i18n="fs.ch1.lead" data-i18n-ar="كنت في العاشرة من عمري. لم تكن لدينا ألعاب جاهزة.">I was ten years old. We didn't have ready-made toys.</span></p>
+                        <p><span data-i18n="fs.ch1.p2" data-i18n-ar="فصنعت ألعابي بنفسي.">So I made my own.</span></p>
 
                         <blockquote class="inline-quote">
-                            <span>"The chassis was a wooden grape box, once used to carry fruit to the market. The pickup area - a cut from a Shell oil can. The cabin - an old tea tin. The tires? Rubber cut from a worn sandal. It wasn't beautiful. But it was <em>mine</em>."</span>
+                            <span data-i18n="fs.ch1.quote" data-i18n-ar="&quot;الهيكل كان صندوق عنب خشبيًا، استُخدم يومًا لحمل الفاكهة إلى السوق. منطقة الحمولة — قطعة من علبة زيت شِل. المقصورة — علبة شاي قديمة. الإطارات؟ مطاط مقطوع من صندل بالٍ. لم تكن جميلة. لكنها كانت <em>ملكي</em>.&quot;">"The chassis was a wooden grape box, once used to carry fruit to the market. The pickup area – a cut from a Shell oil can. The cabin – an old tea tin. The tires? Rubber cut from a worn sandal. It wasn't beautiful. But it was <em>mine</em>."</span>
                         </blockquote>
 
-                        <p><span>I pulled it through dusty alleys, making engine sounds with my mouth. I didn't know it then, but I was planting a seed.</span></p>
+                        <p><span data-i18n="fs.ch1.p3" data-i18n-ar="كنت أسحبها في الأزقة المتربة، أصنع أصوات محرك بفمي. لم أكن أعلم حينها، لكنني كنت أزرع بذرة.">I pulled it through dusty alleys, making engine sounds with my mouth. I didn't know it then, but I was planting a seed.</span></p>
                     </div>
                 </div>
             </div>
@@ -211,16 +221,16 @@
     <section class="story-chapter story-chapter-grid" id="chapter2">
         <div class="container">
             <div class="chapter-header-centered">
-                <span class="chapter-number-inline">Chapter 02</span>
-                <h2 class="chapter-title-large"><span>The Question That<br>Wouldn't Leave</span></h2>
-                <p class="chapter-intro"><span>Years later, I looked around the world:</span></p>
+                <span class="chapter-number-inline" data-i18n="fs.ch2.label" data-i18n-ar="الفصل ٠٢">Chapter 02</span>
+                <h2 class="chapter-title-large"><span data-i18n="fs.ch2.title" data-i18n-ar="السؤال الذي<br>لم يغادر">The Question That<br>Wouldn't Leave</span></h2>
+                <p class="chapter-intro"><span data-i18n="fs.ch2.intro" data-i18n-ar="بعد سنوات، نظرت حول العالم:">Years later, I looked around the world:</span></p>
             </div>
 
             <div class="comparison-grid">
                 <!-- USA -->
                 <div class="comparison-card">
                     <div class="comparison-flag">
-                        <svg class="flag-map-svg" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" aria-label="United States">
+                        <svg class="flag-map-svg" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" aria-label="United States" data-i18n-aria-ar="الولايات المتحدة">
                             <rect x="0" y="0" width="150" height="7.7" fill="#B22234"/>
                             <rect x="0" y="7.7" width="150" height="7.7" fill="#FFFFFF"/>
                             <rect x="0" y="15.4" width="150" height="7.7" fill="#B22234"/>
@@ -238,15 +248,15 @@
                             <rect x="0" y="0" width="150" height="100" fill="none" stroke="#B8915A" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <span class="comparison-country"><span>America</span></span>
-                    <span class="comparison-car"><span>"The Beast"</span></span>
+                    <span class="comparison-country"><span data-i18n="fs.country.us" data-i18n-ar="أمريكا">America</span></span>
+                    <span class="comparison-car"><span data-i18n="fs.car.us" data-i18n-ar="&quot;الوحش&quot;">"The Beast"</span></span>
                 </div>
 
                 <!-- UK -->
                 <div class="comparison-card">
                     <div class="comparison-flag">
                         <!-- Great Britain: Scotland wide at top, East Anglia right bulge, Cornwall SW peninsula, Wales left bulge -->
-                        <svg class="flag-map-svg" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" aria-label="United Kingdom">
+                        <svg class="flag-map-svg" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" aria-label="United Kingdom" data-i18n-aria-ar="المملكة المتحدة">
                             <rect x="0" y="0" width="150" height="100" fill="#012169"/>
                             <line x1="0" y1="0" x2="150" y2="100" stroke="white" stroke-width="20"/>
                             <line x1="150" y1="0" x2="0" y2="100" stroke="white" stroke-width="20"/>
@@ -261,35 +271,35 @@
                             <rect x="0" y="0" width="150" height="100" fill="none" stroke="#B8915A" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <span class="comparison-country"><span>Britain</span></span>
-                    <span class="comparison-car"><span>Royal Rolls-Royces</span></span>
+                    <span class="comparison-country"><span data-i18n="fs.country.uk" data-i18n-ar="بريطانيا">Britain</span></span>
+                    <span class="comparison-car"><span data-i18n="fs.car.uk" data-i18n-ar="رولز رويس الملكية">Royal Rolls-Royces</span></span>
                 </div>
 
                 <!-- Japan -->
                 <div class="comparison-card">
                     <div class="comparison-flag">
-                        <svg class="flag-map-svg" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" aria-label="Japan">
+                        <svg class="flag-map-svg" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" aria-label="Japan" data-i18n-aria-ar="اليابان">
                             <rect x="0" y="0" width="150" height="100" fill="#FFFFFF"/>
                             <circle cx="75" cy="50" r="30" fill="#BC002D"/>
                             <rect x="0" y="0" width="150" height="100" fill="none" stroke="#B8915A" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <span class="comparison-country"><span>Japan</span></span>
-                    <span class="comparison-car"><span>Toyota Century</span></span>
+                    <span class="comparison-country"><span data-i18n="fs.country.jp" data-i18n-ar="اليابان">Japan</span></span>
+                    <span class="comparison-car"><span data-i18n="fs.car.jp" data-i18n-ar="تويوتا سينشري">Toyota Century</span></span>
                 </div>
 
                 <!-- Germany -->
                 <div class="comparison-card">
                     <div class="comparison-flag">
-                        <svg class="flag-map-svg" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" aria-label="Germany">
+                        <svg class="flag-map-svg" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" aria-label="Germany" data-i18n-aria-ar="ألمانيا">
                             <rect x="0" y="0" width="150" height="33" fill="#000000"/>
                             <rect x="0" y="33" width="150" height="34" fill="#DD0000"/>
                             <rect x="0" y="67" width="150" height="33" fill="#FFCE00"/>
                             <rect x="0" y="0" width="150" height="100" fill="none" stroke="#B8915A" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <span class="comparison-country"><span>Germany</span></span>
-                    <span class="comparison-car"><span>Mercedes-Maybach</span></span>
+                    <span class="comparison-country"><span data-i18n="fs.country.de" data-i18n-ar="ألمانيا">Germany</span></span>
+                    <span class="comparison-car"><span data-i18n="fs.car.de" data-i18n-ar="مرسيدس-مايباخ">Mercedes-Maybach</span></span>
                 </div>
             </div>
 
@@ -299,14 +309,19 @@
                     <div class="question-flag">
                         <img src="images/saudi-flag.jpg" alt="Saudi Arabia Flag" class="flag-map-img"/>
                     </div>
-                    <h3 class="question-text"><span>Why doesn't Saudi Arabia have its own?</span></h3>
+                    <h3 class="question-text"><span data-i18n="fs.question" data-i18n-ar="لماذا لا تملك السعودية سيارتها الخاصة؟">Why doesn't Saudi Arabia have its own?</span></h3>
                 </div>
                 <div class="question-line"></div>
             </div>
 
-            <p class="chapter-statement"><span>We have the resources. The talent. The vision.<br><strong>Why should our leaders travel in foreign cars?</strong></span></p>
+            <p class="chapter-statement"><span data-i18n="fs.ch2.statement" data-i18n-ar="لدينا الموارد. والمواهب. والرؤية.<br><strong>لماذا يسافر قادتنا في سيارات أجنبية؟</strong>">We have the resources. The talent. The vision.<br><strong>Why should our leaders travel in foreign cars?</strong></span></p>
         </div>
     </section>
+
+    <!-- ============================================
+         SECTION 4: My Daughters - The Real Reason
+         Three portrait cards - Emotional, minimal
+    ============================================ -->
 
     <!-- ============================================
          SECTION 5: The Words That Changed Everything
@@ -317,22 +332,22 @@
             <div class="chapter-text-wrapper">
                 <div class="chapter-number-vertical">04</div>
                 <div class="chapter-content">
-                    <h2 class="chapter-title"><span>The Words That Changed Everything</span></h2>
-                    <div class="chapter-subtitle"><span>A Conversation with Reema</span></div>
+                    <h2 class="chapter-title"><span data-i18n="fs.ch4.title" data-i18n-ar="الكلمات التي غيّرت كل شيء">The Words That Changed Everything</span></h2>
+                    <div class="chapter-subtitle"><span data-i18n="fs.ch4.sub" data-i18n-ar="محادثة مع ريم">A Conversation with Reema</span></div>
 
                     <div class="chapter-body">
-                        <p class="lead-text"><span>I was telling Reema about my dream. I expected encouragement. A proud smile.</span></p>
-                        <p><span>Instead, she said:</span></p>
+                        <p class="lead-text"><span data-i18n="fs.ch4.lead" data-i18n-ar="كنت أحدث ريم عن حلمي. توقعت تشجيعًا. ابتسامة فخر.">I was telling Reema about my dream. I expected encouragement. A proud smile.</span></p>
+                        <p><span data-i18n="fs.ch4.instead" data-i18n-ar="بدلًا من ذلك، قالت:">Instead, she said:</span></p>
 
                         <blockquote class="inline-quote">
-                            <span>"Saif - the son that you <em>don't have</em>."</span>
+                            <span data-i18n="fs.ch4.quote" data-i18n-ar="&quot;سيف — الابن الذي لا تملكه.&quot;">"Saif – the son that you <em>don't have</em>."</span>
                         </blockquote>
 
-                        <p><span>The words hit like an arrow. I left the room. Sat alone in the dark. But that night, I realized something powerful:</span></p>
+                        <p><span data-i18n="fs.ch4.p2" data-i18n-ar="أصابتني الكلمات كالسهم. غادرت الغرفة. جلست وحدي في الظلام. لكن تلك الليلة، أدركت شيئًا قويًا:">The words hit like an arrow. I left the room. Sat alone in the dark. But that night, I realized something powerful:</span></p>
 
-                        <p><span>I don't need a son to build a legacy. <em>My family IS my legacy.</em></span></p>
+                        <p><span data-i18n="fs.ch4.legacy" data-i18n-ar="لا أحتاج إلى ابن لأبني إرثًا. <em>بناتي هُنَّ إرثي.</em>">I don't need a son to build a legacy. <em>My family IS my legacy.</em></span></p>
 
-                        <p><span>That word became the fuel for SAIF.</span></p>
+                        <p><span data-i18n="fs.ch4.fuel" data-i18n-ar="أصبحت تلك الكلمة وقود سيف.">That word became the fuel for SAIF.</span></p>
                     </div>
                 </div>
             </div>
@@ -354,22 +369,22 @@
     <section class="story-chapter story-chapter-meaning" id="chapter5">
         <div class="container">
             <div class="meaning-header">
-                <span class="chapter-number-inline">Chapter 05</span>
-                <h2 class="meaning-title"><span>The Name</span></h2>
+                <span class="chapter-number-inline" data-i18n="fs.ch5.label" data-i18n-ar="الفصل ٠٥">Chapter 05</span>
+                <h2 class="meaning-title"><span data-i18n="fs.ch5.title" data-i18n-ar="الاسم">The Name</span></h2>
                 <div class="meaning-arabic">سيف</div>
-                <p class="meaning-translation"><span>SAIF - Sword in Arabic</span></p>
+                <p class="meaning-translation"><span data-i18n="fs.ch5.meaning" data-i18n-ar="سيف — السيف بالعربية">SAIF — Sword in Arabic</span></p>
             </div>
 
             <div class="sword-palm-split">
                 <div class="meaning-side meaning-sword">
-                    <h3 class="meaning-label"><span>The Sword</span></h3>
-                    <p class="meaning-description"><span>On our flag. In our history. In our souls.</span></p>
+                    <h3 class="meaning-label"><span data-i18n="fs.sword" data-i18n-ar="السيف">The Sword</span></h3>
+                    <p class="meaning-description"><span data-i18n="fs.sword.desc" data-i18n-ar="على علمنا. في تاريخنا. في أرواحنا.">On our flag. In our history. In our souls.</span></p>
                     <ul class="meaning-attributes">
-                        <li><span>Honor</span></li>
-                        <li><span>Strength</span></li>
-                        <li><span>Protection</span></li>
+                        <li><span data-i18n="fs.sword1" data-i18n-ar="الشرف">Honor</span></li>
+                        <li><span data-i18n="fs.sword2" data-i18n-ar="القوة">Strength</span></li>
+                        <li><span data-i18n="fs.sword3" data-i18n-ar="الحماية">Protection</span></li>
                     </ul>
-                    <p class="meaning-application"><span>A sword on the outside - <em>strength that commands respect.</em></span></p>
+                    <p class="meaning-application"><span data-i18n="fs.sword.app" data-i18n-ar="السيف في الخارج — قوةٌ تفرض الاحترام.">A sword on the outside — <em>strength that commands respect.</em></span></p>
                 </div>
 
                 <div class="meaning-divider">
@@ -379,14 +394,14 @@
                 </div>
 
                 <div class="meaning-side meaning-palm">
-                    <h3 class="meaning-label"><span>The Palm</span></h3>
-                    <p class="meaning-description"><span>The tree that gives life in our desert.</span></p>
+                    <h3 class="meaning-label"><span data-i18n="fs.palm" data-i18n-ar="النخلة">The Palm</span></h3>
+                    <p class="meaning-description"><span data-i18n="fs.palm.desc" data-i18n-ar="الشجرة التي تمنح الحياة في صحرائنا.">The tree that gives life in our desert.</span></p>
                     <ul class="meaning-attributes">
-                        <li><span>Warmth</span></li>
-                        <li><span>Hospitality</span></li>
-                        <li><span>Nourishment</span></li>
+                        <li><span data-i18n="fs.palm1" data-i18n-ar="الدفء">Warmth</span></li>
+                        <li><span data-i18n="fs.palm2" data-i18n-ar="الضيافة">Hospitality</span></li>
+                        <li><span data-i18n="fs.palm3" data-i18n-ar="التغذية">Nourishment</span></li>
                     </ul>
-                    <p class="meaning-application"><span>A palm on the inside - <em>warmth that welcomes like a majlis.</em></span></p>
+                    <p class="meaning-application"><span data-i18n="fs.palm.app" data-i18n-ar="النخلة في الداخل — دفءٌ يرحّب كالمجلس.">A palm on the inside — <em>warmth that welcomes like a majlis.</em></span></p>
                 </div>
             </div>
         </div>
@@ -401,22 +416,22 @@
         <div class="tuwaiq-overlay"></div>
 
         <div class="tuwaiq-content">
-            <span class="chapter-number-inline light">Chapter 06</span>
-            <h2 class="tuwaiq-title"><span>The Spirit of Tuwaiq</span></h2>
+            <span class="chapter-number-inline light" data-i18n="fs.ch6.label" data-i18n-ar="الفصل ٠٦">Chapter 06</span>
+            <h2 class="tuwaiq-title"><span data-i18n="fs.ch6.title" data-i18n-ar="روح طويق">The Spirit of Tuwaiq</span></h2>
 
             <div class="tuwaiq-quote-block">
                 <div class="tuwaiq-quote-mark">"</div>
-                <blockquote class="tuwaiq-quote"><span>The Saudis' enthusiasm is like Jebel Tuwaiq and will not be broken.</span></blockquote>
+                <blockquote class="tuwaiq-quote"><span data-i18n="fs.tuwaiq.quote" data-i18n-ar="حماس السعوديين كجبل طويق لن ينكسر.">The Saudis' enthusiasm is like Jebel Tuwaiq and will not be broken.</span></blockquote>
                 <div class="tuwaiq-attribution">
-                    <span class="attribution-name"><span>HRH Crown Prince Mohammed bin Salman</span></span>
-                    <span class="attribution-event"><span>Future Investment Initiative, Riyadh</span></span>
+                    <span class="attribution-name"><span data-i18n="fs.tuwaiq.author" data-i18n-ar="صاحب السمو الملكي ولي العهد الأمير محمد بن سلمان">HRH Crown Prince Mohammed bin Salman</span></span>
+                    <span class="attribution-event"><span data-i18n="fs.tuwaiq.event" data-i18n-ar="مبادرة مستقبل الاستثمار، الرياض">Future Investment Initiative, Riyadh</span></span>
                     <span class="attribution-year">2018</span>
                 </div>
             </div>
 
             <div class="tuwaiq-description">
-                <p><span>In Najd stands a mountain called Tuwaiq. The spine of our land. A symbol of steadfastness.</span></p>
-                <p class="tuwaiq-statement"><span>We are building something that will not be broken.</span></p>
+                <p><span data-i18n="fs.tuwaiq.desc" data-i18n-ar="في نجد يقف جبلٌ يُدعى طويق. عمود أرضنا. رمز الثبات.">In Najd stands a mountain called Tuwaiq. The spine of our land. A symbol of steadfastness.</span></p>
+                <p class="tuwaiq-statement"><span data-i18n="fs.tuwaiq.statement" data-i18n-ar="نحن نبني شيئاً لن ينكسر.">We are building something that will not be broken.</span></p>
             </div>
         </div>
     </section>
@@ -428,17 +443,17 @@
     <section class="story-chapter story-chapter-timeline" id="chapter7">
         <div class="container">
             <div class="timeline-header">
-                <span class="chapter-number-inline">Chapter 07</span>
-                <h2 class="timeline-title"><span>The Wooden Car Returns</span></h2>
+                <span class="chapter-number-inline" data-i18n="fs.ch7.label" data-i18n-ar="الفصل ٠٧">Chapter 07</span>
+                <h2 class="timeline-title"><span data-i18n="fs.ch7.title" data-i18n-ar="عودة السيارة الخشبية">The Wooden Car Returns</span></h2>
             </div>
 
             <div class="timeline-visual">
                 <div class="timeline-point timeline-past">
                     <div class="timeline-year">1982</div>
                     <div class="timeline-image timeline-image-real">
-                        <img src="images/woodern-car.jpeg" alt="A child's wooden dream" class="timeline-car-img"/>
+                        <img src="images/woodern-car.jpeg" alt="A child's wooden dream" data-i18n-alt-ar="حلم طفل خشبي" class="timeline-car-img"/>
                     </div>
-                    <p class="timeline-caption"><span>A child's wooden dream</span></p>
+                    <p class="timeline-caption"><span data-i18n="fs.tl.past" data-i18n-ar="حلم طفل خشبي">A child's wooden dream</span></p>
                 </div>
 
                 <div class="timeline-connector">
@@ -446,23 +461,23 @@
                     <div class="connector-dots">
                         <span></span><span></span><span></span>
                     </div>
-                    <span class="connector-years"><span>40 Years</span></span>
+                    <span class="connector-years"><span data-i18n="fs.tl.years" data-i18n-ar="٤٠ عامًا">40 Years</span></span>
                 </div>
 
                 <div class="timeline-point timeline-present">
-                    <div class="timeline-year">Coming Soon</div>
+                    <div class="timeline-year" data-i18n="fs.tl.coming" data-i18n-ar="قريبًا">Coming Soon</div>
                     <div class="timeline-image timeline-image-real">
-                        <img src="images/coming-soon-car.jpg" alt="Saudi's first luxury car" class="timeline-car-img"/>
+                        <img src="images/coming-soon-car.jpg" alt="Saudi's first luxury car" data-i18n-alt-ar="أول سيارة سعودية فاخرة" class="timeline-car-img"/>
                     </div>
-                    <p class="timeline-caption"><span>Saudi's first luxury car</span></p>
+                    <p class="timeline-caption"><span data-i18n="fs.tl.present" data-i18n-ar="أول سيارة سعودية فاخرة">Saudi's first luxury car</span></p>
                 </div>
             </div>
 
             <div class="timeline-text">
-                <p><span>After forty years, I am building that wooden car again.</span></p>
-                <p class="text-highlight"><span>But this time, it's real.</span></p>
-                <p><span>This time, it's for my family. For my country. For our leaders.</span></p>
-                <p class="text-conclusion"><span>The child in 1982 didn't know he was planting a seed. But that seed grew into a tree. And that tree will become the first Saudi luxury car.</span></p>
+                <p><span data-i18n="fs.ch7.p1" data-i18n-ar="بعد أربعين عامًا، أبني تلك السيارة الخشبية مجددًا.">After forty years, I am building that wooden car again.</span></p>
+                <p class="text-highlight"><span data-i18n="fs.ch7.p2" data-i18n-ar="لكن هذه المرة، إنها حقيقية.">But this time, it's real.</span></p>
+                <p><span data-i18n="fs.ch7.p3" data-i18n-ar="هذه المرة، من أجل عائلتي. ومن أجل وطني. ومن أجل قادتنا.">This time, it's for my family. For my country. For our leaders.</span></p>
+                <p class="text-conclusion"><span data-i18n="fs.ch7.conclusion" data-i18n-ar="الطفل عام ١٩٨٢ لم يكن يعلم أنه يزرع بذرة. لكن تلك البذرة نمت لتصبح شجرة. وستلك الشجرة ستصبح أول سيارة فاخرة سعودية.">The child in 1982 didn't know he was planting a seed. But that seed grew into a tree. And that tree will become the first Saudi luxury car.</span></p>
             </div>
         </div>
     </section>
@@ -477,33 +492,33 @@
             <div class="call-image" data-placeholder="Desert Falcons Collective Team">
                 <div class="image-placeholder-content large">
                     <span class="placeholder-icon">&#129413;</span>
-                    <span class="placeholder-text">The Collective</span>
+                    <span class="placeholder-text" data-i18n="fs.placeholder.collective" data-i18n-ar="التجمّع">The Collective</span>
                 </div>
             </div>
             <div class="call-overlay"></div>
         </div>
 
         <div class="call-content">
-            <span class="chapter-number-inline light">Chapter 08</span>
-            <h2 class="call-title"><span>The Call</span></h2>
+            <span class="chapter-number-inline light" data-i18n="fs.ch8.label" data-i18n-ar="الفصل ٠٨">Chapter 08</span>
+            <h2 class="call-title"><span data-i18n="fs.ch8.title" data-i18n-ar="النداء">The Call</span></h2>
 
             <div class="call-message">
-                <p><span>I share this story not for attention, but for understanding.</span></p>
+                <p><span data-i18n="fs.ch8.p1" data-i18n-ar="أشارك هذه القصة ليس لجذب الانتباه، بل للفهم.">I share this story not for attention, but for understanding.</span></p>
 
                 <div class="call-highlight-box">
-                    <p><span>SAIF is not a business venture.</span></p>
-                    <p class="call-emphasis"><span>It is my soul, my country, my dream.</span></p>
+                    <p><span data-i18n="fs.ch8.p2" data-i18n-ar="سيف ليس مشروعًا تجاريًا.">SAIF is not a business venture.</span></p>
+                    <p class="call-emphasis"><span data-i18n="fs.ch8.p3" data-i18n-ar="إنه روحي، ووطني، وحلمي.">It is my soul, my country, my dream.</span></p>
                 </div>
 
-                <p><span>If you feel this fire - whether you are an engineer, a designer, or an investor who believes Saudi Arabia deserves its own voice in the automotive world - join us.</span></p>
+                <p><span data-i18n="fs.ch8.fire" data-i18n-ar="إذا شعرت بهذه الجذوة — سواء كنت مهندسًا أو مصممًا أو مستثمرًا يؤمن بأن السعودية تستحق صوتها في عالم السيارات — انضم إلينا.">If you feel this fire — whether you are an engineer, a designer, or an investor who believes Saudi Arabia deserves its own voice in the automotive world — join us.</span></p>
             </div>
 
-            <blockquote class="call-final-quote"><span>"We are not job seekers. We are believers.<br><span class="quote-highlight">We are the Desert Falcons Collective.</span>"</span>
+            <blockquote class="call-final-quote"><span data-i18n="fs.ch8.quote" data-i18n-ar="&quot;نحن لسنا باحثين عن وظائف. نحن مؤمنون.<br><span class='quote-highlight'>نحن تجمّع صقور الصحراء.</span>&quot;">"We are not job seekers. We are believers.<br><span class="quote-highlight">We are the Desert Falcons Collective.</span>"</span>
             </blockquote>
 
             <div class="call-cta">
                 <a href="join.html" class="btn btn-primary btn-large">
-                    <span><span>Join the Collective</span></span>
+                    <span><span data-i18n="cta.join" data-i18n-ar="انضم إلى التجمّع">Join the Collective</span></span>
                     <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -517,56 +532,66 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text"><span>DESERT FALCONS</span></span><span class="logo-sub"><span>COLLECTIVE</span></span></span></a>
-                    <p class="footer-tagline"><span>Built by Saudi hands.</span></p>
+                    <a href="index.html" class="footer-logo"><img src="images/dfc-logo.png" alt="DFC" class="footer-logo-img"><span class="footer-logo-text"><span class="logo-text"><span data-i18n="brand.name" data-i18n-ar="صقور الصحراء">DESERT FALCONS</span></span><span class="logo-sub"><span data-i18n="brand.sub" data-i18n-ar="التجمّع">COLLECTIVE</span></span></span></a>
+                    <p class="footer-tagline"><span data-i18n="footer.tagline" data-i18n-ar="صُنع بأيدٍ سعودية.">Built by Saudi hands.</span></p>
                 </div>
 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4 class="footer-heading"><span>Navigate</span></h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.navigate" data-i18n-ar="التنقل">Navigate</span></h4>
                         <ul>
-                            <li><a href="index.html"><span>Home</span></a></li>
-                            <li><a href="founders-story.html"><span>Founder's Story</span></a></li>
-                            <li><a href="vision.html"><span>Vision</span></a></li>
+                            <li><a href="index.html"><span data-i18n="nav.home" data-i18n-ar="الرئيسية">Home</span></a></li>
+                            <li><a href="founders-story.html"><span data-i18n="nav.founder" data-i18n-ar="قصة المؤسس">Founder's Story</span></a></li>
+                            <li><a href="vision.html"><span data-i18n="nav.vision" data-i18n-ar="الرؤية">Vision</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4 class="footer-heading"><span>Join</span></h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.join" data-i18n-ar="انضم">Join</span></h4>
                         <ul>
-                            <li><a href="engineers.html"><span>Engineers</span></a></li>
-                            <li><a href="designers.html"><span>Designers</span></a></li>
-                            <li><a href="investors.html"><span>Investors</span></a></li>
+                            <li><a href="engineers.html"><span data-i18n="nav.engineers" data-i18n-ar="المهندسون">Engineers</span></a></li>
+                            <li><a href="designers.html"><span data-i18n="nav.designers" data-i18n-ar="المصممون">Designers</span></a></li>
+                            <li><a href="investors.html"><span data-i18n="nav.investors" data-i18n-ar="المستثمرون">Investors</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4 class="footer-heading"><span>Connect</span></h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.connect" data-i18n-ar="تواصل">Connect</span></h4>
                         <ul>
-                            <li><a href="join.html"><span>Join Us</span></a></li>
-                            <li><a href="mailto:contact@desertfalconscollective.com"><span>Contact</span></a></li>
+                            <li><a href="join.html"><span data-i18n="nav.join" data-i18n-ar="انضم إلينا">Join Us</span></a></li>
+                            <li><a href="mailto:contact@desertfalconscollective.com"><span data-i18n="footer.contact" data-i18n-ar="تواصل معنا">Contact</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4 class="footer-heading"><span>Legal</span></h4>
+                        <h4 class="footer-heading"><span data-i18n="footer.legal" data-i18n-ar="قانوني">Legal</span></h4>
                         <ul>
-                            <li><a href="privacy-policy.html"><span>Privacy Policy</span></a></li>
-                            <li><a href="terms-of-use.html"><span>Terms of Use</span></a></li>
+                            <li><a href="privacy-policy.html"><span data-i18n="footer.privacy" data-i18n-ar="سياسة الخصوصية">Privacy Policy</span></a></li>
+                            <li><a href="terms-of-use.html"><span data-i18n="footer.terms" data-i18n-ar="شروط الاستخدام">Terms of Use</span></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p class="copyright"><span>&copy; 2026 Desert Falcons Collective. All rights reserved.</span></p>
-                <p class="footer-note"><span>A Vision 2030 Initiative</span></p>
+                <p class="copyright"><span data-i18n="footer.copyright" data-i18n-ar="© ٢٠٢٦ تجمّع صقور الصحراء. جميع الحقوق محفوظة.">&copy; 2026 Desert Falcons Collective. All rights reserved.</span></p>
+                <p class="footer-note"><span data-i18n="footer.vision2030" data-i18n-ar="مبادرة رؤية ٢٠٣٠">A Vision 2030 Initiative</span></p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="script.js"></script>
-    
+    <script>
+        setTimeout(function() {
+            var loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                loader.style.pointerEvents = 'none';
+            }
+            document.body.classList.remove('loading');
+        }, 2500);
+    </script>
+    <script src="i18n.js"></script>
 </body>
 </html>
-

@@ -817,3 +817,100 @@
     letter-spacing: 0.15em;
 }
 
+/* RTL Overrides — auto-generated */
+
+/* Corner marks: swap left↔right positioning */
+html[dir="rtl"] .hc-tl { left: auto; right: 0; border-width: 1px 1px 0 0; }
+html[dir="rtl"] .hc-tr { right: auto; left: 0; border-width: 1px 0 0 1px; }
+html[dir="rtl"] .hc-bl { left: auto; right: 0; border-width: 0 1px 1px 0; }
+html[dir="rtl"] .hc-br { right: auto; left: 0; border-width: 0 0 1px 1px; }
+
+/* Blueprint grid crosses: left positioning decorative — swap for accurate RTL */
+html[dir="rtl"] .bpg-cross-1 { left: auto; right: 20%; }
+html[dir="rtl"] .bpg-cross-2 { left: auto; right: 80%; }
+
+/* Blueprint cross ::after uses left:0 — flip to right:0 */
+html[dir="rtl"] .bpg-cross::after { left: auto; right: 0; }
+
+/* Disc areas: bullet uses left:0, padding-left */
+html[dir="rtl"] .eng-disc-areas li {
+    padding-left: 0;
+    padding-right: 0.85rem;
+}
+html[dir="rtl"] .eng-disc-areas li::before {
+    left: auto;
+    right: 0;
+}
+
+/* Disc num column: padding-right in LTR → padding-left in RTL */
+html[dir="rtl"] .eng-disc-num-col {
+    padding-right: 0;
+    padding-left: 2rem;
+}
+
+/* Disc icon: margin-right → margin-left */
+html[dir="rtl"] .eng-disc-icon-col {
+    margin-right: 0;
+    margin-left: 2.5rem;
+}
+
+/* Disc content: padding-right 0 → padding-left 0 in RTL */
+html[dir="rtl"] .eng-disc-content {
+    padding: 2.5rem 0 2.5rem 2.5rem;
+}
+
+/* Disc bar: positioned right:0 → left:0 in RTL */
+html[dir="rtl"] .eng-disc-bar {
+    right: auto;
+    left: 0;
+}
+
+/* Clar body: padding-left → padding-right */
+html[dir="rtl"] .eng-clar-body {
+    padding-left: 0;
+    padding-right: 4rem;
+}
+@media (max-width: 600px) {
+    html[dir="rtl"] .eng-clar-body { padding-right: 0; }
+}
+
+/* Clar split: margin-left → margin-right */
+html[dir="rtl"] .eng-clar-split {
+    margin-left: 0;
+    margin-right: 4rem;
+}
+@media (max-width: 600px) {
+    html[dir="rtl"] .eng-clar-split { margin-right: 0; }
+}
+
+/* Key challenges: text-align left → right in RTL */
+html[dir="rtl"] .eng-kc-challenges {
+    text-align: right;
+}
+
+/* Key challenge items: border-right on last-child from LTR,
+   in RTL the first child should lose its border */
+html[dir="rtl"] .eng-kc-item {
+    border-right: 1px solid rgba(255,255,255,0.07);
+    border-left: none;
+}
+html[dir="rtl"] .eng-kc-item:first-child {
+    border-right: none;
+}
+html[dir="rtl"] .eng-kc-item:last-child {
+    border-right: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Investor profile item hover: translateX(6px) → translateX(-6px) */
+html[dir="rtl"] .ipl-item:hover {
+    transform: translateX(-6px);
+}
+
+/* Hero: text-align:center in LTR — keep centred in RTL */
+html[dir="rtl"] .eng-hero-inner,
+html[dir="rtl"] .eng-hero-inner *,
+html[dir="rtl"] .eng-hero-title,
+html[dir="rtl"] .eng-hero-eyebrow,
+html[dir="rtl"] .eng-hero-sub {
+    text-align: center !important;
+}

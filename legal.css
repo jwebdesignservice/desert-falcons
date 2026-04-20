@@ -380,3 +380,53 @@
     }
 }
 
+/* RTL Overrides — auto-generated */
+
+/* Intro block: border-left → border-right */
+html[dir="rtl"] .legal-intro-block {
+    border-left: none;
+    border-right: 3px solid #B8915A;
+}
+
+/* Legal list items: padding-left → padding-right, bullet left:0 → right:0 */
+html[dir="rtl"] .legal-list li {
+    padding-left: 0;
+    padding-right: 1.5rem;
+}
+html[dir="rtl"] .legal-list li::before {
+    left: auto;
+    right: 0;
+}
+
+/* Notice boxes: border-left → border-right */
+html[dir="rtl"] .legal-notice-box {
+    border-left: none;
+    border-right: 3px solid #1E4A3B;
+}
+html[dir="rtl"] .legal-notice-box--green {
+    border-left: none;
+    border-right-color: #2A6350;
+}
+
+/* Table header: text-align left → right */
+html[dir="rtl"] .legal-table th {
+    text-align: right;
+}
+
+/* Hero decoration corners: swap left↔right */
+html[dir="rtl"] .legal-hero-decoration .deco-corner-tl {
+    left: auto;
+    right: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: none;
+}
+html[dir="rtl"] .legal-hero-decoration .deco-corner-br {
+    right: auto;
+    left: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: none;
+}

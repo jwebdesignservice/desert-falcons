@@ -472,9 +472,6 @@
 .tuwaiq-bg {
     position: absolute;
     inset: 0;
-    background-image: url('../images/jebel-tuwaiq.jpg');
-    background-size: cover;
-    background-position: center;
 }
 
 .tuwaiq-image-placeholder {
@@ -1411,3 +1408,65 @@
     color: rgba(255, 255, 255, 0.3);
 }
 
+/* ============================================================
+   Arabic / RTL Overrides
+   ============================================================ */
+
+html[dir="rtl"] .side-features {
+    text-align: right;
+}
+
+html[dir="rtl"] .image-frame-accent {
+    right: auto;
+    left: -15px;
+    border-right: none;
+    border-left: 2px solid #B8915A;
+}
+
+/* RTL Overrides — auto-generated */
+
+/* Hero glow decorative: right:-100px → left:-100px and vice versa */
+html[dir="rtl"] .hero-glow-1 {
+    right: auto;
+    left: -100px;
+}
+html[dir="rtl"] .hero-glow-2 {
+    left: auto;
+    right: -100px;
+}
+
+/* Mission image tag: top/left → top/right */
+html[dir="rtl"] .image-tag {
+    left: auto;
+    right: 1.5rem;
+}
+
+/* Pillar card hover: translateX(10px) → translateX(-10px) */
+html[dir="rtl"] .pillar-card-horizontal:hover {
+    transform: translateX(-10px);
+}
+
+/* Side features: text-align left → right (already added above, this is supplemental) */
+
+/* Quote mark closing: text-align right → left in RTL */
+html[dir="rtl"] .quote-mark.closing {
+    text-align: left;
+}
+
+/* Timeline track: gradient left→right flip */
+html[dir="rtl"] .timeline-track-horizontal {
+    background: linear-gradient(to left, #1E4A3B, rgba(184, 145, 90, 0.5), #B8915A);
+}
+
+/* Analytics row count: text-align right → left */
+html[dir="rtl"] .analytics-row-count {
+    text-align: left;
+}
+
+/* Centre-preservation: sections explicitly text-align:center in LTR must stay centred in RTL */
+html[dir="rtl"] .vision-hero-content,
+html[dir="rtl"] .vision-hero-content *,
+html[dir="rtl"] .vision-hero-title,
+html[dir="rtl"] .vision-hero-subtitle {
+    text-align: center;
+}
