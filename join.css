@@ -150,10 +150,10 @@
     align-items: start;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1080px) {
     .join-form-outer {
         grid-template-columns: 1fr;
-        gap: 4rem;
+        gap: 3rem;
         padding: 0 2rem;
     }
     .join-context {

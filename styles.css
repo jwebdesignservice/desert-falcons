@@ -214,6 +214,8 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* iOS Safari: overflow-x must be on html too or body scroll breaks with sticky elements */
+    overflow-x: hidden;
 }
 
 body {
